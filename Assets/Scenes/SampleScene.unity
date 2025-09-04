@@ -397,6 +397,71 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a2219ee46a8affd4897c702ce35c581e, type: 3}
+--- !u!1001 &1998756626
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5613368886922452831, guid: c14223256e90c5948abd39eecb06e986, type: 3}
+      propertyPath: m_Name
+      value: Fruit_ninja
+      objectReference: {fileID: 0}
+    - target: {fileID: 5613368886922452832, guid: c14223256e90c5948abd39eecb06e986, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5613368886922452832, guid: c14223256e90c5948abd39eecb06e986, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5613368886922452832, guid: c14223256e90c5948abd39eecb06e986, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5613368886922452832, guid: c14223256e90c5948abd39eecb06e986, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5613368886922452832, guid: c14223256e90c5948abd39eecb06e986, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5613368886922452832, guid: c14223256e90c5948abd39eecb06e986, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5613368886922452832, guid: c14223256e90c5948abd39eecb06e986, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5613368886922452832, guid: c14223256e90c5948abd39eecb06e986, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5613368886922452832, guid: c14223256e90c5948abd39eecb06e986, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5613368886922452832, guid: c14223256e90c5948abd39eecb06e986, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5613368888262528202, guid: c14223256e90c5948abd39eecb06e986, type: 3}
+      propertyPath: STR_previewJsonAPI
+      value: '{"q_a":[{"question_id":"2832","question":"Slice the fruits with the
+        letter d","answer":"d","question_voice":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/slice_me_upKoIT\/audio\/Slicethefruitswiththeletterd.mp3","options":[{"option":"d","option_voice":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/slice_me_upKoIT\/audio\/d.mp3","option_id":"5294"},{"option":"g","option_voice":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/slice_me_upKoIT\/audio\/g.mp3","option_id":"5295"},{"option":"d","option_voice":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/slice_me_upKoIT\/audio\/d.mp3","option_id":"5296"},{"option":"p","option_voice":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/slice_me_upKoIT\/audio\/p.mp3","option_id":"5297"},{"option":"q","option_voice":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/slice_me_upKoIT\/audio\/q.mp3","option_id":"5298"},{"option":"d","option_voice":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/slice_me_upKoIT\/audio\/d.mp3","option_id":"5299"}]},{"question_id":"2833","question":"Slice
+        the fruits with the letter r ","answer":"r","question_voice":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/slice_me_upKoIT\/audio\/Slicethefruitswiththeletterr.mp3","options":[{"option":"r","option_voice":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/slice_me_upKoIT\/audio\/r.mp3","option_id":"5300"},{"option":"m","option_voice":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/slice_me_upKoIT\/audio\/m.mp3","option_id":"5301"},{"option":"i","option_voice":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/slice_me_upKoIT\/audio\/i.mp3","option_id":"5302"},{"option":"l","option_voice":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/slice_me_upKoIT\/audio\/l.mp3","option_id":"5303"},{"option":"r","option_voice":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/slice_me_upKoIT\/audio\/r.mp3","option_id":"5304"},{"option":"r","option_voice":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/slice_me_upKoIT\/audio\/r.mp3","option_id":"5305"}]}],"correct_points":"5","wrong_points":"2","avatar_color":"","difficulty_level":"assistive","video":"","instruction":"Find
+        the given letter","instruction_audio":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/slice_me_upKoIT\/instruction_audio.mp3","bg_image":"","customization":{},"child_name":"Samiksha","child_standard":"II
+        std","lesson_name":"D,R","game_cover_img":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/slice_me_upKoIT\/coverImage.png","additional_keys":[]}'
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c14223256e90c5948abd39eecb06e986, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -405,3 +470,4 @@ SceneRoots:
   - {fileID: 690917394}
   - {fileID: 966325948}
   - {fileID: 385212121}
+  - {fileID: 1998756626}

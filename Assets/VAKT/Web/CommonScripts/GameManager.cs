@@ -7,9 +7,9 @@ using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using TMPro;
 
-namespace game
-{
-    public class GameManager : MonoBehaviour
+namespace Game
+{ 
+public class GameManager : MonoBehaviour
     {
         public static GameManager instance;
 
