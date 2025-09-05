@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using System;
+using DLearners;
 
 
 
-public class ActivityDataManager : MonoGenericSingleton<ActivityDataManager>
+public class ActivityDataManager : Singleton<ActivityDataManager>
 {
 
     // Dictionary: key = activity name, value = list of questions

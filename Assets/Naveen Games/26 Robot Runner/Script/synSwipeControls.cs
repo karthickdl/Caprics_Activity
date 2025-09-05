@@ -91,11 +91,11 @@ public class synSwipeControls : MonoBehaviour
             {
                 if (y < 0)
                 {
-                    Robotmovement.OBJ_robotmovement.down();
+                    Robotmovement.OBJ_robotmovement.Down();
                 }
                 else
                 {
-                    Robotmovement.OBJ_robotmovement.jump();
+                    Robotmovement.OBJ_robotmovement.Jump();
                 }
             }
         }

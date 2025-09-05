@@ -2,7 +2,7 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!1102 &-6126953398836458818
 AnimatorState:
-  serializedVersion: 5
+  serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -28,7 +28,7 @@ AnimatorState:
   m_TimeParameter: 
 --- !u!1102 &-2097169759372373392
 AnimatorState:
-  serializedVersion: 5
+  serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -76,7 +76,7 @@ AnimatorController:
     m_Controller: {fileID: 9100000}
 --- !u!1107 &5984468643073536861
 AnimatorStateMachine:
-  serializedVersion: 5
+  serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -85,13 +85,13 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 6456625755418850923}
-    m_Position: {x: 280, y: 40, z: 0}
+    m_Position: {x: 260, y: 10, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -2097169759372373392}
-    m_Position: {x: 280, y: 120, z: 0}
+    m_Position: {x: 320, y: 80, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -6126953398836458818}
-    m_Position: {x: 280, y: 210, z: 0}
+    m_Position: {x: 310, y: 160, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -104,7 +104,7 @@ AnimatorStateMachine:
   m_DefaultState: {fileID: 6456625755418850923}
 --- !u!1102 &6456625755418850923
 AnimatorState:
-  serializedVersion: 5
+  serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}

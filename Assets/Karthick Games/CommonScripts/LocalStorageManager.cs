@@ -1,4 +1,4 @@
-﻿using System.Runtime.InteropServices;
+﻿using DLearners;
 using UnityEngine;
 
 // public class LocalStorageManager : MonoGenericSingleton<LocalStorageManager>
@@ -23,7 +23,7 @@ using UnityEngine;
 // }
 
 
-public class LocalStorageManager : MonoGenericSingleton<LocalStorageManager>
+public class LocalStorageManager : Singleton<LocalStorageManager>
 {
 #if UNITY_WEBGL && !UNITY_EDITOR
     [DllImport("__Internal")]

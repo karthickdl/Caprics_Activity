@@ -7,7 +7,7 @@ using UnityEngine.UI;
 namespace DLearners
 {
 
-    public class AudioManager : MonoGenericSingleton<AudioManager>
+    public class AudioManager : Singleton<AudioManager>
     {
 
         #region =======================================user input=======================================

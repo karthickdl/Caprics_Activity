@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
+using DLearners;
 using UnityEngine;
 
 namespace SnailWordGame
 {
-
-    public class AudioManager : MonoGenericSingleton<AudioManager>
+    public class AudioManager : Singleton<AudioManager>
     {
 
         [SerializeField] private AudioSource AS_SFX;

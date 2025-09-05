@@ -23,7 +23,8 @@ namespace CaterpillarSortingGame
 
         public void ChooseExample()
         {
-            AudioManager.Instance.PlayGameMusic();
+           // AudioManager.Instance.PlayGameMusic();
+            DLearners.DLearnersAudioManager.Instance.PlaySound("PlayGameMusic");
 
             //to show its ascending or descending demo
             if (REF_CaterpillarGameManager.STR_Mode.Equals("asc"))

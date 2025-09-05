@@ -745,7 +745,8 @@ namespace CaterpillarSortingGame
 
         public void RemoveCurrentQuestion()
         {
-            AudioManager.Instance.PlayGameMusic();
+            //AudioManager.Instance.PlayGameMusic();
+            DLearners.DLearnersAudioManager.Instance.PlaySound("PlayGameMusic");
             Destroy(_InstantiatedQandA.gameObject);
             ShowNextQuestion();
         }
@@ -780,7 +781,8 @@ namespace CaterpillarSortingGame
         {
             yield return new WaitForSeconds(delay);
 
-            AudioManager.Instance.PlayCoinCollect(0f);
+            //AudioManager.Instance.PlayCoinCollect(0f);
+            DLearners.DLearnersAudioManager.Instance.PlaySound("PlayCoinCollect");
 
             for (int i = I_CollectedPoints; i <= (I_CollectedPoints + I_Points); i++)
             {

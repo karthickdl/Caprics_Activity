@@ -13,7 +13,8 @@ namespace CaterpillarSortingGame
 
         public void OnPointerDown(PointerEventData eventData)
         {
-            AudioManager.Instance.PlayVoice(clip);
+           // AudioManager.Instance.PlayVoice(clip);
+            DLearners.DLearnersAudioManager.Instance.PlaySound("clip");
         }
     }
 

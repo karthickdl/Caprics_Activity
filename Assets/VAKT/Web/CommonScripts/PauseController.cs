@@ -12,17 +12,11 @@ public class PauseController : MonoBehaviour
     public GameObject G_resumeButton, G_dashboardButton;
     public float F_volume;
     public Slider SL_volume;
-    public AudioSource AS_BGM;
 
 
 
     private void Start()
     {
-        if (GameObject.Find("BGM") != null)
-        {
-            AS_BGM = GameObject.Find("BGM").GetComponent<AudioSource>();
-            F_volume = AS_BGM.volume;
-        }
         SL_volume.value = F_volume;
 
 
@@ -32,16 +26,6 @@ public class PauseController : MonoBehaviour
         G_resumeButton.SetActive(true);
     }
 
-
-
-    public void SL_volumeChange()
-    {
-        if (AS_BGM != null)
-        {
-            F_volume = SL_volume.value;
-            AS_BGM.volume = F_volume;
-        }
-    }
 
 
 

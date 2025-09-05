@@ -32,7 +32,8 @@ public class DropSlot_Caterpillar : MonoBehaviour, IDropHandler
                 drag.isDropped = true;
                 answerCount++;
 
-                AudioManager.Instance.PlayCorrect();
+                //DLearners.AudioManager.Instance.PlayCorrect();
+                DLearners.DLearnersAudioManager.Instance.PlaySound("PlayCorrect");
                 GetComponentInChildren<ParticleSystem>().Play();
                 StartCoroutine(IENUM_LerpTransform(drag.rectTransform, drag.rectTransform.anchoredPosition, GetComponent<RectTransform>().anchoredPosition));
                 gameObject.GetComponent<DropSlot_Caterpillar>().enabled = false;
@@ -41,7 +42,8 @@ public class DropSlot_Caterpillar : MonoBehaviour, IDropHandler
 
                 if (answerCount == 6)
                 {
-                    AudioManager.Instance.PlayGameWonMusic();
+                    //AudioManager.Instance.PlayGameWonMusic();
+                    DLearners.DLearnersAudioManager.Instance.PlaySound("PlayGameWonMusic");
                     REF_QandA.Invoke("SpawnCoins", 1f);
                     REF_QandA.StartCoroutine(REF_QandA.IENUM_CaterpillarOut());
                     REF_CaterpillarGameManager.UpdateScore(4.5f);
@@ -53,7 +55,8 @@ public class DropSlot_Caterpillar : MonoBehaviour, IDropHandler
             else
             {
                 //!wrong answer
-                AudioManager.Instance.PlayWrong();
+                //AudioManager.Instance.PlayWrong();
+                DLearners.DLearnersAudioManager.Instance.PlaySound("PlayWrong");
                 REF_CaterpillarGameManager.DecrementPoints();
             }
 

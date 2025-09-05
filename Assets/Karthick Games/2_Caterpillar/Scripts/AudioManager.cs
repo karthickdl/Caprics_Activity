@@ -1,10 +1,10 @@
 using UnityEngine;
 
 
-namespace CaterpillarSortingGame
-{
+//namespace DLearners
+//{
 
-    public class AudioManager : MonoGenericSingleton<AudioManager>
+    public class AudioManager : MonoBehaviour
     {
 
         [SerializeField] private AudioSource AS_SFX;
@@ -24,80 +24,85 @@ namespace CaterpillarSortingGame
         [SerializeField] private AudioClip AC_CoinCollect;
 
 
-        public void PlayVoice(AudioClip clip)
-        {
-            AS_Voice.PlayOneShot(clip);
-        }
-
-
-        public void StopVoice()
-        {
-            AS_Voice.Stop();
-        }
-
-
-        public void PlayIntroMusic()
-        {
-            AS_Music.PlayOneShot(AC_IntroMusic);
-        }
-
-
-        public void PlayGameMusic()
-        {
-            AS_Music.clip = AC_GameMusic;
-            AS_Music.Play();
-            AS_Music.loop = true;
-        }
-
-
-        public bool IsMusicPlaying()
-        {
-            return AS_Music.isPlaying;
-        }
-
-
-        public void PlayGameWonMusic()
-        {
-            AS_Music.clip = AC_GameWon;
-            AS_Music.Play();
-            AS_Music.loop = false;
-        }
-
-
-        public void PlayCorrect()
-        {
-            AS_SFX.PlayOneShot(AC_Correct);
-        }
-
-
-        public void PlayWrong()
-        {
-            AS_SFX.PlayOneShot(AC_Wrong);
-        }
-
-
-        public void PlayCaterpillarMovement()
-        {
-            AS_SFX.PlayOneShot(AC_CaterpillarMovement);
-        }
-
-
-        public void PlayCoinSpawn()
-        {
-            AS_SFX.PlayOneShot(AC_CoinSpawn);
-        }
-
-
-        public void PlayCoinCollect(float delay)
-        {
-            AS_SFX.clip = AC_CoinCollect;
-            AS_SFX.PlayDelayed(delay);
-        }
-
-
-
-
-
+    /*public void PlayVoice(AudioClip clip)
+    {
+        AS_Voice.PlayOneShot(clip);
     }
 
+
+    public void StopVoice()
+    {
+        AS_Voice.Stop();
+    }
+
+
+    public void PlayIntroMusic()
+    {
+        AS_Music.PlayOneShot(AC_IntroMusic);
+    }
+
+
+    public void PlayGameMusic()
+    {
+        AS_Music.clip = AC_GameMusic;
+        AS_Music.Play();
+        AS_Music.loop = true;
+    }
+
+
+    public bool IsMusicPlaying()
+    {
+        return AS_Music.isPlaying;
+    }
+
+
+    public void PlayGameWonMusic()
+    {
+        AS_Music.clip = AC_GameWon;
+        AS_Music.Play();
+        AS_Music.loop = false;
+    }
+
+
+    public void PlayCorrect()
+    {
+        AS_SFX.PlayOneShot(AC_Correct);
+    }
+
+
+    public void PlayWrong()
+    {
+        AS_SFX.PlayOneShot(AC_Wrong);
+    }
+
+
+    public void PlayCaterpillarMovement()
+    {
+        AS_SFX.PlayOneShot(AC_CaterpillarMovement);
+    }
+
+
+    public void PlayCoinSpawn()
+    {
+        AS_SFX.PlayOneShot(AC_CoinSpawn);
+    }
+
+
+    public void PlayCoinCollect(float delay)
+    {
+        AS_SFX.clip = AC_CoinCollect;
+        AS_SFX.PlayDelayed(delay);
+    }
+    public void PlayCoinCollect(float delay)
+    {
+        AS_SFX.clip = AC_CoinCollect;
+        AS_SFX.PlayDelayed(delay);
+    }
+    public void PlayCoinCollect()
+    {
+        AS_SFX.clip = AC_CoinCollect;
+        AS_SFX.Play();
+    }*/
 }
+
+//}

@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c97ef8258d4508d43a9eeb225046c6f7, type: 3}
+  m_Name: GameAudioDataSO
+  m_EditorClassIdentifier: 
+  fxSounds:
+  - name: BGM
+    audioClip: {fileID: 8300000, guid: 120e70cff3293424e96d737920e01123, type: 3}
+    mixerType: 1
+    volumeLevel: 0.03
+  - name: AS_Correct
+    audioClip: {fileID: 8300000, guid: 40fd0f63d41be4c09b34e7df83e2176d, type: 3}
+    mixerType: 2
+    volumeLevel: 0.03
+  - name: AS_Wrong
+    audioClip: {fileID: 8300000, guid: 5d34ebfb67043a1438312cfe82aa831a, type: 3}
+    mixerType: 2
+    volumeLevel: 0.1
+  - name: AS_collecting
+    audioClip: {fileID: 8300000, guid: be0e0809f3a404014b59715976ba0779, type: 3}
+    mixerType: 2
+    volumeLevel: 0.07
+  - name: AS_falling
+    audioClip: {fileID: 8300000, guid: e19d9a46cadc49c46a2760ecd9764f51, type: 3}
+    mixerType: 2
+    volumeLevel: 0.07
+  - name: AS_Walking
+    audioClip: {fileID: 8300000, guid: 5622a881643a04c4a87ad5a3267c04d1, type: 3}
+    mixerType: 2
+    volumeLevel: 0.07
+  - name: AS_Jumping
+    audioClip: {fileID: 8300000, guid: d241c9a14e704634a8dd7d5eeac2e9bc, type: 3}
+    mixerType: 2
+    volumeLevel: 0.07
+  - name: AS_Portal
+    audioClip: {fileID: 8300000, guid: 3a975da61f2097a43b9961ed43def0b3, type: 3}
+    mixerType: 2
+    volumeLevel: 0.07
+  - name: AS_Falling
+    audioClip: {fileID: 8300000, guid: e19d9a46cadc49c46a2760ecd9764f51, type: 3}
+    mixerType: 2
+    volumeLevel: 0.07
+  - name: blast
+    audioClip: {fileID: 8300000, guid: 331d54228cc812949a735f62e9f9c933, type: 3}
+    mixerType: 2
+    volumeLevel: 0.07

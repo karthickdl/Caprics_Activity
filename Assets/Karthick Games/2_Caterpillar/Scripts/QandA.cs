@@ -50,7 +50,8 @@ namespace CaterpillarSortingGame
 
             ANIM_CaterpillarMove.SetTrigger("in");
             ANIM_CaterpillarUpDown.SetTrigger("active");
-            AudioManager.Instance.PlayCaterpillarMovement();
+            //AudioManager.Instance.PlayCaterpillarMovement();
+            DLearners.DLearnersAudioManager.Instance.PlaySound("PlayCaterpillarMovement");
 
             yield return new WaitForSeconds(4f);
 
@@ -223,7 +224,8 @@ namespace CaterpillarSortingGame
             G_Caterpillar.SetActive(true);
             ANIM_CaterpillarMove.SetTrigger("out");
             ANIM_CaterpillarUpDown.SetTrigger("active");
-            AudioManager.Instance.PlayCaterpillarMovement();
+           // AudioManager.Instance.PlayCaterpillarMovement();
+            DLearners.DLearnersAudioManager.Instance.PlaySound("PlayCaterpillarMovement");
 
             yield return new WaitForSeconds(4f);
 

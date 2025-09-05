@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.Networking;
 using TMPro;
 using UnityEngine.SceneManagement;
+using DLearners;
 
 
 public class RB_Runner_Main : MonoBehaviour
@@ -59,9 +60,9 @@ public class RB_Runner_Main : MonoBehaviour
     public string SendValueURL;
 
     [Header("Audios")]
-    public AudioSource AS_collecting;
+    /*public AudioSource AS_collecting;
     public AudioSource AS_oops;
-    public AudioSource AS_crtans;
+    public AudioSource AS_crtans;*/
 
     [Header("DB")]
     public List<string> STRL_difficulty;
@@ -252,7 +253,7 @@ public class RB_Runner_Main : MonoBehaviour
     public void THI_NewQuestion()
     {
         G_Robot.SetActive(true);
-        Robotmovement.OBJ_robotmovement.startfunction();
+        Robotmovement.OBJ_robotmovement.RobotInIt();
         if (G_currentquestion != null)
         {
             Destroy(G_currentquestion);
@@ -320,7 +321,7 @@ public class RB_Runner_Main : MonoBehaviour
 
     public void THI_Correct()
     {
-        AS_crtans.Play();
+        DLearnersAudioManager.Instance.PlaySound2("AS_Correct");
         I_Collect_count++;
         I_Points += I_correctPoints;
         TEX_points.text = I_Points.ToString();
@@ -403,14 +404,13 @@ public class RB_Runner_Main : MonoBehaviour
     {
 
         if (plus)
-        {
-            AS_collecting.Play();
+        {            
             TM_pointFx.text = "+" + 2 + " points";
             I_Points += 2;
         }
         else
         {
-            AS_oops.Play();
+           
             if (I_Points > 10)
             {
                 TM_pointFx.text = "-" + 10 + " point";
@@ -431,7 +431,7 @@ public class RB_Runner_Main : MonoBehaviour
     {
         // Debug.Log("Wrong ans");
 
-        AS_oops.Play();
+        DLearnersAudioManager.Instance.PlaySound2("AS_Wrong");
         THI_pointFxOn(false);
         THI_TrackGameData("0");
         I_wrongAnsCount++;
