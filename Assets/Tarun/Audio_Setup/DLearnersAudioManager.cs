@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System;
 using UnityEngine.Audio;
-using System.Collections.Generic;
 
 namespace DLearners
 {
@@ -106,7 +105,7 @@ namespace DLearners
             Destroy(audioPlayer, audioSource.clip.length);
         }
 
-        public AudioSource PlaySoundCashed(string name, float delay = 0)
+        public AudioSource PlaySoundCashed(string name)
         {
             GameObject audioPlayer = new GameObject("AP");
             SoundDataStruct soundDataStruct = Array.Find(fxSounds2, s => s.name == name);
