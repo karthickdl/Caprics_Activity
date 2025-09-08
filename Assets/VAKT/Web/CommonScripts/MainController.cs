@@ -12,15 +12,14 @@ public class MainController : MonoBehaviour
     public bool MOBILE;
 
     [Header("MANAGERS")]
-    public GameObject G_GameID;
     public GameObject G_GameManager;
 
     [Header("OBJECTS")]
-    public GameObject G_coverPageStart;
+    //public GameObject G_coverPageStart;
     public Image IM_loading;
     public float startLoad;
     public float maxLoad;
-    public GameObject G_coverPage;
+   // public GameObject G_coverPage;
     public bool B_enteredGame;
 
     [Header("ID")]
@@ -50,7 +49,7 @@ public class MainController : MonoBehaviour
     {
         instance = this;
 
-        G_coverPageStart.GetComponent<Button>().interactable = false;
+        //G_coverPageStart.GetComponent<Button>().interactable = false;
         B_enteredGame = false;
 
 
@@ -78,7 +77,7 @@ public class MainController : MonoBehaviour
         if (WEB)
         {
             G_GameManager.SetActive(false);
-            G_GameID.SetActive(true);
+           // G_GameID.SetActive(true);
 
 
             // testing
@@ -200,14 +199,14 @@ public class MainController : MonoBehaviour
             IM_loading.fillAmount = startLoad / maxLoad;
             if (startLoad >= maxLoad)
             {
-                G_coverPageStart.GetComponent<Button>().interactable = true;
-                G_coverPageStart.GetComponent<Animator>().enabled = true;
+               // G_coverPageStart.GetComponent<Button>().interactable = true;
+               // G_coverPageStart.GetComponent<Animator>().enabled = true;
                 IM_loading.transform.parent.GetChild(1).gameObject.SetActive(true);
             }
         }
-        if (!G_coverPage.activeInHierarchy && !B_enteredGame) // player has entered the game
+      //  if (!G_coverPage.activeInHierarchy && !B_enteredGame) // player has entered the game
         {
-            B_enteredGame = true;
+        //    B_enteredGame = true;
 
             /* if (HelicopterGameManager.instance!=null)
              {

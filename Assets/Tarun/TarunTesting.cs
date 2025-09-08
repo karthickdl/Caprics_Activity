@@ -1,22 +1,37 @@
 using DLearners;
+using System.Collections;
 using UnityEngine;
 
 public class TarunTesting : Singleton<TarunTesting>
 {
     public GameAudioDataSO gameAudioDataSO;
-    public IntroController introControllerPF;
-    public CoverPage coverPagePF;
-    public Transform canv;
+    [SerializeField] private IntroController introControllerPF;
+    [SerializeField] private CoverPage coverPagePF;
+    [SerializeField] private DemoController demoControllerPF;
+    [SerializeField] private DemoControllerDataSO _demoControllerDataSO;
+    [SerializeField] private Transform canv;
     private void Start()
     {
-        ShowIntro();
-    }
-    public void Update()
-    {
-    }
+        StartCoroutine(Test());
 
-    private void ShowIntro()
+        Application.ExternalEval("OnAppReady()");
+    }
+    private IEnumerator Test()
     {
-        Instantiate(introControllerPF, canv);
+        IntroController cashIntroController = Instantiate(introControllerPF, canv);
+        yield return new WaitForSeconds(cashIntroController.InitIntroController());
+
+        CoverPage cashCoverPage = Instantiate(coverPagePF, canv);
+
+        cashCoverPage.InitCoverPage();
+
+        yield return new WaitUntil(() => cashCoverPage.ggd);
+
+        DemoController cashDemoController = Instantiate(demoControllerPF, canv);
+
+        cashDemoController.InitDemoController(_demoControllerDataSO);
+
+
+        yield return null;
     }
 }

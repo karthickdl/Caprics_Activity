@@ -15,12 +15,11 @@ public class RB_Runner_Main : MonoBehaviour
     public bool B_production;
 
     [Header("Screens and UI elements")]
-    public GameObject G_Demo;
+    //public GameObject G_Demo;
     bool B_CloseDemo;
 
     public GameObject G_Game;
     public GameObject G_Transition;
-    public GameObject G_coverPage;
     public GameObject G_instructionPage;
     public TextMeshProUGUI TEXM_instruction;
     public TextMeshProUGUI TEXM_instruction2;
@@ -182,11 +181,11 @@ public class RB_Runner_Main : MonoBehaviour
 
     private void Update()
     {
-        if (!G_Demo.activeInHierarchy && B_CloseDemo)
+       /* if (!G_Demo.activeInHierarchy && B_CloseDemo)
         {
             B_CloseDemo = false;
             DemoOver();
-        }
+        }*/
 
     }
 
@@ -508,7 +507,7 @@ public class RB_Runner_Main : MonoBehaviour
             Texture2D downloadedTexture = ((DownloadHandlerTexture)www.downloadHandler).texture;
             if (STRL_cover_img_link != null)
             {
-                G_coverPage.GetComponent<Image>().sprite = Sprite.Create(downloadedTexture, new Rect(0.0f, 0.0f, downloadedTexture.width, downloadedTexture.height), new Vector2(0.5f, 0.5f), 100.0f);
+               // G_coverPage.GetComponent<Image>().sprite = Sprite.Create(downloadedTexture, new Rect(0.0f, 0.0f, downloadedTexture.width, downloadedTexture.height), new Vector2(0.5f, 0.5f), 100.0f);
             }
         }
 

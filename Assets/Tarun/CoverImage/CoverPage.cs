@@ -6,8 +6,16 @@ public class CoverPage : MonoBehaviour
     [SerializeField] private Image bgIMG;
     [SerializeField] private Button startButton;
     [SerializeField] private Image startButtonIMG;
-    private void Start()
+
+    public bool ggd;
+    public void InitCoverPage()
     {
-       // Destroy(gameObject);
+        startButton.onClick.AddListener(() => { OnStartButton();});
+    }
+
+    private void OnStartButton()
+    {
+        ggd = true;
+        Destroy(this.gameObject, 0.1f);
     }
 }
