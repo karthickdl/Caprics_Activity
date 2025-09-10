@@ -1,17 +1,26 @@
+using DG.Tweening;
+using DLearners;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 using UnityEngine.Networking;
-using TMPro;
 using UnityEngine.SceneManagement;
-using DLearners;
+using UnityEngine.UI;
 
 
-public class RB_Runner_Main : MonoBehaviour
+public class RB_Runner_Main : GameManagerBase
 {
-    public static RB_Runner_Main Instance;
+
+    public TextMeshProUGUI TEXM_instruction;
+    public TextMeshProUGUI TEXM_instruction2;
+    public Text TEX_points;
+    public Text TEX_questionCount;
+    public TextMeshProUGUI TM_pointFx;
+
+
     public bool B_production;
 
     [Header("Screens and UI elements")]
@@ -21,11 +30,7 @@ public class RB_Runner_Main : MonoBehaviour
     public GameObject G_Game;
     public GameObject G_Transition;
     public GameObject G_instructionPage;
-    public TextMeshProUGUI TEXM_instruction;
-    public TextMeshProUGUI TEXM_instruction2;
-    public Text TEX_points;
-    public Text TEX_questionCount;
-    public TextMeshProUGUI TM_pointFx;
+    
 
     [Header("Objects")]
     public GameObject[] GA_Question;
@@ -33,6 +38,7 @@ public class RB_Runner_Main : MonoBehaviour
     public GameObject G_currentquestion;
     public GameObject G_Robot;
     public GameObject G_Question;
+    public Image questionIMG;//Tarun
     public GameObject G_Options;
     public GameObject[] GA_Options;
     public Sprite[] SPRA_Questions;
@@ -47,7 +53,6 @@ public class RB_Runner_Main : MonoBehaviour
     public string STR_currentSelectedAnswer;
     public int I_currentQuestionCount; // question number current
     public string STR_currentQuestionID;
-    public int I_Points;
     public int I_wrongAnsCount;
     public int I_Counter, I_Dummmy;
     public string[] STRA_AnsList;
@@ -103,13 +108,13 @@ public class RB_Runner_Main : MonoBehaviour
     [SerializeField] private Sprite[] SPRA_ArrowsMobile;
     [SerializeField] private Image[] IMGA_Up;
     [SerializeField] private Image[] IMGA_Down;
-    [SerializeField] private GameObject G_PlayerControls;
+    //[SerializeField] private GameObject G_PlayerControls;
 
 
 
-    private void Awake()
+    protected override void Awake()
     {
-        Instance = this;
+        base.Awake();
 
         if (B_production)
         {
@@ -138,7 +143,7 @@ public class RB_Runner_Main : MonoBehaviour
 
         G_instructionPage.SetActive(false);
 
-        TEX_points.text = I_Points.ToString();
+        //TEX_points.text = I_Points.ToString();
         STRL_questions = new List<string>();
         STRL_answers = new List<string>();
         STRL_options = new List<string>();
@@ -154,7 +159,7 @@ public class RB_Runner_Main : MonoBehaviour
 
         if (MainController.instance.WEB)
         {
-            G_PlayerControls.SetActive(false);
+           // G_PlayerControls.SetActive(false);
 
             //setting images
             IMGA_Up[0].sprite = SPRA_ArrowsWebGL[0];
@@ -164,7 +169,7 @@ public class RB_Runner_Main : MonoBehaviour
         }
         else if (MainController.instance.MOBILE)
         {
-            G_PlayerControls.SetActive(true);
+           // G_PlayerControls.SetActive(true);
 
             //setting images
             IMGA_Up[0].sprite = SPRA_ArrowsMobile[0];
@@ -181,12 +186,19 @@ public class RB_Runner_Main : MonoBehaviour
 
     private void Update()
     {
-       /* if (!G_Demo.activeInHierarchy && B_CloseDemo)
+        /* if (!G_Demo.activeInHierarchy && B_CloseDemo)
+         {
+             B_CloseDemo = false;
+             DemoOver();
+         }*/
+        if (Input.GetKeyDown(KeyCode.G))
         {
-            B_CloseDemo = false;
-            DemoOver();
-        }*/
-
+            Tarun();
+        }
+    }
+    private void Tarun()
+    {
+       // questionIMG.sprite = TarunTesting.Instance.dataSO.GetQuestionSprit(0);
     }
 
 
@@ -209,6 +221,13 @@ public class RB_Runner_Main : MonoBehaviour
         }
 
     }
+
+    public void CheckForAnswer()//Tarun
+    {
+        
+    }
+
+
     void THI_gameData()
     {
         // THI_getPreviewData();
@@ -237,7 +256,7 @@ public class RB_Runner_Main : MonoBehaviour
         Invoke(nameof(THI_NewQuestion), 2f);
     }
 
-    public void THI_ShowQuestion()
+    public override void THI_ShowQuestion()
     {
         B_CanClick = true;
         G_Question.SetActive(true);
@@ -312,12 +331,12 @@ public class RB_Runner_Main : MonoBehaviour
 
     void THI_Levelcompleted()
     {
-        MainController.instance.I_TotalPoints = I_Points;
+        MainController.instance.I_TotalPoints = HUDController.Instance.score;
         G_levelComplete.SetActive(true);
         StartCoroutine(IN_sendDataToDB());
     }
 
-
+    public int I_Points;
     public void THI_Correct()
     {
         DLearnersAudioManager.Instance.PlaySound2("AS_Correct");
@@ -496,20 +515,33 @@ public class RB_Runner_Main : MonoBehaviour
     }
     public IEnumerator IN_CoverImage()
     {
-        UnityWebRequest www = UnityWebRequestTexture.GetTexture(STRL_cover_img_link[0]);
+        //UnityWebRequest www = UnityWebRequestTexture.GetTexture(STRL_cover_img_link[0]);
+        UnityWebRequest www = UnityWebRequestTexture.GetTexture("https://dlearners.in/template_and_games/Game_Generator/generatedGame/know_my_nameLIEZ/Q_a/ques/rock.png");
         yield return www.SendWebRequest();
-        if (www.isNetworkError || www.isHttpError)
+        if (www.result != UnityWebRequest.Result.Success)
         {
             Debug.Log(www.error);
         }
         else
         {
-            Texture2D downloadedTexture = ((DownloadHandlerTexture)www.downloadHandler).texture;
-            if (STRL_cover_img_link != null)
+            // Texture2D downloadedTexture = ((DownloadHandlerTexture)www.downloadHandler).texture;
+            Texture2D downloadedTexture = DownloadHandlerTexture.GetContent(www);
+          //  if (STRL_cover_img_link != null)
             {
-               // G_coverPage.GetComponent<Image>().sprite = Sprite.Create(downloadedTexture, new Rect(0.0f, 0.0f, downloadedTexture.width, downloadedTexture.height), new Vector2(0.5f, 0.5f), 100.0f);
+                var jj = Sprite.Create(downloadedTexture, new Rect(0.0f, 0.0f, downloadedTexture.width, downloadedTexture.height), new Vector2(0.5f, 0.5f), 100.0f);
+
+               // TarunTesting.Instance.dataSO.SetData(downloadedTexture);
+               // TarunTesting.Instance.dataSO.SetDatasp(jj);
+
+                Data gg = new Data();
+               // gg.questionSP = jj;
+                TarunTesting.Instance.dataSO.datas.Add(gg);
+              //  TarunTesting.Instance.coverPage.bgIMG.sprite = TarunTesting.Instance.dataSO.datas[0].questionSP;
+                /* G_coverPage.GetComponent<Image>().sprite = Sprite.Create(downloadedTexture, new Rect(0.0f, 0.0f, downloadedTexture.width, downloadedTexture.height), new Vector2(0.5f, 0.5f), 100.0f);*/
+
             }
         }
+
 
         //SPRA_Options
 
@@ -617,6 +649,7 @@ public class RB_Runner_Main : MonoBehaviour
             else
             {
                 ACA__questionClips[i] = DownloadHandlerAudioClip.GetContent(www1);
+               // TarunTesting.Instance.dataSO.audio= DownloadHandlerAudioClip.GetContent(www1);
             }
         }
 

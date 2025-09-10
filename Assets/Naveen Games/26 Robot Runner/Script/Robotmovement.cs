@@ -1,5 +1,6 @@
 using DG.Tweening;
 using DLearners;
+using TMPro;
 using UnityEngine;
 
 public class Robotmovement : MonoBehaviour
@@ -101,7 +102,7 @@ public class Robotmovement : MonoBehaviour
         {
             StarPlayParticle();
             Destroy(collision.gameObject);
-            RB_Runner_Main.Instance.THI_Collect_Out(true);
+            HUDController.Instance.UpdateScore(true);
         }
         else if (collision.gameObject.name == "portal")
         {
@@ -136,7 +137,7 @@ public class Robotmovement : MonoBehaviour
             if (B_reducelife)
             {
                 DLearnersAudioManager.Instance.StopSound2("AS_Walking");
-                RB_Runner_Main.Instance.THI_Collect_Out(false);
+                HUDController.Instance.UpdateScore(false);
                 Robot_Out();
             }
         }
@@ -157,11 +158,15 @@ public class Robotmovement : MonoBehaviour
         gameObject.SetActive(true);
     }
 
-
+    private RB_Runner_Main rB_Runner_Main => (RB_Runner_Main)RB_Runner_Main.Instance;
     public void NextQuest()
     {
         Destroy(G_portal);
-        RB_Runner_Main.Instance.THI_ShowQuestion();
+        // RB_Runner_Main.Instance.THI_ShowQuestion();
+
+       // GameManagerBase baseInstance = RB_Runner_Main.Instance;
+        rB_Runner_Main.THI_ShowQuestion();
+        rB_Runner_Main.gg = "";
     }
     public void Robot_Out()
     {

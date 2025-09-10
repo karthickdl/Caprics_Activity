@@ -3,13 +3,16 @@ using UnityEngine.UI;
 
 public class CoverPage : MonoBehaviour
 {
-    [SerializeField] private Image bgIMG;
+    [SerializeField] public Image bgIMG;
     [SerializeField] private Button startButton;
     [SerializeField] private Image startButtonIMG;
 
     public bool ggd;
+
+    public Sprite gg;
     public void InitCoverPage()
     {
+        bgIMG.sprite = gg;
         startButton.onClick.AddListener(() => { OnStartButton();});
     }
 

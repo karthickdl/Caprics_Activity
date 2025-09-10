@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 855c41ef983f1464085c657a5e156341, type: 3}
+  m_Name: PopUpsListSO
+  m_EditorClassIdentifier: 
+  popUps:
+  - {fileID: 392554259849301867, guid: 17414437e98902742bbc321b70308d60, type: 3}
+  - {fileID: 5151499217532778769, guid: bab96f876cdf6904cab1776fc91282e0, type: 3}
+  - {fileID: 8019584294123535979, guid: 71881285ed004c241b9729881a77f596, type: 3}
+  - {fileID: 8260540616346174126, guid: e205e8cf5ddc1cf4a84b38a50da073b7, type: 3}
+  - {fileID: 1547011096603533764, guid: 50396e8dfc07fbf4aaeddf9409e04487, type: 3}
+  - {fileID: 8020519041616020961, guid: 6a4bdeaf4af0ff84283893c15c86376f, type: 3}
+  flyPopUps:
+  - {fileID: 1186969198254403510, guid: b6d6dc07f55fc984998c1b0bfc05973c, type: 3}
+  inGameCelebrationPopUp: {fileID: 2801871249808778953, guid: 6fef7ae0b92279b41b271a7710538532, type: 3}

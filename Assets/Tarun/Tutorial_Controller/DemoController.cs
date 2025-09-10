@@ -18,7 +18,7 @@ public class DemoController : MonoBehaviour
     [Header("Debug")]
     [SerializeField] private DemoControllInfo[] demoControllInfos;
 
-    
+    public bool ggd;
 
     private int id;
     
@@ -26,7 +26,10 @@ public class DemoController : MonoBehaviour
     public void InitDemoController(DemoControllerDataSO _demoControllerDataSO)
     {
         Instantiate(_demoControllerDataSO.demoController_N,this.transform);
-        skipButton.onClick.AddListener(() => { OnSkipButton(); });
+        skipButton.onClick.AddListener(() => 
+        {
+            OnSkipButton();
+        });
         skipIMG.sprite = null;
         demoControllInfos = _demoControllerDataSO.demoControllInfos;
         Setgg(demoControllInfos[id]);        
@@ -62,7 +65,8 @@ public class DemoController : MonoBehaviour
 
     private void OnSkipButton()
     {
-        gameObject.SetActive(false);
+        ggd = true;
+        Destroy(this.gameObject, 0.1f);
     }
 }
 

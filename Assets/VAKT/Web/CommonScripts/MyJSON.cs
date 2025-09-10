@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using DLearners;
 using SimpleJSON;
-using System.Globalization;
-using UnityEngine.UI;
-using System.Net.Http;
-using Newtonsoft.Json.Linq;
-using System.Text.RegularExpressions;
+using System;
+using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEngine;
 
 [Serializable]
 public class MyJSON
@@ -224,6 +221,50 @@ public class MyJSON
         STRL_details.Add(n["child_standard"]);
         STRL_details.Add(n["lesson_name"]);
 
+    }
+
+    public void Temp_type_3(string _json,DataSO dataSO)
+    {
+        JSONNode json = JSON.Parse(_json);
+
+        dataSO.userData.userName = json["child_name"];
+        dataSO.userData.userStandard = json["child_standard"];
+        dataSO.userData.lessonName = json["lesson_name"];
+
+        dataSO.difficultyLevelType = DifficultyLevelType.Easy;//Hardcoded
+        int.TryParse(json["correct_points"], out dataSO.correctAnswerPoint);
+        int.TryParse(json["wrong_points"], out dataSO.wrongAnswerPoint);
+        dataSO.instruction = json["instruction"];
+        dataSO.instructionAudioURL = json["instruction_audio"];
+
+
+         List<Data> _datas = new List<Data>();
+
+        int cashLoop = json["q_a"].AsArray.Count;
+        for (int i = 0; i < cashLoop; i++)
+        {
+            Data data = new Data();
+            data.questionType = TemplateType.IMG;//Hardcoded
+            data.answerType = TemplateType.Text;//Hardcoded
+
+            data.questionData.questionID = json["q_a"][i]["question_id"];
+            data.questionData.question = json["q_a"][i]["question"];
+            data.questionData.questionAudioURL = json["q_a"][i]["question_voice"];
+            data.correctOptions = json["q_a"][i]["answer"];//ID of answer
+
+
+            int cashLoop2 = json["q_a"][i]["options"].AsArray.Count;
+            for (int j = 0; j < cashLoop2; j++)
+            {
+                OptionData _optionDatas = new OptionData();
+                _optionDatas.option = json["q_a"][j]["options"];
+                _optionDatas.optionAudioURL = json["q_a"][j]["option_voice"];
+                _optionDatas.optionID = json["q_a"][j]["option_id"];
+
+                data.options.Add(_optionDatas);
+            }
+            _datas.Add(data);
+        }
     }
     #endregion
 }

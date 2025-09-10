@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class MainController : MonoBehaviour
 {
     public static MainController instance;
-
+    public GameObject G_GameID;
 
     [Header("PLATFORM")]
     public bool WEB;
@@ -77,16 +77,16 @@ public class MainController : MonoBehaviour
         if (WEB)
         {
             G_GameManager.SetActive(false);
-           // G_GameID.SetActive(true);
+            G_GameID.SetActive(true);
 
 
             // testing
-            // STR_childID = "336";
-           //  mode = "live";
-            mode = "preview";
+             STR_childID = "336";
+             mode = "live";
+           // mode = "preview";
 
             // Live ID's
-            // STR_GameID = "540"; //snail word game
+             STR_GameID = "1079"; //snail word game
             // STR_GameID = "1155"; //snail word game
             // STR_GameID = "1151"; //caterpillar sorting
             // STR_GameID = "915"; //product sorting
