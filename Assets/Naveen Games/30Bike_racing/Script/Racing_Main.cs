@@ -585,7 +585,7 @@ public class Racing_Main : MonoBehaviour
             STR_difficulty = STRL_difficulty[0];
 
             STR_instruction = STRL_instruction[0];
-            MainController.instance.I_correctPoints = I_correctPoints = IL_numbers[1];
+            //MainController.instance.I_correctPoints = I_correctPoints = IL_numbers[1];//Tarun
             I_wrongPoints = IL_numbers[2];
             MainController.instance.I_TotalQuestions = STRL_questions.Count;
 
@@ -692,7 +692,7 @@ public class Racing_Main : MonoBehaviour
 
         STR_difficulty = STRL_difficulty[0];
         STR_instruction = STRL_instruction[0];
-        MainController.instance.I_correctPoints = I_correctPoints = IL_numbers[1];
+        //MainController.instance.I_correctPoints = I_correctPoints = IL_numbers[1];//Tarun
         I_wrongPoints = IL_numbers[2];
         MainController.instance.I_TotalQuestions = STRL_questions.Count;
 

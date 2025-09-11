@@ -129,6 +129,29 @@ namespace DLearners
             audioSource.clip = soundDataStruct.audioClip;
             return audioSource;
         }
+        public AudioSource PlaySoundCashed(AudioClip audioClip)
+        {
+            GameObject audioPlayer = new GameObject("AP2");
+            AudioSource audioSource = audioPlayer.AddComponent<AudioSource>();
+
+            AudioMixerGroup[] group;
+            group = inGameMixer.FindMatchingGroups("Master");
+            audioSource.outputAudioMixerGroup = group[0];
+            audioSource.clip = audioClip;
+            return audioSource;
+        }
+
+        public void PlaySound3(AudioClip audioClip,float delay=0)
+        {
+            GameObject audioPlayer = new GameObject("AP2");
+            AudioSource audioSource = audioPlayer.AddComponent<AudioSource>();
+            AudioMixerGroup[] group;
+            group = inGameMixer.FindMatchingGroups("Master");
+            audioSource.outputAudioMixerGroup = group[0];
+            audioSource.clip = audioClip;
+            audioSource.PlayDelayed(delay);
+            Destroy(audioPlayer, audioSource.clip.length);
+        }
 
 
         public void StopSound(string name)

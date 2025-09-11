@@ -21,6 +21,7 @@ public class TarunTesting : Singleton<TarunTesting>
     }
     private IEnumerator Test()
     {
+        HUDManager.Instance.SetHUDOnOff(false);
         IntroController cashIntroController = Instantiate(introControllerPF, canv);
         yield return new WaitForSeconds(cashIntroController.InitIntroController());
 
@@ -38,6 +39,9 @@ public class TarunTesting : Singleton<TarunTesting>
         cashDemoController.InitDemoController(_demoControllerDataSO);
 
 
+        HUDManager.Instance.SetHUDOnOff(true);
+        HUDManager.Instance.InitHUD(dataSO);
+        
         yield return null;
     }
 

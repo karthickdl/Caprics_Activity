@@ -147,28 +147,28 @@ public class MyJSON
 
         JSONNode n = JSON.Parse(json);
 
-        IL_numbers.Add(n["q_a"].AsArray.Count); // total question count
-        IL_numbers.Add(n["correct_points"]); // correct points
-        IL_numbers.Add(n["wrong_points"]); // wrong points
-        STRL_instruction.Add(n["instruction"]); // instruction
+        //IL_numbers.Add(n["q_a"].AsArray.Count); // total question count
+       // IL_numbers.Add(n["correct_points"]); // correct points
+       // IL_numbers.Add(n["wrong_points"]); // wrong points
+       // STRL_instruction.Add(n["instruction"]); // instruction
         STRL_difficulty.Add(n["difficulty_level"]); // difficulty level
-        STRL_instructionAudios.Add(n["instruction_audio"]);//instruction audio
+      //  STRL_instructionAudios.Add(n["instruction_audio"]);//instruction audio
 
         STRL_cover_img_link.Add(n["game_cover_img"]); // bg image link
 
-        IL_numbers.Add(n["q_a"][0]["options"].AsArray.Count);
+       // IL_numbers.Add(n["q_a"][0]["options"].AsArray.Count);
 
         for (int i = 0; i < n["q_a"].AsArray.Count; i++)
         {
-            STRL_questions.Add(n["q_a"][i]["question"]); // question
-            STRL_questionAudios.Add(n["q_a"][i]["question_voice"]); // question audio
-            STRL_answers.Add(n["q_a"][i]["answer"]); // answer      
+           // STRL_questions.Add(n["q_a"][i]["question"]); // question
+           // STRL_questionAudios.Add(n["q_a"][i]["question_voice"]); // question audio
+           // STRL_answers.Add(n["q_a"][i]["answer"]); // answer      
             STRL_questionIDs.Add(n["q_a"][i]["question_id"]); // question id
 
             for (int j = 0; j < n["q_a"][i]["options"].AsArray.Count; j++)
             {
-                STRL_options.Add(n["q_a"][i]["options"][j]["option"]); // option
-                STRL_optionAudios.Add(n["q_a"][i]["options"][j]["option_voice"]); // option audio
+               // STRL_options.Add(n["q_a"][i]["options"][j]["option"]); // option
+               // STRL_optionAudios.Add(n["q_a"][i]["options"][j]["option_voice"]); // option audio
             }
         }
 
@@ -234,8 +234,8 @@ public class MyJSON
         dataSO.difficultyLevelType = DifficultyLevelType.Easy;//Hardcoded
         int.TryParse(json["correct_points"], out dataSO.correctAnswerPoint);
         int.TryParse(json["wrong_points"], out dataSO.wrongAnswerPoint);
-        dataSO.instruction = json["instruction"];
-        dataSO.instructionAudioURL = json["instruction_audio"];
+        dataSO.instructionData.instruction.Add(json["instruction"]);
+        dataSO.instructionData.instructionAudioURL.Add(json["instruction"]);
 
 
          List<Data> _datas = new List<Data>();

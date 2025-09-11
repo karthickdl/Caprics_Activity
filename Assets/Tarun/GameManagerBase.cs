@@ -3,13 +3,19 @@ namespace DLearners
 {
     public class GameManagerBase : Singleton<GameManagerBase>
     {
-        public string gg;
+        protected bool isInputUnLocked;
+
+
+        protected Data currentData = new Data();
+        protected int currentOptionCount;
+        protected InstructionData currentInstructionData = new InstructionData();
+        protected UserData currentUserData = new UserData();
         protected override void Awake()
         {
-            base.Awake();
+            base.Awake();            
         }
 
-        public virtual void THI_ShowQuestion()
+        public virtual void UpdateQuestion()
         {
 
         }

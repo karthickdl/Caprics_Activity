@@ -7,28 +7,37 @@ namespace DLearners
     [CreateAssetMenu(fileName = "DataSO", menuName = "ScriptableObjects/DataSO", order = 0)]
     public class DataSO : ScriptableObject
     {
-
         public DifficultyLevelType difficultyLevelType;
         public int correctAnswerPoint;
         public int wrongAnswerPoint;
 
-        public string instruction;
-        public string instructionAudioURL;
-        public AudioClip instructionAudioClip;
+        public InstructionData instructionData;
 
         public List<Data> datas = new List<Data>();
         public UserData userData;
 
-      /*  public void SetData(Texture2D tt)
+        public InstructionData GetInstructionData()
         {
-            questionte = tt;
+            return instructionData;
+        }
+        public Data GetData(int questionID)
+        {
+            return datas[questionID];
         }
 
-        public void SetDatasp(Sprite tt)
+        public int GetCorrectAnswerPoint()
         {
-            questiontequestionSP = tt;
-        }*/
+            return correctAnswerPoint;
+        }
+        public int GetWrongAnswerPoint()
+        {
+            return wrongAnswerPoint;
+        }
 
+        public DifficultyLevelType GetDifficultyLevelType()
+        {
+            return difficultyLevelType;
+        }
     }
     [Serializable]
     public struct Data
@@ -39,8 +48,6 @@ namespace DLearners
         public QuestionData questionData;
         public List<OptionData> options;
         public string correctOptions;
-
-
     }
     [Serializable]
     public struct OptionData
@@ -67,6 +74,14 @@ namespace DLearners
         public string userStandard;
         public string lessonName;
     }
+    [Serializable]
+    public struct InstructionData
+    {
+        public List <string> instruction;
+        public List <string> instructionAudioURL;
+        public List <AudioClip> instructionAudioClip;
+    }
+
 
     public enum TemplateType
     {

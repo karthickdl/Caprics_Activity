@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Robotmovement : MonoBehaviour
 {
-    public static Robotmovement OBJ_robotmovement;
+    public static Robotmovement Instance;
     [SerializeField] private float movementsped;
     [SerializeField] private float offset;
 
@@ -30,7 +30,7 @@ public class Robotmovement : MonoBehaviour
 
     private void Awake()
     {
-        OBJ_robotmovement = this;       
+        Instance = this;       
     }
     private void Start()
     {
@@ -45,13 +45,9 @@ public class Robotmovement : MonoBehaviour
         {
             Jump();
         }
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        else if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             Down();
-        }
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            RobotInIt();
         }
     }
     private void FixedUpdate()
@@ -102,7 +98,7 @@ public class Robotmovement : MonoBehaviour
         {
             StarPlayParticle();
             Destroy(collision.gameObject);
-            HUDController.Instance.UpdateScore(true);
+            HUDManager.Instance.UpdateScoreText(true,2);
         }
         else if (collision.gameObject.name == "portal")
         {
@@ -137,7 +133,7 @@ public class Robotmovement : MonoBehaviour
             if (B_reducelife)
             {
                 DLearnersAudioManager.Instance.StopSound2("AS_Walking");
-                HUDController.Instance.UpdateScore(false);
+                HUDManager.Instance.UpdateScoreText(false,10);
                 Robot_Out();
             }
         }
@@ -165,8 +161,7 @@ public class Robotmovement : MonoBehaviour
         // RB_Runner_Main.Instance.THI_ShowQuestion();
 
        // GameManagerBase baseInstance = RB_Runner_Main.Instance;
-        rB_Runner_Main.THI_ShowQuestion();
-        rB_Runner_Main.gg = "";
+        rB_Runner_Main.UpdateQuestion();
     }
     public void Robot_Out()
     {
