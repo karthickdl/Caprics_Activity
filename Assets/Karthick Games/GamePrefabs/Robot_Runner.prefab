@@ -11277,7 +11277,6 @@ MonoBehaviour:
   STR_responseSerial: 
   I_TotalPoints: 0
   I_TotalQuestions: 0
-  I_correctPoints: 0
   mode: 
   STR_previewJsonAPI: '{"q_a":[{"question_id":"2038","question":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/know_my_nameLIEZ\/Q_a\/ques\/rock.png","answer":"rock","question_voice":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/know_my_nameLIEZ\/audio\/rock.mp3","options":[{"option":"rock","option_voice":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/know_my_nameLIEZ\/audio\/rock.mp3","option_id":"3884"},{"option":"roc","option_voice":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/know_my_nameLIEZ\/audio\/roc.mp3","option_id":"3885"},{"option":"rok","option_voice":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/know_my_nameLIEZ\/audio\/rok.mp3","option_id":"3883"}]},{"question_id":"2039","question":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/know_my_nameLIEZ\/Q_a\/ques\/milk.png","answer":"milk","question_voice":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/know_my_nameLIEZ\/audio\/milk.mp3","options":[{"option":"milck","option_voice":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/know_my_nameLIEZ\/audio\/milck.mp3","option_id":"3887"},{"option":"milk","option_voice":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/know_my_nameLIEZ\/audio\/milk.mp3","option_id":"3888"},{"option":"milc","option_voice":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/know_my_nameLIEZ\/audio\/milc.mp3","option_id":"3886"}]},{"question_id":"2040","question":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/know_my_nameLIEZ\/Q_a\/ques\/neck.png","answer":"neck","question_voice":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/know_my_nameLIEZ\/audio\/neck.mp3","options":[{"option":"nek","option_voice":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/know_my_nameLIEZ\/audio\/nek.mp3","option_id":"3890"},{"option":"nec","option_voice":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/know_my_nameLIEZ\/audio\/nec.mp3","option_id":"3891"},{"option":"neck","option_voice":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/know_my_nameLIEZ\/audio\/neck.mp3","option_id":"3889"}]},{"question_id":"2041","question":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/know_my_nameLIEZ\/Q_a\/ques\/sock.png","answer":"sock","question_voice":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/know_my_nameLIEZ\/audio\/sock.mp3","options":[{"option":"sok","option_voice":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/know_my_nameLIEZ\/audio\/sok.mp3","option_id":"3893"},{"option":"sock","option_voice":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/know_my_nameLIEZ\/audio\/sock.mp3","option_id":"3894"},{"option":"soc","option_voice":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/know_my_nameLIEZ\/audio\/soc.mp3","option_id":"3892"}]},{"question_id":"2042","question":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/know_my_nameLIEZ\/Q_a\/ques\/brick.png","answer":"brick","question_voice":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/know_my_nameLIEZ\/audio\/brick.mp3","options":[{"option":"brick","option_voice":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/know_my_nameLIEZ\/audio\/brick.mp3","option_id":"3896"},{"option":"bric","option_voice":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/know_my_nameLIEZ\/audio\/bric.mp3","option_id":"3897"},{"option":"brik","option_voice":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/know_my_nameLIEZ\/audio\/brik.mp3","option_id":"3895"}]}],"correct_points":"5","wrong_points":"2","avatar_color":"","difficulty_level":"independent","video":"","instruction":"Choose
     the correct spelling","instruction_audio":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/know_my_nameLIEZ\/instruction_audio.mp3","bg_image":"","customization":{},"child_name":"Samiksha","child_standard":"I
@@ -13142,16 +13141,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroyOnLoad: 0
-  gg: 
-  TEXM_instruction: {fileID: 5442496689754615520}
-  TEXM_instruction2: {fileID: 5442496689912498340}
-  TEX_points: {fileID: 0}
-  TEX_questionCount: {fileID: 0}
-  TM_pointFx: {fileID: 0}
   B_production: 1
   G_Game: {fileID: 5442496689562485125}
   G_Transition: {fileID: 5442496689004165716}
-  G_instructionPage: {fileID: 5442496689913994201}
   GA_Question:
   - {fileID: 6395852883638445498, guid: 041f905cbf12686428cf2ace4fcc2e62, type: 3}
   - {fileID: 5498943256325441193, guid: 4d2a7b3d2c2568d498d16d3dfff2f539, type: 3}
@@ -13169,44 +13161,17 @@ MonoBehaviour:
   - {fileID: 5442496688457139782}
   - {fileID: 5442496689115662077}
   - {fileID: 5442496689057902784}
-  SPRA_Questions: []
   STR_currentQuestionAnswer: 
   STR_currentSelectedAnswer: 
   I_currentQuestionCount: 0
   STR_currentQuestionID: 
   I_wrongAnsCount: 0
-  I_Counter: 0
-  I_Dummmy: 0
-  STRA_AnsList: []
   I_Collect_count: 0
   URL: 
   SendValueURL: 
-  STRL_difficulty: []
-  STR_difficulty: 
-  IL_numbers: 
-  I_correctPoints: 0
-  I_wrongPoints: 0
-  STRL_instruction: []
-  STR_instruction: 
-  STR_video_link: 
-  STRL_options: []
-  STRL_questions: []
-  STRL_answers: []
-  STRL_quesitonAudios: []
-  STRL_optionAudios: []
-  STRL_instructionAudio: []
-  STRL_questionID: []
-  STR_customizationKey: 
-  STRL_BG_img_link: []
-  STRL_avatar_Color: []
-  STRL_Panel_Img_link: []
-  STRL_cover_img_link: []
   STRL_gameData: []
   STR_Data: 
   G_levelComplete: {fileID: 816201575573027295}
-  ACA__questionClips: []
-  ACA_optionClips: []
-  ACA_instructionClips: []
   SPRA_ArrowsWebGL:
   - {fileID: -6198066232139300319, guid: 6269efcb1b649264a8af225338f0aaf8, type: 3}
   - {fileID: -7905275962017797664, guid: 6269efcb1b649264a8af225338f0aaf8, type: 3}
@@ -13219,7 +13184,6 @@ MonoBehaviour:
   IMGA_Down:
   - {fileID: 0}
   - {fileID: 0}
-  I_Points: 0
 --- !u!1 &5442496689805615652
 GameObject:
   m_ObjectHideFlags: 0

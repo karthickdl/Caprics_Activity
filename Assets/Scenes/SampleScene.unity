@@ -377,17 +377,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &641665919 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8844656131617845775, guid: aa86ab98e8012344f9820a1421d5cb93, type: 3}
-  m_PrefabInstance: {fileID: 5087581090698559283}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &690917394
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -396,22 +385,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5442496688457139782, guid: 0f842811889d3984284ddf6ea5cae676, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5442496689800228518, guid: 0f842811889d3984284ddf6ea5cae676, type: 3}
-      propertyPath: TEX_points
-      value: 
-      objectReference: {fileID: 641665919}
-    - target: {fileID: 5442496689800228518, guid: 0f842811889d3984284ddf6ea5cae676, type: 3}
-      propertyPath: TM_pointFx
-      value: 
-      objectReference: {fileID: 1816786721}
-    - target: {fileID: 5442496689800228518, guid: 0f842811889d3984284ddf6ea5cae676, type: 3}
-      propertyPath: TEX_questionCount
-      value: 
-      objectReference: {fileID: 1087458724}
     - target: {fileID: 5442496690073624873, guid: 0f842811889d3984284ddf6ea5cae676, type: 3}
       propertyPath: m_Name
       value: Robot_Runner
@@ -620,17 +593,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a2219ee46a8affd4897c702ce35c581e, type: 3}
---- !u!114 &1087458724 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6461396619962820864, guid: aa86ab98e8012344f9820a1421d5cb93, type: 3}
-  m_PrefabInstance: {fileID: 5087581090698559283}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1236633600
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -792,17 +754,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1816786721 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4864206379105224511, guid: aa86ab98e8012344f9820a1421d5cb93, type: 3}
-  m_PrefabInstance: {fileID: 5087581090698559283}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1881465711
 PrefabInstance:
   m_ObjectHideFlags: 0

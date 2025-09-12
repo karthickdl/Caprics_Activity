@@ -32,17 +32,13 @@ public class RB_Runner_Main : GameManagerBase
     public GameObject[] GA_Options;
     GameObject G_Highlight;
 
-    // public List<string> Lstr_ans, Lstr_wrng;
-    // public List<AudioClip> AC_ans, AC_wrg;
-    
 
     [Header("Values")]
-    public string STR_currentQuestionAnswer;
     public string STR_currentSelectedAnswer;
     public int I_currentQuestionCount; // question number current
     public string STR_currentQuestionID;
     public int I_wrongAnsCount;
-    public string[] STRA_AnsList;
+    //public string[] STRA_AnsList;
     public int I_Collect_count;
 
 
@@ -50,24 +46,7 @@ public class RB_Runner_Main : GameManagerBase
     public string URL;
     public string SendValueURL;
 
-    [Header("Audios")]
-    /*public AudioSource AS_collecting;
-    public AudioSource AS_oops;
-    public AudioSource AS_crtans;*/
-
-    [Header("DB")]
-    public List<string> STRL_difficulty;
-    public string STR_difficulty;
-    
-    //public string STR_instruction;
-   // public List<string> STRL_answers;
-    //public List<string> STRL_quesitonAudios;
-   // public List<string> STRL_optionAudios;
-    public List<string> STRL_instructionAudio;
-    public List<string> STRL_questionID;
-    public string STR_customizationKey;
     //Dummy values only for helicopter game
-    public List<string> STRL_cover_img_link;
 
     [Header("GAME DATA")]
     public List<string> STRL_gameData;
@@ -76,16 +55,10 @@ public class RB_Runner_Main : GameManagerBase
     [Header("LEVEL COMPLETE")]
     public GameObject G_levelComplete;
 
-    [Header("AUDIO ASSIGN")]
-    //public AudioClip[] ACA__questionClips;
-    //public AudioClip[] ACA_optionClips;
-
-
     [SerializeField] private Sprite[] SPRA_ArrowsWebGL;
     [SerializeField] private Sprite[] SPRA_ArrowsMobile;
     [SerializeField] private Image[] IMGA_Up;
     [SerializeField] private Image[] IMGA_Down;
-    //[SerializeField] private GameObject G_PlayerControls;
 
 
 
@@ -154,33 +127,18 @@ public class RB_Runner_Main : GameManagerBase
     }
 
 
-    private void Update()
-    {
-        /* if (!G_Demo.activeInHierarchy && B_CloseDemo)
-         {
-             B_CloseDemo = false;
-             DemoOver();
-         }*/
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            Tarun();
-        }
-    }
-
-    
-
     public void Tarun()
     {
         currentData = new Data();
         currentInstructionData = new InstructionData();
-
+        currentDifficultyLevelType = TarunTesting.Instance.dataSO.difficultyLevelType;
         DataSO cashDataSO = TarunTesting.Instance.dataSO;
 
         currentData = cashDataSO.GetData(0);//ID HardCode
         currentOptionCount = currentData.options.Count;
         currentInstructionData = cashDataSO.instructionData;
 
-
+        STR_currentQuestionAnswer = currentData.correctOptions;
 
         // questionIMG.sprite = TarunTesting.Instance.dataSO.GetQuestionSprit(0);
     }
@@ -282,7 +240,7 @@ public class RB_Runner_Main : GameManagerBase
             I_currentQuestionCount++;
 
 
-            STRA_AnsList = null;
+            //STRA_AnsList = null;
             //STR_currentQuestionID = STRL_questionID[I_currentQuestionCount];
             int currentquesCount = I_currentQuestionCount + 1;
 
@@ -354,12 +312,11 @@ public class RB_Runner_Main : GameManagerBase
         G_Highlight.GetComponent<TextMeshProUGUI>().color = Color.green;
     }
 
-    void THI_WrongEffect()
+    public override void THI_WrongEffect()
     {
-        if (I_wrongAnsCount == 3)
+        if (currentWrongAnsCount == wrongAnsLifeCounts[0])//3
         {
-
-            if (STR_difficulty == "assistive")
+            if (currentDifficultyLevelType == DifficultyLevelType.Easy)
             {
                 isInputUnLocked = false;
                 for (int i = 0; i < G_Options.transform.childCount; i++)
@@ -372,9 +329,8 @@ public class RB_Runner_Main : GameManagerBase
 
 
                 Invoke(nameof(THI_Transition), 5f);
-                //Show answer and move to next question
             }
-            if (STR_difficulty == "intuitive")
+            else if (currentDifficultyLevelType == DifficultyLevelType.Medium)
             {
                 isInputUnLocked = true;
                 for (int i = 0; i < G_Options.transform.childCount; i++)
@@ -385,29 +341,18 @@ public class RB_Runner_Main : GameManagerBase
                     }
                 }
                 StartCoroutine(Highlight());
-                // Invoke(nameof(THI_Transition), 3f);
-
-                //Show answer and after click next question
             }
-
         }
-        else
-        if (I_wrongAnsCount == 2)
+        else if (currentWrongAnsCount == wrongAnsLifeCounts[1])//2
         {
-            if (STR_difficulty == "independent")
+            if (currentDifficultyLevelType == DifficultyLevelType.Hard)
             {
                 isInputUnLocked = false;
                 Invoke(nameof(THI_Transition), 2f);
             }
-
-            //next question
         }
-
-        //  B_Fishspawn = true;
-        // StartCoroutine(SpawnFish());
-        // STR_currentSelectedAnswer = "";
-        // B_Correct = false;
     }
+
     public void THI_Wrong()
     {
         // Debug.Log("Wrong ans");
@@ -450,7 +395,7 @@ public class RB_Runner_Main : GameManagerBase
 
                 Data gg = new Data();
                // gg.questionSP = jj;
-                TarunTesting.Instance.dataSO.datas.Add(gg);
+                //TarunTesting.Instance.dataSO.datas.Add(gg);
               //  TarunTesting.Instance.coverPage.bgIMG.sprite = TarunTesting.Instance.dataSO.datas[0].questionSP;
                 /* G_coverPage.GetComponent<Image>().sprite = Sprite.Create(downloadedTexture, new Rect(0.0f, 0.0f, downloadedTexture.width, downloadedTexture.height), new Vector2(0.5f, 0.5f), 100.0f);*/
 
@@ -479,11 +424,11 @@ public class RB_Runner_Main : GameManagerBase
             MyJSON json = new MyJSON();
             List<string> STRL_Passagedetails = new List<string>();
             //json.Helitemp(www.downloadHandler.text);
-            json.Temp_type_2(www.downloadHandler.text, STRL_difficulty, null, null, null, null, STRL_questionID, null, null, null,
-            STRL_instructionAudio, STRL_cover_img_link, STRL_Passagedetails);
+            json.Temp_type_2(www.downloadHandler.text, null, null, null, null, null, null, null, null, null,
+            null, null, STRL_Passagedetails);
             //        Debug.Log("GAME DATA : " + www.downloadHandler.text);
 
-            STR_difficulty = STRL_difficulty[0];
+           // STR_difficulty = STRL_difficulty[0];
 
           //  STR_instruction = STRL_instruction[0];
             ////MainController.instance.I_correctPoints = I_correctPoints = IL_numbers[1];//Tarun//Tarun
@@ -518,120 +463,6 @@ public class RB_Runner_Main : GameManagerBase
 
         }
     }
-
-
-
-   /* public IEnumerator IMG_Options()
-    {
-
-        int taruncash = TarunTesting.Instance.dataSO.datas.Count;
-
-      // SPRA_Questions = new Sprite[STRL_questions.Count];
-       SPRA_Questions = new Sprite[taruncash];
-
-       // for (int i = 0; i < STRL_questions.Count; i++)
-        for (int i = 0; i < taruncash; i++)
-        {
-           // UnityWebRequest www = UnityWebRequestTexture.GetTexture(STRL_questions[i]);
-            UnityWebRequest www = UnityWebRequestTexture.GetTexture(STRL_questions[i]);
-            yield return www.SendWebRequest();
-            if (www.isNetworkError || www.isHttpError)
-            {
-                Debug.Log(www.error);
-            }
-            else
-            {
-                Texture2D downloadedTexture = ((DownloadHandlerTexture)www.downloadHandler).texture;
-
-                SPRA_Questions[i] = Sprite.Create(downloadedTexture, new Rect(0.0f, 0.0f, downloadedTexture.width, downloadedTexture.height), new Vector2(0.5f, 0.5f), 100.0f);
-
-                string[] Names = (STRL_questions[i].Split('/'));
-                string[] Finalname = (Names[Names.Length - 1].Split('.'));
-
-                SPRA_Questions[i].name = Finalname[0];
-
-
-            }
-        }
-    }*/
-   ///* public IEnumerator EN_getAudioClips()
-   // {
-   //    ACA__questionClips = new AudioClip[STRL_quesitonAudios.Count];
-   //     //ACA_optionClips = new AudioClip[STRL_optionAudios.Count];
-   //    // ACA_instructionClips = new AudioClip[STRL_instructionAudio.Count];//Tarun
-
-   //     for (int i = 0; i < STRL_quesitonAudios.Count; i++)
-   //     {
-   //         UnityWebRequest www1 = UnityWebRequestMultimedia.GetAudioClip(STRL_quesitonAudios[i], AudioType.MPEG);
-   //         yield return www1.SendWebRequest();
-   //         if (www1.result == UnityWebRequest.Result.ConnectionError || www1.isHttpError || www1.isNetworkError)
-   //         {
-   //             Debug.Log(www1.error);
-   //         }
-   //         else
-   //         {
-   //             ACA__questionClips[i] = DownloadHandlerAudioClip.GetContent(www1);
-   //            // TarunTesting.Instance.dataSO.audio= DownloadHandlerAudioClip.GetContent(www1);
-   //         }
-   //     }
-
-   //     for (int i = 0; i < STRL_optionAudios.Count; i++)
-   //     {
-   //         UnityWebRequest www2 = UnityWebRequestMultimedia.GetAudioClip(STRL_optionAudios[i], AudioType.MPEG);
-   //         yield return www2.SendWebRequest();
-   //         if (www2.result == UnityWebRequest.Result.ConnectionError || www2.isHttpError || www2.isNetworkError)
-   //         {
-   //             Debug.Log(www2.error);
-   //         }
-   //         else
-   //         {
-   //             ACA_optionClips[i] = DownloadHandlerAudioClip.GetContent(www2);
-   //         }
-   //     }*/
-
-
-   //    /* for (int i = 0; i < STRL_instructionAudio.Count; i++)
-   //     {
-   //         UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip(STRL_instructionAudio[i], AudioType.MPEG);
-   //         yield return www.SendWebRequest();
-   //         if (www.result == UnityWebRequest.Result.ConnectionError || www.isHttpError || www.isNetworkError)
-   //         {
-   //             Debug.Log(www.error);
-   //         }
-   //         else
-   //         {
-
-   //             ACA_instructionClips[i] = DownloadHandlerAudioClip.GetContent(www);
-   //             Debug.Log("audio clips fetched instruction");
-
-   //         }
-   //     }*///Tarun
-
-
-   //    // THI_assignAudioClips();//Tarun
-   // }*/
-
-  /*  void THI_assignAudioClips()
-    {
-        //if (ACA_instructionClips.Length > 0)
-        {
-            TEXM_instruction.text = TEXM_instruction2.text = STR_instruction;
-            TEXM_instruction.gameObject.AddComponent<AudioSource>();
-            TEXM_instruction.gameObject.GetComponent<AudioSource>().playOnAwake = false;
-            TEXM_instruction.gameObject.GetComponent<AudioSource>().clip = ACA_instructionClips[0];
-            TEXM_instruction.gameObject.AddComponent<Button>();
-            TEXM_instruction.gameObject.GetComponent<Button>().onClick.AddListener(THI_playAudio);
-
-            TEXM_instruction2.gameObject.AddComponent<AudioSource>();
-            TEXM_instruction2.gameObject.GetComponent<AudioSource>().playOnAwake = false;
-            TEXM_instruction2.gameObject.GetComponent<AudioSource>().clip = ACA_instructionClips[0];
-            TEXM_instruction2.gameObject.AddComponent<Button>();
-            TEXM_instruction2.gameObject.GetComponent<Button>().onClick.AddListener(THI_playAudio);
-        }
-
-        // DemoOver();//remove later
-        // THI_Transition();
-    }*///Tarun
     void THI_playAudio()
     {
         EventSystem.current.currentSelectedGameObject.GetComponent<AudioSource>().Play();
@@ -642,10 +473,10 @@ public class RB_Runner_Main : GameManagerBase
         MyJSON json = new MyJSON();
         List<string> STRL_Passagedetails = new List<string>();
         //  json.Helitemp(MainController.instance.STR_previewJsonAPI);
-        json.Temp_type_2(MainController.instance.STR_previewJsonAPI, STRL_difficulty, null, null, null, null, STRL_questionID, null, null, null,
-            STRL_instructionAudio, STRL_cover_img_link, STRL_Passagedetails);
+        json.Temp_type_2(MainController.instance.STR_previewJsonAPI, null, null, null, null, null, null, null, null, null,
+            null, null, STRL_Passagedetails);
 
-        STR_difficulty = STRL_difficulty[0];
+        //STR_difficulty = STRL_difficulty[0];
        // STR_instruction = STRL_instruction[0];
         //MainController.instance.I_correctPoints = I_correctPoints = IL_numbers[1];//Tarun
         //I_wrongPoints = IL_numbers[2];Tarun

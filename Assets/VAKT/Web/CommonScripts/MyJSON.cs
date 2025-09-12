@@ -151,10 +151,10 @@ public class MyJSON
        // IL_numbers.Add(n["correct_points"]); // correct points
        // IL_numbers.Add(n["wrong_points"]); // wrong points
        // STRL_instruction.Add(n["instruction"]); // instruction
-        STRL_difficulty.Add(n["difficulty_level"]); // difficulty level
+       // STRL_difficulty.Add(n["difficulty_level"]); // difficulty level
       //  STRL_instructionAudios.Add(n["instruction_audio"]);//instruction audio
 
-        STRL_cover_img_link.Add(n["game_cover_img"]); // bg image link
+      //  STRL_cover_img_link.Add(n["game_cover_img"]); // bg image link
 
        // IL_numbers.Add(n["q_a"][0]["options"].AsArray.Count);
 
@@ -163,7 +163,7 @@ public class MyJSON
            // STRL_questions.Add(n["q_a"][i]["question"]); // question
            // STRL_questionAudios.Add(n["q_a"][i]["question_voice"]); // question audio
            // STRL_answers.Add(n["q_a"][i]["answer"]); // answer      
-            STRL_questionIDs.Add(n["q_a"][i]["question_id"]); // question id
+           // STRL_questionIDs.Add(n["q_a"][i]["question_id"]); // question id
 
             for (int j = 0; j < n["q_a"][i]["options"].AsArray.Count; j++)
             {

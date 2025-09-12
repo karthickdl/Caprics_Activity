@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a417730ee59af444486bbdfa1e4b115f, type: 3}
   m_Name: DataSO
   m_EditorClassIdentifier: 
-  difficultyLevelType: 0
+  difficultyLevelType: 2
   correctAnswerPoint: 5
   wrongAnswerPoint: 2
   instructionData:
@@ -21,33 +21,33 @@ MonoBehaviour:
     instructionAudioURL:
     - 
     instructionAudioClip:
-    - {fileID: 8300000, guid: 331d54228cc812949a735f62e9f9c933, type: 3}
+    - {fileID: 8300000, guid: cea8bccb9d9cecb4d85361e0fdedcd52, type: 3}
   datas:
   - answerType: 0
     questionType: 0
     questionData:
-      questionID: 14123
-      question: asdasdasdsa
+      questionID: 2038
+      question: rock
       questionAudioURL: 
-      questionAudioClip: {fileID: 8300000, guid: e19d9a46cadc49c46a2760ecd9764f51, type: 3}
-      questionSprit: {fileID: 21300000, guid: 01ca69abd197d9e4591d94a0b049eeb8, type: 3}
+      questionAudioClip: {fileID: 8300000, guid: 3c03bedfc5153074ca008312d1ef7bff, type: 3}
+      questionSprit: {fileID: 21300000, guid: be40e6cde51da574da34c47af9e15107, type: 3}
     options:
-    - optionID: 12321
-      option: aa
+    - optionID: 3884
+      option: rock
       optionAudioURL: 
-      optionAudioClip: {fileID: 8300000, guid: 1bc5d04573bd80e448cc3dcbb76bfda2, type: 3}
-      optionSprit: {fileID: 21300000, guid: e1b23566e8999074abb369b1320c435a, type: 3}
-    - optionID: 21313
-      option: aa
+      optionAudioClip: {fileID: 8300000, guid: 3c03bedfc5153074ca008312d1ef7bff, type: 3}
+      optionSprit: {fileID: 0}
+    - optionID: 3885
+      option: roc
       optionAudioURL: 
-      optionAudioClip: {fileID: 8300000, guid: 3f1af62ca9d2fea44bb2a8d6dfb787d9, type: 3}
-      optionSprit: {fileID: 21300000, guid: 915eb02215209b942bf64d8d5fbbff78, type: 3}
-    - optionID: 13123
-      option: aaa
+      optionAudioClip: {fileID: 0}
+      optionSprit: {fileID: 0}
+    - optionID: 3883
+      option: rok
       optionAudioURL: 
-      optionAudioClip: {fileID: 8300000, guid: b695411535be9fd4da8b0fd313d001ef, type: 3}
-      optionSprit: {fileID: 21300000, guid: bb6237ca6c9d66742b2bf88377143a16, type: 3}
-    correctOptions: aaa
+      optionAudioClip: {fileID: 0}
+      optionSprit: {fileID: 0}
+    correctOptions: rock
   - answerType: 0
     questionType: 0
     questionData:
@@ -62,76 +62,6 @@ MonoBehaviour:
       optionAudioURL: 
       optionAudioClip: {fileID: 0}
       optionSprit: {fileID: 0}
-    correctOptions: 
-  - answerType: 0
-    questionType: 0
-    questionData:
-      questionID: 
-      question: 
-      questionAudioURL: 
-      questionAudioClip: {fileID: 0}
-      questionSprit: {fileID: 0}
-    options: []
-    correctOptions: 
-  - answerType: 0
-    questionType: 0
-    questionData:
-      questionID: 
-      question: 
-      questionAudioURL: 
-      questionAudioClip: {fileID: 0}
-      questionSprit: {fileID: 0}
-    options: []
-    correctOptions: 
-  - answerType: 0
-    questionType: 0
-    questionData:
-      questionID: 
-      question: 
-      questionAudioURL: 
-      questionAudioClip: {fileID: 0}
-      questionSprit: {fileID: 0}
-    options: []
-    correctOptions: 
-  - answerType: 0
-    questionType: 0
-    questionData:
-      questionID: 
-      question: 
-      questionAudioURL: 
-      questionAudioClip: {fileID: 0}
-      questionSprit: {fileID: 0}
-    options: []
-    correctOptions: 
-  - answerType: 0
-    questionType: 0
-    questionData:
-      questionID: 
-      question: 
-      questionAudioURL: 
-      questionAudioClip: {fileID: 0}
-      questionSprit: {fileID: 0}
-    options: []
-    correctOptions: 
-  - answerType: 0
-    questionType: 0
-    questionData:
-      questionID: 
-      question: 
-      questionAudioURL: 
-      questionAudioClip: {fileID: 0}
-      questionSprit: {fileID: 0}
-    options: []
-    correctOptions: 
-  - answerType: 0
-    questionType: 0
-    questionData:
-      questionID: 
-      question: 
-      questionAudioURL: 
-      questionAudioClip: {fileID: 0}
-      questionSprit: {fileID: 0}
-    options: []
     correctOptions: 
   - answerType: 0
     questionType: 0
