@@ -51,7 +51,11 @@ public class TarunTesting : Singleton<TarunTesting>
         yield return null;
     }
 
+    public void gg()
+    {
+        DemoController cashDemoController = Instantiate(demoControllerPF, canv);
 
-
+        cashDemoController.InitDemoController(_demoControllerDataSO);
+    }
     
 }

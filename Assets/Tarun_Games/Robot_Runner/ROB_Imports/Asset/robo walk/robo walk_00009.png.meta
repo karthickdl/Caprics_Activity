@@ -1,55 +1,7 @@
 fileFormatVersion: 2
-guid: 277f2c3236fb3bd4b80c649867ea92c1
+guid: a1cfbb559f1d6e440bcb3d85529a2e86
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: 8432350258525226710
-    second: panels_0
-  - first:
-      213: 5871845560049415872
-    second: panels_1
-  - first:
-      213: -1093758081910600578
-    second: panels_2
-  - first:
-      213: 6769129769068414571
-    second: panels_3
-  - first:
-      213: -2515250472813986982
-    second: panels_4
-  - first:
-      213: 2107736921666602097
-    second: panels_5
-  - first:
-      213: -4928289827753878902
-    second: panels_6
-  - first:
-      213: -7313764057064727555
-    second: panels_7
-  - first:
-      213: 5898321235911460583
-    second: panels_8
-  - first:
-      213: -6205817119817122721
-    second: panels_9
-  - first:
-      213: 2047852734771624878
-    second: panels_10
-  - first:
-      213: 1150667891203981500
-    second: panels_11
-  - first:
-      213: -2732471435990178364
-    second: panels_12
-  - first:
-      213: 6861506914722417487
-    second: panels_13
-  - first:
-      213: -5715893284363732858
-    second: panels_14
-  - first:
-      213: -2160753358412366304
-    second: panels_15
+  internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -91,14 +43,14 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
+  spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -121,7 +73,7 @@ TextureImporter:
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
-    compressionQuality: 50
+    compressionQuality: 100
     crunchedCompression: 1
     allowsAlphaSplitting: 0
     overridden: 0
@@ -134,7 +86,7 @@ TextureImporter:
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
-    compressionQuality: 50
+    compressionQuality: 100
     crunchedCompression: 1
     allowsAlphaSplitting: 0
     overridden: 0
@@ -143,11 +95,11 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Android
-    maxTextureSize: 512
+    maxTextureSize: 256
     resizeAlgorithm: 0
     textureFormat: 50
     textureCompression: 1
-    compressionQuality: 50
+    compressionQuality: 100
     crunchedCompression: 1
     allowsAlphaSplitting: 0
     overridden: 1
@@ -160,7 +112,7 @@ TextureImporter:
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
-    compressionQuality: 50
+    compressionQuality: 100
     crunchedCompression: 1
     allowsAlphaSplitting: 0
     overridden: 0
@@ -173,7 +125,7 @@ TextureImporter:
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
-    compressionQuality: 50
+    compressionQuality: 100
     crunchedCompression: 1
     allowsAlphaSplitting: 0
     overridden: 0
@@ -182,49 +134,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: panels_0
-      rect:
-        serializedVersion: 2
-        x: 22
-        y: 1111
-        width: 2007
-        height: 666
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6d6c11532e9b50570800000000000000
-      internalID: 8432350258525226710
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: panels_14
-      rect:
-        serializedVersion: 2
-        x: 115
-        y: 149
-        width: 1819
-        height: 799
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 688757b87511da0b0800000000000000
-      internalID: -5715893284363732858
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
@@ -235,9 +145,7 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      panels_0: 8432350258525226710
-      panels_14: -5715893284363732858
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

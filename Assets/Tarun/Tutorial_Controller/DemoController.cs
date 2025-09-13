@@ -1,3 +1,4 @@
+using DLearners;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -65,7 +66,9 @@ public class DemoController : MonoBehaviour
 
     private void OnSkipButton()
     {
+        HUDManager.Instance.SetHUDOnOff(true);
         isDone = true;
+        Time.timeScale = 1;
         Destroy(this.gameObject, 0.1f);
     }
 }

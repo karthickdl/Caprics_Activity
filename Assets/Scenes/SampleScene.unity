@@ -389,6 +389,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Robot_Runner
       objectReference: {fileID: 0}
+    - target: {fileID: 5442496690073624873, guid: 0f842811889d3984284ddf6ea5cae676, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5442496690073624874, guid: 0f842811889d3984284ddf6ea5cae676, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1007,5 +1011,5 @@ SceneRoots:
   - {fileID: 1236633600}
   - {fileID: 1535999777}
   - {fileID: 1881465711}
-  - {fileID: 769463987}
   - {fileID: 5087581090698559283}
+  - {fileID: 769463987}

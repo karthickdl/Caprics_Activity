@@ -7,17 +7,6 @@ namespace DLearners
 {
     public class HUDManager : Singleton<HUDManager>
     {
-        [Header ("Tap To Play")]
-        [SerializeField] private Button tapToPlayButton;
-        [SerializeField] private TextMeshProUGUI tapToPlayText;
-        [SerializeField] private string[] tapToPlayTexts;
-
-        [Header("Score Update System")]
-        [SerializeField] private Text pointsText;//TEX_points
-        [SerializeField] private Text TEX_questionCount;
-        [SerializeField] private TextMeshProUGUI cashPointFX;//TM_pointFx;
-        [SerializeField] private Button instructionButton;
-
 
         [SerializeField] private int correctAnswerPoint;
         [SerializeField] private int wrongAnswerPoint;
@@ -37,13 +26,14 @@ namespace DLearners
             wrongAnswerPoint = _dataSO.GetWrongAnswerPoint();
             totalQuestionsCount = _dataSO.datas.Count;
             UpdateQuestionCountText(0);
-           // instructionButton.onClick.AddListener(() => { });//Popup
+            InitInstruction(_dataSO.instructionData);
+            instructionButton.onClick.AddListener(() => { OnOpenInstructionPanel(); });
+            InitPauseMenu();
         }
         private void OnResetData()
         {
             pointsText.text = "0";
             TEXM_instruction.text = "";
-            TEXM_instruction2.text = "";
             pointsText.text = "";
             TEX_questionCount.text = "";
             cashPointFX.text = "";
@@ -53,6 +43,10 @@ namespace DLearners
         #endregion
 
         #region Score Update System
+        [Header("Score Update System")]
+        [SerializeField] private Text pointsText;//TEX_points
+        [SerializeField] private Text TEX_questionCount;
+        [SerializeField] private TextMeshProUGUI cashPointFX;//TM_pointFx;
         public void UpdateScoreText(bool isAdd)
         {
             string cash = "";
@@ -130,7 +124,11 @@ namespace DLearners
             TEX_questionCount.text = ((_currentQuestionsID + 1) + "/" + totalQuestionsCount).ToString();
         }
 
-        #region Score Update System
+        #region Tap To Play System
+        [Header("Tap To Play")]
+        [SerializeField] private Button tapToPlayButton;
+        [SerializeField] private TextMeshProUGUI tapToPlayText;
+        [SerializeField] private string[] tapToPlayTexts;
         public void SetTapToPlayOnAndOff(bool isOn)
         {
             tapToPlayButton.gameObject.SetActive(isOn);
@@ -147,13 +145,16 @@ namespace DLearners
             });
             // Fading.OnBreathingFX(tapToPlayText.transform,0.2f,0.35f);
         }
-#endregion
+        #endregion
 
-
-
+        #region Instruction System
+        [Header("Instruction Panel")]
+        [SerializeField] private GameObject instructionOBJ;
+        [SerializeField] private Button instructionButton;
         [SerializeField] private TextMeshProUGUI TEXM_instruction;
-        [SerializeField] private TextMeshProUGUI TEXM_instruction2;
-        [SerializeField] private Button button;
+        [SerializeField] private Button audioPlayButton;
+        [SerializeField] private Button closeButton;
+        [SerializeField] private Button howToPlayButton;
         private AudioClip audioClip;
         public void InitInstruction(InstructionData _instructionData)
         {
@@ -163,25 +164,79 @@ namespace DLearners
                 TEXM_instruction.text = _instructionData.instruction[i];
                 audioClip = _instructionData.instructionAudioClip[i];
 
-                button.onClick.AddListener(() =>
+                audioPlayButton.onClick.AddListener(() =>
                 {
-                    DLearners.DLearnersAudioManager.Instance.PlaySound3(audioClip);
+                    DLearnersAudioManager.Instance.PlaySound3(audioClip);
                 });
-            }           
+            }
+            howToPlayButton.onClick.AddListener(() =>
+            {
+                SetHUDOnOff(false);
+                instructionOBJ.gameObject.SetActive(false);
+                TarunTesting.Instance.gg();
+            });
+            closeButton.onClick.AddListener(() =>
+            {
+                OnCloseInstructionPanel();
+                /*audioPlayButton.onClick.RemoveAllListeners();
+                closeButton.onClick.RemoveAllListeners();
+                howToPlayButton.onClick.RemoveAllListeners();*/
+            });
         }
 
-        public void BUT_instructionPage()
+        public void OnOpenInstructionPanel()
         {
-            StopAllCoroutines();
+           // StopAllCoroutines();
             Time.timeScale = 0;
+            instructionOBJ.gameObject.SetActive(true);
             //InitInstruction();
         }
 
-        public void BUT_closeInstruction()
+        public void OnCloseInstructionPanel()
         {
             Time.timeScale = 1;
+            instructionOBJ.gameObject.SetActive(false);
         }
 
-       
+        #endregion
+
+        #region Pause System
+        [Header ("Pause Menu")]
+        [SerializeField] private GameObject pauseMenuOBJ;
+        [SerializeField] private Button pauseButton;
+        [SerializeField] private Button resumeButton;
+        [SerializeField] private Button homeButton;
+        [SerializeField] private float F_volume;
+        [SerializeField] private Slider SL_volume;
+
+        private void InitPauseMenu()
+        {
+            SL_volume.value = F_volume;
+            Time.timeScale = 1;
+            pauseMenuOBJ.SetActive(false);
+            pauseButton.onClick.AddListener(() => { OnPauseButton();});
+            resumeButton.onClick.AddListener(() => { OnResumeButton();});
+            homeButton.onClick.AddListener(() => { OnHomeButton();});
+        }
+
+        private void OnPauseButton()
+        {
+            pauseMenuOBJ.SetActive(true);
+            Time.timeScale = 0;
+        }
+        private void OnResumeButton()
+        {
+            pauseMenuOBJ.SetActive(false);
+            Time.timeScale = 1;
+        }
+        private void OnHomeButton()
+        {
+#if UNITY_WEBGL
+Application.ExternalEval("closeApplication()");
+#elif UNITY_ANDROID || UNITY_IOS
+            Application.Quit();
+#endif
+        }
+        #endregion
     }
 }
