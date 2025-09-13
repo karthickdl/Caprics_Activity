@@ -7,18 +7,23 @@ public class CoverPage : MonoBehaviour
     [SerializeField] private Button startButton;
     [SerializeField] private Image startButtonIMG;
 
-    public bool ggd;
+    public bool isDone;
 
-    public Sprite gg;
-    public void InitCoverPage()
+    public void InitCoverPage(Sprite coverPageSprit)
     {
-        bgIMG.sprite = gg;
+        bgIMG.sprite = coverPageSprit;
         startButton.onClick.AddListener(() => { OnStartButton();});
+        OnButtonAnim();
     }
 
     private void OnStartButton()
     {
-        ggd = true;
+        isDone = true;
         Destroy(this.gameObject, 0.1f);
+    }
+
+    private void OnButtonAnim()
+    {
+        Fading.OnBreathingFX(startButton.transform,1.25f,0.35f);
     }
 }

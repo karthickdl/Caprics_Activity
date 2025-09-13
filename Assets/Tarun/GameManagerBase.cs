@@ -1,5 +1,6 @@
 
-using TMPro;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace DLearners
 {
@@ -7,7 +8,7 @@ namespace DLearners
     {
         protected bool isInputUnLocked;
 
-
+        [SerializeField] protected GameObject mainGameOBJ;
         protected Data currentData = new Data();
         protected int currentOptionCount;
         protected DifficultyLevelType currentDifficultyLevelType;
@@ -19,10 +20,14 @@ namespace DLearners
 
         protected int currentWrongAnsCount;
         protected int[] wrongAnsLifeCounts = { 3, 2 };
+
+
+        
         protected override void Awake()
         {
             base.Awake();            
         }
+        
 
         public virtual void UpdateQuestion()
         {
@@ -34,6 +39,26 @@ namespace DLearners
           
 
            
+        }
+
+        public virtual void OnPlayButton()
+        {
+
+        }
+
+        public virtual void InitGame()
+        {
+
+        }
+
+        public virtual void SetGameOBJOnOff(bool isOn)
+        {
+            mainGameOBJ.SetActive(isOn);
+        }
+
+        public virtual void OnPlayAgainButton()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 }

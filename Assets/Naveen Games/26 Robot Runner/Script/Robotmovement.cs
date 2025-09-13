@@ -1,11 +1,9 @@
 using DG.Tweening;
 using DLearners;
-using TMPro;
 using UnityEngine;
 
-public class Robotmovement : MonoBehaviour
+public class Robotmovement : Singleton<Robotmovement>
 {
-    public static Robotmovement Instance;
     [SerializeField] private float movementsped;
     [SerializeField] private float offset;
 
@@ -24,18 +22,17 @@ public class Robotmovement : MonoBehaviour
     [SerializeField] private ParticleSystem stareffect;
     GameObject G_portal;
 
-    public GameObject play;
     public AnimationClip AC_portaldisapears;
     private AudioSource cashedWalking;
-
-    private void Awake()
+    public void Awake()
     {
-        Instance = this;       
+        base.Awake();
+        startpostion = transform.position;
     }
     private void Start()
     {
         cashedWalking = DLearnersAudioManager.Instance.PlaySoundCashed("AS_Walking");
-        startpostion = transform.position;
+       
         animator.Play("land");
     }
 
@@ -61,14 +58,14 @@ public class Robotmovement : MonoBehaviour
         RB2D_robot.gravityScale = 0;
         transform.position = startpostion;
         B_reducelife = true;
-        play.SetActive(true);
+        HUDManager.Instance.SetTapToPlayOnAndOff(true);
     }
 
-    public void BUT_Play()
+    public void OnPlayButton()
     {
         RB2D_robot.gravityScale = 1.5f;
-        play.SetActive(false);
-        FollowingCamera.OBJ_followingCamera.B_canfollow = true;
+        FollowingCamera.Instance.Init(this.transform);
+        FollowingCamera.Instance.canfollow = true;
         DLearnersAudioManager.Instance.PlaySound2("AS_falling");
     }
 
@@ -192,7 +189,7 @@ public class Robotmovement : MonoBehaviour
 
         RB2D_robot.gravityScale = 0;
         B_reducelife = true;
-        play.SetActive(true);
+        HUDManager.Instance.SetTapToPlayOnAndOff(true);
     }
     private void PlayParticle()
     {

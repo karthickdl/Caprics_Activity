@@ -1,21 +1,22 @@
-﻿using UnityEngine;
+﻿using DLearners;
+using UnityEngine;
 
-public class FollowingCamera : MonoBehaviour
+public class FollowingCamera : Singleton<FollowingCamera>
 {
-    public static FollowingCamera OBJ_followingCamera;
-    public bool B_canfollow;
+    public bool canfollow;
 
     Transform T_TargetPlayer;
    
     public float X_Offset, Y_Offset;
-    public void Awake()
+
+    public void Init(Transform transform)
     {
-        OBJ_followingCamera = this;
-        T_TargetPlayer = GameObject.FindGameObjectWithTag("Player").transform;
+        T_TargetPlayer = transform;
     }
+
     private void LateUpdate()   //player movement in fixed update for smoothness
     {
-        if (B_canfollow)
+        if (canfollow)
         {
             Vector3 xtemp = transform.position;
             xtemp.x = T_TargetPlayer.position.x;
@@ -28,5 +29,4 @@ public class FollowingCamera : MonoBehaviour
             transform.position = ytemp;
         }
     }
-
 }

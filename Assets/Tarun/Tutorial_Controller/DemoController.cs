@@ -18,7 +18,7 @@ public class DemoController : MonoBehaviour
     [Header("Debug")]
     [SerializeField] private DemoControllInfo[] demoControllInfos;
 
-    public bool ggd;
+    public bool isDone;
 
     private int id;
     
@@ -65,7 +65,7 @@ public class DemoController : MonoBehaviour
 
     private void OnSkipButton()
     {
-        ggd = true;
+        isDone = true;
         Destroy(this.gameObject, 0.1f);
     }
 }

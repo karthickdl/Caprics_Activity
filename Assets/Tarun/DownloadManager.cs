@@ -1,19 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
+using DLearners;
 using UnityEngine;
-using UnityEngine.Networking;
 
-public class DownloadManager : MonoBehaviour
+public class DownloadManager : Singleton<DownloadManager>
 {
     [SerializeField] private string gameID;
     const string GAMEID = "game_id";
 
-    public string getDataURL;
-    public string sentDataURL;
+    [Header("URL")]
+    [SerializeField] protected string getValueURL;
+    [SerializeField] public string sendValueURL;
 
-    private void Start()
+   /* private void Start()
     {
-        getDataURL = "http://103.117.180.121:8000/test/Game_template_api-s/game_template_1.php";
-        sentDataURL = "http://103.117.180.121:8000/test/Game_template_api-s/save_child_questions.php";
+        getValueURL = "http://103.117.180.121:8000/test/Game_template_api-s/game_template_1.php";
+        sendValueURL = "http://103.117.180.121:8000/test/Game_template_api-s/save_child_questions.php";
+    }*/
+    public void SetURLData(URLData uRLData)
+    {
+        getValueURL = uRLData.getValueURL;
+        sendValueURL = uRLData.getValueURL;
     }
 }

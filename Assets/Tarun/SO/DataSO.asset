@@ -12,9 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a417730ee59af444486bbdfa1e4b115f, type: 3}
   m_Name: DataSO
   m_EditorClassIdentifier: 
+  isProduction: 1
+  getValueURLPRO: 1
+  sndValueURLPRO: 1
+  getValueURLTesting: 2
+  sndValueURLTesting: 2
+  uRLData:
+    getValueURL: 
+    sendValueURL: 
   difficultyLevelType: 2
   correctAnswerPoint: 5
   wrongAnswerPoint: 2
+  coverPageSprit: {fileID: -8010571638303967256, guid: bdc96b9672a4c4a3c92ee6e012911de7, type: 3}
   instructionData:
     instruction:
     - asdasdasdsad

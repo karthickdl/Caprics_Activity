@@ -6,7 +6,13 @@ using UnityEngine.UI;
 namespace DLearners
 {
     public class HUDManager : Singleton<HUDManager>
-    {        
+    {
+        [Header ("Tap To Play")]
+        [SerializeField] private Button tapToPlayButton;
+        [SerializeField] private TextMeshProUGUI tapToPlayText;
+        [SerializeField] private string[] tapToPlayTexts;
+
+        [Header("Score Update System")]
         [SerializeField] private Text pointsText;//TEX_points
         [SerializeField] private Text TEX_questionCount;
         [SerializeField] private TextMeshProUGUI cashPointFX;//TM_pointFx;
@@ -18,6 +24,8 @@ namespace DLearners
         [SerializeField] private int totalQuestionsCount;
         protected int currentQuestionsID { get; private set; }
         protected int score { get; private set; }
+
+        #region Init
         public void SetHUDOnOff(bool isOn)
         {
             this.gameObject.SetActive(isOn);
@@ -33,7 +41,7 @@ namespace DLearners
         }
         private void OnResetData()
         {
-            pointsText.text = "";
+            pointsText.text = "0";
             TEXM_instruction.text = "";
             TEXM_instruction2.text = "";
             pointsText.text = "";
@@ -42,7 +50,7 @@ namespace DLearners
             currentQuestionsID = 0;
             score = 0;
         }
-
+        #endregion
 
         #region Score Update System
         public void UpdateScoreText(bool isAdd)
@@ -122,7 +130,24 @@ namespace DLearners
             TEX_questionCount.text = ((_currentQuestionsID + 1) + "/" + totalQuestionsCount).ToString();
         }
 
-
+        #region Score Update System
+        public void SetTapToPlayOnAndOff(bool isOn)
+        {
+            tapToPlayButton.gameObject.SetActive(isOn);
+#if UNITY_WEBGL
+            tapToPlayText.text = tapToPlayTexts[1];
+#elif UNITY_ANDROID || UNITY_IOS
+            tapToPlayText.text = tapToPlayTexts[0];
+#endif
+            tapToPlayButton.onClick.AddListener(() =>
+            {                
+                GameManagerBase.Instance.OnPlayButton();
+                SetTapToPlayOnAndOff(false);
+                tapToPlayButton.onClick.RemoveAllListeners();
+            });
+            // Fading.OnBreathingFX(tapToPlayText.transform,0.2f,0.35f);
+        }
+#endregion
 
 
 
@@ -156,5 +181,7 @@ namespace DLearners
         {
             Time.timeScale = 1;
         }
+
+       
     }
 }

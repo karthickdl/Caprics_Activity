@@ -7,9 +7,20 @@ namespace DLearners
     [CreateAssetMenu(fileName = "DataSO", menuName = "ScriptableObjects/DataSO", order = 0)]
     public class DataSO : ScriptableObject
     {
+        public bool isProduction;
+        [Header("URL")]
+        public string getValueURLPRO;
+        public string sndValueURLPRO;
+        public string getValueURLTesting;
+        public string sndValueURLTesting;
+        public URLData uRLData;
+
+
         public DifficultyLevelType difficultyLevelType;
         public int correctAnswerPoint;
         public int wrongAnswerPoint;
+
+        public Sprite coverPageSprit;
 
         public InstructionData instructionData;
 
@@ -33,10 +44,30 @@ namespace DLearners
         {
             return wrongAnswerPoint;
         }
+        public Sprite GetCoverPageSprit()
+        {
+            return coverPageSprit;
+        }
 
         public DifficultyLevelType GetDifficultyLevelType()
         {
             return difficultyLevelType;
+        }
+
+        public URLData GetURLData()
+        {
+            URLData tempURLData  = new URLData();
+            if (isProduction)
+            {
+                tempURLData.sendValueURL = sndValueURLPRO;
+                tempURLData.getValueURL = getValueURLPRO;
+            }
+            else
+            {
+                tempURLData.sendValueURL = sndValueURLTesting;
+                tempURLData.getValueURL = getValueURLTesting;
+            }
+            return tempURLData;
         }
     }
     [Serializable]
@@ -82,7 +113,12 @@ namespace DLearners
         public List <AudioClip> instructionAudioClip;
     }
 
-
+    [Serializable]
+    public struct URLData
+    {        
+        public string getValueURL;
+        public string sendValueURL;
+    }
     public enum TemplateType
     {
         Text,
