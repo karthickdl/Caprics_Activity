@@ -11669,7 +11669,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 250
   field of view: 60
   orthographic: 1
   orthographic size: 7
@@ -14268,7 +14268,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroyOnLoad: 0
-  gameAudioDataSO: {fileID: 11400000, guid: 32ccbcb8bed0949478fb2d5bcd3cd9cc, type: 2}
+  gameAudioDataSO: {fileID: 11400000, guid: 38827135aa3719c41bfb0c3a0f8929c5, type: 2}
   introControllerPF: {fileID: 6657430381817427831, guid: e8d6ba8ebb136a446b69b756ba344d28, type: 3}
   coverPagePF: {fileID: 6884182910719537490, guid: 66870b8df786af74d86760da710df9e8, type: 3}
   demoControllerPF: {fileID: 7569966119326016201, guid: 89e7e8d58c37efd43aa17591d81a8126, type: 3}

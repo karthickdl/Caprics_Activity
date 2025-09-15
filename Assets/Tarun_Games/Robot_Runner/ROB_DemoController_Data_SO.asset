@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91e3a3d125234e64780bda66ea1399be, type: 3}
+  m_Name: ROB_DemoController_Data_SO
+  m_EditorClassIdentifier: 
+  demoController_N: {fileID: 5504580022886320031, guid: df3f27ac3f07e024f94b65889f51fe17, type: 3}
+  demoControllInfos:
+  - clip: {fileID: 8300000, guid: 69d22e0455844fa4c97dc62a0600136f, type: 3}
+    text: Press the 'UP' arrow key to jump. Press the 'DOWN' arrow key to land.
+  - clip: {fileID: 8300000, guid: 30987dc3d3a99114685a0e1e479d861e, type: 3}
+    text: Press the 'UP' button to jump. Press the 'DOWN' button to land.
+  - clip: {fileID: 8300000, guid: 7bc3436f9e642694a85c81fd2cfd840f, type: 3}
+    text: Help the robot runner to reach the portal without falling.
