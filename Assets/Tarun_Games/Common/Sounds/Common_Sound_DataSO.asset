@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fxSounds:
   - name: Com_Collect
-    audioClip: {fileID: 8300000, guid: be0e0809f3a404014b59715976ba0779, type: 3}
+    audioClip: {fileID: 8300000, guid: 43acd33fe72c85f4887257ab9e9ae29b, type: 3}
     mixerType: 2
     volumeLevel: 0.07
   - name: Com_Wrong
-    audioClip: {fileID: 8300000, guid: 5d34ebfb67043a1438312cfe82aa831a, type: 3}
+    audioClip: {fileID: 8300000, guid: 89ac9c5bad1fb3c4b976302a1c8574cc, type: 3}
     mixerType: 2
     volumeLevel: 0.1
   - name: Com_Correct
-    audioClip: {fileID: 8300000, guid: 40fd0f63d41be4c09b34e7df83e2176d, type: 3}
+    audioClip: {fileID: 8300000, guid: a53cac36f9d8bfb48b0e724d5f4d2a9f, type: 3}
     mixerType: 2
     volumeLevel: 0.1

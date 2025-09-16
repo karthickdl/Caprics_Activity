@@ -12,23 +12,12 @@ public class MainController : MonoBehaviour
     public bool WEB;
     public bool MOBILE;
 
-    [Header("MANAGERS")]
-    public GameObject G_GameManager;
-
-    [Header("OBJECTS")]
-    //public GameObject G_coverPageStart;
-    public Image IM_loading;
-    public float startLoad;
-    public float maxLoad;
-   // public GameObject G_coverPage;
-    public bool B_enteredGame;
 
     [Header("ID")]
-    public string STR_IDjson;
+    public string STR_IDjson;//
     public string STR_childID;
     public string STR_GameID;
-    public bool called;
-    public string STR_responseSerial;
+    public string STR_responseSerial;//
 
     [Header("SCORE")]
     public int I_TotalPoints;
@@ -42,19 +31,11 @@ public class MainController : MonoBehaviour
     [Header("PREVIEW MODE")]
     public string STR_previewJsonAPI;
 
-    [Header("INITIALIZE")]
-    public int I_loadTime;
-
 
     void Awake()
     {
         instance = this;
 
-        //G_coverPageStart.GetComponent<Button>().interactable = false;
-        B_enteredGame = false;
-
-
-        maxLoad = 100f;
 
 #if UNITY_ANDROID || UNITY_IOS
         MOBILE = true;
@@ -77,7 +58,7 @@ public class MainController : MonoBehaviour
         //}
         if (WEB)
         {
-            G_GameManager.SetActive(false);
+          //  G_GameManager.SetActive(false);
             G_GameID.SetActive(true);
 
 
@@ -158,65 +139,6 @@ public class MainController : MonoBehaviour
             //    STR_GameID = "354";   // bridge crossing
             //    STR_GameID = "303";   // Readcomp
             //    STR_GameID = "1"; //
-        }
-    }
-
-
-    private void Start()
-    {
-        I_loadTime = Random.Range(15, 51);
-        //   Debug.Log("Load Time :  " + I_loadTime);
-    }
-
-    private void Update()
-    {
-        if (WEB)
-        {
-            if (STR_GameID != "" && STR_childID != "" && !called) // live
-            {
-                called = true;
-                G_GameManager.SetActive(true);
-            }
-            if (STR_GameID == "" && STR_childID == "" && !called && mode == "preview") // preview
-            {
-                called = true;
-                G_GameManager.SetActive(true);
-                // G_coverPage.SetActive(false);
-            }
-        }
-        if (MOBILE)
-        {
-            if (STR_GameID != "" && STR_childID != "" && !called)
-            {
-                called = true;
-                G_GameManager.SetActive(true);
-            }
-        }
-
-
-        if (called && startLoad < 100f)
-        {
-            startLoad = startLoad + I_loadTime * Time.deltaTime;
-            IM_loading.fillAmount = startLoad / maxLoad;
-            if (startLoad >= maxLoad)
-            {
-               // G_coverPageStart.GetComponent<Button>().interactable = true;
-               // G_coverPageStart.GetComponent<Animator>().enabled = true;
-                IM_loading.transform.parent.GetChild(1).gameObject.SetActive(true);
-            }
-        }
-      //  if (!G_coverPage.activeInHierarchy && !B_enteredGame) // player has entered the game
-        {
-        //    B_enteredGame = true;
-
-            /* if (HelicopterGameManager.instance!=null)
-             {
-                HelicopterGameManager.instance.AS_helicopter.Play();   // helicopter game
-             }
-            if (HelicopterGameManager.instance!=null)
-            {
-                HelicopterGameManager.instance.AS_helicopter.Play();   // helicopter game
-            }*/
         }
     }
 }

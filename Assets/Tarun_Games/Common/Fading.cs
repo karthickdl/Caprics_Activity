@@ -79,6 +79,6 @@ public static class Fading
     {
         transform.DOScale(Vector3.one * size, time)
              .SetEase(Ease.InOutSine)
-             .SetLoops(-1, LoopType.Yoyo);
+             .SetLoops(-1, LoopType.Yoyo).SetLink(transform.gameObject);
     }
 }

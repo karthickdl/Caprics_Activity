@@ -11133,15 +11133,9 @@ MonoBehaviour:
   G_GameID: {fileID: 1255490015216048575}
   WEB: 1
   MOBILE: 0
-  G_GameManager: {fileID: 5442496689800228539}
-  IM_loading: {fileID: 0}
-  startLoad: 0
-  maxLoad: 0
-  B_enteredGame: 0
   STR_IDjson: 
   STR_childID: 
   STR_GameID: 
-  called: 0
   STR_responseSerial: 
   I_TotalPoints: 0
   I_TotalQuestions: 0
@@ -11149,7 +11143,6 @@ MonoBehaviour:
   STR_previewJsonAPI: '{"q_a":[{"question_id":"2038","question":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/know_my_nameLIEZ\/Q_a\/ques\/rock.png","answer":"rock","question_voice":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/know_my_nameLIEZ\/audio\/rock.mp3","options":[{"option":"rock","option_voice":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/know_my_nameLIEZ\/audio\/rock.mp3","option_id":"3884"},{"option":"roc","option_voice":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/know_my_nameLIEZ\/audio\/roc.mp3","option_id":"3885"},{"option":"rok","option_voice":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/know_my_nameLIEZ\/audio\/rok.mp3","option_id":"3883"}]},{"question_id":"2039","question":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/know_my_nameLIEZ\/Q_a\/ques\/milk.png","answer":"milk","question_voice":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/know_my_nameLIEZ\/audio\/milk.mp3","options":[{"option":"milck","option_voice":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/know_my_nameLIEZ\/audio\/milck.mp3","option_id":"3887"},{"option":"milk","option_voice":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/know_my_nameLIEZ\/audio\/milk.mp3","option_id":"3888"},{"option":"milc","option_voice":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/know_my_nameLIEZ\/audio\/milc.mp3","option_id":"3886"}]},{"question_id":"2040","question":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/know_my_nameLIEZ\/Q_a\/ques\/neck.png","answer":"neck","question_voice":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/know_my_nameLIEZ\/audio\/neck.mp3","options":[{"option":"nek","option_voice":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/know_my_nameLIEZ\/audio\/nek.mp3","option_id":"3890"},{"option":"nec","option_voice":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/know_my_nameLIEZ\/audio\/nec.mp3","option_id":"3891"},{"option":"neck","option_voice":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/know_my_nameLIEZ\/audio\/neck.mp3","option_id":"3889"}]},{"question_id":"2041","question":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/know_my_nameLIEZ\/Q_a\/ques\/sock.png","answer":"sock","question_voice":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/know_my_nameLIEZ\/audio\/sock.mp3","options":[{"option":"sok","option_voice":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/know_my_nameLIEZ\/audio\/sok.mp3","option_id":"3893"},{"option":"sock","option_voice":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/know_my_nameLIEZ\/audio\/sock.mp3","option_id":"3894"},{"option":"soc","option_voice":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/know_my_nameLIEZ\/audio\/soc.mp3","option_id":"3892"}]},{"question_id":"2042","question":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/know_my_nameLIEZ\/Q_a\/ques\/brick.png","answer":"brick","question_voice":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/know_my_nameLIEZ\/audio\/brick.mp3","options":[{"option":"brick","option_voice":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/know_my_nameLIEZ\/audio\/brick.mp3","option_id":"3896"},{"option":"bric","option_voice":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/know_my_nameLIEZ\/audio\/bric.mp3","option_id":"3897"},{"option":"brik","option_voice":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/know_my_nameLIEZ\/audio\/brik.mp3","option_id":"3895"}]}],"correct_points":"5","wrong_points":"2","avatar_color":"","difficulty_level":"independent","video":"","instruction":"Choose
     the correct spelling","instruction_audio":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/know_my_nameLIEZ\/instruction_audio.mp3","bg_image":"","customization":{},"child_name":"Samiksha","child_standard":"I
     std","lesson_name":"CK Rule","game_cover_img":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/know_my_nameLIEZ\/coverImage.png","additional_keys":[]}'
-  I_loadTime: 0
 --- !u!1 &5442496689488002170
 GameObject:
   m_ObjectHideFlags: 0
@@ -12661,7 +12654,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2265b37059664ef498ca3ba8233f1f87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canDestroyOnLoad: 0
+  canDestroyOnLoad: 1
   mainGameOBJ: {fileID: 5442496689562485125}
   G_Transition: {fileID: 5442496689004165716}
   GA_Question:
@@ -14273,9 +14266,8 @@ MonoBehaviour:
   coverPagePF: {fileID: 6884182910719537490, guid: 66870b8df786af74d86760da710df9e8, type: 3}
   demoControllerPF: {fileID: 7569966119326016201, guid: 89e7e8d58c37efd43aa17591d81a8126, type: 3}
   _demoControllerDataSO: {fileID: 11400000, guid: ec100ee310628c948b59a36f9dadfd41, type: 2}
-  canv: {fileID: 5442496689739394717}
   dataSO: {fileID: 11400000, guid: aa2f6a0c220d02e47a145d99398ecfa9, type: 2}
-  coverPage: {fileID: 0}
+  canv: {fileID: 5442496689739394717}
 --- !u!114 &4846884497664546194
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15245,7 +15237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61b026a57adb319458253de66d52ea3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canDestroyOnLoad: 0
+  canDestroyOnLoad: 1
   movementsped: 0.1
   offset: 0
   RB2D_robot: {fileID: 8404938217677160943}
