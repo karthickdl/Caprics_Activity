@@ -5,6 +5,7 @@ using UnityEngine;
 public class DemoControllerDataSO : ScriptableObject
 {
     public DemoController_N demoController_N;
+    public Sprite bgSprite;
     public DemoControllInfo[] demoControllInfos;
 }
 [Serializable]

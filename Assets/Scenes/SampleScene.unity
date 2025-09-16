@@ -984,10 +984,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7403356519206143643, guid: aa86ab98e8012344f9820a1421d5cb93, type: 3}
-      propertyPath: canDestroyOnLoad
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8810931271264318479, guid: aa86ab98e8012344f9820a1421d5cb93, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 

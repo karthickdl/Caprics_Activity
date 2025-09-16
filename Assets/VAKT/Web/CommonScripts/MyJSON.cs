@@ -28,11 +28,11 @@ public class MyJSON
     #region WEB
     public void FetchIDs()  // fetch child id and game id
     {
-        JSONNode n = JSON.Parse(MainController.instance.STR_IDjson);
-        MainController.instance.STR_childID = n["child_id"];
-        MainController.instance.STR_GameID = n["game_id"];
-        //    Debug.Log("CHILD ID FROM CRASH: " + MainController.instance.STR_childID);
-        //   Debug.Log("GAME ID FROM CRASH: " + MainController.instance.STR_GameID);
+        JSONNode n = JSON.Parse(DLearners.TarunTesting.Instance.STR_IDjson);
+        DLearners.TarunTesting.Instance.STR_childID = n["child_id"];
+        DLearners.TarunTesting.Instance.STR_GameID = n["game_id"];
+        //    Debug.Log("CHILD ID FROM CRASH: " + DLearners.TarunTesting.Instance.STR_childID);
+        //   Debug.Log("GAME ID FROM CRASH: " + DLearners.TarunTesting.Instance.STR_GameID);
     }
 
     public void THI_onGameComplete(string json)
@@ -41,7 +41,7 @@ public class MyJSON
 
         JSONNode n = JSON.Parse(json);
 
-        MainController.instance.STR_responseSerial = n["si_no"];
+        DLearners.TarunTesting.Instance.STR_responseSerial = n["si_no"];
 
     }
     public void PassageClickTemp(string json)

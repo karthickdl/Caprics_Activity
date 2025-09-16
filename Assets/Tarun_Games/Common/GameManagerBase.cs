@@ -16,12 +16,13 @@ namespace DLearners
 
 
         protected string STR_currentQuestionAnswer;
+        protected string STR_currentSelectedAnswer;
 
         protected int currentWrongAnsCount;
         protected int[] wrongAnsLifeCounts = { 3, 2 };
 
-
-        
+        protected int I_currentQuestionCount;
+        protected int I_Collect_count;
         protected override void Awake()
         {
             base.Awake();            
@@ -53,6 +54,12 @@ namespace DLearners
         public virtual void OnPlayAgainButton()
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+
+        public virtual void OnLevelCompleted()
+        {
+            DLearners.TarunTesting.Instance.I_TotalPoints = TarunTesting.Instance.dataSO.GetCorrectAnswerPoint();
+            VaultPopUpsManager.Instance.ShowPopup(NormalPopUpTypes.LevelCompletePOPUP,null);
         }
     }
 }

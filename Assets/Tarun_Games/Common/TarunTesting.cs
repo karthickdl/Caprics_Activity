@@ -5,6 +5,7 @@ namespace DLearners
 {
     public class TarunTesting : Singleton<TarunTesting>
     {
+        public PlatformType platformType;
         [Header ("Sound SO")]
         public GameAudioDataSO gameAudioDataSO;
 
@@ -24,6 +25,7 @@ namespace DLearners
         [SerializeField] private Transform canv;
         private void Start()
         {
+            Init();
             StartCoroutine(Test());
         }
         private IEnumerator Test()
@@ -65,5 +67,64 @@ namespace DLearners
             cashDemoController.InitDemoController(_demoControllerDataSO);
         }
 
+
+        
+
+
+        private void Init()
+        {
+            Application.ExternalEval("OnAppReady()");
+#if UNITY_ANDROID || UNITY_IOS
+            platformType = PlatformType.MOBILE;
+#elif UNITY_WEBGL
+             platformType = PlatformType.WEB;
+#endif
+
+
+            switch (platformType)
+            {
+                case PlatformType.WEB:
+                    break;
+                case PlatformType.MOBILE:
+                    break;
+                default:
+                    break;
+            }
+        }
+        [Header("ID")]
+        public string STR_IDjson;//
+        public string STR_childID;
+        public string STR_GameID;
+        public string STR_responseSerial;//
+
+        [Header("SCORE")]
+        public int I_TotalPoints;
+        public int I_TotalQuestions;
+        public int I_correctPoints => dataSO.GetCorrectAnswerPoint();
+
+       [Header("MODE")]
+        public string mode;
+        [Header("PREVIEW MODE")]
+        public string STR_previewJsonAPI;
+        public void JS_getID(string val)
+        {
+            STR_IDjson = val;
+            Debug.Log("json string from javascript : " + val);
+            MyJSON myjson = new MyJSON();
+            myjson.FetchIDs();
+            DLearners.TarunTesting.Instance.mode = "live";
+        }
+
+        public void JS_getMode(string val)
+        {
+            DLearners.TarunTesting.Instance.mode = "preview";
+            STR_previewJsonAPI = val;
+        }
+    }
+    public enum PlatformType
+    {
+        WEB,
+        MOBILE
     }
 }
+

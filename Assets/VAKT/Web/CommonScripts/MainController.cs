@@ -6,139 +6,127 @@ using UnityEngine.UI;
 public class MainController : MonoBehaviour
 {
     public static MainController instance;
-    public GameObject G_GameID;
-
-    [Header("PLATFORM")]
-    public bool WEB;
-    public bool MOBILE;
+   // public GameObject G_GameID;
 
 
-    [Header("ID")]
-    public string STR_IDjson;//
-    public string STR_childID;
-    public string STR_GameID;
-    public string STR_responseSerial;//
 
-    [Header("SCORE")]
-    public int I_TotalPoints;
-    public int I_TotalQuestions;
-    public int I_correctPoints => TarunTesting.Instance.dataSO.GetCorrectAnswerPoint();
+   
 
-    [Header("MODE")]
-    public string mode;
+    
+
+    
 
 
-    [Header("PREVIEW MODE")]
-    public string STR_previewJsonAPI;
+    
 
 
-    void Awake()
-    {
-        instance = this;
+//    void Awake()
+//    {
+//        instance = this;
 
 
-#if UNITY_ANDROID || UNITY_IOS
-        MOBILE = true;
-        WEB = false;
-     //   Debug.Log("MOBILE");
-#elif UNITY_WEBGL
-        MOBILE = false;
-        WEB = true;
-        //  Debug.Log("WEB");
-#endif
+//#if UNITY_ANDROID || UNITY_IOS
+//        MOBILE = true;
+//        WEB = false;
+//     //   Debug.Log("MOBILE");
+//#elif UNITY_WEBGL
+//        MOBILE = false;
+//        WEB = true;
+//        //  Debug.Log("WEB");
+//#endif
 
-        MOBILE = false;
-        WEB = true;
+//        MOBILE = false;
+//        WEB = true;
 
-        //if (MOBILE)
-        //{
-        //    STR_GameID = GameManager.instance.STR_selectedGameID;
-        //    G_GameManager.SetActive(false);
-        //    G_GameID.SetActive(false);
-        //}
-        if (WEB)
-        {
-          //  G_GameManager.SetActive(false);
-            G_GameID.SetActive(true);
-
-
-            // testing
-          //   STR_childID = "336";
-           //  mode = "live";
-            mode = "preview";
-
-            // Live ID's
-           //  STR_GameID = "1079"; //snail word game
-            // STR_GameID = "1155"; //snail word game
-            // STR_GameID = "1151"; //caterpillar sorting
-            // STR_GameID = "915"; //product sorting
-            // STR_GameID = "1155"; //snail word game
-            // STR_GameID = "1161"; //caterpillar sorting
-            // STR_GameID = "915"; //product sorting
-            // STR_GameID = "1155"; //snail word game
-            // STR_GameID = "1161"; //caterpillar sorting
-            // STR_GameID = "537"; //train sorting
-            //  STR_GameID = "619"; //fish sorting
-            //  STR_GameID = "404"; //fruit ninja
-            //  STR_GameID = "322"; //Domino arrange
-            //   STR_GameID = "378"; //robot runner
-            //  STR_GameID = "539"; //fish nemo
-            //  STR_GameID = "364"; //Cake Baking ,robot runner
-            //  STR_GameID = "332"; //Farm harvest ,desert car racing
-            //  STR_GameID = "387"; //sling shot
-            //  STR_GameID = "378"; //robot runner
-            //  STR_GameID = "548"; // Misfit
-            //  STR_GameID = "523"; // Santa
-            //  STR_GameID = "415"; // Hill climb
-            //  STR_GameID = "468"; // River rafting
-            //  STR_GameID = "435"; // HangMan
-            //  STR_GameID = "430"; // Snake
-            //  STR_GameID = "540"; // direction
-            //  STR_GameID = "401"; // boardgame
-            //  STR_GameID = "426"; // ending blends
-            //  STR_GameID = "445"; // wordsearch
-            //  STR_GameID = "474"; // Cat Runner
-            //  STR_GameID = "529"; // football
-            //  STR_GameID = "416"; // 4 opt cake
-            //  STR_GameID = "366"; // 3 opt bird
-            //  STR_GameID = "430"; // 2 opt snake
-            //  STR_GameID = "378"; //  Sorting
-            //  STR_GameID = "391";  // Image sorting
-            //  STR_GameID = "615";  // Explorer
-            //  STR_GameID = "714";  // Quiz
-            //  STR_GameID = "700";  // Reading comp
-            //  STR_GameID = "720";  // Product sorting
-            //  STR_GameID = "721";  // Bike Racing
+//        //if (MOBILE)
+//        //{
+//        //    STR_GameID = GameManager.instance.STR_selectedGameID;
+//        //    G_GameManager.SetActive(false);
+//        //    G_GameID.SetActive(false);
+//        //}
+//        if (WEB)
+//        {
+//          //  G_GameManager.SetActive(false);
+//            G_GameID.SetActive(true);
 
 
-            //Live ID's
+//            // testing
+//          //   STR_childID = "336";
+//           //  mode = "live";
+//            mode = "preview";
 
-            // STR_GameID = "133"; //  camel game
-            // STR_GameID = "106"; // caterpillar game, stack game
-            // STR_GameID = "2";   // crate game,bird game
-            // STR_GameID = "10";  // helicopter game
-            // STR_GameID = "13";  // squirrel game,fireman game
-            // STR_GameID = "69";  // white dummy game 1 (img ques / img ans)  santa game
-            // STR_GameID = "70";  // white dummy game 2 (img ques / text ans)   cake baking , robot runner , river rafting , explorer
-            // STR_GameID = "147"; // sorting game
-            // STR_GameID = "191"; // hangman
-            // STR_GameID = "192"; // Audio click
-            // STR_GameID = "175"; // worksheet image drag and drop
+//            // Live ID's
+//           //  STR_GameID = "1079"; //snail word game
+//            // STR_GameID = "1155"; //snail word game
+//            // STR_GameID = "1151"; //caterpillar sorting
+//            // STR_GameID = "915"; //product sorting
+//            // STR_GameID = "1155"; //snail word game
+//            // STR_GameID = "1161"; //caterpillar sorting
+//            // STR_GameID = "915"; //product sorting
+//            // STR_GameID = "1155"; //snail word game
+//            // STR_GameID = "1161"; //caterpillar sorting
+//            // STR_GameID = "537"; //train sorting
+//            //  STR_GameID = "619"; //fish sorting
+//            //  STR_GameID = "404"; //fruit ninja
+//            //  STR_GameID = "322"; //Domino arrange
+//            //   STR_GameID = "378"; //robot runner
+//            //  STR_GameID = "539"; //fish nemo
+//            //  STR_GameID = "364"; //Cake Baking ,robot runner
+//            //  STR_GameID = "332"; //Farm harvest ,desert car racing
+//            //  STR_GameID = "387"; //sling shot
+//            //  STR_GameID = "378"; //robot runner
+//            //  STR_GameID = "548"; // Misfit
+//            //  STR_GameID = "523"; // Santa
+//            //  STR_GameID = "415"; // Hill climb
+//            //  STR_GameID = "468"; // River rafting
+//            //  STR_GameID = "435"; // HangMan
+//            //  STR_GameID = "430"; // Snake
+//            //  STR_GameID = "540"; // direction
+//            //  STR_GameID = "401"; // boardgame
+//            //  STR_GameID = "426"; // ending blends
+//            //  STR_GameID = "445"; // wordsearch
+//            //  STR_GameID = "474"; // Cat Runner
+//            //  STR_GameID = "529"; // football
+//            //  STR_GameID = "416"; // 4 opt cake
+//            //  STR_GameID = "366"; // 3 opt bird
+//            //  STR_GameID = "430"; // 2 opt snake
+//            //  STR_GameID = "378"; //  Sorting
+//            //  STR_GameID = "391";  // Image sorting
+//            //  STR_GameID = "615";  // Explorer
+//            //  STR_GameID = "714";  // Quiz
+//            //  STR_GameID = "700";  // Reading comp
+//            //  STR_GameID = "720";  // Product sorting
+//            //  STR_GameID = "721";  // Bike Racing
 
-            // STR_GameID = "193";  // direction game
-            // STR_GameID = "195";  // farm harvesting , desert car racing
-            // STR_GameID = "204";  // Audio Question text option sorting
 
-            //  STR_GameID = "143";   // text text hillclimbracing, football // bike racing     snake
+//            //Live ID's
 
-            //  STR_GameID = "203";  // Word Search
-            //  STR_GameID = "205";   // true or false
-            //  STR_GameID = "206";   // find the water --> text text 4 options
-            //  STR_GameID = "207";   // popcorn
-            //    STR_GameID = "350";   // Board game
-            //    STR_GameID = "354";   // bridge crossing
-            //    STR_GameID = "303";   // Readcomp
-            //    STR_GameID = "1"; //
-        }
-    }
+//            // STR_GameID = "133"; //  camel game
+//            // STR_GameID = "106"; // caterpillar game, stack game
+//            // STR_GameID = "2";   // crate game,bird game
+//            // STR_GameID = "10";  // helicopter game
+//            // STR_GameID = "13";  // squirrel game,fireman game
+//            // STR_GameID = "69";  // white dummy game 1 (img ques / img ans)  santa game
+//            // STR_GameID = "70";  // white dummy game 2 (img ques / text ans)   cake baking , robot runner , river rafting , explorer
+//            // STR_GameID = "147"; // sorting game
+//            // STR_GameID = "191"; // hangman
+//            // STR_GameID = "192"; // Audio click
+//            // STR_GameID = "175"; // worksheet image drag and drop
+
+//            // STR_GameID = "193";  // direction game
+//            // STR_GameID = "195";  // farm harvesting , desert car racing
+//            // STR_GameID = "204";  // Audio Question text option sorting
+
+//            //  STR_GameID = "143";   // text text hillclimbracing, football // bike racing     snake
+
+//            //  STR_GameID = "203";  // Word Search
+//            //  STR_GameID = "205";   // true or false
+//            //  STR_GameID = "206";   // find the water --> text text 4 options
+//            //  STR_GameID = "207";   // popcorn
+//            //    STR_GameID = "350";   // Board game
+//            //    STR_GameID = "354";   // bridge crossing
+//            //    STR_GameID = "303";   // Readcomp
+//            //    STR_GameID = "1"; //
+//        }
+//    }
 }

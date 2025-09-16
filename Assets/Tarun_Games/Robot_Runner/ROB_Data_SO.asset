@@ -20,7 +20,7 @@ MonoBehaviour:
   uRLData:
     getValueURL: 
     sendValueURL: 
-  difficultyLevelType: 2
+  difficultyLevelType: 0
   correctAnswerPoint: 5
   wrongAnswerPoint: 2
   coverPageSprit: {fileID: 21300000, guid: 6c5ca2836b1c99545b71e9a7d8eb9675, type: 3}

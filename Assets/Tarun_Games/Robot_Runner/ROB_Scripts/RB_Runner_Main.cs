@@ -10,8 +10,6 @@ using UnityEngine.UI;
 
 public class RB_Runner_Main : GameManagerBase
 {
-    
-
     [Header("Screens and UI elements")]
 
     
@@ -31,12 +29,9 @@ public class RB_Runner_Main : GameManagerBase
 
 
     [Header("Values")]
-    public string STR_currentSelectedAnswer;
-    public int I_currentQuestionCount; // question number current
-    public string STR_currentQuestionID;
-    public int I_wrongAnsCount;
+     // question number current
     //public string[] STRA_AnsList;
-    public int I_Collect_count;
+    
 
 
    
@@ -69,14 +64,14 @@ public class RB_Runner_Main : GameManagerBase
     public override void InitGame()
     {
         base.InitGame();
-        Tarun();
+        
 
+        I_currentQuestionCount =0;
         G_Transition.SetActive(false);
         G_levelComplete.SetActive(false);
 
-        ff();
         THI_Transition();
-        I_currentQuestionCount = -1;
+        
 
 
         #region----------Platform Checking to set sprites for controls in Demo
@@ -111,12 +106,12 @@ public class RB_Runner_Main : GameManagerBase
         currentDifficultyLevelType = TarunTesting.Instance.dataSO.difficultyLevelType;
         DataSO cashDataSO = TarunTesting.Instance.dataSO;
 
-        currentData = cashDataSO.GetData(2);//ID HardCode
+        currentData = cashDataSO.GetData(I_currentQuestionCount);//ID HardCode
         currentOptionCount = currentData.options.Count;
         currentInstructionData = cashDataSO.instructionData;
 
         STR_currentQuestionAnswer = currentData.correctOptions;
-
+        ff();
         // questionIMG.sprite = TarunTesting.Instance.dataSO.GetQuestionSprit(0);
     }
 
@@ -128,32 +123,34 @@ public class RB_Runner_Main : GameManagerBase
             GameObject G_Selected = EventSystem.current.currentSelectedGameObject;
             STR_currentSelectedAnswer = EventSystem.current.currentSelectedGameObject.GetComponent<TextMeshProUGUI>().text;
 
-
             if (STR_currentSelectedAnswer == STR_currentQuestionAnswer)
             {
                 G_Selected.GetComponent<AudioSource>().Play();
-                isInputUnLocked = false;
                 THI_Correct();
                 //I_Collect_count++;
             }
-            else { THI_Wrong(); }
+            else { THI_WrongEffect(); }
         }
 
     }
-
-    public void CheckForAnswer()//Tarun
-    {
-        
-    }
     void THI_Transition()
     {
-        G_Question.SetActive(false);
-        G_Transition.SetActive(true);
-        THI_NewQuestion();
+        if (I_currentQuestionCount < TarunTesting.Instance.dataSO.datas.Count)
+        {
+            Tarun();
+            G_Question.SetActive(false);
+            G_Transition.SetActive(true);
+            THI_NewQuestion();
+        }
+        else
+        {
+            OnLevelCompleted();
+        }
     }
 
     public override void UpdateQuestion()
     {
+        I_currentQuestionCount++;
         isInputUnLocked = true;
         G_Question.SetActive(true);//
 
@@ -165,10 +162,6 @@ public class RB_Runner_Main : GameManagerBase
         DLearners.DLearnersAudioManager.Instance.PlaySound3(currentData.questionData.questionAudioClip, ggd.length);
     }
 
-    void PlayQuestionAudio()
-    {
-        G_Question.transform.GetChild(0).transform.GetChild(0).GetComponent<AudioSource>().Play();
-    }
     public void THI_NewQuestion()
     {
         G_Robot.SetActive(true);
@@ -177,66 +170,46 @@ public class RB_Runner_Main : GameManagerBase
         {
             Destroy(G_currentquestion);
         }
-        THI_NextQuestion();
-    }
-    
-    public void THI_NextQuestion()
-    {
-
         G_Transition.SetActive(false);
-        if (I_currentQuestionCount <  TarunTesting.Instance.dataSO.datas.Count-1)
+        int Index = Random.Range(0, GA_Question.Length);
+        G_currentquestion = Instantiate(GA_Question[Index]);
+        G_currentquestion.transform.SetParent(G_QuestionSpawn.transform, false);
+
+
+
+        //STRA_AnsList = null;
+        //STR_currentQuestionID = STRL_questionID[I_currentQuestionCount];
+        //int currentquesCount = I_currentQuestionCount + 1;
+
+
+        HUDManager.Instance.UpdateQuestionCountText(I_currentQuestionCount);//Tarun
+
+        G_Question.transform.GetChild(0).transform.GetChild(0).GetComponent<Image>().sprite = currentData.questionData.questionSprit;
+        G_Question.transform.GetChild(0).transform.GetChild(0).GetComponent<Image>().preserveAspect = true;
+        G_Question.transform.GetChild(0).transform.GetChild(0).GetComponent<AudioSource>().clip = currentData.questionData.questionAudioClip;
+
+
+        for (int i = 0; i < G_Options.transform.childCount; i++)
         {
-            int Index = Random.Range(0, GA_Question.Length);
-            G_currentquestion = Instantiate(GA_Question[Index]);
-            G_currentquestion.transform.SetParent(G_QuestionSpawn.transform, false);
-
-            I_currentQuestionCount++;
-
-
-            //STRA_AnsList = null;
-            //STR_currentQuestionID = STRL_questionID[I_currentQuestionCount];
-            int currentquesCount = I_currentQuestionCount + 1;
-
-
-            HUDManager.Instance.UpdateQuestionCountText(I_currentQuestionCount);//Tarun
-
-            G_Question.transform.GetChild(0).transform.GetChild(0).GetComponent<Image>().sprite = currentData.questionData.questionSprit;
-            G_Question.transform.GetChild(0).transform.GetChild(0).GetComponent<Image>().preserveAspect = true;
-            G_Question.transform.GetChild(0).transform.GetChild(0).GetComponent<AudioSource>().clip = currentData.questionData.questionAudioClip;
-
-
-
-
-
-
-            for (int i = 0; i < G_Options.transform.childCount; i++)
-            {
-                G_Options.transform.GetChild(i).name = currentData.options[i].option;
-                G_Options.transform.GetChild(i).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = currentData.options[i].option;
-                G_Options.transform.GetChild(i).transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.white;
-                G_Options.transform.GetChild(i).transform.GetChild(0).GetComponent<AudioSource>().clip = currentData.options[i].optionAudioClip;
-            }
-
-            I_wrongAnsCount = 0;
+            G_Options.transform.GetChild(i).name = currentData.options[i].option;
+            G_Options.transform.GetChild(i).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = currentData.options[i].option;
+            G_Options.transform.GetChild(i).transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.white;
+            G_Options.transform.GetChild(i).transform.GetChild(0).GetComponent<AudioSource>().clip = currentData.options[i].optionAudioClip;
         }
-        else
-        {
-            THI_Levelcompleted();
-            // Invoke(nameof(THI_Levelcompleted), 3f);
-        }
+
+        currentWrongAnsCount = 0;
     }
 
-
-
-    void THI_Levelcompleted()
+    public override void OnLevelCompleted()
     {
-        MainController.instance.I_TotalPoints = TarunTesting.Instance.dataSO.GetCorrectAnswerPoint();
-        G_levelComplete.SetActive(true);
+        base.OnLevelCompleted();
         StartCoroutine(IN_sendDataToDB());
     }
 
     public void THI_Correct()
     {
+        isInputUnLocked = false;
+
         DLearnersAudioManager.Instance.PlayCommonSound("Com_Correct");
         I_Collect_count++;
         HUDManager.Instance.UpdateScoreText(true);
@@ -261,26 +234,31 @@ public class RB_Runner_Main : GameManagerBase
 
     public override void THI_WrongEffect()
     {
+        DLearnersAudioManager.Instance.PlayCommonSound("Com_Wrong");
+
+        THI_TrackGameData("0");
+        currentWrongAnsCount++;
+
         if (currentWrongAnsCount == wrongAnsLifeCounts[0])//3
         {
             if (currentDifficultyLevelType == DifficultyLevelType.Easy)
             {
                 isInputUnLocked = false;
-                for (int i = 0; i < G_Options.transform.childCount; i++)
+                int cashLoop = G_Options.transform.childCount;
+                for (int i = 0; i < cashLoop; i++)
                 {
                     if (G_Options.transform.GetChild(i).name == STR_currentQuestionAnswer)
                     {
                         G_Options.transform.GetChild(i).transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.green;
                     }
                 }
-
-
                 Invoke(nameof(THI_Transition), 5f);
             }
             else if (currentDifficultyLevelType == DifficultyLevelType.Medium)
             {
                 isInputUnLocked = true;
-                for (int i = 0; i < G_Options.transform.childCount; i++)
+                int cashLoop = G_Options.transform.childCount;
+                for (int i = 0; i < cashLoop; i++)
                 {
                     if (G_Options.transform.GetChild(i).name == STR_currentQuestionAnswer)
                     {
@@ -298,26 +276,13 @@ public class RB_Runner_Main : GameManagerBase
                 Invoke(nameof(THI_Transition), 2f);
             }
         }
-    }
 
-    public void THI_Wrong()
-    {
-        DLearnersAudioManager.Instance.PlayCommonSound("Com_Wrong");
-
-        THI_TrackGameData("0");
-        I_wrongAnsCount++;
-        THI_WrongEffect();
         HUDManager.Instance.UpdateScoreText(false);
     }
 
-    void THI_playAudio()
-    {
-        EventSystem.current.currentSelectedGameObject.GetComponent<AudioSource>().Play();
-        Debug.Log("player clicked. so playing audio");
-    }
     private void ff()
     {
-        MainController.instance.I_TotalQuestions = TarunTesting.Instance.dataSO.datas.Count;
+        DLearners.TarunTesting.Instance.I_TotalQuestions = TarunTesting.Instance.dataSO.datas.Count;
         for (int i = 0; i < GA_Options.Length; i++)
         {
             GA_Options[i].SetActive(false);
@@ -345,7 +310,7 @@ public class RB_Runner_Main : GameManagerBase
     public void THI_TrackGameData(string analysis)
     {
         DBmanager TrainSortingDB = new DBmanager();
-        TrainSortingDB.question_id = STR_currentQuestionID;
+        TrainSortingDB.question_id = currentData.questionData.questionID;
         TrainSortingDB.answer = STR_currentSelectedAnswer;
         TrainSortingDB.analysis = analysis;
         string toJson = JsonUtility.ToJson(TrainSortingDB);
@@ -355,13 +320,13 @@ public class RB_Runner_Main : GameManagerBase
     public IEnumerator IN_sendDataToDB()
     {
         WWWForm form = new WWWForm();
-        form.AddField("child_id", MainController.instance.STR_childID);
-        form.AddField("game_id", MainController.instance.STR_GameID);
+        form.AddField("child_id", DLearners.TarunTesting.Instance.STR_childID);
+        form.AddField("game_id", DLearners.TarunTesting.Instance.STR_GameID);
         form.AddField("game_details", "[" + STR_Data + "]");
 
 
-        Debug.Log("child id : " + MainController.instance.STR_childID);
-        Debug.Log("game_id  : " + MainController.instance.STR_GameID);
+        Debug.Log("child id : " + DLearners.TarunTesting.Instance.STR_childID);
+        Debug.Log("game_id  : " + DLearners.TarunTesting.Instance.STR_GameID);
         Debug.Log("game_details: " + "[" + STR_Data + "]");
 
         UnityWebRequest www = UnityWebRequest.Post(DownloadManager.Instance.sendValueURL, form);

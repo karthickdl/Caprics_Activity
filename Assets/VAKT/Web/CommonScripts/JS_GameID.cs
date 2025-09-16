@@ -4,14 +4,7 @@ using UnityEngine;
 
 public class JS_GameID : MonoBehaviour
 {
-    public static JS_GameID instance;
-    public GameObject G_gameManager;
-
-
-    public void Awake()
-    {
-        instance = this;
-    }
+  /*  public GameObject G_gameManager;
     private void Start()
     {
         Application.ExternalEval("OnAppReady()");
@@ -19,18 +12,18 @@ public class JS_GameID : MonoBehaviour
 
     public void JS_getID(string val)
     {
-        MainController.instance.STR_IDjson = val;
+        DLearners.TarunTesting.Instance.STR_IDjson = val;
         Debug.Log("json string from javascript : " + val);
         MyJSON myjson = new MyJSON();
         myjson.FetchIDs();
-        MainController.instance.mode = "live";
+        DLearners.TarunTesting.Instance.mode = "live";
     }
 
     public void JS_getMode(string val)
     {
-        MainController.instance.mode = "preview";
-        MainController.instance.STR_previewJsonAPI = val;
-    }
+        DLearners.TarunTesting.Instance.mode = "preview";
+        DLearners.TarunTesting.Instance.STR_previewJsonAPI = val;
+    }*/
    /* function OnAppReady()
     {
 

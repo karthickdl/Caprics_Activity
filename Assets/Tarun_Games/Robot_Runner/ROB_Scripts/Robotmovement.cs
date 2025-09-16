@@ -107,7 +107,7 @@ public class Robotmovement : Singleton<Robotmovement>
             DOVirtual.DelayedCall(AC_portaldisapears.length ,() =>
             {
                 NextQuest();
-            });
+            }).SetLink(gameObject);
             //Invoke("nextquest", AC_portaldisapears.length);
             DLearnersAudioManager.Instance.PlayGameSpecificSound("AS_Portal");
         }
@@ -173,7 +173,7 @@ public class Robotmovement : Singleton<Robotmovement>
         {
             THI_Outrespawn();
             Destroy(Local_blastanim);
-        });
+        }).SetLink(gameObject);
        // Invoke("THI_Outrespawn", AC_blast.length);
     }
     private void THI_Outrespawn()

@@ -1,112 +1,93 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using DLearners;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
-
-
-
-public class LevelComplete : MonoBehaviour
+public class LevelComplete : PopUpsBase
 {
-    public GameObject G_star1;
-    public GameObject G_star2;
-    public GameObject G_star3;
     public Text TEX_finalPoints;
-    public int I_2star;
-    public int I_3star;
-    public GameObject G_replayButtonMob, G_replayButtonWeb, G_nextButtonMob, G_nextButtonWeb;
-
-
-
-    void Start()
+    public Button replayButton, nextButton;
+    public Transform[] starsOBJs;
+    
+    protected override void OnDisable()
     {
-        THI_platformChanges();
-        THI_requiredScore();
-        THI_showScore();
+        base.OnDisable();
+        replayButton.onClick.RemoveAllListeners();
+        nextButton.onClick.RemoveAllListeners();
+    }
+    public override void Show()
+    {
+        base.Show();
+        InitLevelComplet();
     }
 
-
-
-    void THI_platformChanges()
+    private void InitLevelComplet()
     {
-#if UNITY_ANDROID || UNITY_IOS
-G_replayButtonMob.SetActive(true);
-G_replayButtonWeb.SetActive(false);
-G_nextButtonMob.SetActive(true);
-G_nextButtonWeb.SetActive(false);
-
-
-
-#elif UNITY_WEBGL
-        G_replayButtonMob.SetActive(false);
-        G_replayButtonWeb.SetActive(true);
-        G_nextButtonMob.SetActive(false);
-        G_nextButtonWeb.SetActive(true);
-#endif
+        replayButton.onClick.AddListener(() =>
+        {
+            OnReplayButton();
+        });
+        nextButton.onClick.AddListener(() =>
+        {
+            OnNextButton();
+        });
+        SetStarts(false, 3);
+        SetScore();
     }
-
-
-
-    void THI_requiredScore()
+    private void SetScore()
     {
-        int totalObtainablePoints = MainController.instance.I_TotalQuestions * MainController.instance.I_correctPoints;
+        int totalObtainablePoints = TarunTesting.Instance.I_TotalQuestions * TarunTesting.Instance.I_correctPoints;
         // Debug.Log("Max points : " + totalObtainablePoints);
         // Debug.Log("Total obtainable points : " + totalObtainablePoints);
-        I_2star = totalObtainablePoints / 3;
-        I_3star = totalObtainablePoints / 2;
-    }
+        int I_2star = totalObtainablePoints / 3;//10
+        int I_3star = totalObtainablePoints / 2;//20
 
+        TEX_finalPoints.text = TarunTesting.Instance.I_TotalPoints.ToString();
+        // Debug.Log("Points got : " + DLearners.TarunTesting.Instance.I_TotalPoints);
 
-
-    void THI_showScore()
-    {
-        TEX_finalPoints.text = MainController.instance.I_TotalPoints.ToString();
-        // Debug.Log("Points got : " + MainController.instance.I_TotalPoints);
-
-
-        if (MainController.instance.I_TotalPoints > 0 && MainController.instance.I_TotalPoints < I_2star) // 1 star
+        int totalPoints = TarunTesting.Instance.I_TotalPoints;
+        int cashCount=0;
+        if (totalPoints >= 0 && I_2star > totalPoints)
         {
-            G_star1.SetActive(true);
+            cashCount = 1;
         }
-        if (MainController.instance.I_TotalPoints >= I_2star && MainController.instance.I_TotalPoints < I_3star) // 2 star
+        else if (I_3star > totalPoints && totalPoints >= I_2star)
         {
-            G_star1.SetActive(true);
-            G_star2.SetActive(true);
+            cashCount = 2;
         }
-        if (MainController.instance.I_TotalPoints >= I_3star) // 3 star
+        else if (I_3star >= totalPoints)
         {
-            G_star1.SetActive(true);
-            G_star2.SetActive(true);
-            G_star3.SetActive(true);
+            cashCount = 3;
+        }
+        SetStarts(true, cashCount);
+    }
+    private void SetStarts(bool isOn,int count)
+    {
+        int cashLoop = starsOBJs.Length;
+        for (int i = 0; i < cashLoop; i++)
+        {
+            if(count-1>= i)
+            {
+                starsOBJs[i].gameObject.SetActive(isOn);
+                Fading.OnBubleFX(starsOBJs[i].gameObject,0.25f, Vector3.zero,Vector3.one);
+            }  
         }
     }
 
-
-
-    public void BUT_replayWeb() // mobile or web gl
+    #region Buttons
+    private void OnReplayButton()
     {
-        ActivityDataManager.Instance.SaveAllActivitiesJSON();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+#if UNITY_ANDROID || UNITY_IOS
+        Debug.Log("OnReplayButton");
+#elif UNITY_WEBGL
+ Debug.Log("OnNextButton");
+#endif
     }
-    public void BUT_replayMob() // mobile or web gl
+    private void OnNextButton()
     {
-        // StartCoroutine(VAKT_controller.instance.EN_loadBundle());
+#if UNITY_ANDROID || UNITY_IOS
+        Debug.Log("OnNextButton");
+#elif UNITY_WEBGL
+Application.ExternalEval("closeApplication()");
+#endif
     }
-
-
-
-    public void BUT_nextMobile() // mobile only
-    {
-        // VAKT_controller.instance.GA_pages[5].SetActive(true);
-        Screen.orientation = ScreenOrientation.Portrait;
-        //  VAKT_controller.instance.BUT_gameLWSintroBack();
-        //  Destroy(VAKT_controller.instance.G_currentActivity);
-    }
-
-
-
-    public void BUT_nextWeb() // web only
-    {
-        Application.ExternalEval("closeApplication()");
-    }
+    #endregion
 }

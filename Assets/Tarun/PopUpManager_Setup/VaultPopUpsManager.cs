@@ -235,7 +235,7 @@ public enum NormalPopUpTypes
 {
     RateUsPOPUP,
     SettingPOPUP,
-    TermsAndConditionPOPUP,
+    LevelCompletePOPUP,
     NoInternetPOPUP,
     NoAdsPOPUP,
     DailyRewardPOPUP,

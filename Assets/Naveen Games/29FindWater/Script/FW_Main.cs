@@ -133,11 +133,11 @@ public class FW_Main : MonoBehaviour
     void THI_gameData()
     {
         //  THI_getPreviewData();
-        if (MainController.instance.mode == "live")
+        if (DLearners.TarunTesting.Instance.mode == "live")
         {
             StartCoroutine(EN_getValues()); // live game in portal
         }
-        if (MainController.instance.mode == "preview")
+        if (DLearners.TarunTesting.Instance.mode == "preview")
         {
             // preview data in html game generator
 
@@ -212,7 +212,7 @@ public class FW_Main : MonoBehaviour
 
     public void THI_Levelcompleted()
     {
-        MainController.instance.I_TotalPoints = I_Points;
+        DLearners.TarunTesting.Instance.I_TotalPoints = I_Points;
         G_levelComplete.SetActive(true);
         StartCoroutine(IN_sendDataToDB());
     }
@@ -388,8 +388,8 @@ public class FW_Main : MonoBehaviour
     public IEnumerator EN_getValues()
     {
         WWWForm form = new WWWForm();
-        form.AddField("game_id", MainController.instance.STR_GameID);
-        // Debug.Log("GAME ID : " + MainController.instance.STR_GameID);
+        form.AddField("game_id", DLearners.TarunTesting.Instance.STR_GameID);
+        // Debug.Log("GAME ID : " + DLearners.TarunTesting.Instance.STR_GameID);
         UnityWebRequest www = UnityWebRequest.Post(URL, form);
         yield return www.SendWebRequest();
         if (www.isHttpError || www.isNetworkError)
@@ -410,7 +410,7 @@ public class FW_Main : MonoBehaviour
             STR_instruction = STRL_instruction[0];
             //MainController.instance.I_correctPoints = I_correctPoints = IL_numbers[1];//Tarun
             I_wrongPoints = IL_numbers[2];
-            MainController.instance.I_TotalQuestions = STRL_questions.Count;
+            DLearners.TarunTesting.Instance.I_TotalQuestions = STRL_questions.Count;
 
             StartCoroutine(EN_getAudioClips());
             StartCoroutine(IN_CoverImage());
@@ -494,15 +494,15 @@ public class FW_Main : MonoBehaviour
     {
         MyJSON json = new MyJSON();
         List<string> STRL_Passagedetails = new List<string>();
-        //  json.Helitemp(MainController.instance.STR_previewJsonAPI);
-        json.Temp_type_2(MainController.instance.STR_previewJsonAPI, STRL_difficulty, IL_numbers, STRL_questions, STRL_answers, STRL_options, STRL_questionID, STRL_instruction, STRL_quesitonAudios, STRL_optionAudios,
+        //  json.Helitemp(DLearners.TarunTesting.Instance.STR_previewJsonAPI);
+        json.Temp_type_2(DLearners.TarunTesting.Instance.STR_previewJsonAPI, STRL_difficulty, IL_numbers, STRL_questions, STRL_answers, STRL_options, STRL_questionID, STRL_instruction, STRL_quesitonAudios, STRL_optionAudios,
             STRL_instructionAudio, STRL_cover_img_link, STRL_Passagedetails);
 
         STR_difficulty = STRL_difficulty[0];
         STR_instruction = STRL_instruction[0];
         //MainController.instance.I_correctPoints = I_correctPoints = IL_numbers[1];//Tarun
         I_wrongPoints = IL_numbers[2];
-        MainController.instance.I_TotalQuestions = STRL_questions.Count;
+        DLearners.TarunTesting.Instance.I_TotalQuestions = STRL_questions.Count;
 
         StartCoroutine(EN_getAudioClips());
         StartCoroutine(IN_CoverImage());
@@ -524,13 +524,13 @@ public class FW_Main : MonoBehaviour
     public IEnumerator IN_sendDataToDB()
     {
         WWWForm form = new WWWForm();
-        form.AddField("child_id", MainController.instance.STR_childID);
-        form.AddField("game_id", MainController.instance.STR_GameID);
+        form.AddField("child_id", DLearners.TarunTesting.Instance.STR_childID);
+        form.AddField("game_id", DLearners.TarunTesting.Instance.STR_GameID);
         form.AddField("game_details", "[" + STR_Data + "]");
 
 
-        Debug.Log("child id : " + MainController.instance.STR_childID);
-        Debug.Log("game_id  : " + MainController.instance.STR_GameID);
+        Debug.Log("child id : " + DLearners.TarunTesting.Instance.STR_childID);
+        Debug.Log("game_id  : " + DLearners.TarunTesting.Instance.STR_GameID);
         Debug.Log("game_details: " + "[" + STR_Data + "]");
 
         UnityWebRequest www = UnityWebRequest.Post(SendValueURL, form);

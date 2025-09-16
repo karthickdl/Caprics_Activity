@@ -97,7 +97,7 @@ public class PassageClickManager : MonoBehaviour
 
         WWWForm form = new WWWForm();
         form.AddField("game_id", "133");
-        // Debug.Log("GAME ID : " + MainController.instance.STR_GameID);
+        // Debug.Log("GAME ID : " + DLearners.TarunTesting.Instance.STR_GameID);
         UnityWebRequest www = UnityWebRequest.Post(URL, form);
         yield return www.SendWebRequest();
         if (www.isHttpError || www.isNetworkError)

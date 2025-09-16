@@ -148,8 +148,8 @@ RectTransform:
   m_GameObject: {fileID: 530143203725565891}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.99977136, y: 0.99977136, z: 0.99977136}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 5150107202721907377}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -288,7 +288,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 59.4
+  m_fontSize: 72
   m_fontSizeBase: 45
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -633,10 +633,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   demoAudioSource: {fileID: 7945375679413064925}
+  bg: {fileID: 3397021639256443816}
   skipButton: {fileID: 4065162713569700773}
-  skipIMG: {fileID: 4836736223246605827}
-  textPanel: {fileID: 3271604174689070533}
-  text: {fileID: 8001072903843685346}
   demoControllInfos: []
   isDone: 0
 --- !u!82 &7945375679413064925

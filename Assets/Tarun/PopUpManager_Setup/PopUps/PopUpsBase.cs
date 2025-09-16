@@ -23,7 +23,7 @@ public class PopUpsBase : MonoBehaviour
             popUpCloseButton.onClick.RemoveAllListeners();
         }
     }
-
+    
     public virtual void OnCloseButton()
     {
        // VaultAudioManager.Instance.PlaySound("Button_Click");

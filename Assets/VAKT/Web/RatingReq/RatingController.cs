@@ -72,12 +72,12 @@ URL = "http://dlearners.in/template_and_games/Game_template_api-s/update_session
     IEnumerator EN_storeDataInDB()
     {
         WWWForm form = new WWWForm();
-        form.AddField("score", MainController.instance.I_TotalPoints.ToString());
+        form.AddField("score", DLearners.TarunTesting.Instance.I_TotalPoints.ToString());
         form.AddField("rating", I_selectedStar.ToString());
         form.AddField("comments", IF_feedback.text);
-        form.AddField("Si_no", MainController.instance.STR_responseSerial);
+        form.AddField("Si_no", DLearners.TarunTesting.Instance.STR_responseSerial);
 
-        Debug.Log("Store Values =" + MainController.instance.I_TotalPoints + "  ID" + MainController.instance.STR_responseSerial);
+        Debug.Log("Store Values =" + DLearners.TarunTesting.Instance.I_TotalPoints + "  ID" + DLearners.TarunTesting.Instance.STR_responseSerial);
 
         UnityWebRequest www = UnityWebRequest.Post(URL, form);
         yield return www.SendWebRequest();

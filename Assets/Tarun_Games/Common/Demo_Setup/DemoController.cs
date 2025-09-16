@@ -7,6 +7,8 @@ namespace DLearners
     public class DemoController : MonoBehaviour
     {
         [SerializeField] private AudioSource demoAudioSource;
+        [SerializeField] private Image bg;
+
         [Header("Skip Button")]
         [SerializeField] private Button skipButton;
 
@@ -22,6 +24,7 @@ namespace DLearners
         public void InitDemoController(DemoControllerDataSO _demoControllerDataSO)
         {
             id = 0;
+            bg.sprite = _demoControllerDataSO.bgSprite;
             demoController_N = Instantiate(_demoControllerDataSO.demoController_N, this.transform);
             skipButton.onClick.AddListener(() =>
             {
