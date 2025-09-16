@@ -572,7 +572,7 @@ public class SnailGameManager : MonoBehaviour
         if (wordList.Contains(SB_WordFormed.ToString()))
         {
             //?scoring
-            OnOptionClick(activityName, _question, SB_WordFormed.ToString(), true, _attempts);
+            //OnOptionClick(activityName, _question, SB_WordFormed.ToString(), true, _attempts);
             _attempts = 1;
 
 
@@ -622,7 +622,7 @@ public class SnailGameManager : MonoBehaviour
                 // Invoke(nameof(UpdateScore), 2.5f);
 
                 //?scoring
-                OnOptionClick(activityName, _question, SB_WordFormed.ToString(), false, _attempts);
+                //OnOptionClick(activityName, _question, SB_WordFormed.ToString(), false, _attempts);
                 _attempts++;
             }
 
@@ -1229,20 +1229,5 @@ public class SnailGameManager : MonoBehaviour
 
 
     #endregion
-
-
-    public void OnOptionClick(string activityName, string questionText, string selectedOption, bool isCorrect, int attempts)
-    {
-        ActivityDataManager.Instance.RecordAnswer(activityName, questionText, selectedOption, isCorrect, attempts);
-        Debug.Log(
-            "activity name : " + activityName + "\n" +
-            "question : " + questionText + "\n" +
-            "answer : " + selectedOption + "\n" +
-            "is correct : " + isCorrect + "\n" +
-            "attempts : " + attempts
-        );
-
-        ActivityDataManager.Instance.SaveToLocalWebStorage();
-    }
 
 }
