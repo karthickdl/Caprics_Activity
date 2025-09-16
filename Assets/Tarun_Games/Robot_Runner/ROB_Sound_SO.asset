@@ -13,22 +13,6 @@ MonoBehaviour:
   m_Name: ROB_Sound_SO
   m_EditorClassIdentifier: 
   fxSounds:
-  - name: BGM
-    audioClip: {fileID: 8300000, guid: 120e70cff3293424e96d737920e01123, type: 3}
-    mixerType: 1
-    volumeLevel: 0.03
-  - name: AS_Correct
-    audioClip: {fileID: 8300000, guid: 40fd0f63d41be4c09b34e7df83e2176d, type: 3}
-    mixerType: 2
-    volumeLevel: 0.03
-  - name: AS_Wrong
-    audioClip: {fileID: 8300000, guid: 5d34ebfb67043a1438312cfe82aa831a, type: 3}
-    mixerType: 2
-    volumeLevel: 0.1
-  - name: AS_collecting
-    audioClip: {fileID: 8300000, guid: be0e0809f3a404014b59715976ba0779, type: 3}
-    mixerType: 2
-    volumeLevel: 0.07
   - name: AS_falling
     audioClip: {fileID: 8300000, guid: e19d9a46cadc49c46a2760ecd9764f51, type: 3}
     mixerType: 2
@@ -43,10 +27,6 @@ MonoBehaviour:
     volumeLevel: 0.07
   - name: AS_Portal
     audioClip: {fileID: 8300000, guid: 3a975da61f2097a43b9961ed43def0b3, type: 3}
-    mixerType: 2
-    volumeLevel: 0.07
-  - name: AS_Falling
-    audioClip: {fileID: 8300000, guid: e19d9a46cadc49c46a2760ecd9764f51, type: 3}
     mixerType: 2
     volumeLevel: 0.07
   - name: blast

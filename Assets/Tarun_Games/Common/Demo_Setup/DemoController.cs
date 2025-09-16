@@ -1,5 +1,4 @@
 using System.Collections;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,11 +9,6 @@ namespace DLearners
         [SerializeField] private AudioSource demoAudioSource;
         [Header("Skip Button")]
         [SerializeField] private Button skipButton;
-        [SerializeField] private Image skipIMG;
-
-        [Header("Text Panel")]
-        [SerializeField] private Transform textPanel;
-        [SerializeField] private TextMeshProUGUI text;
 
         [Header("Debug")]
         [SerializeField] private DemoControllInfo[] demoControllInfos;
@@ -23,15 +17,16 @@ namespace DLearners
 
         private int id;
 
+        private DemoController_N demoController_N;
 
         public void InitDemoController(DemoControllerDataSO _demoControllerDataSO)
         {
-            Instantiate(_demoControllerDataSO.demoController_N, this.transform);
+            id = 0;
+            demoController_N = Instantiate(_demoControllerDataSO.demoController_N, this.transform);
             skipButton.onClick.AddListener(() =>
             {
                 OnSkipButton();
             });
-            skipIMG.sprite = null;
             demoControllInfos = _demoControllerDataSO.demoControllInfos;
             PlaySequence(demoControllInfos[id]);
         }
@@ -56,7 +51,7 @@ namespace DLearners
 
         private void PlaySequence(DemoControllInfo demoControllInfo)
         {
-            text.text = demoControllInfo.text;
+            demoController_N.text.text = demoControllInfo.text;
             demoAudioSource.clip = demoControllInfo.clip;
             cashWaitTime = demoControllInfo.clip.length;
             demoAudioSource.Play();

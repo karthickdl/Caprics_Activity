@@ -6,6 +6,7 @@ namespace DLearners
 {
     public class DLearnersAudioManager : Singleton<DLearnersAudioManager>
     {
+        public GameAudioDataSO commonSoundSO;
         public AudioMixer inGameMixer;
         public AudioMixer bgMixer;
 
@@ -40,6 +41,7 @@ namespace DLearners
         public Sound[] fxSounds;
 
         private SoundDataStruct[] fxSounds2 => TarunTesting.Instance.gameAudioDataSO.fxSounds;
+        private SoundDataStruct[] fxSoundsCommon => commonSoundSO.fxSounds;
 
         #region Unity Calls
         public void Initialize()
@@ -79,7 +81,7 @@ namespace DLearners
             }
         }
 
-        public void PlaySound2(string name, float delay = 0)
+        public void PlayGameSpecificSound(string name, float delay = 0)
         {
             GameObject audioPlayer = new GameObject("AP");
             SoundDataStruct soundDataStruct = Array.Find(fxSounds2, s => s.name == name);
@@ -102,6 +104,31 @@ namespace DLearners
             audioSource.volume = soundDataStruct.volumeLevel;
             audioSource.clip = soundDataStruct.audioClip;
             audioSource.PlayDelayed(delay);            
+            Destroy(audioPlayer, audioSource.clip.length);
+        }
+        public void PlayCommonSound(string name, float delay = 0)
+        {
+            GameObject audioPlayer = new GameObject("AP");
+            SoundDataStruct soundDataStruct = Array.Find(fxSoundsCommon, s => s.name == name);
+            AudioSource audioSource = audioPlayer.AddComponent<AudioSource>();
+
+            AudioMixerGroup[] group;
+            switch (soundDataStruct.mixerType)
+            {
+                case AudioMixerType.None:
+                    break;
+                case AudioMixerType.BG:
+                    group = bgMixer.FindMatchingGroups("Master");
+                    audioSource.outputAudioMixerGroup = group[0];
+                    break;
+                case AudioMixerType.InGame:
+                    group = inGameMixer.FindMatchingGroups("Master");
+                    audioSource.outputAudioMixerGroup = group[0];
+                    break;
+            }
+            audioSource.volume = soundDataStruct.volumeLevel;
+            audioSource.clip = soundDataStruct.audioClip;
+            audioSource.PlayDelayed(delay);
             Destroy(audioPlayer, audioSource.clip.length);
         }
 

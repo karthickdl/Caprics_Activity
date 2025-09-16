@@ -66,7 +66,7 @@ public class Robotmovement : Singleton<Robotmovement>
         RB2D_robot.gravityScale = 1.5f;
         FollowingCamera.Instance.Init(this.transform);
         FollowingCamera.Instance.canfollow = true;
-        DLearnersAudioManager.Instance.PlaySound2("AS_falling");
+        DLearnersAudioManager.Instance.PlayGameSpecificSound("AS_falling");
     }
 
     public void Jump()
@@ -75,7 +75,7 @@ public class Robotmovement : Singleton<Robotmovement>
         {
             animator.Play("jump");
             DLearnersAudioManager.Instance.StopSound2("AS_Walking");
-            DLearnersAudioManager.Instance.PlaySound2("AS_Jumping");
+            DLearnersAudioManager.Instance.PlayGameSpecificSound("AS_Jumping");
             RB2D_robot.velocity = Vector2.up * jumpspeed;
         }
     }
@@ -94,6 +94,7 @@ public class Robotmovement : Singleton<Robotmovement>
         if (collision.gameObject.name == "star")
         {
             StarPlayParticle();
+            DLearnersAudioManager.Instance.PlayCommonSound("Com_Collect");
             Destroy(collision.gameObject);
             HUDManager.Instance.UpdateScoreText(true,2);
         }
@@ -108,7 +109,7 @@ public class Robotmovement : Singleton<Robotmovement>
                 NextQuest();
             });
             //Invoke("nextquest", AC_portaldisapears.length);
-            DLearnersAudioManager.Instance.PlaySound2("AS_Portal");
+            DLearnersAudioManager.Instance.PlayGameSpecificSound("AS_Portal");
         }
     }
     

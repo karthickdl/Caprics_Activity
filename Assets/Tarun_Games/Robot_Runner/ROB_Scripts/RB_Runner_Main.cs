@@ -237,7 +237,7 @@ public class RB_Runner_Main : GameManagerBase
 
     public void THI_Correct()
     {
-        DLearnersAudioManager.Instance.PlaySound2("AS_Correct");
+        DLearnersAudioManager.Instance.PlayCommonSound("Com_Correct");
         I_Collect_count++;
         HUDManager.Instance.UpdateScoreText(true);
 
@@ -302,7 +302,7 @@ public class RB_Runner_Main : GameManagerBase
 
     public void THI_Wrong()
     {
-        DLearnersAudioManager.Instance.PlaySound2("AS_Wrong");
+        DLearnersAudioManager.Instance.PlayCommonSound("Com_Wrong");
 
         THI_TrackGameData("0");
         I_wrongAnsCount++;
