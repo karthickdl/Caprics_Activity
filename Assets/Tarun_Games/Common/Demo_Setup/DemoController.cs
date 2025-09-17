@@ -20,7 +20,8 @@ namespace DLearners
         private int id;
 
         private DemoController_N demoController_N;
-
+        private bool isAnimationClipTime;
+        private float animationClipTime;
         public void InitDemoController(DemoControllerDataSO _demoControllerDataSO)
         {
             id = 0;
@@ -31,6 +32,13 @@ namespace DLearners
                 OnSkipButton();
             });
             demoControllInfos = _demoControllerDataSO.demoControllInfos;
+
+            isAnimationClipTime = _demoControllerDataSO.clip;
+            if(isAnimationClipTime)
+            {
+                animationClipTime = _demoControllerDataSO.clip.length;
+            }
+
             PlaySequence(demoControllInfos[id]);
         }
 
@@ -56,7 +64,16 @@ namespace DLearners
         {
             demoController_N.text.text = demoControllInfo.text;
             demoAudioSource.clip = demoControllInfo.clip;
-            cashWaitTime = demoControllInfo.clip.length;
+
+            if(isAnimationClipTime)
+            {
+                cashWaitTime = animationClipTime;
+            }
+            else
+            {
+                cashWaitTime = demoControllInfo.clip.length;
+            }
+            
             demoAudioSource.Play();
             StartCoroutine(Test());
         }

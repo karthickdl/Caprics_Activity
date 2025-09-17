@@ -389,6 +389,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Robot_Runner
       objectReference: {fileID: 0}
+    - target: {fileID: 5442496690073624873, guid: 0f842811889d3984284ddf6ea5cae676, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5442496690073624874, guid: 0f842811889d3984284ddf6ea5cae676, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -543,10 +547,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sling_Shot_IT
       objectReference: {fileID: 0}
-    - target: {fileID: 2293976914613310200, guid: a2219ee46a8affd4897c702ce35c581e, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2293976914613310201, guid: a2219ee46a8affd4897c702ce35c581e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1280
@@ -588,8 +588,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 2293976914754301106, guid: a2219ee46a8affd4897c702ce35c581e, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a2219ee46a8affd4897c702ce35c581e, type: 3}

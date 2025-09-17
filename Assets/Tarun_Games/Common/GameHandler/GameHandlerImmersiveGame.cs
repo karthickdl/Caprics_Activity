@@ -38,9 +38,6 @@ namespace DLearners
             CoverPage cashCoverPage = Instantiate(coverPagePF, canv);
             cashCoverPage.InitCoverPage(dataSO.GetCoverPageSprit());
 
-            // RB_Runner_Main rB_Runner_Main = (RB_Runner_Main)RB_Runner_Main.Instance;
-            // StartCoroutine(rB_Runner_Main.IN_CoverImage());
-
             yield return new WaitUntil(() => cashCoverPage.isDone);
 
             DemoController cashDemoController = Instantiate(demoControllerPF, canv);

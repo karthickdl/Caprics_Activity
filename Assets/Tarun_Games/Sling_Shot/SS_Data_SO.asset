@@ -1,0 +1,218 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a417730ee59af444486bbdfa1e4b115f, type: 3}
+  m_Name: SS_Data_SO
+  m_EditorClassIdentifier: 
+  isProduction: 1
+  getValueURLPRO: 1
+  sndValueURLPRO: 1
+  getValueURLTesting: 2
+  sndValueURLTesting: 2
+  uRLData:
+    getValueURL: 
+    sendValueURL: 
+  difficultyLevelType: 0
+  correctAnswerPoint: 5
+  wrongAnswerPoint: 2
+  coverPageSprit: {fileID: 21300000, guid: 01fafbdf911fc04429441a473375f04d, type: 3}
+  instructionData:
+    instruction:
+    - Aim at the Beginning Sound
+    instructionAudioURL:
+    - 
+    instructionAudioClip:
+    - {fileID: 8300000, guid: 27ca39a7f05d0ee40ab92dfeb74ff485, type: 3}
+  datas:
+  - answerType: 0
+    questionType: 1
+    questionData:
+      questionID: 
+      question: _at
+      questionAudioURL: 
+      questionAudioClip: {fileID: 8300000, guid: fc1b41b5e39aa2446aecfd934cb186d6, type: 3}
+      questionSprit: {fileID: 21300000, guid: cd824c9829889b14f9c3a1b8253a52e2, type: 3}
+    options:
+    - optionID: 
+      option: b
+      optionAudioURL: 
+      optionAudioClip: {fileID: 8300000, guid: 093481bad73e31b4782146e9cb74e298, type: 3}
+      optionSprit: {fileID: 0}
+    - optionID: 
+      option: k
+      optionAudioURL: 
+      optionAudioClip: {fileID: 8300000, guid: 4f893aaaf485c1d43839f57f5f479e89, type: 3}
+      optionSprit: {fileID: 0}
+    correctOptions: b
+  - answerType: 0
+    questionType: 1
+    questionData:
+      questionID: 
+      question: 
+      questionAudioURL: 
+      questionAudioClip: {fileID: 8300000, guid: bfe31c588db8b9d4db981966cfb33d84, type: 3}
+      questionSprit: {fileID: 21300000, guid: 83156e0ba1633ac4880ab038294a5b21, type: 3}
+    options:
+    - optionID: 
+      option: b
+      optionAudioURL: 
+      optionAudioClip: {fileID: 8300000, guid: 093481bad73e31b4782146e9cb74e298, type: 3}
+      optionSprit: {fileID: 0}
+    - optionID: 
+      option: k
+      optionAudioURL: 
+      optionAudioClip: {fileID: 8300000, guid: 4f893aaaf485c1d43839f57f5f479e89, type: 3}
+      optionSprit: {fileID: 0}
+    correctOptions: k
+  - answerType: 0
+    questionType: 1
+    questionData:
+      questionID: 
+      question: 
+      questionAudioURL: 
+      questionAudioClip: {fileID: 8300000, guid: 19de5514890a80343a9ea003c5319bfb, type: 3}
+      questionSprit: {fileID: 21300000, guid: 310b470a784c8f44a8e4bd61495fd205, type: 3}
+    options:
+    - optionID: 
+      option: b
+      optionAudioURL: 
+      optionAudioClip: {fileID: 8300000, guid: 093481bad73e31b4782146e9cb74e298, type: 3}
+      optionSprit: {fileID: 0}
+    - optionID: 
+      option: k
+      optionAudioURL: 
+      optionAudioClip: {fileID: 8300000, guid: 4f893aaaf485c1d43839f57f5f479e89, type: 3}
+      optionSprit: {fileID: 0}
+    correctOptions: b
+  - answerType: 0
+    questionType: 1
+    questionData:
+      questionID: 
+      question: 
+      questionAudioURL: 
+      questionAudioClip: {fileID: 8300000, guid: 6667feee0f694734aa9ac1b845438f1c, type: 3}
+      questionSprit: {fileID: 21300000, guid: 25d4814d299389a46a230e650434c0c7, type: 3}
+    options:
+    - optionID: 
+      option: b
+      optionAudioURL: 
+      optionAudioClip: {fileID: 8300000, guid: 093481bad73e31b4782146e9cb74e298, type: 3}
+      optionSprit: {fileID: 0}
+    - optionID: 
+      option: k
+      optionAudioURL: 
+      optionAudioClip: {fileID: 8300000, guid: 4f893aaaf485c1d43839f57f5f479e89, type: 3}
+      optionSprit: {fileID: 0}
+    correctOptions: k
+  - answerType: 0
+    questionType: 1
+    questionData:
+      questionID: 
+      question: 
+      questionAudioURL: 
+      questionAudioClip: {fileID: 8300000, guid: ac518fd067fe0e64d83a0c23bb3c4899, type: 3}
+      questionSprit: {fileID: 21300000, guid: 9e94b253b2fbe4e43b2f2cf0949f5883, type: 3}
+    options:
+    - optionID: 
+      option: b
+      optionAudioURL: 
+      optionAudioClip: {fileID: 8300000, guid: 093481bad73e31b4782146e9cb74e298, type: 3}
+      optionSprit: {fileID: 0}
+    - optionID: 
+      option: k
+      optionAudioURL: 
+      optionAudioClip: {fileID: 8300000, guid: 4f893aaaf485c1d43839f57f5f479e89, type: 3}
+      optionSprit: {fileID: 0}
+    correctOptions: b
+  - answerType: 0
+    questionType: 1
+    questionData:
+      questionID: 
+      question: 
+      questionAudioURL: 
+      questionAudioClip: {fileID: 8300000, guid: a1019c0d3a11ecd488870553b923754e, type: 3}
+      questionSprit: {fileID: 21300000, guid: 55148d20eb1ba444e95040df0436b6d9, type: 3}
+    options:
+    - optionID: 
+      option: b
+      optionAudioURL: 
+      optionAudioClip: {fileID: 8300000, guid: 093481bad73e31b4782146e9cb74e298, type: 3}
+      optionSprit: {fileID: 0}
+    - optionID: 
+      option: k
+      optionAudioURL: 
+      optionAudioClip: {fileID: 8300000, guid: 4f893aaaf485c1d43839f57f5f479e89, type: 3}
+      optionSprit: {fileID: 0}
+    correctOptions: b
+  - answerType: 0
+    questionType: 1
+    questionData:
+      questionID: 
+      question: 
+      questionAudioURL: 
+      questionAudioClip: {fileID: 8300000, guid: df4359bdd385af247af3f753a88c3039, type: 3}
+      questionSprit: {fileID: 21300000, guid: 73a48ec0ba0712b4992cf6bef7a183d5, type: 3}
+    options:
+    - optionID: 
+      option: b
+      optionAudioURL: 
+      optionAudioClip: {fileID: 8300000, guid: 093481bad73e31b4782146e9cb74e298, type: 3}
+      optionSprit: {fileID: 0}
+    - optionID: 
+      option: k
+      optionAudioURL: 
+      optionAudioClip: {fileID: 8300000, guid: 4f893aaaf485c1d43839f57f5f479e89, type: 3}
+      optionSprit: {fileID: 0}
+    correctOptions: k
+  - answerType: 0
+    questionType: 1
+    questionData:
+      questionID: 
+      question: 
+      questionAudioURL: 
+      questionAudioClip: {fileID: 8300000, guid: 6aa1e1fedee2a084dbc94d2b295a2811, type: 3}
+      questionSprit: {fileID: 21300000, guid: 4b22087d6d187f24b93162fd705054fc, type: 3}
+    options:
+    - optionID: 
+      option: b
+      optionAudioURL: 
+      optionAudioClip: {fileID: 8300000, guid: 093481bad73e31b4782146e9cb74e298, type: 3}
+      optionSprit: {fileID: 0}
+    - optionID: 
+      option: k
+      optionAudioURL: 
+      optionAudioClip: {fileID: 8300000, guid: 4f893aaaf485c1d43839f57f5f479e89, type: 3}
+      optionSprit: {fileID: 0}
+    correctOptions: b
+  - answerType: 0
+    questionType: 1
+    questionData:
+      questionID: 
+      question: 
+      questionAudioURL: 
+      questionAudioClip: {fileID: 8300000, guid: 6f8121f10b53f9f4e80a204b8690c3e8, type: 3}
+      questionSprit: {fileID: 21300000, guid: abfb55f0fc3977347bb5b5c6ba6b5dd8, type: 3}
+    options:
+    - optionID: 
+      option: b
+      optionAudioURL: 
+      optionAudioClip: {fileID: 8300000, guid: 093481bad73e31b4782146e9cb74e298, type: 3}
+      optionSprit: {fileID: 0}
+    - optionID: 
+      option: k
+      optionAudioURL: 
+      optionAudioClip: {fileID: 8300000, guid: 4f893aaaf485c1d43839f57f5f479e89, type: 3}
+      optionSprit: {fileID: 0}
+    correctOptions: k
+  userData:
+    userName: 
+    userStandard: 
+    lessonName: 
