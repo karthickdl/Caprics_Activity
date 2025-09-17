@@ -61,5 +61,22 @@ namespace DLearners
             DLearners.GameHandlerImmersiveGame.Instance.I_TotalPoints = GameHandlerImmersiveGame.Instance.dataSO.GetCorrectAnswerPoint();
             VaultPopUpsManager.Instance.ShowPopup(NormalPopUpTypes.LevelCompletePOPUP,null);
         }
+
+        /// <summary>
+        /// Seting up level data from SO (per level)
+        /// </summary>
+        protected virtual void Tarun()
+        {
+            currentData = new Data();
+            currentInstructionData = new InstructionData();
+            DataSO cashDataSO = GameHandlerImmersiveGame.Instance.dataSO;
+            currentDifficultyLevelType = cashDataSO.difficultyLevelType;
+
+            currentData = cashDataSO.GetData(I_currentQuestionCount);
+            currentOptionCount = currentData.options.Count;
+            currentInstructionData = cashDataSO.instructionData;
+
+            STR_currentQuestionAnswer = currentData.correctOptions;
+        }
     }
 }

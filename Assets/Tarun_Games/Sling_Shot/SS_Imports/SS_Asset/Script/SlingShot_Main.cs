@@ -1,27 +1,18 @@
+using DLearners;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 using UnityEngine.Networking;
-using TMPro;
 using UnityEngine.SceneManagement;
-public class SlingShot_Main : MonoBehaviour
+using UnityEngine.UI;
+public class SlingShot_Main : GameManagerBase
 {
-    public static SlingShot_Main Instance;
-
-    [Header("Screens and UI elements")]
-    public GameObject G_Demo;
-    bool B_CloseDemo;
-
-    public GameObject G_Game;
-    public GameObject G_coverPage;
-    public GameObject G_instructionPage;
     public TextMeshProUGUI TEXM_instruction;
     public Text TEX_points;
     public Text TEX_questionCount;
     public TextMeshProUGUI TM_pointFx;
-
     [Header("Objects")]
     public GameObject G_Question;
     public GameObject G_Options;
@@ -34,9 +25,6 @@ public class SlingShot_Main : MonoBehaviour
     bool B_CanClick;
 
     [Header("Values")]
-    public string STR_currentQuestionAnswer;
-    public string STR_currentSelectedAnswer;
-    public int I_currentQuestionCount; // question number current
     public string STR_currentQuestionID;
     public int I_Points;
     public int I_wrongAnsCount;
@@ -89,50 +77,69 @@ public class SlingShot_Main : MonoBehaviour
     public AudioClip[] ACA__questionClips;
     public AudioClip[] ACA_optionClips;
     public AudioClip[] ACA_instructionClips;
-    private void Awake()
-    {
-        
-       /* if (B_production)
-        {
-            URL = "https://dlearners.in/template_and_games/Game_template_api-s/game_template_2.php"; // PRODUCTION FETCH DATA
-            SendValueURL = "https://dlearners.in/template_and_games/Game_template_api-s/save_child_questions.php"; // PRODUCTION SEND DATA
-        }
-        else
-        {
-            URL = "http://20.120.84.12/Test/template_and_games/Game_template_api-s/game_template_2.php"; // UAT FETCH DATA
-            SendValueURL = "http://20.120.84.12/Test/template_and_games/Game_template_api-s/save_child_questions.php"; // UAT SEND DATA
 
-        }*/
+    #region Unity
+    protected override void Awake()
+    {
+        base.Awake();
+    }
+    /*   private void Awake()
+       {
+
+           if (B_production)
+           {
+               URL = "https://dlearners.in/template_and_games/Game_template_api-s/game_template_2.php"; // PRODUCTION FETCH DATA
+               SendValueURL = "https://dlearners.in/template_and_games/Game_template_api-s/save_child_questions.php"; // PRODUCTION SEND DATA
+           }
+           else
+           {
+               URL = "http://20.120.84.12/Test/template_and_games/Game_template_api-s/game_template_2.php"; // UAT FETCH DATA
+               SendValueURL = "http://20.120.84.12/Test/template_and_games/Game_template_api-s/save_child_questions.php"; // UAT SEND DATA
+
+           }
+       }*/
+    #endregion
+
+
+
+    /// <summary>
+    /// This will Trigger from tap to play screen.
+    /// </summary>
+    public override void OnPlayButton()
+    {
+        base.OnPlayButton();
     }
 
-    void Start()
+    /// <summary>
+    /// We are initialising the game after all the tutorial thing is completed. 
+    /// </summary>
+    public override void InitGame()
     {
-        B_CloseDemo = true;
-
-        Instance = this;
-        G_Game.SetActive(false);
         G_levelComplete.SetActive(false);
 
-        G_instructionPage.SetActive(false);
 
-        TEX_points.text = I_Points.ToString();
         STRL_questions = new List<string>();
         STRL_answers = new List<string>();
         STRL_options = new List<string>();
         Invoke("THI_gameData", 1f);
 
         I_currentQuestionCount = -1;
-        
     }
-    private void Update()
-    {
-        if (!G_Demo.activeInHierarchy && B_CloseDemo)
-        {
-            B_CloseDemo = false;
-            DemoOver();
-        }
 
+    /// <summary>
+    /// Seting up level data from SO (per level) From base class
+    /// </summary>
+    /// </summary>
+    protected override void Tarun()
+    {
+        base.Tarun();
     }
+
+
+
+
+
+
     public void THI_Check(GameObject Selected)
     {
         if (B_CanClick)
@@ -211,7 +218,6 @@ public class SlingShot_Main : MonoBehaviour
 
     public void DemoOver()
     {
-        G_Game.SetActive(true);
         THI_Transition();
     }
     void THI_Transition()
@@ -249,7 +255,7 @@ public class SlingShot_Main : MonoBehaviour
 
             STR_currentQuestionID = STRL_questionID[I_currentQuestionCount];
             int currentquesCount = I_currentQuestionCount + 1;
-            TEX_questionCount.text = currentquesCount + "/" + STRL_questions.Count;
+           // TEX_questionCount.text = currentquesCount + "/" + STRL_questions.Count;
             STR_currentQuestionAnswer = STRL_answers[I_currentQuestionCount];
             G_Question.transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).GetComponent<Image>().sprite = SPRA_Question[I_currentQuestionCount];
             G_Question.transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).GetComponent<AudioSource>().clip = ACA__questionClips[I_currentQuestionCount];
@@ -294,7 +300,7 @@ public class SlingShot_Main : MonoBehaviour
         AS_crtans.Play();
         
         I_Points += I_correctPoints;
-        TEX_points.text = I_Points.ToString();
+       // TEX_points.text = I_Points.ToString();
         THI_pointFxOn(true);
 
         // Release bird animation
@@ -402,7 +408,7 @@ public class SlingShot_Main : MonoBehaviour
                 I_Points = 0;
             }
         }
-        TEX_points.text = I_Points.ToString();
+        //TEX_points.text = I_Points.ToString();
     }
 
     public void THI_pointFxOn(bool plus)
@@ -442,26 +448,7 @@ public class SlingShot_Main : MonoBehaviour
     {
         TM_pointFx.text = "";
     }
-    public IEnumerator IN_CoverImage()
-    {
-        UnityWebRequest www = UnityWebRequestTexture.GetTexture(STRL_Cover_Img_link[0]);
-        yield return www.SendWebRequest();
-        if (www.isNetworkError || www.isHttpError)
-        {
-            Debug.Log(www.error);
-        }
-        else
-        {
-            Texture2D downloadedTexture = ((DownloadHandlerTexture)www.downloadHandler).texture;
-            if (STRL_Cover_Img_link != null)
-            {
-                G_coverPage.GetComponent<Image>().sprite = Sprite.Create(downloadedTexture, new Rect(0.0f, 0.0f, downloadedTexture.width, downloadedTexture.height), new Vector2(0.5f, 0.5f), 100.0f);
-            }
-        }
-
-        //SPRA_Options
-
-    }
+    
 
     public IEnumerator EN_getValues()
     {
@@ -492,7 +479,6 @@ public class SlingShot_Main : MonoBehaviour
 
             StartCoroutine(IN_downloadlImg());
             StartCoroutine(EN_getAudioClips());
-            StartCoroutine(IN_CoverImage());
             
             THI_FindOptioncount();
         }
@@ -621,7 +607,6 @@ public class SlingShot_Main : MonoBehaviour
 
         StartCoroutine(IN_downloadlImg());
         StartCoroutine(EN_getAudioClips());
-        StartCoroutine(IN_CoverImage());
         
         THI_FindOptioncount();
 
@@ -702,7 +687,6 @@ public class SlingShot_Main : MonoBehaviour
         G_Slingclone.SetActive(false);
         StopAllCoroutines();
         Time.timeScale = 0;
-        G_instructionPage.SetActive(true);
         TEXM_instruction.text = STR_instruction;
         TEXM_instruction.gameObject.AddComponent<AudioSource>().Play();
     }
@@ -711,7 +695,6 @@ public class SlingShot_Main : MonoBehaviour
     {
         G_Slingclone.SetActive(true);
         Time.timeScale = 1;
-        G_instructionPage.SetActive(false);
        
     }
 }

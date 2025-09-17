@@ -10920,6 +10920,7 @@ MonoBehaviour:
   G_QuestionSpawn: {fileID: 5442496690070182243}
   G_currentquestion: {fileID: 0}
   G_Robot: {fileID: 8404938217677160938}
+  questionText: {fileID: 5442496689912498340}
   G_Question: {fileID: 5442496689510326144}
   G_Options: {fileID: 0}
   GA_Options:
@@ -11301,7 +11302,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -11337,7 +11338,7 @@ MonoBehaviour:
   m_fontSize: 36
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0

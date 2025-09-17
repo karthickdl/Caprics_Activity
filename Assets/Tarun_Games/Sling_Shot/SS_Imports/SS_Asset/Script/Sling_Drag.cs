@@ -20,7 +20,7 @@ public class Sling_Drag : MonoBehaviour
 
     [SerializeField]
     Camera cam;
-
+    private SlingShot_Main slingShot_Main => (SlingShot_Main)SlingShot_Main.Instance;
     private void Start()
     {
         RB = GetComponent<Rigidbody2D>();
@@ -161,8 +161,9 @@ public class Sling_Drag : MonoBehaviour
             
     }
 
-    void cloneagain() {
-        SlingShot_Main.Instance.THI_CloneSling();
+    void cloneagain()
+    {
+        slingShot_Main.THI_CloneSling();
      }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -170,7 +171,7 @@ public class Sling_Drag : MonoBehaviour
         {
             if(collision.gameObject.transform.parent.transform.parent.name=="Question")
             {
-                SlingShot_Main.Instance.THI_Check(collision.gameObject);
+                slingShot_Main.THI_Check(collision.gameObject);
                 Destroy(this.transform.parent.gameObject);
             }
         }

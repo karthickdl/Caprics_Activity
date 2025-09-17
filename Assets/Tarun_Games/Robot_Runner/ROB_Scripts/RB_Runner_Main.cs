@@ -1,3 +1,4 @@
+using DG.Tweening;
 using DLearners;
 using System.Collections;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ public class RB_Runner_Main : GameManagerBase
     public GameObject G_QuestionSpawn;
     public GameObject G_currentquestion;
     public GameObject G_Robot;
+    public TextMeshProUGUI questionText;
     public GameObject G_Question;
     public GameObject G_Options;
     public GameObject[] GA_Options;
@@ -32,16 +34,25 @@ public class RB_Runner_Main : GameManagerBase
     [SerializeField] private Image[] IMGA_Up;
     [SerializeField] private Image[] IMGA_Down;
 
+    #region Unity
     protected override void Awake()
     {
         base.Awake();
     }
+    #endregion
 
+    /// <summary>
+    /// This will Trigger from tap to play screen.
+    /// </summary>
     public override void OnPlayButton()
     {
         base.OnPlayButton();
         Robotmovement.Instance.OnPlayButton();
     }
+
+    /// <summary>
+    /// We are initialising the game after all the tutorial thing is completed. 
+    /// </summary>
     public override void InitGame()
     {
         base.InitGame();
@@ -52,9 +63,6 @@ public class RB_Runner_Main : GameManagerBase
         G_levelComplete.SetActive(false);
 
         THI_Transition();
-        
-
-
         #region----------Platform Checking to set sprites for controls in Demo
 
         /*if (MainController.instance.WEB)
@@ -80,18 +88,16 @@ public class RB_Runner_Main : GameManagerBase
 
         #endregion
     }
-    private void Tarun()
+
+    /// <summary>
+    /// Seting up level data from SO (per level) From base class
+    /// </summary>
+    protected override void Tarun()
     {
-        currentData = new Data();
-        currentInstructionData = new InstructionData();
-        currentDifficultyLevelType = GameHandlerImmersiveGame.Instance.dataSO.difficultyLevelType;
-        DataSO cashDataSO = GameHandlerImmersiveGame.Instance.dataSO;
+        base.Tarun();
+       
 
-        currentData = cashDataSO.GetData(I_currentQuestionCount);//ID HardCode
-        currentOptionCount = currentData.options.Count;
-        currentInstructionData = cashDataSO.instructionData;
 
-        STR_currentQuestionAnswer = currentData.correctOptions;
         ff();
         // questionIMG.sprite = TarunTesting.Instance.dataSO.GetQuestionSprit(0);
     }
@@ -135,12 +141,12 @@ public class RB_Runner_Main : GameManagerBase
         isInputUnLocked = true;
         G_Question.SetActive(true);//
 
-        AudioClip ggd = currentInstructionData.instructionAudioClip[0];//Hardcode
-         DLearners.DLearnersAudioManager.Instance.PlaySound3(ggd);
-        //TEXM_instruction2.gameObject.GetComponent<AudioSource>().Play();
-        //Invoke(nameof(PlayQuestionAudio), TEXM_instruction2.gameObject.GetComponent<AudioSource>().clip.length);
-
-        DLearners.DLearnersAudioManager.Instance.PlaySound3(currentData.questionData.questionAudioClip, ggd.length);
+        AudioClip audioClipLent = currentInstructionData.instructionAudioClip[0];//Hardcode
+        DLearnersAudioManager.Instance.PlaySound3(audioClipLent);
+        DOVirtual.DelayedCall(audioClipLent.length,() =>
+        {
+            DLearnersAudioManager.Instance.PlaySound3(currentData.questionData.questionAudioClip);
+        });
     }
 
     public void THI_NewQuestion()
@@ -160,7 +166,7 @@ public class RB_Runner_Main : GameManagerBase
         //STRA_AnsList = null;
         //STR_currentQuestionID = STRL_questionID[I_currentQuestionCount];
         //int currentquesCount = I_currentQuestionCount + 1;
-
+        questionText.SetText(currentInstructionData.instruction[0]);
 
         HUDManager.Instance.UpdateQuestionCountText(I_currentQuestionCount);//Tarun
 

@@ -20,8 +20,8 @@ MonoBehaviour:
   - name: Com_Wrong
     audioClip: {fileID: 8300000, guid: 89ac9c5bad1fb3c4b976302a1c8574cc, type: 3}
     mixerType: 2
-    volumeLevel: 0.1
+    volumeLevel: 0.5
   - name: Com_Correct
     audioClip: {fileID: 8300000, guid: a53cac36f9d8bfb48b0e724d5f4d2a9f, type: 3}
     mixerType: 2
-    volumeLevel: 0.1
+    volumeLevel: 0.5

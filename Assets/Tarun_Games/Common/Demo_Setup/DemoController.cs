@@ -27,6 +27,7 @@ namespace DLearners
             id = 0;
             bg.sprite = _demoControllerDataSO.bgSprite;
             demoController_N = Instantiate(_demoControllerDataSO.demoController_N, this.transform);
+            skipButton.transform.SetAsLastSibling();
             skipButton.onClick.AddListener(() =>
             {
                 OnSkipButton();

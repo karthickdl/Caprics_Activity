@@ -158,7 +158,7 @@ namespace DLearners
         }
         public AudioSource PlaySoundCashed(AudioClip audioClip)
         {
-            GameObject audioPlayer = new GameObject("AP2");
+            GameObject audioPlayer = new GameObject("PlaySoundCashed");
             AudioSource audioSource = audioPlayer.AddComponent<AudioSource>();
 
             AudioMixerGroup[] group;
@@ -170,7 +170,7 @@ namespace DLearners
 
         public void PlaySound3(AudioClip audioClip,float delay=0)
         {
-            GameObject audioPlayer = new GameObject("AP2");
+            GameObject audioPlayer = new GameObject("PlaySound3");
             AudioSource audioSource = audioPlayer.AddComponent<AudioSource>();
             AudioMixerGroup[] group;
             group = inGameMixer.FindMatchingGroups("Master");

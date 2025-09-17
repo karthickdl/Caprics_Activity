@@ -2317,10 +2317,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac933bf0a50ca1548a5b2bf4116b9981, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  G_Demo: {fileID: 0}
-  G_Game: {fileID: 2293976915356721183}
-  G_coverPage: {fileID: 0}
-  G_instructionPage: {fileID: 0}
+  canDestroyOnLoad: 0
+  mainGameOBJ: {fileID: 2293976915356721183}
   TEXM_instruction: {fileID: 0}
   TEX_points: {fileID: 0}
   TEX_questionCount: {fileID: 0}
@@ -2333,9 +2331,6 @@ MonoBehaviour:
   G_Sling: {fileID: 2346625859576838550, guid: dc656bc91b8bbd349b54eb91e8e16d4a, type: 3}
   G_Sling_pos: {fileID: 2293976916361046352}
   V3_OptPos: []
-  STR_currentQuestionAnswer: 
-  STR_currentSelectedAnswer: 
-  I_currentQuestionCount: 0
   STR_currentQuestionID: 
   I_Points: 0
   I_wrongAnsCount: 0
