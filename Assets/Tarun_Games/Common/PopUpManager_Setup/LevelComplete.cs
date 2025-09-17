@@ -34,16 +34,16 @@ public class LevelComplete : PopUpsBase
     }
     private void SetScore()
     {
-        int totalObtainablePoints = TarunTesting.Instance.I_TotalQuestions * TarunTesting.Instance.I_correctPoints;
+        int totalObtainablePoints = GameHandlerImmersiveGame.Instance.I_TotalQuestions * GameHandlerImmersiveGame.Instance.I_correctPoints;
         // Debug.Log("Max points : " + totalObtainablePoints);
         // Debug.Log("Total obtainable points : " + totalObtainablePoints);
         int I_2star = totalObtainablePoints / 3;//10
         int I_3star = totalObtainablePoints / 2;//20
 
-        TEX_finalPoints.text = TarunTesting.Instance.I_TotalPoints.ToString();
+        TEX_finalPoints.text = GameHandlerImmersiveGame.Instance.I_TotalPoints.ToString();
         // Debug.Log("Points got : " + DLearners.TarunTesting.Instance.I_TotalPoints);
 
-        int totalPoints = TarunTesting.Instance.I_TotalPoints;
+        int totalPoints = GameHandlerImmersiveGame.Instance.I_TotalPoints;
         int cashCount=0;
         if (totalPoints >= 0 && I_2star > totalPoints)
         {

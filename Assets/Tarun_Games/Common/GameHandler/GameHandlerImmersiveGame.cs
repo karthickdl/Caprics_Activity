@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace DLearners
 {
-    public class TarunTesting : Singleton<TarunTesting>
+    public class GameHandlerImmersiveGame : GameHandlerBase
     {
         public PlatformType platformType;
         [Header ("Sound SO")]
@@ -112,12 +112,12 @@ namespace DLearners
             Debug.Log("json string from javascript : " + val);
             MyJSON myjson = new MyJSON();
             myjson.FetchIDs();
-            DLearners.TarunTesting.Instance.mode = "live";
+            DLearners.GameHandlerImmersiveGame.Instance.mode = "live";
         }
 
         public void JS_getMode(string val)
         {
-            DLearners.TarunTesting.Instance.mode = "preview";
+            DLearners.GameHandlerImmersiveGame.Instance.mode = "preview";
             STR_previewJsonAPI = val;
         }
     }

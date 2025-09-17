@@ -173,7 +173,7 @@ namespace DLearners
             {
                 SetHUDOnOff(false);
                 instructionOBJ.gameObject.SetActive(false);
-                TarunTesting.Instance.gg();
+                GameHandlerImmersiveGame.Instance.gg();
             });
             closeButton.onClick.AddListener(() =>
             {

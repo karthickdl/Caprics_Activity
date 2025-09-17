@@ -28,9 +28,9 @@ public class MyJSON
     #region WEB
     public void FetchIDs()  // fetch child id and game id
     {
-        JSONNode n = JSON.Parse(DLearners.TarunTesting.Instance.STR_IDjson);
-        DLearners.TarunTesting.Instance.STR_childID = n["child_id"];
-        DLearners.TarunTesting.Instance.STR_GameID = n["game_id"];
+        JSONNode n = JSON.Parse(DLearners.GameHandlerImmersiveGame.Instance.STR_IDjson);
+        DLearners.GameHandlerImmersiveGame.Instance.STR_childID = n["child_id"];
+        DLearners.GameHandlerImmersiveGame.Instance.STR_GameID = n["game_id"];
         //    Debug.Log("CHILD ID FROM CRASH: " + DLearners.TarunTesting.Instance.STR_childID);
         //   Debug.Log("GAME ID FROM CRASH: " + DLearners.TarunTesting.Instance.STR_GameID);
     }
@@ -41,7 +41,7 @@ public class MyJSON
 
         JSONNode n = JSON.Parse(json);
 
-        DLearners.TarunTesting.Instance.STR_responseSerial = n["si_no"];
+        DLearners.GameHandlerImmersiveGame.Instance.STR_responseSerial = n["si_no"];
 
     }
     public void PassageClickTemp(string json)

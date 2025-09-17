@@ -40,7 +40,7 @@ namespace DLearners
 
         public Sound[] fxSounds;
 
-        private SoundDataStruct[] fxSounds2 => TarunTesting.Instance.gameAudioDataSO.fxSounds;
+        private SoundDataStruct[] fxSounds2 => GameHandlerImmersiveGame.Instance.gameAudioDataSO.fxSounds;
         private SoundDataStruct[] fxSoundsCommon => commonSoundSO.fxSounds;
 
         #region Unity Calls

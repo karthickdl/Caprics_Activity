@@ -9896,7 +9896,7 @@ Camera:
   m_GameObject: {fileID: 5442496689511987707}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
+  m_ClearFlags: 2
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -9935,7 +9935,7 @@ Camera:
   m_AllowMSAA: 1
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
+  m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
 --- !u!114 &5442496689511987687
@@ -10911,7 +10911,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canDestroyOnLoad: 1
   mainGameOBJ: {fileID: 5442496689562485125}
-  G_Transition: {fileID: 0}
   GA_Question:
   - {fileID: 6395852883638445498, guid: 041f905cbf12686428cf2ace4fcc2e62, type: 3}
   - {fileID: 5498943256325441193, guid: 4d2a7b3d2c2568d498d16d3dfff2f539, type: 3}
@@ -10922,7 +10921,6 @@ MonoBehaviour:
   G_currentquestion: {fileID: 0}
   G_Robot: {fileID: 8404938217677160938}
   G_Question: {fileID: 5442496689510326144}
-  questionIMG: {fileID: 5442496689286685051}
   G_Options: {fileID: 0}
   GA_Options:
   - {fileID: 5442496688837097430}
@@ -12470,7 +12468,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5442496690073624874}
-  - component: {fileID: 3011978388187844270}
+  - component: {fileID: 1383326536573894478}
   - component: {fileID: 4846884497664546194}
   m_Layer: 0
   m_Name: Robot_Runner
@@ -12498,7 +12496,7 @@ Transform:
   - {fileID: 5442496689562485126}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3011978388187844270
+--- !u!114 &1383326536573894478
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -12507,13 +12505,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 5442496690073624873}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1dbccca1f32fef24f8723d1cb6c5fe63, type: 3}
+  m_Script: {fileID: 11500000, guid: 7c7dbea238b24094e8493ec03026892f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canDestroyOnLoad: 0
+  canDestroyOnLoad: 1
   platformType: 0
   gameAudioDataSO: {fileID: 11400000, guid: 38827135aa3719c41bfb0c3a0f8929c5, type: 2}
-  introControllerPF: {fileID: 6657430381817427831, guid: e8d6ba8ebb136a446b69b756ba344d28, type: 3}
+  introControllerPF: {fileID: 772068191316740501, guid: defaafb3d176a134ba037e5ae10d2225, type: 3}
   coverPagePF: {fileID: 6884182910719537490, guid: 66870b8df786af74d86760da710df9e8, type: 3}
   demoControllerPF: {fileID: 7569966119326016201, guid: 89e7e8d58c37efd43aa17591d81a8126, type: 3}
   _demoControllerDataSO: {fileID: 11400000, guid: ec100ee310628c948b59a36f9dadfd41, type: 2}

@@ -180,11 +180,11 @@ public class Misfit_Main : MonoBehaviour
     void THI_gameData()
     {
         //  THI_getPreviewData();
-        if (DLearners.TarunTesting.Instance.mode == "live")
+        if (DLearners.GameHandlerImmersiveGame.Instance.mode == "live")
         {
             StartCoroutine(EN_getValues()); // live game in portal
         }
-        if (DLearners.TarunTesting.Instance.mode == "preview")
+        if (DLearners.GameHandlerImmersiveGame.Instance.mode == "preview")
         {
             // preview data in html game generator
 
@@ -354,7 +354,7 @@ public class Misfit_Main : MonoBehaviour
 
     void THI_Levelcompleted()
     {
-        DLearners.TarunTesting.Instance.I_TotalPoints = I_Points;
+        DLearners.GameHandlerImmersiveGame.Instance.I_TotalPoints = I_Points;
         G_levelComplete.SetActive(true);
         StartCoroutine(IN_sendDataToDB());
     }
@@ -585,7 +585,7 @@ public class Misfit_Main : MonoBehaviour
     public IEnumerator EN_getValues()
     {
         WWWForm form = new WWWForm();
-        form.AddField("game_id", DLearners.TarunTesting.Instance.STR_GameID);
+        form.AddField("game_id", DLearners.GameHandlerImmersiveGame.Instance.STR_GameID);
         // Debug.Log("GAME ID : " + DLearners.TarunTesting.Instance.STR_GameID);
         UnityWebRequest www = UnityWebRequest.Post(URL, form);
         yield return www.SendWebRequest();
@@ -607,7 +607,7 @@ public class Misfit_Main : MonoBehaviour
             STR_instruction = STRL_instruction[0];
             //MainController.instance.I_correctPoints = I_correctPoints = IL_numbers[1];//Tarun
             I_wrongPoints = IL_numbers[2];
-            DLearners.TarunTesting.Instance.I_TotalQuestions = STRL_questions.Count;
+            DLearners.GameHandlerImmersiveGame.Instance.I_TotalQuestions = STRL_questions.Count;
 
 
 
@@ -694,14 +694,14 @@ public class Misfit_Main : MonoBehaviour
         MyJSON json = new MyJSON();
         List<string> STRL_Passagedetails = new List<string>();
         //  json.Helitemp(DLearners.TarunTesting.Instance.STR_previewJsonAPI);
-        json.Temp_type_2(DLearners.TarunTesting.Instance.STR_previewJsonAPI, STRL_difficulty, IL_numbers, STRL_questions, STRL_answers, STRL_options, STRL_questionID, STRL_instruction, STRL_quesitonAudios, STRL_optionAudios,
+        json.Temp_type_2(DLearners.GameHandlerImmersiveGame.Instance.STR_previewJsonAPI, STRL_difficulty, IL_numbers, STRL_questions, STRL_answers, STRL_options, STRL_questionID, STRL_instruction, STRL_quesitonAudios, STRL_optionAudios,
             STRL_instructionAudio, STRL_cover_img_link, STRL_Passagedetails);
 
         STR_difficulty = STRL_difficulty[0];
         STR_instruction = STRL_instruction[0];
         //MainController.instance.I_correctPoints = I_correctPoints = IL_numbers[1];//Tarun
         I_wrongPoints = IL_numbers[2];
-        DLearners.TarunTesting.Instance.I_TotalQuestions = STRL_questions.Count;
+        DLearners.GameHandlerImmersiveGame.Instance.I_TotalQuestions = STRL_questions.Count;
 
         StartCoroutine(EN_getAudioClips());
         StartCoroutine(IN_CoverImage());
@@ -723,13 +723,13 @@ public class Misfit_Main : MonoBehaviour
     public IEnumerator IN_sendDataToDB()
     {
         WWWForm form = new WWWForm();
-        form.AddField("child_id", DLearners.TarunTesting.Instance.STR_childID);
-        form.AddField("game_id", DLearners.TarunTesting.Instance.STR_GameID);
+        form.AddField("child_id", DLearners.GameHandlerImmersiveGame.Instance.STR_childID);
+        form.AddField("game_id", DLearners.GameHandlerImmersiveGame.Instance.STR_GameID);
         form.AddField("game_details", "[" + STR_Data + "]");
 
 
-        Debug.Log("child id : " + DLearners.TarunTesting.Instance.STR_childID);
-        Debug.Log("game_id  : " + DLearners.TarunTesting.Instance.STR_GameID);
+        Debug.Log("child id : " + DLearners.GameHandlerImmersiveGame.Instance.STR_childID);
+        Debug.Log("game_id  : " + DLearners.GameHandlerImmersiveGame.Instance.STR_GameID);
         Debug.Log("game_details: " + "[" + STR_Data + "]");
 
         UnityWebRequest www = UnityWebRequest.Post(SendValueURL, form);

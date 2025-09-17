@@ -58,7 +58,7 @@ namespace DLearners
 
         public virtual void OnLevelCompleted()
         {
-            DLearners.TarunTesting.Instance.I_TotalPoints = TarunTesting.Instance.dataSO.GetCorrectAnswerPoint();
+            DLearners.GameHandlerImmersiveGame.Instance.I_TotalPoints = GameHandlerImmersiveGame.Instance.dataSO.GetCorrectAnswerPoint();
             VaultPopUpsManager.Instance.ShowPopup(NormalPopUpTypes.LevelCompletePOPUP,null);
         }
     }

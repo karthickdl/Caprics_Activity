@@ -84,8 +84,8 @@ public class RB_Runner_Main : GameManagerBase
     {
         currentData = new Data();
         currentInstructionData = new InstructionData();
-        currentDifficultyLevelType = TarunTesting.Instance.dataSO.difficultyLevelType;
-        DataSO cashDataSO = TarunTesting.Instance.dataSO;
+        currentDifficultyLevelType = GameHandlerImmersiveGame.Instance.dataSO.difficultyLevelType;
+        DataSO cashDataSO = GameHandlerImmersiveGame.Instance.dataSO;
 
         currentData = cashDataSO.GetData(I_currentQuestionCount);//ID HardCode
         currentOptionCount = currentData.options.Count;
@@ -117,7 +117,7 @@ public class RB_Runner_Main : GameManagerBase
     void THI_Transition()
     {
         VaultPopUpsManager.Instance.ShowTransition(TransitionType.Fade);
-        if (I_currentQuestionCount < TarunTesting.Instance.dataSO.datas.Count)
+        if (I_currentQuestionCount < GameHandlerImmersiveGame.Instance.dataSO.datas.Count)
         {
             Tarun();
             G_Question.SetActive(false);            
@@ -262,7 +262,7 @@ public class RB_Runner_Main : GameManagerBase
 
     private void ff()
     {
-        DLearners.TarunTesting.Instance.I_TotalQuestions = TarunTesting.Instance.dataSO.datas.Count;
+        DLearners.GameHandlerImmersiveGame.Instance.I_TotalQuestions = GameHandlerImmersiveGame.Instance.dataSO.datas.Count;
         for (int i = 0; i < GA_Options.Length; i++)
         {
             GA_Options[i].SetActive(false);
@@ -300,13 +300,13 @@ public class RB_Runner_Main : GameManagerBase
     public IEnumerator IN_sendDataToDB()
     {
         WWWForm form = new WWWForm();
-        form.AddField("child_id", DLearners.TarunTesting.Instance.STR_childID);
-        form.AddField("game_id", DLearners.TarunTesting.Instance.STR_GameID);
+        form.AddField("child_id", DLearners.GameHandlerImmersiveGame.Instance.STR_childID);
+        form.AddField("game_id", DLearners.GameHandlerImmersiveGame.Instance.STR_GameID);
         form.AddField("game_details", "[" + STR_Data + "]");
 
 
-        Debug.Log("child id : " + DLearners.TarunTesting.Instance.STR_childID);
-        Debug.Log("game_id  : " + DLearners.TarunTesting.Instance.STR_GameID);
+        Debug.Log("child id : " + DLearners.GameHandlerImmersiveGame.Instance.STR_childID);
+        Debug.Log("game_id  : " + DLearners.GameHandlerImmersiveGame.Instance.STR_GameID);
         Debug.Log("game_details: " + "[" + STR_Data + "]");
 
         UnityWebRequest www = UnityWebRequest.Post(DownloadManager.Instance.sendValueURL, form);
