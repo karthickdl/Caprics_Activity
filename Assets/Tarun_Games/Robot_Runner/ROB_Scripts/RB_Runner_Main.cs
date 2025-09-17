@@ -10,33 +10,15 @@ using UnityEngine.UI;
 
 public class RB_Runner_Main : GameManagerBase
 {
-    [Header("Screens and UI elements")]
-
-    
-    public GameObject G_Transition;
-    
-
     [Header("Objects")]
     public GameObject[] GA_Question;
     public GameObject G_QuestionSpawn;
     public GameObject G_currentquestion;
     public GameObject G_Robot;
     public GameObject G_Question;
-    public Image questionIMG;//Tarun
     public GameObject G_Options;
     public GameObject[] GA_Options;
     GameObject G_Highlight;
-
-
-    [Header("Values")]
-     // question number current
-    //public string[] STRA_AnsList;
-    
-
-
-   
-
-    //Dummy values only for helicopter game
 
     [Header("GAME DATA")]
     public List<string> STRL_gameData;
@@ -53,7 +35,6 @@ public class RB_Runner_Main : GameManagerBase
     protected override void Awake()
     {
         base.Awake();
-
     }
 
     public override void OnPlayButton()
@@ -67,7 +48,7 @@ public class RB_Runner_Main : GameManagerBase
         
 
         I_currentQuestionCount =0;
-        G_Transition.SetActive(false);
+        
         G_levelComplete.SetActive(false);
 
         THI_Transition();
@@ -135,11 +116,11 @@ public class RB_Runner_Main : GameManagerBase
     }
     void THI_Transition()
     {
+        VaultPopUpsManager.Instance.ShowTransition(TransitionType.Fade);
         if (I_currentQuestionCount < TarunTesting.Instance.dataSO.datas.Count)
         {
             Tarun();
-            G_Question.SetActive(false);
-            G_Transition.SetActive(true);
+            G_Question.SetActive(false);            
             THI_NewQuestion();
         }
         else
@@ -170,7 +151,6 @@ public class RB_Runner_Main : GameManagerBase
         {
             Destroy(G_currentquestion);
         }
-        G_Transition.SetActive(false);
         int Index = Random.Range(0, GA_Question.Length);
         G_currentquestion = Instantiate(GA_Question[Index]);
         G_currentquestion.transform.SetParent(G_QuestionSpawn.transform, false);

@@ -5,4 +5,5 @@ public class PopUpsListSO : ScriptableObject
 {
     public PopUpsBase[] popUps;
     public ToastPopUp[] flyPopUps;
+    public Transition transition;
 }

@@ -21,3 +21,4 @@ MonoBehaviour:
   - {fileID: 0}
   flyPopUps:
   - {fileID: 1186969198254403510, guid: b6d6dc07f55fc984998c1b0bfc05973c, type: 3}
+  transition: {fileID: 5745582200345933479, guid: 8f3b3209a829da14d9fa6142830b365c, type: 3}

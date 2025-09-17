@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2328184917807273815
 RectTransform:
   m_ObjectHideFlags: 0
@@ -162,6 +162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d6b422d5ac78ea4ba55c2585bb28831, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canDestroyOnLoad: 0
   _popUpsListSO: {fileID: 11400000, guid: a1801dec08c2a1e4ea86f53485b53209, type: 2}
   popupBG: {fileID: 8437470362124835883}
   popUpHolder: {fileID: 5103851305436642605}
@@ -258,7 +259,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5882238755733477113
 RectTransform:
   m_ObjectHideFlags: 0
@@ -303,7 +304,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5103851305436642605
 RectTransform:
   m_ObjectHideFlags: 0
