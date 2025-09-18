@@ -308,7 +308,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2293976914427134755
 RectTransform:
   m_ObjectHideFlags: 0
@@ -531,6 +531,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroyOnLoad: 1
+  isFastingTesting: 1
   platformType: 0
   gameAudioDataSO: {fileID: 11400000, guid: 92cc224727592464e817b29c4ed09843, type: 2}
   introControllerPF: {fileID: 772068191316740501, guid: defaafb3d176a134ba037e5ae10d2225, type: 3}
@@ -1731,7 +1732,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2293976915356721152
 Transform:
   m_ObjectHideFlags: 0
@@ -2319,10 +2320,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canDestroyOnLoad: 0
   mainGameOBJ: {fileID: 2293976915356721183}
-  TEXM_instruction: {fileID: 0}
-  TEX_points: {fileID: 0}
-  TEX_questionCount: {fileID: 0}
-  TM_pointFx: {fileID: 0}
   G_Question: {fileID: 2293976915243600328}
   G_Options: {fileID: 0}
   GA_Options:
@@ -2335,37 +2332,14 @@ MonoBehaviour:
   I_Points: 0
   I_wrongAnsCount: 0
   SPRA_Question: []
-  STRA_Que: []
   URL: 
   SendValueURL: 
   AS_collecting: {fileID: 2293976916388572571}
   AS_oops: {fileID: 2293976915949414317}
   AS_crtans: {fileID: 2293976916388572571}
   AS_Wrong3: {fileID: 2293976914405372087}
-  STRL_difficulty: []
-  STR_difficulty: 
-  IL_numbers: 
-  I_correctPoints: 0
-  I_wrongPoints: 0
-  STRL_instruction: []
-  STR_instruction: 
-  STR_video_link: 
-  STRL_options: []
-  STRL_questions: []
-  STRL_answers: []
-  STRL_quesitonAudios: []
-  STRL_optionAudios: []
-  STRL_instructionAudio: []
-  STRL_questionID: []
-  STR_customizationKey: 
-  STRL_BG_img_link: []
-  STRL_avatar_Color: []
-  STRL_Panel_Img_link: []
-  STRL_Cover_Img_link: []
-  STRL_passageDetail: []
   STRL_gameData: []
   STR_Data: 
-  G_levelComplete: {fileID: 6845978570434484078}
   ACA__questionClips: []
   ACA_optionClips: []
   ACA_instructionClips: []
@@ -2693,7 +2667,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 26.18}
+  m_AnchoredPosition: {x: 0, y: 26.180054}
   m_SizeDelta: {x: 0, y: 15.66}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!61 &2293976915775854688
@@ -4798,10 +4772,5 @@ PrefabInstance:
 --- !u!224 &6845978570434484077 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4671388286350335107, guid: e85050c36d1aa49ad927ee3db408ab7f, type: 3}
-  m_PrefabInstance: {fileID: 2293976914529487854}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &6845978570434484078 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4671388286350335104, guid: e85050c36d1aa49ad927ee3db408ab7f, type: 3}
   m_PrefabInstance: {fileID: 2293976914529487854}
   m_PrefabAsset: {fileID: 0}

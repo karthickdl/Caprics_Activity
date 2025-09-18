@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Sling_Ground : MonoBehaviour
+public class SSGroundSoundPlay : MonoBehaviour
 {
     public AudioSource AS_fall;
     private void OnCollisionEnter2D(Collision2D collision)

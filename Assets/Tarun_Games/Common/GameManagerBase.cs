@@ -21,13 +21,55 @@ namespace DLearners
         protected int currentWrongAnsCount;
         protected int[] wrongAnsLifeCounts = { 3, 2 };
 
-        protected int I_currentQuestionCount;
+        protected int currentQuestionID;
         protected int I_Collect_count;
         protected override void Awake()
         {
             base.Awake();            
         }
-        
+
+        /// <summary>
+        /// This will Trigger from tap to play screen.
+        /// </summary>
+        public virtual void OnPlayButton()
+        {
+        }
+
+        /// <summary>
+        /// We are initialising the game after all the tutorial thing is completed. 
+        /// </summary>
+        public virtual void InitGame()
+        {
+        }
+
+        /// <summary>
+        /// Seting up level data from SO (per level)
+        /// </summary>
+        protected virtual void GetSetCurrentLevelData()
+        {
+            currentData = new Data();
+            currentInstructionData = new InstructionData();
+            DataSO cashDataSO = GameHandlerImmersiveGame.Instance.dataSO;
+            GameHandlerImmersiveGame.Instance.I_TotalQuestions = cashDataSO.datas.Count;
+            currentDifficultyLevelType = cashDataSO.difficultyLevelType;
+
+            currentData = cashDataSO.GetData(currentQuestionID);
+            currentOptionCount = currentData.options.Count;
+            currentInstructionData = cashDataSO.instructionData;
+
+            STR_currentQuestionAnswer = currentData.correctOptions;
+        }
+
+        /// <summary>
+        /// For Checking the answer if it is right or wrong.
+        /// </summary>
+        public virtual void CheckAnswer()
+        {
+        }
+        public virtual void CheckAnswer(Transform transform)
+        {
+        }
+
 
         public virtual void UpdateQuestion()
         {
@@ -38,13 +80,7 @@ namespace DLearners
         {
         }
 
-        public virtual void OnPlayButton()
-        {
-        }
 
-        public virtual void InitGame()
-        {
-        }
 
         public virtual void SetGameOBJOnOff(bool isOn)
         {
@@ -62,22 +98,6 @@ namespace DLearners
             VaultPopUpsManager.Instance.ShowPopup(NormalPopUpTypes.LevelCompletePOPUP,null);
         }
 
-        /// <summary>
-        /// Seting up level data from SO (per level)
-        /// </summary>
-        protected virtual void Tarun()
-        {
-            currentData = new Data();
-            currentInstructionData = new InstructionData();
-            DataSO cashDataSO = GameHandlerImmersiveGame.Instance.dataSO;
-            GameHandlerImmersiveGame.Instance.I_TotalQuestions = cashDataSO.datas.Count;
-            currentDifficultyLevelType = cashDataSO.difficultyLevelType;
-
-            currentData = cashDataSO.GetData(I_currentQuestionCount);
-            currentOptionCount = currentData.options.Count;
-            currentInstructionData = cashDataSO.instructionData;
-
-            STR_currentQuestionAnswer = currentData.correctOptions;
-        }
+        
     }
 }

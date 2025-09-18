@@ -93,7 +93,7 @@ public class VaultPopUpsManager : Singleton<VaultPopUpsManager>
 
         DOVirtual.DelayedCall(1f,() =>
         {
-            Destroy(tempTransition.gameObject);
+            Destroy(tempTransition.gameObject,0.1f);
             popUpHolder.gameObject.SetActive(false);
             isTransition = false;
         }).SetLink(tempTransition.gameObject);

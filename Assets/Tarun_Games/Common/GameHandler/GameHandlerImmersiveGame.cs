@@ -5,6 +5,7 @@ namespace DLearners
 {
     public class GameHandlerImmersiveGame : GameHandlerBase
     {
+        public bool isFastingTesting;
         public PlatformType platformType;
         [Header ("Sound SO")]
         public GameAudioDataSO gameAudioDataSO;
@@ -32,20 +33,22 @@ namespace DLearners
         {
             DownloadManager.Instance.SetURLData(dataSO.GetURLData());
             HUDManager.Instance.SetHUDOnOff(false);
-            IntroController cashIntroController = Instantiate(introControllerPF, canv);
-            yield return new WaitForSeconds(cashIntroController.InitIntroController());
+            if (!isFastingTesting)
+            {
+                IntroController cashIntroController = Instantiate(introControllerPF, canv);
+                yield return new WaitForSeconds(cashIntroController.InitIntroController());
 
-            CoverPage cashCoverPage = Instantiate(coverPagePF, canv);
-            cashCoverPage.InitCoverPage(dataSO.GetCoverPageSprit());
+                CoverPage cashCoverPage = Instantiate(coverPagePF, canv);
+                cashCoverPage.InitCoverPage(dataSO.GetCoverPageSprit());
 
-            yield return new WaitUntil(() => cashCoverPage.isDone);
+                yield return new WaitUntil(() => cashCoverPage.isDone);
 
-            DemoController cashDemoController = Instantiate(demoControllerPF, canv);
+                DemoController cashDemoController = Instantiate(demoControllerPF, canv);
 
-            cashDemoController.InitDemoController(_demoControllerDataSO);
+                cashDemoController.InitDemoController(_demoControllerDataSO);
 
-            yield return new WaitUntil(() => cashDemoController.isDone);
-
+                yield return new WaitUntil(() => cashDemoController.isDone);
+            }
             GameManagerBase.Instance.SetGameOBJOnOff(true);
             GameManagerBase.Instance.InitGame();
             HUDManager.Instance.SetTapToPlayOnAndOff(true);

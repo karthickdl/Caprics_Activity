@@ -26,8 +26,6 @@ public class RB_Runner_Main : GameManagerBase
     public List<string> STRL_gameData;
     public string STR_Data;
 
-    [Header("LEVEL COMPLETE")]
-    public GameObject G_levelComplete;
 
     [SerializeField] private Sprite[] SPRA_ArrowsWebGL;
     [SerializeField] private Sprite[] SPRA_ArrowsMobile;
@@ -58,11 +56,10 @@ public class RB_Runner_Main : GameManagerBase
         base.InitGame();
         
 
-        I_currentQuestionCount =0;
+        currentQuestionID =0;
         
-        G_levelComplete.SetActive(false);
 
-        THI_Transition();
+        Next();
         #region----------Platform Checking to set sprites for controls in Demo
 
         /*if (MainController.instance.WEB)
@@ -92,14 +89,36 @@ public class RB_Runner_Main : GameManagerBase
     /// <summary>
     /// Seting up level data from SO (per level) From base class
     /// </summary>
-    protected override void Tarun()
+    protected override void GetSetCurrentLevelData()
     {
-        base.Tarun();
+        base.GetSetCurrentLevelData();
 
-        ff();
+        SetUpOptionsPanel();
         // questionIMG.sprite = TarunTesting.Instance.dataSO.GetQuestionSprit(0);
     }
-    private void ff()
+
+    /// <summary>
+    /// Showing transition and moving to next question, or checking for level complete 
+    /// </summary>
+    private void Next()
+    {
+        VaultPopUpsManager.Instance.ShowTransition(TransitionType.Fade);
+        if (currentQuestionID < GameHandlerImmersiveGame.Instance.dataSO.datas.Count)
+        {
+            GetSetCurrentLevelData();
+            G_Question.SetActive(false);
+            THI_NewQuestion();
+        }
+        else
+        {
+            OnLevelCompleted();
+        }
+    }
+
+
+
+
+    private void SetUpOptionsPanel()
     {
         int cacheLoop = GA_Options.Length;
         for (int i = 0; i < cacheLoop; i++)
@@ -128,13 +147,18 @@ public class RB_Runner_Main : GameManagerBase
 
         for (int i = 0; i < currentOptionCount; i++)
         {
-            G_Options.transform.GetChild(i).GetChild(0).GetComponent<Button>().onClick.AddListener(() => { THI_Check(); });
+            G_Options.transform.GetChild(i).GetChild(0).GetComponent<Button>().onClick.AddListener(() => { CheckAnswer(); });
         }
 
     }
 
-    public void THI_Check()
+    /// <summary>
+    /// For Checking the answer if it is right or wrong. ()
+    /// </summary>
+    public override void CheckAnswer()
     {
+        base.CheckAnswer();
+
         if (isInputUnLocked)
         {
             GameObject G_Selected = EventSystem.current.currentSelectedGameObject;
@@ -144,30 +168,19 @@ public class RB_Runner_Main : GameManagerBase
             {
                 G_Selected.GetComponent<AudioSource>().Play();
                 THI_Correct();
-                //I_Collect_count++;
             }
-            else { THI_WrongEffect(); }
+            else
+            {
+                THI_WrongEffect();
+            }
         }
+    }
 
-    }
-    void THI_Transition()
-    {
-        VaultPopUpsManager.Instance.ShowTransition(TransitionType.Fade);
-        if (I_currentQuestionCount < GameHandlerImmersiveGame.Instance.dataSO.datas.Count)
-        {
-            Tarun();
-            G_Question.SetActive(false);
-            THI_NewQuestion();
-        }
-        else
-        {
-            OnLevelCompleted();
-        }
-    }
+    
 
     public override void UpdateQuestion()
     {
-        I_currentQuestionCount++;
+        currentQuestionID++;
         isInputUnLocked = true;
         G_Question.SetActive(true);//
 
@@ -198,7 +211,7 @@ public class RB_Runner_Main : GameManagerBase
         //int currentquesCount = I_currentQuestionCount + 1;
         questionText.SetText(currentInstructionData.instruction[0]);
 
-        HUDManager.Instance.UpdateQuestionCountText(I_currentQuestionCount);//Tarun
+        HUDManager.Instance.UpdateQuestionCountText(currentQuestionID);//Tarun
 
         G_Question.transform.GetChild(0).transform.GetChild(0).GetComponent<Image>().sprite = currentData.questionData.questionSprit;
         G_Question.transform.GetChild(0).transform.GetChild(0).GetComponent<Image>().preserveAspect = true;
@@ -232,7 +245,7 @@ public class RB_Runner_Main : GameManagerBase
 
         // Release bird animation
         THI_TrackGameData("1");
-        Invoke(nameof(THI_Transition), 3f);
+        Invoke(nameof(Next), 3f);
 
     }
 
@@ -250,6 +263,7 @@ public class RB_Runner_Main : GameManagerBase
 
     public override void THI_WrongEffect()
     {
+        base.THI_WrongEffect();
         DLearnersAudioManager.Instance.PlayCommonSound("Com_Wrong");
 
         THI_TrackGameData("0");
@@ -268,7 +282,7 @@ public class RB_Runner_Main : GameManagerBase
                         G_Options.transform.GetChild(i).transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.green;
                     }
                 }
-                Invoke(nameof(THI_Transition), 5f);
+                Invoke(nameof(Next), 5f);
             }
             else if (currentDifficultyLevelType == DifficultyLevelType.Medium)
             {
@@ -289,7 +303,7 @@ public class RB_Runner_Main : GameManagerBase
             if (currentDifficultyLevelType == DifficultyLevelType.Hard)
             {
                 isInputUnLocked = false;
-                Invoke(nameof(THI_Transition), 2f);
+                Invoke(nameof(Next), 2f);
             }
         }
 

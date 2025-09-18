@@ -170,7 +170,7 @@ public class Sling_Drag : MonoBehaviour
         {
             if(collision.gameObject.transform.parent.transform.parent.name=="Question")
             {
-                slingShot_Main.THI_Check(collision.gameObject);
+                slingShot_Main.CheckAnswer(collision.transform);
                 Destroy(this.transform.parent.gameObject);
             }
         }

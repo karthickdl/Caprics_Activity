@@ -156,9 +156,6 @@ public class Robotmovement : Singleton<Robotmovement>
     public void NextQuest()
     {
         Destroy(G_portal);
-        // RB_Runner_Main.Instance.THI_ShowQuestion();
-
-       // GameManagerBase baseInstance = RB_Runner_Main.Instance;
         rB_Runner_Main.UpdateQuestion();
     }
     public void Robot_Out()
