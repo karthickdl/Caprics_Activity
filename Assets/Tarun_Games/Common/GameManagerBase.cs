@@ -94,7 +94,7 @@ namespace DLearners
 
         public virtual void OnLevelCompleted()
         {
-            DLearners.GameHandlerImmersiveGame.Instance.I_TotalPoints = GameHandlerImmersiveGame.Instance.dataSO.GetCorrectAnswerPoint();
+            GameHandlerImmersiveGame.Instance.I_TotalPoints = GameHandlerImmersiveGame.Instance.dataSO.GetCorrectAnswerPoint();
             VaultPopUpsManager.Instance.ShowPopup(NormalPopUpTypes.LevelCompletePOPUP,null);
         }
 

@@ -10930,7 +10930,6 @@ MonoBehaviour:
   - {fileID: 5442496689057902784}
   STRL_gameData: []
   STR_Data: 
-  G_levelComplete: {fileID: 816201575573027295}
   SPRA_ArrowsWebGL:
   - {fileID: -6198066232139300319, guid: 6269efcb1b649264a8af225338f0aaf8, type: 3}
   - {fileID: -7905275962017797664, guid: 6269efcb1b649264a8af225338f0aaf8, type: 3}
@@ -12510,6 +12509,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroyOnLoad: 1
+  isFastingTesting: 0
   platformType: 0
   gameAudioDataSO: {fileID: 11400000, guid: 38827135aa3719c41bfb0c3a0f8929c5, type: 2}
   introControllerPF: {fileID: 772068191316740501, guid: defaafb3d176a134ba037e5ae10d2225, type: 3}

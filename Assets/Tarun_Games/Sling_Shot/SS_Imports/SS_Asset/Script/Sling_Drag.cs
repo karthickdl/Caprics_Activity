@@ -1,3 +1,4 @@
+using DLearners;
 using System.Collections;
 using UnityEngine;
 
@@ -12,8 +13,6 @@ public class Sling_Drag : MonoBehaviour
     LineRenderer LR;
     Vector2 direction, mousepos;
     TrailRenderer TR;
-    public AudioSource AS_Sling;
-    public AudioSource AS_Throw;
     public LineRenderer LR_Projection;
     public LineRenderer Rubber_2;
 
@@ -43,24 +42,6 @@ public class Sling_Drag : MonoBehaviour
 
         cam = GameObject.FindWithTag("NewCam").GetComponent<Camera>();
     }
-
-    /*  public void THI_BacktoStart()
-      {
-          RB.velocity = Vector2.zero;
-
-         // RB.isKinematic = true;
-         // RB.bodyType = RigidbodyType2D.Static;
-
-
-          RB.bodyType = RigidbodyType2D.Dynamic; 
-          RB.MovePosition(V3_InitialPos);
-          B_CanDrag = true;
-          SJ.enabled = true;
-
-         // this.transform.position = V3_InitialPos;
-
-      }*/
-
     private void Update()
     {
         if (isPressed)
@@ -129,7 +110,7 @@ public class Sling_Drag : MonoBehaviour
 
     private void OnMouseDown()
     {
-        AS_Sling.Play();
+        DLearnersAudioManager.Instance.PlayGameSpecificSound("Sling_Pull");
         isPressed = true;
         RB.isKinematic = true;
        
@@ -145,7 +126,7 @@ public class Sling_Drag : MonoBehaviour
         LR.enabled = false;
         Rubber_2.enabled = false;
         this.transform.GetChild(1).gameObject.SetActive(false);
-        AS_Throw.Play();
+        DLearnersAudioManager.Instance.PlayGameSpecificSound("Throw");
         //Invoke(nameof(THI_BacktoStart), 1f);
     }
 

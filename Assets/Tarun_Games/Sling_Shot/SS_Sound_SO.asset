@@ -13,23 +13,19 @@ MonoBehaviour:
   m_Name: SS_Sound_SO
   m_EditorClassIdentifier: 
   fxSounds:
-  - name: AS_falling
-    audioClip: {fileID: 8300000, guid: ea0468af7e6c20346bbc0d8a2a1e8337, type: 3}
-    mixerType: 2
+  - name: BG
+    audioClip: {fileID: 8300000, guid: 417cb625401948c44897737dae45326d, type: 3}
+    mixerType: 1
     volumeLevel: 0.07
-  - name: AS_Walking
-    audioClip: {fileID: 8300000, guid: bd6a3389689a70c4983bd753ed8dc34e, type: 3}
+  - name: Throw
+    audioClip: {fileID: 8300000, guid: c3caf1bfbd8a5c7418d0fa01e91d8029, type: 3}
     mixerType: 2
-    volumeLevel: 0.07
-  - name: AS_Jumping
-    audioClip: {fileID: 8300000, guid: 42196fff2e06d9f4285bd1d45afb5abb, type: 3}
+    volumeLevel: 0.5
+  - name: Sling_Pull
+    audioClip: {fileID: 8300000, guid: 417cb625401948c44897737dae45326d, type: 3}
     mixerType: 2
-    volumeLevel: 0.07
-  - name: AS_Portal
-    audioClip: {fileID: 8300000, guid: e1cdd86f3edf194459b741e22b07a737, type: 3}
+    volumeLevel: 0.5
+  - name: Fall_Ground
+    audioClip: {fileID: 8300000, guid: 77c30804f116d83428d1df9388f2b18a, type: 3}
     mixerType: 2
-    volumeLevel: 0.07
-  - name: blast
-    audioClip: {fileID: 8300000, guid: 5128548a563ded94c9878a32e0e8157c, type: 3}
-    mixerType: 2
-    volumeLevel: 0.07
+    volumeLevel: 0.5

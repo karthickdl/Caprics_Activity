@@ -19,23 +19,10 @@ public class SlingShot_Main : GameManagerBase
     int I_Dummy;
     public Vector3[] V3_OptPos;
 
-    [Header("Values")]
-    public string STR_currentQuestionID;
-    public int I_Points;
-    public int I_wrongAnsCount;
-    public Sprite[] SPRA_Question;
-
 
     [Header("URL")]
     public string URL;
     public string SendValueURL;
-
-    [Header("Audios")]
-    public AudioSource AS_collecting;
-    public AudioSource AS_oops;
-    public AudioSource AS_crtans;
-    public AudioSource AS_Wrong3;
-
    
 
     [Header("GAME DATA")]
@@ -202,17 +189,9 @@ public class SlingShot_Main : GameManagerBase
 
 
 
-    void THI_Levelcompleted()
-    {
-        DLearners.GameHandlerImmersiveGame.Instance.I_TotalPoints = I_Points;
-        VaultPopUpsManager.Instance.ShowPopup(NormalPopUpTypes.LevelCompletePOPUP);
-        StartCoroutine(IN_sendDataToDB());
-    }
-
-
     public void THI_Correct()
     {
-        AS_crtans.Play();
+        DLearnersAudioManager.Instance.PlayCommonSound("Com_Correct");
 
         I_Collect_count++;
         // TEX_points.text = I_Points.ToString();
@@ -281,7 +260,6 @@ public class SlingShot_Main : GameManagerBase
         {
             if (currentDifficultyLevelType == DifficultyLevelType.Hard)
             {
-                AS_Wrong3.Play();
                 Invoke(nameof(Next), 2f);
             }
                
@@ -333,7 +311,7 @@ public class SlingShot_Main : GameManagerBase
     public void THI_TrackGameData(string analysis)
     {
         DBmanager TrainSortingDB = new DBmanager();
-        TrainSortingDB.question_id = STR_currentQuestionID;
+        TrainSortingDB.question_id = currentData.questionData.questionID;
         TrainSortingDB.answer = STR_currentSelectedAnswer;
         TrainSortingDB.analysis = analysis;
         string toJson = JsonUtility.ToJson(TrainSortingDB);
