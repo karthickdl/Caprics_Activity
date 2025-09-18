@@ -95,13 +95,43 @@ public class RB_Runner_Main : GameManagerBase
     protected override void Tarun()
     {
         base.Tarun();
-       
-
 
         ff();
         // questionIMG.sprite = TarunTesting.Instance.dataSO.GetQuestionSprit(0);
     }
+    private void ff()
+    {
+        int cacheLoop = GA_Options.Length;
+        for (int i = 0; i < cacheLoop; i++)
+        {
+            GA_Options[i].SetActive(false);
+        }
 
+        if (currentOptionCount == 2)
+        {
+            G_Options = GA_Options[0];
+        }
+        if (currentOptionCount == 3)
+        {
+            G_Options = GA_Options[1];
+        }
+        if (currentOptionCount == 4)
+        {
+            G_Options = GA_Options[2];
+        }
+        if (currentOptionCount == 5)
+        {
+            G_Options = GA_Options[3];
+        }
+
+        G_Options.SetActive(true);
+
+        for (int i = 0; i < currentOptionCount; i++)
+        {
+            G_Options.transform.GetChild(i).GetChild(0).GetComponent<Button>().onClick.AddListener(() => { THI_Check(); });
+        }
+
+    }
 
     public void THI_Check()
     {
@@ -126,7 +156,7 @@ public class RB_Runner_Main : GameManagerBase
         if (I_currentQuestionCount < GameHandlerImmersiveGame.Instance.dataSO.datas.Count)
         {
             Tarun();
-            G_Question.SetActive(false);            
+            G_Question.SetActive(false);
             THI_NewQuestion();
         }
         else
@@ -266,31 +296,7 @@ public class RB_Runner_Main : GameManagerBase
         HUDManager.Instance.UpdateScoreText(false);
     }
 
-    private void ff()
-    {
-        DLearners.GameHandlerImmersiveGame.Instance.I_TotalQuestions = GameHandlerImmersiveGame.Instance.dataSO.datas.Count;
-        for (int i = 0; i < GA_Options.Length; i++)
-        {
-            GA_Options[i].SetActive(false);
-        }
-        if (currentOptionCount == 2)
-        {
-            G_Options = GA_Options[0];
-        }
-        if (currentOptionCount == 3)
-        {
-            G_Options = GA_Options[1];
-        }
-        if (currentOptionCount == 4)
-        {
-            G_Options = GA_Options[2];
-        }
-        if (currentOptionCount == 5)
-        {
-            G_Options = GA_Options[3];
-        }
-        G_Options.SetActive(true);
-    }
+   
 
 
     public void THI_TrackGameData(string analysis)
