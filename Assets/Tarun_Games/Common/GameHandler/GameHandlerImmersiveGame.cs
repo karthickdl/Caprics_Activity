@@ -7,8 +7,7 @@ namespace DLearners
     {
         public bool isFastingTesting;
         public PlatformType platformType;
-        [Header ("Sound SO")]
-        public GameAudioDataSO gameAudioDataSO;
+        
 
         [Header("Splash Screen")]
         [SerializeField] private IntroController introControllerPF;
@@ -20,15 +19,11 @@ namespace DLearners
         [SerializeField] private DemoController demoControllerPF;
         [SerializeField] private DemoControllerDataSO _demoControllerDataSO;
 
-        [Header("Game Data")]
-        public DataSO dataSO;
+       
 
         [SerializeField] private Transform canv;
-        private void Start()
-        {
-            Init();
-            StartCoroutine(Test());
-        }
+
+
         private IEnumerator Test()
         {
             DownloadManager.Instance.SetURLData(dataSO.GetURLData());
@@ -36,9 +31,8 @@ namespace DLearners
             if (!isFastingTesting)
             {
                 IntroController cashIntroController = Instantiate(introControllerPF, canv);
-                // cashIntroController.Init();
-                Destroy(cashIntroController.gameObject,1.8f);
-                yield return new WaitForSeconds(2);
+                cashIntroController.InitIntroController();
+                yield return new WaitUntil(() => cashIntroController.isDone);
 
                 CoverPage cashCoverPage = Instantiate(coverPagePF, canv);
                 cashCoverPage.InitCoverPage(dataSO.GetCoverPageSprit());
@@ -62,18 +56,19 @@ namespace DLearners
             yield return null;
         }
 
-        public void gg()
+        public override void gg()
         {
+            base.gg();
             DemoController cashDemoController = Instantiate(demoControllerPF, canv);
 
             cashDemoController.InitDemoController(_demoControllerDataSO);
         }
 
 
-        
 
 
-        private void Init()
+
+        public override void InitGameHandlerImmersiveGame()
         {
             Application.ExternalEval("OnAppReady()");
 #if UNITY_ANDROID || UNITY_IOS
@@ -92,34 +87,21 @@ namespace DLearners
                 default:
                     break;
             }
+            StartCoroutine(Test());
         }
-        [Header("ID")]
-        public string STR_IDjson;//
-        public string STR_childID;
-        public string STR_GameID;
-        public string STR_responseSerial;//
-
-        [Header("SCORE")]
-        public int I_TotalPoints;
-        public int I_TotalQuestions;
-        public int I_correctPoints => dataSO.GetCorrectAnswerPoint();
-
-       [Header("MODE")]
-        public string mode;
-        [Header("PREVIEW MODE")]
-        public string STR_previewJsonAPI;
+        
         public void JS_getID(string val)
         {
             STR_IDjson = val;
             Debug.Log("json string from javascript : " + val);
             MyJSON myjson = new MyJSON();
             myjson.FetchIDs();
-            DLearners.GameHandlerImmersiveGame.Instance.mode = "live";
+            mode = "live";
         }
 
         public void JS_getMode(string val)
         {
-            DLearners.GameHandlerImmersiveGame.Instance.mode = "preview";
+            mode = "preview";
             STR_previewJsonAPI = val;
         }
     }

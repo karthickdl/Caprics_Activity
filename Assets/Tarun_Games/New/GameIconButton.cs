@@ -24,6 +24,8 @@ public class GameIconButton : MonoBehaviour
     {
         Debug.Log("OnButtonClick");
 
+        Application.LoadLevel(1);
+
         ApplicationManager.Instance.tarun(id);
     }
 }

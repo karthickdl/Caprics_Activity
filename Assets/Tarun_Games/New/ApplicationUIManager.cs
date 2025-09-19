@@ -8,6 +8,7 @@ public class ApplicationUIManager : Singleton<ApplicationUIManager>
 
     private void Start()
     {
+
         for (int i = 0; i < 2; i++)
         {
             GameIconButton cash = Instantiate(gameIconButtonPF, buttonSpawn);

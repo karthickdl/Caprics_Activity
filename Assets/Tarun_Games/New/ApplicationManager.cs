@@ -18,6 +18,7 @@ public class ApplicationManager : Singleton<ApplicationManager>
     {
         Tarun2(ScreenOrientation.LandscapeLeft);
         hg = Instantiate(gg[ID]);
+        hg.InitGameHandlerImmersiveGame();
         ApplicationUIManager.Instance.gameObject.SetActive(false);
 
     }
@@ -32,12 +33,12 @@ public class ApplicationManager : Singleton<ApplicationManager>
     public void Tarun3()
     {
         Tarun2(ScreenOrientation.Portrait);
-        ApplicationUIManager.Instance.gameObject.SetActive(true);
         HUDManager.Instance.gameObject.SetActive(false);
 
 
             Destroy(hg.gameObject);
         hg = null;
         DLearnersAudioManager.Instance.CleanUp();
+        Application.LoadLevel(0);
     }
 }

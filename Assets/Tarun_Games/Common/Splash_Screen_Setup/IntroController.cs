@@ -1,18 +1,18 @@
+using DG.Tweening;
 using UnityEngine;
 
 public class IntroController : MonoBehaviour
 {
     [SerializeField] private Animator animator;
     [SerializeField] private AnimationClip AC_introAnim;
-
-    public void Init()
+    public bool isDone;
+    public void InitIntroController()
     {
         animator.SetTrigger("IsStart");
-
-    }
-    public float InitIntroController()
-    {
-        Destroy(gameObject, AC_introAnim.length);
-        return AC_introAnim.length;
+        DOVirtual.DelayedCall(AC_introAnim.length,() =>
+        {
+            isDone = true;
+            Destroy(gameObject);
+        }).SetLink(gameObject);
     }
 }
