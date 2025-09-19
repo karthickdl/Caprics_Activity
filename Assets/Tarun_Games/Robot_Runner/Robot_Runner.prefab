@@ -12469,7 +12469,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5442496690073624874}
   - component: {fileID: 1383326536573894478}
-  - component: {fileID: 4846884497664546194}
+  - component: {fileID: 3044707959332213455}
   m_Layer: 0
   m_Name: Robot_Runner
   m_TagString: Untagged
@@ -12508,7 +12508,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c7dbea238b24094e8493ec03026892f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canDestroyOnLoad: 1
+  canDestroyOnLoad: 0
   isFastingTesting: 0
   platformType: 0
   gameAudioDataSO: {fileID: 11400000, guid: 38827135aa3719c41bfb0c3a0f8929c5, type: 2}
@@ -12526,7 +12526,7 @@ MonoBehaviour:
   I_TotalQuestions: 0
   mode: 
   STR_previewJsonAPI: 
---- !u!114 &4846884497664546194
+--- !u!114 &3044707959332213455
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -12538,7 +12538,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6c64c6992a7d514aa59bd34cf0d83e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canDestroyOnLoad: 1
+  canDestroyOnLoad: 0
   gameID: 
   getValueURL: 
   sendValueURL: 

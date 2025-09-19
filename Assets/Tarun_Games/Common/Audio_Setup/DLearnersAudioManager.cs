@@ -9,7 +9,6 @@ namespace DLearners
         public GameAudioDataSO commonSoundSO;
         public AudioMixer inGameMixer;
         public AudioMixer bgMixer;
-
         [System.Serializable]
         public class Sound
         {
@@ -84,6 +83,7 @@ namespace DLearners
         public void PlayGameSpecificSound(string name, float delay = 0)
         {
             GameObject audioPlayer = new GameObject("AP");
+            audioPlayer.transform.parent = gameObject.transform;
             SoundDataStruct soundDataStruct = Array.Find(fxSounds2, s => s.name == name);
             AudioSource audioSource = audioPlayer.AddComponent<AudioSource>();
 
@@ -109,6 +109,7 @@ namespace DLearners
         public void PlayCommonSound(string name, float delay = 0)
         {
             GameObject audioPlayer = new GameObject("AP");
+            audioPlayer.transform.parent = gameObject.transform;
             SoundDataStruct soundDataStruct = Array.Find(fxSoundsCommon, s => s.name == name);
             AudioSource audioSource = audioPlayer.AddComponent<AudioSource>();
 
@@ -135,6 +136,7 @@ namespace DLearners
         public AudioSource PlaySoundCashed(string name)
         {
             GameObject audioPlayer = new GameObject("AP");
+            audioPlayer.transform.parent = gameObject.transform;
             SoundDataStruct soundDataStruct = Array.Find(fxSounds2, s => s.name == name);
             AudioSource audioSource = audioPlayer.AddComponent<AudioSource>();
 
@@ -180,6 +182,13 @@ namespace DLearners
             Destroy(audioPlayer, audioSource.clip.length);
         }
 
+        public void CleanUp()
+        {
+            foreach (Transform child in this.gameObject.transform)
+            {
+                Destroy(child.gameObject);
+            }
+        }
 
         public void StopSound(string name)
         {

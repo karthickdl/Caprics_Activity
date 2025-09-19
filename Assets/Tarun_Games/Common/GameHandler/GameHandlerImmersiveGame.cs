@@ -36,7 +36,9 @@ namespace DLearners
             if (!isFastingTesting)
             {
                 IntroController cashIntroController = Instantiate(introControllerPF, canv);
-                yield return new WaitForSeconds(cashIntroController.InitIntroController());
+                // cashIntroController.Init();
+                Destroy(cashIntroController.gameObject,1.8f);
+                yield return new WaitForSeconds(2);
 
                 CoverPage cashCoverPage = Instantiate(coverPagePF, canv);
                 cashCoverPage.InitCoverPage(dataSO.GetCoverPageSprit());

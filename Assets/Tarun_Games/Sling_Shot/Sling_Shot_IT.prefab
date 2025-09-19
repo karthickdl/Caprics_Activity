@@ -236,6 +236,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2293976914613310201}
   - component: {fileID: 1857868113352455159}
+  - component: {fileID: 5321414778528493539}
   m_Layer: 0
   m_Name: Sling_Shot_IT
   m_TagString: Untagged
@@ -274,8 +275,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c7dbea238b24094e8493ec03026892f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canDestroyOnLoad: 1
-  isFastingTesting: 1
+  canDestroyOnLoad: 0
+  isFastingTesting: 0
   platformType: 0
   gameAudioDataSO: {fileID: 11400000, guid: 92cc224727592464e817b29c4ed09843, type: 2}
   introControllerPF: {fileID: 772068191316740501, guid: defaafb3d176a134ba037e5ae10d2225, type: 3}
@@ -292,6 +293,22 @@ MonoBehaviour:
   I_TotalQuestions: 0
   mode: 
   STR_previewJsonAPI: 
+--- !u!114 &5321414778528493539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2293976914613310200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6c64c6992a7d514aa59bd34cf0d83e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canDestroyOnLoad: 0
+  gameID: 
+  getValueURL: 
+  sendValueURL: 
 --- !u!1 &2293976914834803452
 GameObject:
   m_ObjectHideFlags: 0
@@ -1929,7 +1946,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac933bf0a50ca1548a5b2bf4116b9981, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canDestroyOnLoad: 0
+  canDestroyOnLoad: 1
   mainGameOBJ: {fileID: 2293976915356721183}
   G_Question: {fileID: 2293976915243600328}
   G_Options: {fileID: 0}

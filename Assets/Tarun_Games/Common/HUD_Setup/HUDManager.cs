@@ -234,7 +234,7 @@ namespace DLearners
 #if UNITY_WEBGL
 Application.ExternalEval("closeApplication()");
 #elif UNITY_ANDROID || UNITY_IOS
-            Application.Quit();
+            ApplicationManager.Instance.Tarun3();
 #endif
         }
         #endregion
