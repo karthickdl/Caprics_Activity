@@ -253,7 +253,7 @@ RectTransform:
   m_Father: {fileID: 8566300593914059931}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -415,7 +415,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8344664181708814956}
   m_HandleRect: {fileID: 8936572767808825246}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -475,7 +475,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5910239321003405787}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -505,7 +505,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5910239321003405787}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2a4db7a114972834c8e4117be1d82ba3, type: 3}
   m_Name: 
@@ -561,7 +561,7 @@ GameObject:
   - component: {fileID: 569035684376923522}
   - component: {fileID: 2451836529034390810}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Application_Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -664,7 +664,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canDestroyOnLoad: 0
   gameIconButtonPF: {fileID: 5280832853172818218, guid: 25f129d4d6e8f844dbca3ef54a7359d8, type: 3}
-  buttonSpawn: {fileID: 2813330088568671795}
+  buttonSpawnIG: {fileID: 2813330088568671795}
+  buttonSpawnLW: {fileID: 2813330088568671795}
+  immersiveGameCount: 0
+  liveWorksheetCount: 0
+  immersiveGameIconButtons: []
+  liveWorksheetIconButtons: []
 --- !u!1 &6318408327467987995
 GameObject:
   m_ObjectHideFlags: 0
@@ -680,7 +685,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8566300593914059931
 RectTransform:
   m_ObjectHideFlags: 0
@@ -734,7 +739,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000014066696, y: -0.0007092618}
+  m_AnchoredPosition: {x: -0.000012397766, y: 0.000021457672}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &7739971046316778870

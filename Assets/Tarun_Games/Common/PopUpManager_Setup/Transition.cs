@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,7 +7,7 @@ public class Transition : MonoBehaviour
 {
     public Image fadeIMG;
     public Transform fadeTransform;
-    public void Init(TransitionType _transitionType = TransitionType.Fade)
+    public void Init(TransitionType _transitionType = TransitionType.Fade, Action action = null)
     {
         fadeIMG.DOFade(0, 0);
         switch (_transitionType)
@@ -19,6 +20,12 @@ public class Transition : MonoBehaviour
                 }).SetEase(Ease.Linear);                
                 break;
             case TransitionType.Fade2:
+                fadeIMG.DOFade(1, 0);
+                fadeIMG.DOFade(0, 1f).OnComplete(() =>
+                {
+                    action?.Invoke();
+                   // fadeIMG.DOFade(0, 0.5f).SetEase(Ease.Linear);
+                }).SetEase(Ease.Linear);
                 break;
             default:
                 break;

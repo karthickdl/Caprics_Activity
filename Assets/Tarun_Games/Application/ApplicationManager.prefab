@@ -44,8 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20a0dcd0d264925448fff9cccf41e2d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canDestroyOnLoad: 1
+  canDestroyOnLoad: 0
+  gamePFLocationSO: {fileID: 11400000, guid: 5ca605f702fd8a94c8828beb95236220, type: 2}
   gg:
   - {fileID: 1383326536573894478, guid: 0f842811889d3984284ddf6ea5cae676, type: 3}
   - {fileID: 1857868113352455159, guid: a2219ee46a8affd4897c702ce35c581e, type: 3}
-  gameSpawnPoint: {fileID: 0}
+  currentOpenGame: {fileID: 0}

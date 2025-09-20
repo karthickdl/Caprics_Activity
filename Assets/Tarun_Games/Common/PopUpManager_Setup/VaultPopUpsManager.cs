@@ -96,8 +96,26 @@ public class VaultPopUpsManager : Singleton<VaultPopUpsManager>
             Destroy(tempTransition.gameObject,0.1f);
             popUpHolder.gameObject.SetActive(false);
             isTransition = false;
+        }).SetLink(tempTransition.gameObject);        
+    }
+    public void ShowTransition(TransitionType _transitionType, Action action)
+    {
+        if (isTransition)
+        {
+            return;
+        }
+        isTransition = true;
+        popUpHolder.gameObject.SetActive(true);
+        Transition tempTransition = Instantiate(_popUpsListSO.transition, popUpHolder);
+        tempTransition.Init(_transitionType, action);
+
+        DOVirtual.DelayedCall(1f, () =>
+        {
+            Destroy(tempTransition.gameObject, 0.1f);
+            popUpHolder.gameObject.SetActive(false);
+            isTransition = false;
         }).SetLink(tempTransition.gameObject);
-        
+
     }
 
     #region FlyPopUp

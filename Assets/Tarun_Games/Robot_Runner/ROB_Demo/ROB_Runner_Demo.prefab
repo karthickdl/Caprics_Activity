@@ -1073,11 +1073,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5504580022886320016}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fface8b9bb98f4f90b72ada8ced7f979, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 5504580022886320030}
   textPanel: {fileID: 6982933013577557053}
   text: {fileID: 3628483177992358688}
 --- !u!1 &5504580022939674282

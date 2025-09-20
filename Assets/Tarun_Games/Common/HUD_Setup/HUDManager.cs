@@ -1,4 +1,5 @@
 using DG.Tweening;
+using DLearnersApplication;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,6 +15,10 @@ namespace DLearners
         protected int currentQuestionsID { get; private set; }
         protected int score { get; private set; }
 
+        private void Start()
+        {
+            SetHUDOnOff(false);
+        }
         #region Init
         public void SetHUDOnOff(bool isOn)
         {
@@ -234,7 +239,8 @@ namespace DLearners
 #if UNITY_WEBGL
 Application.ExternalEval("closeApplication()");
 #elif UNITY_ANDROID || UNITY_IOS
-            ApplicationManager.Instance.Tarun3();
+            ApplicationManager.Instance.OnCloseGameAndBackToHomePage();
+            SetHUDOnOff(false);
 #endif
         }
         #endregion

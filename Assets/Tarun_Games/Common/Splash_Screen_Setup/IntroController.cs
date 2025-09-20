@@ -8,6 +8,7 @@ public class IntroController : MonoBehaviour
     public bool isDone;
     public void InitIntroController()
     {
+        animator.ResetTrigger("IsStart");
         animator.SetTrigger("IsStart");
         DOVirtual.DelayedCall(AC_introAnim.length,() =>
         {
