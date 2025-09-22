@@ -352,23 +352,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2813330088568671795, guid: fef4119d6eaf4e449b2b7f6d59308a0b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -0.000019550323
+      value: -0.000023841858
       objectReference: {fileID: 0}
     - target: {fileID: 2813330088568671795, guid: fef4119d6eaf4e449b2b7f6d59308a0b, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -2.2779202
+      value: -1.2098053
       objectReference: {fileID: 0}
     - target: {fileID: 5926114221189741249, guid: fef4119d6eaf4e449b2b7f6d59308a0b, type: 3}
       propertyPath: m_Name
       value: Application_Canvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 6828048586944173700, guid: fef4119d6eaf4e449b2b7f6d59308a0b, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6828048586944173700, guid: fef4119d6eaf4e449b2b7f6d59308a0b, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8807645806543184745, guid: fef4119d6eaf4e449b2b7f6d59308a0b, type: 3}
       propertyPath: m_Pivot.x

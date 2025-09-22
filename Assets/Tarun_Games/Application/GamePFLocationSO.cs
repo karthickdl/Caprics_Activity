@@ -20,6 +20,8 @@ namespace DLearnersApplication
     public struct GamePFLocationData
     {
         public string gameID;
+        public string gameName;
+        public Sprite gameIcon;
         public string pFLocation;
     }
 }

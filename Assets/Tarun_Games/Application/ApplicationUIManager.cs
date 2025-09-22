@@ -30,25 +30,25 @@ namespace DLearnersApplication
             for (int i = 0; i < immersiveGameCount; i++)
             {
                 GameIconButton cashImmersiveGameIconButtons = Instantiate(gameIconButtonPF, buttonSpawnIG);
-                cashImmersiveGameIconButtons.InitGameIconButton(i);
+                cashImmersiveGameIconButtons.InitGameIconButton(i,ApplicationManager.Instance.gamePFLocationSO.gamePFLocationDatas[i]);
                 immersiveGameIconButtons.Add(cashImmersiveGameIconButtons);
             }
 
             for (int i = 0; i < liveWorksheetCount; i++)
             {
                 GameIconButton cashLiveWorksheetIconButtons = Instantiate(gameIconButtonPF, buttonSpawnLW);
-                cashLiveWorksheetIconButtons.InitGameIconButton(i);
+                cashLiveWorksheetIconButtons.InitGameIconButton(i, ApplicationManager.Instance.gamePFLocationSO.gamePFLocationDatas[i]);
                 liveWorksheetIconButtons.Add(cashLiveWorksheetIconButtons);
             }
         }
 
         public int GetImmersiveGameCount()
         {
-            return 3;
+            return 2;
         }
         public int GetLiveWorksheetCount()
         {
-            return 4;
+            return 0;
         }
 
         private void DisposeApplicationUIData()
