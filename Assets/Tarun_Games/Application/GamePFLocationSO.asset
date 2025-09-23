@@ -18,7 +18,14 @@ MonoBehaviour:
     gameName: Robot Runner
     gameIcon: {fileID: 21300000, guid: 096dc3b9bbf34fd49bab343a864f473d, type: 3}
     pFLocation: Robot_Runner
+    gameType: 1
   - gameID: 
     gameName: Sling Shot
     gameIcon: {fileID: 21300000, guid: e60be610c51394a468eeb6f0942a4b76, type: 3}
     pFLocation: Sling_Shot_IT
+    gameType: 1
+  - gameID: 
+    gameName: Product Sorting
+    gameIcon: {fileID: 21300000, guid: 9d5f2b4ce8a8e1f4b8247d16518c826f, type: 3}
+    pFLocation: Product_sorting
+    gameType: 1

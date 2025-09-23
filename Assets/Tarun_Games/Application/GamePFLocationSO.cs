@@ -23,5 +23,11 @@ namespace DLearnersApplication
         public string gameName;
         public Sprite gameIcon;
         public string pFLocation;
+        public GameType gameType;
+    }
+    public enum GameType
+    {
+        LWS,
+        Game
     }
 }

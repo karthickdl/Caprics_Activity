@@ -33,7 +33,7 @@ namespace DLearnersApplication
                 if (sliderValue >= 1f)
                 {
                     asyncOperation.allowSceneActivation = true;
-                   // SaveDataHandler.Instance.GameSceneLoaded = true;
+                    // SaveDataHandler.Instance.GameSceneLoaded = true;
                 }
                 yield return null;
             }

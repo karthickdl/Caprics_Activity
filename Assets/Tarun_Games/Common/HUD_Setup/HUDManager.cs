@@ -239,7 +239,7 @@ namespace DLearners
 #if UNITY_WEBGL
 Application.ExternalEval("closeApplication()");
 #elif UNITY_ANDROID || UNITY_IOS
-            ApplicationManager.Instance.OnCloseGameAndBackToHomePage();
+            ApplicationManager.Instance.OnCloseGameAndBackToHomePage("Application_Menu");
             SetHUDOnOff(false);
 #endif
         }

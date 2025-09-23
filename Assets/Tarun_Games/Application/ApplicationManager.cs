@@ -1,4 +1,5 @@
 using DLearners;
+using System.Collections;
 using UnityEngine;
 
 namespace DLearnersApplication
@@ -9,18 +10,18 @@ namespace DLearnersApplication
 
         public GameHandlerBase currentOpenGame;
 
-        public void OnOpenSelectedGame(int ID)
+        public void OnOpenSelectedGame(int ID, string sceneNameToLoad)
         {
-            VaultPopUpsManager.Instance.ShowTransition(TransitionType.Fade2);
+            
             SetScreenOrientation(ScreenOrientation.LandscapeLeft);
 
+            StartCoroutine(LoadScene(sceneNameToLoad));
             currentOpenGame = Instantiate(GetGame(ID));
             currentOpenGame.InitGameHandlerImmersiveGame();
             ApplicationUIManager.Instance.SetApplicationUIOnOff(false);
         }
-        public void OnCloseGameAndBackToHomePage()
+        public void OnCloseGameAndBackToHomePage(string sceneNameToLoad)
         {
-            VaultPopUpsManager.Instance.ShowTransition(TransitionType.Fade2);
             SetScreenOrientation(ScreenOrientation.Portrait);
             Destroy(currentOpenGame.gameObject);
             currentOpenGame = null;
@@ -29,6 +30,8 @@ namespace DLearnersApplication
             Time.timeScale = 1;
 
             ApplicationUIManager.Instance.SetApplicationUIOnOff(true);
+
+            StartCoroutine(LoadScene("Application_Menu"));
         }
 
         private GameHandlerBase GetGame(int gameID)
@@ -40,6 +43,26 @@ namespace DLearnersApplication
         public void SetScreenOrientation(ScreenOrientation screenOrientation)
         {
             Screen.orientation = screenOrientation;
+        }
+
+        public IEnumerator LoadScene(string sceneNameToLoad)
+        {
+            VaultPopUpsManager.Instance.ShowTransition(TransitionType.Fade2);
+
+            LoadScene(sceneNameToLoad);
+
+            /* AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneNameToLoad);
+             asyncOperation.allowSceneActivation = false;
+             while (!asyncOperation.isDone)
+             {
+                 if (asyncOperation.progress >= 1f)
+                 {
+                     asyncOperation.allowSceneActivation = true;
+                     // SaveDataHandler.Instance.GameSceneLoaded = true;
+                 }
+                 yield return null;
+             }*/
+            yield return null;
         }
     }
 }

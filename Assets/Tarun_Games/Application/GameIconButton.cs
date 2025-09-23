@@ -11,12 +11,13 @@ namespace DLearnersApplication
         [SerializeField] Image gameIconIMG;
 
         [SerializeField] int id;
-
+        [SerializeField] string loadSceneName;
         public void InitGameIconButton(int _id, GamePFLocationData gamePFLocationData)
         {
             id = _id;
             buttonText.SetText(gamePFLocationData.gameName);
             gameIconIMG.sprite = gamePFLocationData.gameIcon;
+            loadSceneName = gamePFLocationData.gameType.ToString();
             button.onClick.AddListener(() =>
             {
                 OnButtonClick();
@@ -26,7 +27,8 @@ namespace DLearnersApplication
         private void OnButtonClick()
         {
             Debug.Log("OnButtonClick");
-            ApplicationManager.Instance.OnOpenSelectedGame(id);
+            ApplicationManager.Instance.OnOpenSelectedGame(id, loadSceneName);
+            
         }
     }
 }
