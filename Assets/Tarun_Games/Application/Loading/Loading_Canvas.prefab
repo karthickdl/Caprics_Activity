@@ -656,6 +656,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canDestroyOnLoad: 1
   logo: {fileID: 1267950037122509049}
-  loadingSpeedOffSet: 1
-  sceneNameToLoad: Game
+  loadingSpeedOffSet: 2.5
+  sceneNameToLoad: Application_Menu
   loadingBar: {fileID: 9025197652946125007}

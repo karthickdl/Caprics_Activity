@@ -380,10 +380,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2204461042819010597, guid: b57be8b0d4200b1459b05ffb7fb65688, type: 3}
-      propertyPath: loadingSpeedOffSet
-      value: 2.5
-      objectReference: {fileID: 0}
     - target: {fileID: 3158522625447453551, guid: b57be8b0d4200b1459b05ffb7fb65688, type: 3}
       propertyPath: m_Pivot.x
       value: 0
