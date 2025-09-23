@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91e3a3d125234e64780bda66ea1399be, type: 3}
   m_Name: PS_DemoController_Data_SO
   m_EditorClassIdentifier: 
-  demoController_N: {fileID: 5504580022886320031, guid: df3f27ac3f07e024f94b65889f51fe17, type: 3}
+  demoController_N: {fileID: 892097802165870240, guid: 562c3451ee51b6d458c03bd7399436d9, type: 3}
   bgSprite: {fileID: 21300000, guid: 2a3767df1cdf1ba49a58bd54f78f6a4d, type: 3}
   demoControllInfos:
   - clip: {fileID: 0}

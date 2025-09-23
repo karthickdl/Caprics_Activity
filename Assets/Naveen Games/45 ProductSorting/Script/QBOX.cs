@@ -9,10 +9,10 @@ public class QBOX : MonoBehaviour
     public AudioSource AS_Droping;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-       // Debug.Log("Colliding");
+        // Debug.Log("Colliding");
         if (collision.gameObject != null)
         {
-          //  Debug.Log("Colliding = "+ collision.gameObject.name);
+            //  Debug.Log("Colliding = "+ collision.gameObject.name);
             STR_Selected = collision.gameObject.name;
         }
     }
@@ -23,23 +23,26 @@ public class QBOX : MonoBehaviour
 
     }
 
+    private PS_Main ps_PS_Main => (PS_Main)PS_Main.Instance;
+
+
     public void BUT_DropDown()
     {
-        if (STR_Selected  == "")
+        if (STR_Selected == "")
         {
-            PS_Main.Instance.THI_Wrong();
+            ps_PS_Main.THI_WrongEffect();
             THIDropDown();
         }
         else
         {
-            if (STR_Selected == PS_Main.Instance.STR_currentQuestionAnswer)
+            if (STR_Selected == ps_PS_Main.STR_currentQuestionAnswer)
             {
-                PS_Main.Instance.THI_Correct();
+                ps_PS_Main.THI_Correct();
                 THIDropDown();
             }
             else
             {
-                PS_Main.Instance.THI_Wrong();
+                ps_PS_Main.THI_WrongEffect();
                 THIDropDown();
             }
         }
@@ -49,12 +52,12 @@ public class QBOX : MonoBehaviour
     {
         Crane.FixedJoystick.gameObject.SetActive(false);
         Crane.G_Button.SetActive(false);
-        PS_Main.Instance.STR_currentSelectedAnswer = STR_Selected;
+        ps_PS_Main.STR_currentQuestionAnswer = STR_Selected;
         this.GetComponent<Rigidbody2D>().gravityScale = 1f;
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.name=="Opt 2"|| collision.gameObject.name=="Opt 3")
+        if (collision.gameObject.name == "Opt 2" || collision.gameObject.name == "Opt 3")
         {
             Debug.Log(collision.gameObject.name);
             AS_Droping.Play();

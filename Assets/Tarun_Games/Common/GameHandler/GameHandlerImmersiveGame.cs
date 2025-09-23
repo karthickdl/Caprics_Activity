@@ -24,8 +24,24 @@ namespace DLearners
         [SerializeField] private Transform canv;
 
 
+
+//#if UNITYEDITOR
+        private void Start()
+        {
+           if (isTesting)
+            {
+                InitGameHandlerImmersiveGame();      
+            }
+       }
+//#endif
+
+
+
         private IEnumerator Test()
         {
+
+
+
             DownloadManager.Instance.SetURLData(dataSO.GetURLData());
             HUDManager.Instance.SetHUDOnOff(false);
             if (!isFastingTesting)

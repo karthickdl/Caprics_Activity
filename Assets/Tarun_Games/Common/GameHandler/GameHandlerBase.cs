@@ -4,6 +4,8 @@ namespace DLearners
 {
     public class GameHandlerBase : Singleton<GameHandlerBase>
     {
+        public bool isTesting;
+
         protected override void Awake()
         {
             base.Awake();
