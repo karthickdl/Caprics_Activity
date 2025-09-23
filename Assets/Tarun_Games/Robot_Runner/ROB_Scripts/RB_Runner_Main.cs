@@ -235,8 +235,9 @@ public class RB_Runner_Main : GameManagerBase
         StartCoroutine(IN_sendDataToDB());
     }
 
-    public void THI_Correct()
+    public override void THI_Correct()
     {
+        base.THI_Correct();
         isInputUnLocked = false;
 
         DLearnersAudioManager.Instance.PlayCommonSound("Com_Correct");

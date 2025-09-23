@@ -15,8 +15,8 @@ MonoBehaviour:
   demoController_N: {fileID: 892097802165870240, guid: 562c3451ee51b6d458c03bd7399436d9, type: 3}
   bgSprite: {fileID: 21300000, guid: 2a3767df1cdf1ba49a58bd54f78f6a4d, type: 3}
   demoControllInfos:
-  - clip: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 9a1aec2e1f0af8446b7036a74064fb7c, type: 3}
     text: Use the joystick to move the supply in crane
-  - clip: {fileID: 0}
+  - clip: {fileID: 8300000, guid: f2d9721ecfe944d48be47c20c62a4f0a, type: 3}
     text: Click on this button to drop the product in the correct box
-  clip: {fileID: 0}
+  clip: {fileID: 7400000, guid: 70d9749151172544cb89fdd86a4ae0fb, type: 2}

@@ -39,7 +39,27 @@ MonoBehaviour:
       question: fire
       questionAudioURL: 
       questionAudioClip: {fileID: 0}
-      questionSprit: {fileID: 0}
+      questionSprit: {fileID: 21300000, guid: bc8bc133df505394ab89b823332373c4, type: 3}
+    options:
+    - optionID: 
+      option: l
+      optionAudioURL: 
+      optionAudioClip: {fileID: 0}
+      optionSprit: {fileID: 0}
+    - optionID: 
+      option: f
+      optionAudioURL: 
+      optionAudioClip: {fileID: 0}
+      optionSprit: {fileID: 0}
+    correctOptions: f
+  - answerType: 1
+    questionType: 0
+    questionData:
+      questionID: 
+      question: fire
+      questionAudioURL: 
+      questionAudioClip: {fileID: 0}
+      questionSprit: {fileID: 21300000, guid: dd4b59f3cfed7fc4f829c94ca9ded29e, type: 3}
     options:
     - optionID: 
       option: l

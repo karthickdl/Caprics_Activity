@@ -1,41 +1,36 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Crane_movement : MonoBehaviour
 {
     
-    public Joystick FixedJoystick;
-    float X, Y;
-    public GameObject G_Player, G_Player2;
-    public float F_Speed;
+    [SerializeField] private Joystick FixedJoystick;
+    [SerializeField] private GameObject craneOBJ;
+    public QBOX qBOX;
+
+    [SerializeField] private float speed;
+
     public bool B_MoveForward, B_MoveBackward;
     
     public GameObject G_Box1, G_Box2;
     public bool B_Lerp1, B_Lerp2;
-    public GameObject G_Button;
-    Vector3 tmpPos, tmpPos1;
+    [SerializeField] private Button dropButton;
+    [SerializeField] private Vector3 tmpPos, tmpPos1;
     
     // Start is called before the first frame update
     void Start()
     {
-        FixedJoystick = FindObjectOfType<Joystick>();
-        G_Player = this.transform.GetChild(0).gameObject;
-        G_Player2 = this.transform.GetChild(1).gameObject;
         B_Lerp1 = true;
         B_Lerp2 = false;
         Invoke(nameof(Offlerp), 3f);
-        this.gameObject.transform.GetChild(1).transform.position = G_Box1.transform.position;
-        this.gameObject.transform.GetChild(0).gameObject.SetActive(false);
         FixedJoystick.gameObject.SetActive(false);
-        G_Button.SetActive(false);
+        dropButton.onClick.AddListener(() => { BUT_DropDown(); });
+        SetDropButtonOnOff(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        X = FixedJoystick.Horizontal;
-        // X = FixedJoystick.Horizontal;
         if (FixedJoystick.Horizontal > 0 || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
             B_MoveForward = true;
@@ -56,26 +51,26 @@ public class Crane_movement : MonoBehaviour
 
         if (B_MoveForward)
         {
-            G_Player.transform.Translate(Vector2.right * F_Speed * Time.deltaTime);
-            G_Player2.transform.Translate(Vector2.right * F_Speed * Time.deltaTime);
+            craneOBJ.transform.Translate(Vector2.right * speed * Time.deltaTime);
+            qBOX.transform.Translate(Vector2.right * speed * Time.deltaTime);
             THI_Poscheck();
-            if (!G_Player.GetComponent<AudioSource>().isPlaying)
-            G_Player.GetComponent<AudioSource>().Play();
+            if (!craneOBJ.GetComponent<AudioSource>().isPlaying)
+            craneOBJ.GetComponent<AudioSource>().Play();
 
         }else
         if (B_MoveBackward)
         {
-            G_Player.transform.Translate(Vector2.left * F_Speed * Time.deltaTime);
-            G_Player2.transform.Translate(Vector2.left * F_Speed * Time.deltaTime);
+            craneOBJ.transform.Translate(Vector2.left * speed * Time.deltaTime);
+            qBOX.transform.Translate(Vector2.left * speed * Time.deltaTime);
 
 
             THI_Poscheck();
 
-            if (!G_Player.GetComponent<AudioSource>().isPlaying)
-                G_Player.GetComponent<AudioSource>().Play();
+            if (!craneOBJ.GetComponent<AudioSource>().isPlaying)
+                craneOBJ.GetComponent<AudioSource>().Play();
         }else
         {
-            G_Player.GetComponent<AudioSource>().Stop();
+            craneOBJ.GetComponent<AudioSource>().Stop();
         }
 
         if(B_Lerp1)
@@ -103,15 +98,15 @@ public class Crane_movement : MonoBehaviour
 
     void THI_Poscheck()
     {
-        tmpPos = G_Player.transform.position;
+        tmpPos = craneOBJ.transform.position;
         tmpPos.x = Mathf.Clamp(tmpPos.x, -5f, 8f);
         // tmpPos.y = Mathf.Clamp(tmpPos.y, -3f, 2f);
-        G_Player.transform.position = tmpPos;
+        craneOBJ.transform.position = tmpPos;
 
-        tmpPos1 = G_Player2.transform.position;
+        tmpPos1 = qBOX.transform.position;
         tmpPos1.x = Mathf.Clamp(tmpPos.x, -5f, 8f);
         // tmpPos.y = Mathf.Clamp(tmpPos.y, -3f, 2f);
-        G_Player2.transform.position = tmpPos;
+        qBOX.transform.position = tmpPos;
     }
 
     void Offlerp()
@@ -138,6 +133,43 @@ public class Crane_movement : MonoBehaviour
         Debug.Log("After =" + this.gameObject.transform.GetChild(1).transform.position.y);
 
         FixedJoystick.gameObject.SetActive(true);
-        G_Button.SetActive(true);
+        SetDropButtonOnOff(true);
+    }
+
+
+    public void SetDropButtonOnOff(bool isOn)
+    {
+        dropButton.gameObject.SetActive(isOn);
+    }
+
+
+    private void BUT_DropDown()
+    {
+        if (qBOX.STR_Selected == "")
+        {
+            PS_Main.Instance.THI_WrongEffect();
+            THIDropDown();
+        }
+        else
+        {
+            if (qBOX.STR_Selected == PS_Main.Instance.GetCurrentQuestionAnswer())
+            {
+                PS_Main.Instance.THI_Correct();
+                THIDropDown();
+            }
+            else
+            {
+                PS_Main.Instance.THI_WrongEffect();
+                THIDropDown();
+            }
+        }
+    }
+
+    private void THIDropDown()
+    {
+        FixedJoystick.gameObject.SetActive(false);
+        SetDropButtonOnOff(false);
+        //ps_PS_Main.STR_currentQuestionAnswer = STR_Selected;
+        qBOX.rb2D.gravityScale = 1f;
     }
 }

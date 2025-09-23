@@ -10,14 +10,7 @@ using UnityEngine.SceneManagement;
 
 public class PS_Main : GameManagerBase
 {
-
-    public bool B_production;
-
     [Header("Screens and UI elements")]
-    bool B_CloseDemo;
-
-    public GameObject G_Game;
-    public GameObject G_coverPage;
     public TextMeshProUGUI TEXM_instruction;
     public Text TEX_points;
     public Text TEX_questionCount;
@@ -34,19 +27,12 @@ public class PS_Main : GameManagerBase
     public GameObject G_QuestionPrefab;
     public GameObject G_Clonehere;
 
-    // public bool B_MoveUp, B_MoveDown, B_MoveForward;
-    // public List<string> Lstr_ans, Lstr_wrng;
-    // public List<AudioClip> AC_ans, AC_wrg;
-    bool B_CanClick;
-    // public GameObject G_Player;
+   
 
     [Header("Values")]
-    public int I_currentQuestionCount; // question number current
-    public string STR_currentQuestionID;
     public int I_Points;
     public int I_wrongAnsCount;
     public int I_Counter, I_Dummmy;
-    public string[] STRA_AnsList;
     // public int I_Collect_count;
 
 
@@ -62,14 +48,12 @@ public class PS_Main : GameManagerBase
     [Header("DB")]
     public List<string> STRL_difficulty;
     public string STR_difficulty;
-    public List<int> IL_numbers;
     public int I_correctPoints;
     public int I_wrongPoints;
     public List<string> STRL_instruction;
     public string STR_instruction;
     public string STR_video_link;
     public List<string> STRL_options;
-    public List<string> STRL_questions;
     public List<string> STRL_answers;
     public List<string> STRL_quesitonAudios;
     public List<string> STRL_optionAudios;
@@ -86,9 +70,6 @@ public class PS_Main : GameManagerBase
     [Header("GAME DATA")]
     public List<string> STRL_gameData;
     public string STR_Data;
-
-    [Header("LEVEL COMPLETE")]
-    public GameObject G_levelComplete;
 
     [Header("AUDIO ASSIGN")]
     public AudioClip[] ACA__questionClips;
@@ -110,7 +91,7 @@ public class PS_Main : GameManagerBase
     public override void OnPlayButton()
     {
         base.OnPlayButton();
-        Robotmovement.Instance.OnPlayButton();
+        THI_Transition();
     }
 
 
@@ -124,10 +105,9 @@ public class PS_Main : GameManagerBase
 
         Invoke("THI_gameData", 1f);
 
-        I_currentQuestionCount = -1;
         I_Dummmy = 0;
         I_Counter = 0;
-
+       // THI_getPreviewData();
 
         #region----------Platform Checking to set sprites for controls in Demo
 
@@ -155,26 +135,15 @@ public class PS_Main : GameManagerBase
         #endregion
     }
 
-
-
-    void Start()
+    /// <summary>
+    /// Seting up level data from SO (per level) From base class
+    /// </summary>
+    protected override void GetSetCurrentLevelData()
     {
-        // B_CloseDemo = true;
+        base.GetSetCurrentLevelData();
 
-
-        // G_Player.SetActive(false);
-        // G_Game.SetActive(false);
-        // G_levelComplete.SetActive(false);
-
-        // TEX_points.text = I_Points.ToString();
-        // STRL_questions = new List<string>();
-        // STRL_answers = new List<string>();
-        // STRL_options = new List<string>();
-        // Invoke("THI_gameData", 1f);
-
-        // I_currentQuestionCount = -1;
-        // I_Dummmy = 0;
-        // I_Counter = 0;
+        THI_getPreviewData();
+        // questionIMG.sprite = TarunTesting.Instance.dataSO.GetQuestionSprit(0);
     }
 
 
@@ -206,28 +175,10 @@ public class PS_Main : GameManagerBase
         }
 
     }
-    void THI_gameData()
-    {
-        // THI_getPreviewData();
-        if (DLearners.GameHandlerImmersiveGame.Instance.mode == "live")
-        {
-            StartCoroutine(EN_getValues()); // live game in portal
-        }
-        if (DLearners.GameHandlerImmersiveGame.Instance.mode == "preview")
-        {
-            // preview data in html game generator
 
-            Debug.Log("PREVIEW MODE RAKESH");
-            THI_getPreviewData();
-        }
-    }
-
-    public void DemoOver()
-    {
-        G_Game.SetActive(true);
-    }
     void THI_Transition()
     {
+        GetSetCurrentLevelData();
         // this.GetComponent<N_SwipeControls>().enabled = true;
         VaultPopUpsManager.Instance.ShowTransition(TransitionType.Fade);
         THI_NewQuestion();
@@ -246,7 +197,7 @@ public class PS_Main : GameManagerBase
 
     public void THI_NewQuestion()
     {
-        I_currentQuestionCount++;
+        currentQuestionID++;
         I_wrongAnsCount = 0;
         Invoke(nameof(THI_NextQuestion), 2f);
     }
@@ -254,16 +205,12 @@ public class PS_Main : GameManagerBase
     public void THI_NextQuestion()
     {
 
-        if (I_currentQuestionCount < STRL_questions.Count)
+        if (currentQuestionID < GameHandlerImmersiveGame.Instance.dataSO.datas.Count)
         {
-            // I_currentQuestionCount++;
-            //  Debug.Log("THI_NextQuestion =" + I_currentQuestionCount);
+            // STR_currentQuecurrentQuestionIDstionID = STRL_questionID[I_currentQuestionCount];
 
-            STRA_AnsList = null;
-            STR_currentQuestionID = STRL_questionID[I_currentQuestionCount];
-            int currentquesCount = I_currentQuestionCount + 1;
-            TEX_questionCount.text = currentquesCount + "/" + STRL_questions.Count;
-            STR_currentQuestionAnswer = STRL_answers[I_currentQuestionCount];
+            HUDManager.Instance.UpdateQuestionCountText(currentQuestionID);//Tarun
+
 
             if (G_Question != null)
             {
@@ -275,24 +222,22 @@ public class PS_Main : GameManagerBase
             //  Debug.Log("Instantiate");
             G_Question.transform.SetParent(G_Clonehere.transform, false);
             G_Question.transform.position = G_Clonehere.transform.position;
-            // G_Question = G_QuestionPrefab.transform.GetChild(1).gameObject;
 
-            /*G_Question.transform.GetChild(0).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = STRL_questions[I_currentQuestionCount];
-            G_Question.transform.GetChild(0).transform.GetChild(0).GetComponent<AudioSource>().clip = ACA__questionClips[I_currentQuestionCount];*/
-
-            G_Question.transform.GetChild(1).transform.GetChild(0).transform.GetChild(0).GetComponent<Image>().sprite = SPRA_Questions[I_currentQuestionCount];
+            G_Question.transform.GetChild(1).transform.GetChild(0).transform.GetChild(0).GetComponent<Image>().sprite = currentData.questionData.questionSprit;
             G_Question.transform.GetChild(1).transform.GetChild(0).transform.GetChild(0).GetComponent<Image>().preserveAspect = true;
-            G_Question.transform.GetChild(1).transform.GetChild(0).transform.GetChild(0).GetComponent<AudioSource>().clip = ACA__questionClips[I_currentQuestionCount];
+            G_Question.transform.GetChild(1).transform.GetChild(0).transform.GetChild(0).GetComponent<AudioSource>().clip = currentData.questionData.questionAudioClip;
 
             // I_Dummmy = I_Counter + IL_numbers[3];
 
             for (int i = 0; i < G_Options.transform.childCount; i++)
             {
-                G_Options.transform.GetChild(i).name = STRL_options[i];
-                G_Options.transform.GetChild(i).transform.GetChild(0).transform.GetChild(0).name = STRL_options[i];
-                G_Options.transform.GetChild(i).transform.GetChild(0).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = STRL_options[i];
+                G_Options.transform.GetChild(i).name = currentData.options[i].option;
+
+                
+                G_Options.transform.GetChild(i).transform.GetChild(0).transform.GetChild(0).name = currentData.options[i].option;
+                G_Options.transform.GetChild(i).transform.GetChild(0).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = currentData.options[i].option;
                 G_Options.transform.GetChild(i).transform.GetChild(0).transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.black;
-                G_Options.transform.GetChild(i).transform.GetChild(0).transform.GetChild(0).GetComponent<AudioSource>().clip = ACA_optionClips[i];
+                G_Options.transform.GetChild(i).transform.GetChild(0).transform.GetChild(0).GetComponent<AudioSource>().clip = currentData.options[i].optionAudioClip;
                 G_Options.transform.GetChild(i).gameObject.SetActive(true);
             }
 
@@ -316,13 +261,14 @@ public class PS_Main : GameManagerBase
     void THI_Levelcompleted()
     {
         DLearners.GameHandlerImmersiveGame.Instance.I_TotalPoints = I_Points;
-        G_levelComplete.SetActive(true);
+        VaultPopUpsManager.Instance.ShowPopup(NormalPopUpTypes.LevelCompletePOPUP);
         StartCoroutine(IN_sendDataToDB());
     }
 
 
-    public void THI_Correct()
+    public override void THI_Correct()
     {
+        base.THI_Correct();
         AS_crtans.Play();
         // I_Collect_count++;
         I_Points += I_correctPoints;
@@ -441,55 +387,10 @@ public class PS_Main : GameManagerBase
     {
         TM_pointFx.text = "";
     }
-    public IEnumerator IN_CoverImage()
-    {
-        UnityWebRequest www = UnityWebRequestTexture.GetTexture(STRL_Cover_Image_link[0]);
-        yield return www.SendWebRequest();
-        if (www.isNetworkError || www.isHttpError)
-        {
-            Debug.Log(www.error);
-        }
-        else
-        {
-            Texture2D downloadedTexture = ((DownloadHandlerTexture)www.downloadHandler).texture;
-            if (STRL_Cover_Image_link != null)
-            {
-                G_coverPage.GetComponent<Image>().sprite = Sprite.Create(downloadedTexture, new Rect(0.0f, 0.0f, downloadedTexture.width, downloadedTexture.height), new Vector2(0.5f, 0.5f), 100.0f);
-            }
-        }
-
-        //SPRA_Options
-
-    }
+    
 
     public IEnumerator EN_getValues()
     {
-        WWWForm form = new WWWForm();
-        form.AddField("game_id", DLearners.GameHandlerImmersiveGame.Instance.STR_GameID);
-        // Debug.Log("GAME ID : " + DLearners.TarunTesting.Instance.STR_GameID);
-        UnityWebRequest www = UnityWebRequest.Post(URL, form);
-        yield return www.SendWebRequest();
-        if (www.isHttpError || www.isNetworkError)
-        {
-            Debug.Log(www.error);
-        }
-        else
-        {
-            List<string> STRL_Passagedetails = new List<string>();
-            MyJSON json = new MyJSON();
-            //json.Helitemp(www.downloadHandler.text);
-            json.Temp_type_1(www.downloadHandler.text, IL_numbers, STRL_difficulty, STRL_instruction, STRL_BG_img_link, STRL_instructionAudio, STRL_questions,
-                STRL_answers, STRL_quesitonAudios, STRL_questionID, STRL_options, STRL_optionAudios, STRL_avatar_Color, STRL_Panel_Img_link, STRL_Cover_Image_link, STRL_passageDetail);
-            //        Debug.Log("GAME DATA : " + www.downloadHandler.text);
-
-            STR_difficulty = STRL_difficulty[0];
-
-            STR_instruction = STRL_instruction[0];
-            //MainController.instance.I_correctPoints = I_correctPoints = IL_numbers[1];//Tarun
-            I_wrongPoints = IL_numbers[2];
-            DLearners.GameHandlerImmersiveGame.Instance.I_TotalQuestions = STRL_questions.Count;
-
-            Debug.Log("Que = " + STRL_questions.Count + "Opt = " + STRL_options.Count);
 
             for (int i = 0; i < GA_Options.Length; i++)
             {
@@ -513,40 +414,10 @@ public class PS_Main : GameManagerBase
             G_OptionsBG.SetActive(true);
 
             StartCoroutine(EN_getAudioClips());
-            StartCoroutine(IN_CoverImage());
-            StartCoroutine(IMG_Options());
-
-        }
+        yield return null;
     }
 
-    public IEnumerator IMG_Options()
-    {
-
-        SPRA_Questions = new Sprite[STRL_questions.Count];
-
-        for (int i = 0; i < STRL_questions.Count; i++)
-        {
-            UnityWebRequest www = UnityWebRequestTexture.GetTexture(STRL_questions[i]);
-            yield return www.SendWebRequest();
-            if (www.isNetworkError || www.isHttpError)
-            {
-                Debug.Log(www.error);
-            }
-            else
-            {
-                Texture2D downloadedTexture = ((DownloadHandlerTexture)www.downloadHandler).texture;
-
-                SPRA_Questions[i] = Sprite.Create(downloadedTexture, new Rect(0.0f, 0.0f, downloadedTexture.width, downloadedTexture.height), new Vector2(0.5f, 0.5f), 100.0f);
-
-                string[] Names = (STRL_questions[i].Split('/'));
-                string[] Finalname = (Names[Names.Length - 1].Split('.'));
-
-                SPRA_Questions[i].name = Finalname[0];
-
-
-            }
-        }
-    }
+   
     public IEnumerator EN_getAudioClips()
     {
         ACA__questionClips = new AudioClip[STRL_quesitonAudios.Count];
@@ -625,49 +496,38 @@ public class PS_Main : GameManagerBase
     }
     public void THI_getPreviewData()
     {
-        List<string> STRL_Passagedetails = new List<string>();
-        MyJSON json = new MyJSON();
-        //  json.Helitemp(DLearners.TarunTesting.Instance.STR_previewJsonAPI);
-        json.Temp_type_1(DLearners.GameHandlerImmersiveGame.Instance.STR_previewJsonAPI, IL_numbers, STRL_difficulty, STRL_instruction, STRL_BG_img_link, STRL_instructionAudio, STRL_questions,
-                 STRL_answers, STRL_quesitonAudios, STRL_questionID, STRL_options, STRL_optionAudios, STRL_avatar_Color, STRL_Panel_Img_link, STRL_Cover_Image_link, STRL_passageDetail);
-
-        STR_difficulty = STRL_difficulty[0];
-        STR_instruction = STRL_instruction[0];
-        //MainController.instance.I_correctPoints = I_correctPoints = IL_numbers[1];//Tarun
-        I_wrongPoints = IL_numbers[2];
-        DLearners.GameHandlerImmersiveGame.Instance.I_TotalQuestions = STRL_questions.Count;
 
         for (int i = 0; i < GA_Options.Length; i++)
         {
             GA_Options[i].SetActive(false);
         }
-        if (IL_numbers[3] == 2)
+        if (currentOptionCount == 2)
         {
             G_Options = GA_Options[0];
         }
-        if (IL_numbers[3] == 3)
+        if (currentOptionCount == 3)
         {
             G_Options = GA_Options[1];
         }
-        if (IL_numbers[3] == 4)
+        if (currentOptionCount == 4)
         {
             G_Options = GA_Options[2];
         }
-        if (IL_numbers[3] == 5)
+        if (currentOptionCount == 5)
         {
             G_Options = GA_Options[3];
         }
         G_Options.SetActive(true);
         StartCoroutine(EN_getAudioClips());
-        StartCoroutine(IN_CoverImage());
-        StartCoroutine(IMG_Options());
 
         // THI_createOptions();
+
+        
     }
     public void THI_TrackGameData(string analysis)
     {
         DBmanager TrainSortingDB = new DBmanager();
-        TrainSortingDB.question_id = STR_currentQuestionID;
+        TrainSortingDB.question_id = currentData.questionData.questionID;
         TrainSortingDB.answer = STR_currentSelectedAnswer;
         TrainSortingDB.analysis = analysis;
         string toJson = JsonUtility.ToJson(TrainSortingDB);

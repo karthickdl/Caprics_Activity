@@ -1,59 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class QBOX : MonoBehaviour
 {
-    public Crane_movement Crane;
     public string STR_Selected;
     public AudioSource AS_Droping;
+    public Rigidbody2D rb2D;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // Debug.Log("Colliding");
         if (collision.gameObject != null)
         {
-            //  Debug.Log("Colliding = "+ collision.gameObject.name);
             STR_Selected = collision.gameObject.name;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-
         STR_Selected = "";
-
-    }
-
-    private PS_Main ps_PS_Main => (PS_Main)PS_Main.Instance;
-
-
-    public void BUT_DropDown()
-    {
-        if (STR_Selected == "")
-        {
-            ps_PS_Main.THI_WrongEffect();
-            THIDropDown();
-        }
-        else
-        {
-            if (STR_Selected == ps_PS_Main.STR_currentQuestionAnswer)
-            {
-                ps_PS_Main.THI_Correct();
-                THIDropDown();
-            }
-            else
-            {
-                ps_PS_Main.THI_WrongEffect();
-                THIDropDown();
-            }
-        }
-    }
-
-    void THIDropDown()
-    {
-        Crane.FixedJoystick.gameObject.SetActive(false);
-        Crane.G_Button.SetActive(false);
-        ps_PS_Main.STR_currentQuestionAnswer = STR_Selected;
-        this.GetComponent<Rigidbody2D>().gravityScale = 1f;
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -61,6 +22,7 @@ public class QBOX : MonoBehaviour
         {
             Debug.Log(collision.gameObject.name);
             AS_Droping.Play();
+
         }
     }
 }

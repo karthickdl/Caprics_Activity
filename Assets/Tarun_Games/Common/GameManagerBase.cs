@@ -69,7 +69,10 @@ namespace DLearners
         public virtual void CheckAnswer(Transform transform)
         {
         }
-
+        public string GetCurrentQuestionAnswer()
+        {
+            return STR_currentQuestionAnswer;
+        }
 
         public virtual void UpdateQuestion()
         {
@@ -80,7 +83,10 @@ namespace DLearners
         {
         }
 
+        public virtual void THI_Correct()
+        {
 
+        }
 
         public virtual void SetGameOBJOnOff(bool isOn)
         {
