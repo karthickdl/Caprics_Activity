@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -10,7 +11,6 @@ namespace DLearnersApplication
         public Transform logo;
 
         public float loadingSpeedOffSet = 1f;
-        public string sceneNameToLoad;
 
         private void Start()
         {
@@ -19,10 +19,10 @@ namespace DLearnersApplication
 #if VAULT_Plugin_Manager
             return;
 #endif
-            StartCoroutine(LoadScene());
+           // StartCoroutine(LoadScene());
         }
 
-        public IEnumerator LoadScene()
+        public IEnumerator LoadScene(string sceneNameToLoad,Action gg)
         {
             AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneNameToLoad);
             asyncOperation.allowSceneActivation = false;
@@ -33,6 +33,7 @@ namespace DLearnersApplication
                 if (sliderValue >= 1f)
                 {
                     asyncOperation.allowSceneActivation = true;
+                    gg?.Invoke();
                     // SaveDataHandler.Instance.GameSceneLoaded = true;
                 }
                 yield return null;

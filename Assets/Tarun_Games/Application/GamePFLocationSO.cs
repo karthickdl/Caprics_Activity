@@ -1,5 +1,7 @@
+using DLearners;
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace DLearnersApplication
 {
@@ -13,6 +15,12 @@ namespace DLearnersApplication
         /// Level locations.
         /// </summary>
         public string fileLocation;
+
+        public GameHandlerBase GetGamePF(int locationID)
+        {
+            GameObject currentLevelGObj = Resources.Load<GameHandlerBase>(fileLocation + gamePFLocationDatas[locationID].pFLocation).gameObject;
+            return currentLevelGObj.GetComponent<GameHandlerBase>();
+        }
 
         public GamePFLocationData[] gamePFLocationDatas;
     }
