@@ -491,7 +491,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2218563275096827239, guid: 9bad9f3320c94a043b0d2e65a7240537, type: 3}
       propertyPath: isOfflineTesting
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4193940668399625913, guid: 9bad9f3320c94a043b0d2e65a7240537, type: 3}
       propertyPath: m_LocalPosition.x
