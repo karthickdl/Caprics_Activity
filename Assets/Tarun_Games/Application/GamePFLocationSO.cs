@@ -1,7 +1,6 @@
 using DLearners;
 using System;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace DLearnersApplication
 {

@@ -23,26 +23,45 @@ namespace DLearners
 
         [SerializeField] private Transform canv;
 
+        
 
-
-//#if UNITYEDITOR
+        //#if UNITYEDITOR
         private void Start()
         {
            if (isTesting)
             {
-                InitGameHandlerImmersiveGame();      
+                ///InitGameHandlerImmersiveGame();      
             }
        }
-//#endif
+        //#endif
+        public override void InitGameHandlerImmersiveGame(string gameSOID)
+        {
+            Application.ExternalEval("OnAppReady()");
+#if UNITY_ANDROID || UNITY_IOS
+            platformType = PlatformType.MOBILE;
+#elif UNITY_WEBGL
+             platformType = PlatformType.WEB;
+#endif
 
+
+            switch (platformType)
+            {
+                case PlatformType.WEB:
+                    break;
+                case PlatformType.MOBILE:
+                    break;
+                default:
+                    break;
+            }
+            StartCoroutine(Test());
+        }
 
 
         private IEnumerator Test()
         {
-
-
-
             //DownloadManager.Instance.SetURLData(dataSO.GetURLData());
+
+
             HUDManager.Instance.SetHUDOnOff(false);
             if (!isFastingTesting)
             {
@@ -72,11 +91,10 @@ namespace DLearners
             yield return null;
         }
 
-        public override void gg()
+        public override void TriggerDemo()
         {
-            base.gg();
+            base.TriggerDemo();
             DemoController cashDemoController = Instantiate(demoControllerPF, canv);
-
             cashDemoController.InitDemoController(_demoControllerDataSO);
         }
 
@@ -84,27 +102,7 @@ namespace DLearners
 
 
 
-        public override void InitGameHandlerImmersiveGame()
-        {
-            Application.ExternalEval("OnAppReady()");
-#if UNITY_ANDROID || UNITY_IOS
-            platformType = PlatformType.MOBILE;
-#elif UNITY_WEBGL
-             platformType = PlatformType.WEB;
-#endif
-
-
-            switch (platformType)
-            {
-                case PlatformType.WEB:
-                    break;
-                case PlatformType.MOBILE:
-                    break;
-                default:
-                    break;
-            }
-            StartCoroutine(Test());
-        }
+        
         
         public void JS_getID(string val)
         {

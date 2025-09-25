@@ -11,12 +11,13 @@ namespace DLearners
             base.Awake();
         }
 
-        public virtual void InitGameHandlerImmersiveGame()
+        public virtual void InitGameHandlerImmersiveGame(string gameSOID)
         {
 
         }
 
-        public virtual void gg()
+
+        public virtual void TriggerDemo()
         {
         }
 
@@ -24,7 +25,7 @@ namespace DLearners
         [Header("Sound SO")]
         public GameAudioDataSO gameAudioDataSO;
         [Header("Game Data")]
-        public DataSOGame dataSO;
+        public DataSO dataSO;
 
         [Header("ID")]
         public string STR_IDjson;//

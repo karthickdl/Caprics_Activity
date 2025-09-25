@@ -24,7 +24,7 @@ namespace DLearners
         {
             this.gameObject.SetActive(isOn);
         }
-        public void InitHUD(DataSOGame _dataSO)
+        public void InitHUD(DataSO _dataSO)
         {
             OnResetData();
             correctAnswerPoint = _dataSO.GetCorrectAnswerPoint();
@@ -178,7 +178,7 @@ namespace DLearners
             {
                 SetHUDOnOff(false);
                 instructionOBJ.gameObject.SetActive(false);
-                GameHandlerImmersiveGame.Instance.gg();
+                GameHandlerImmersiveGame.Instance.TriggerDemo();
             });
             closeButton.onClick.AddListener(() =>
             {

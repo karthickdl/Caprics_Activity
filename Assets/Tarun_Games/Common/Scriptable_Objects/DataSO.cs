@@ -4,13 +4,19 @@ using UnityEngine;
 
 namespace DLearners
 {
-    [CreateAssetMenu(fileName = "DataSOGame", menuName = "ScriptableObjects/DataSOGame", order = 0)]
-    public class DataSOGame : DataSOBase
+    [CreateAssetMenu(fileName = "DataSO", menuName = "ScriptableObjects/DataSO", order = 0)]
+    public class DataSO : ScriptableObject
     {
         public DifficultyLevelType difficultyLevelType;
         public int correctAnswerPoint;
         public int wrongAnswerPoint;
+        public Sprite coverPageSprit;
 
+        public InstructionData instructionData;
+
+        public List<Data> datas = new List<Data>();
+
+        public UserData userData;
         public InstructionData GetInstructionData()
         {
             return instructionData;

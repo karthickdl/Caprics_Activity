@@ -49,7 +49,7 @@ namespace DLearners
         {
             currentData = new Data();
             currentInstructionData = new InstructionData();
-            DataSOGame cashDataSO = GameHandlerImmersiveGame.Instance.dataSO;
+            DataSO cashDataSO = GameHandlerImmersiveGame.Instance.dataSO;
             GameHandlerImmersiveGame.Instance.I_TotalQuestions = cashDataSO.datas.Count;
             currentDifficultyLevelType = cashDataSO.difficultyLevelType;
 

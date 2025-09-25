@@ -147,16 +147,16 @@ namespace DLearnersApplication
             {
                 if (gamePFLocationData[i].gameID == currentGameLaunchData.gameID)
                 {
-                    LaunchGame(i);
+                    LaunchGame(i, currentGameLaunchData.gameSOID);
                 }
             }
         }
-        private void LaunchGame(int ID)
+        private void LaunchGame(int ID,string gameSOID)
         {
             SetScreenOrientation(ScreenOrientation.LandscapeLeft);
 
             currentOpenGame = Instantiate(gamePFLocationSO.GetGamePF(ID));
-            currentOpenGame.InitGameHandlerImmersiveGame();
+            currentOpenGame.InitGameHandlerImmersiveGame(gameSOID);
         }
         #endregion
 
