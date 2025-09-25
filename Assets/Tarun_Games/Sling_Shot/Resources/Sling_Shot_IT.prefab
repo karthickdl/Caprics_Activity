@@ -276,15 +276,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroyOnLoad: 0
-  isFastingTesting: 0
+  isTesting: 0
   platformType: 0
   gameAudioDataSO: {fileID: 11400000, guid: 92cc224727592464e817b29c4ed09843, type: 2}
-  introControllerPF: {fileID: 772068191316740501, guid: defaafb3d176a134ba037e5ae10d2225, type: 3}
-  coverPagePF: {fileID: 6884182910719537490, guid: 66870b8df786af74d86760da710df9e8, type: 3}
-  demoControllerPF: {fileID: 7569966119326016201, guid: 89e7e8d58c37efd43aa17591d81a8126, type: 3}
-  _demoControllerDataSO: {fileID: 11400000, guid: d03d5fa71defefb40a1338b6528b1e11, type: 2}
-  dataSO: {fileID: 11400000, guid: ce357bc25303f5644baf961ed2df6bcb, type: 2}
-  canv: {fileID: 2293976914834803453}
+  dataSO: {fileID: 0}
   STR_IDjson: 
   STR_childID: 
   STR_GameID: 
@@ -293,6 +288,12 @@ MonoBehaviour:
   I_TotalQuestions: 0
   mode: 
   STR_previewJsonAPI: 
+  isFastingTesting: 0
+  introControllerPF: {fileID: 772068191316740501, guid: defaafb3d176a134ba037e5ae10d2225, type: 3}
+  coverPagePF: {fileID: 6884182910719537490, guid: 66870b8df786af74d86760da710df9e8, type: 3}
+  demoControllerPF: {fileID: 7569966119326016201, guid: 89e7e8d58c37efd43aa17591d81a8126, type: 3}
+  _demoControllerDataSO: {fileID: 11400000, guid: d03d5fa71defefb40a1338b6528b1e11, type: 2}
+  canv: {fileID: 2293976914834803453}
 --- !u!114 &5321414778528493539
 MonoBehaviour:
   m_ObjectHideFlags: 0

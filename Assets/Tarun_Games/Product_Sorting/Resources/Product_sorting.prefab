@@ -2107,8 +2107,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canDestroyOnLoad: 0
   isTesting: 1
+  platformType: 0
   gameAudioDataSO: {fileID: 11400000, guid: d7d19a4f10671e247bf414f764187fc7, type: 2}
-  dataSO: {fileID: 11400000, guid: 5fe342130a4c97545bed3268f0a40c0a, type: 2}
+  dataSO: {fileID: 0}
   STR_IDjson: 
   STR_childID: 
   STR_GameID: 
@@ -2118,7 +2119,6 @@ MonoBehaviour:
   mode: 
   STR_previewJsonAPI: 
   isFastingTesting: 1
-  platformType: 0
   introControllerPF: {fileID: 772068191316740501, guid: defaafb3d176a134ba037e5ae10d2225, type: 3}
   coverPagePF: {fileID: 6884182910719537490, guid: 66870b8df786af74d86760da710df9e8, type: 3}
   demoControllerPF: {fileID: 7569966119326016201, guid: 89e7e8d58c37efd43aa17591d81a8126, type: 3}

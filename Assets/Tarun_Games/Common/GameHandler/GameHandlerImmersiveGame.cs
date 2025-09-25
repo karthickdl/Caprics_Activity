@@ -6,7 +6,7 @@ namespace DLearners
     public class GameHandlerImmersiveGame : GameHandlerBase
     {
         public bool isFastingTesting;
-        public PlatformType platformType;
+        
         
 
         [Header("Splash Screen")]
@@ -34,25 +34,12 @@ namespace DLearners
             }
        }
         //#endif
-        public override void InitGameHandlerImmersiveGame(string gameSOID)
+        public override void InitGameHandlerImmersiveGame(DataSO _dataSO)
         {
-            Application.ExternalEval("OnAppReady()");
-#if UNITY_ANDROID || UNITY_IOS
-            platformType = PlatformType.MOBILE;
-#elif UNITY_WEBGL
-             platformType = PlatformType.WEB;
-#endif
+            base.InitGameHandlerImmersiveGame(_dataSO);
+          
 
 
-            switch (platformType)
-            {
-                case PlatformType.WEB:
-                    break;
-                case PlatformType.MOBILE:
-                    break;
-                default:
-                    break;
-            }
             StartCoroutine(Test());
         }
 

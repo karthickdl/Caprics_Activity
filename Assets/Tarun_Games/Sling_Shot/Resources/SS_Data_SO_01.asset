@@ -10,8 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f143a1e0cd95ceb44a427008c3cd5019, type: 3}
-  m_Name: ROB_Data_SO
+  m_Name: SS_Data_SO_01
   m_EditorClassIdentifier: 
+  coverPageSprit: {fileID: 0}
+  instructionData:
+    instruction: []
+    instructionAudioURL: []
+    instructionAudioClip: []
+  datas: []
+  isProduction: 0
+  getValueURLPRO: 
+  sndValueURLPRO: 
+  getValueURLTesting: 
+  sndValueURLTesting: 
+  uRLData:
+    getValueURL: 
+    sendValueURL: 
+  difficultyLevelType: 0
+  correctAnswerPoint: 0
+  wrongAnswerPoint: 0
   coverPageSprit: {fileID: 0}
   instructionData:
     instruction: []
@@ -22,6 +39,3 @@ MonoBehaviour:
     userName: 
     userStandard: 
     lessonName: 
-  difficultyLevelType: 0
-  correctAnswerPoint: 0
-  wrongAnswerPoint: 0

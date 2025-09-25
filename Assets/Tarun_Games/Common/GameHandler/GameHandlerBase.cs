@@ -5,15 +5,33 @@ namespace DLearners
     public class GameHandlerBase : Singleton<GameHandlerBase>
     {
         public bool isTesting;
-
+        public PlatformType platformType;
         protected override void Awake()
         {
             base.Awake();
         }
 
-        public virtual void InitGameHandlerImmersiveGame(string gameSOID)
+        public virtual void InitGameHandlerImmersiveGame(DataSO _dataSO)
         {
+            Application.ExternalEval("OnAppReady()");
+#if UNITY_ANDROID || UNITY_IOS
+            platformType = PlatformType.MOBILE;
+#elif UNITY_WEBGL
+             platformType = PlatformType.WEB;
+#endif
 
+
+            switch (platformType)
+            {
+                case PlatformType.WEB:
+                    break;
+                case PlatformType.MOBILE:
+                    break;
+                default:
+                    break;
+            }
+
+            dataSO = _dataSO;
         }
 
 

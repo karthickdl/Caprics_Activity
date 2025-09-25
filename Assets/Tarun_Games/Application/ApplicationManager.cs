@@ -147,16 +147,12 @@ namespace DLearnersApplication
             {
                 if (gamePFLocationData[i].gameID == currentGameLaunchData.gameID)
                 {
-                    LaunchGame(i, currentGameLaunchData.gameSOID);
+                    SetScreenOrientation(ScreenOrientation.LandscapeLeft);
+
+                    currentOpenGame = Instantiate(gamePFLocationSO.GetGamePF(i));
+                    currentOpenGame.InitGameHandlerImmersiveGame(gamePFLocationSO.GetDataSO(i, currentGameLaunchData.gameSOID));
                 }
             }
-        }
-        private void LaunchGame(int ID,string gameSOID)
-        {
-            SetScreenOrientation(ScreenOrientation.LandscapeLeft);
-
-            currentOpenGame = Instantiate(gamePFLocationSO.GetGamePF(ID));
-            currentOpenGame.InitGameHandlerImmersiveGame(gameSOID);
         }
         #endregion
 
@@ -170,8 +166,8 @@ namespace DLearnersApplication
     [Serializable]
     public class GameLaunchData
     {
-        public string gameID;
-        public string gameSOID;
+        public int gameID;
+        public int gameSOID;
         public GameType gameType;
         public string sendingScoreURL;
     }

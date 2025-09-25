@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f143a1e0cd95ceb44a427008c3cd5019, type: 3}
-  m_Name: SS_Data_SO
+  m_Name: PS_Data_SO_01
   m_EditorClassIdentifier: 
   coverPageSprit: {fileID: 0}
   instructionData:
