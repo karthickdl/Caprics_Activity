@@ -24,7 +24,7 @@ namespace DLearners
         {
             this.gameObject.SetActive(isOn);
         }
-        public void InitHUD(DataSO _dataSO)
+        public void InitHUD(DataSOGame _dataSO)
         {
             OnResetData();
             correctAnswerPoint = _dataSO.GetCorrectAnswerPoint();

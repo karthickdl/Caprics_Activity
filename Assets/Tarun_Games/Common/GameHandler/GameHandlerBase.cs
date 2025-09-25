@@ -24,7 +24,7 @@ namespace DLearners
         [Header("Sound SO")]
         public GameAudioDataSO gameAudioDataSO;
         [Header("Game Data")]
-        public DataSO dataSO;
+        public DataSOGame dataSO;
 
         [Header("ID")]
         public string STR_IDjson;//

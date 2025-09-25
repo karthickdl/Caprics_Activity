@@ -8,18 +8,13 @@ namespace DLearnersApplication
 {
     public class LoadingMenuManager : Singleton<LoadingMenuManager>
     {
-        public Transform logo;
+        [SerializeField] private Transform logo;
 
-        public float loadingSpeedOffSet = 1f;
+        [SerializeField] private float loadingSpeedOffSet = 1f;
 
         private void Start()
         {
-            //VaultAudioManager.Instance.PlaySound("BGM");
             LoadingAnimation();
-#if VAULT_Plugin_Manager
-            return;
-#endif
-           // StartCoroutine(LoadScene());
         }
 
         public IEnumerator LoadScene(string sceneNameToLoad,Action gg)
@@ -45,9 +40,8 @@ namespace DLearnersApplication
             Fading.OnBubleFX(logo.gameObject, 0.8f, Vector3.zero, Vector3.one);
         }
 
-        [SerializeField]
-        private Slider loadingBar;
-        public float sliderValue => loadingBar.value;
+        [SerializeField]private Slider loadingBar;
+        [SerializeField] private float sliderValue => loadingBar.value;
         private void LoadingProgress(float percentage)
         {
             loadingBar.value = percentage;

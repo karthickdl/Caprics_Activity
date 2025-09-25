@@ -222,7 +222,7 @@ public class MyJSON
 
     }
 
-    public void Temp_type_3(string _json,DataSO dataSO)
+    public void Temp_type_3(string _json,DataSOGame dataSO)
     {
         JSONNode json = JSON.Parse(_json);
 

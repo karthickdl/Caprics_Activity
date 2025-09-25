@@ -9,69 +9,32 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a417730ee59af444486bbdfa1e4b115f, type: 3}
+  m_Script: {fileID: 11500000, guid: f143a1e0cd95ceb44a427008c3cd5019, type: 3}
   m_Name: PS_Data_SO
   m_EditorClassIdentifier: 
-  isProduction: 1
-  getValueURLPRO: 1
-  sndValueURLPRO: 1
-  getValueURLTesting: 2
-  sndValueURLTesting: 2
+  coverPageSprit: {fileID: 0}
+  instructionData:
+    instruction: []
+    instructionAudioURL: []
+    instructionAudioClip: []
+  datas: []
+  isProduction: 0
+  getValueURLPRO: 
+  sndValueURLPRO: 
+  getValueURLTesting: 
+  sndValueURLTesting: 
   uRLData:
     getValueURL: 
     sendValueURL: 
   difficultyLevelType: 0
-  correctAnswerPoint: 5
-  wrongAnswerPoint: 2
-  coverPageSprit: {fileID: 21300000, guid: ac6e7712e915fe348b86214ef1c1e12e, type: 3}
+  correctAnswerPoint: 0
+  wrongAnswerPoint: 0
+  coverPageSprit: {fileID: 0}
   instructionData:
-    instruction:
-    - Collect images with same beginning sound
-    instructionAudioURL:
-    - 
-    instructionAudioClip:
-    - {fileID: 0}
-  datas:
-  - answerType: 1
-    questionType: 0
-    questionData:
-      questionID: 
-      question: fire
-      questionAudioURL: 
-      questionAudioClip: {fileID: 0}
-      questionSprit: {fileID: 21300000, guid: bc8bc133df505394ab89b823332373c4, type: 3}
-    options:
-    - optionID: 
-      option: l
-      optionAudioURL: 
-      optionAudioClip: {fileID: 0}
-      optionSprit: {fileID: 0}
-    - optionID: 
-      option: f
-      optionAudioURL: 
-      optionAudioClip: {fileID: 0}
-      optionSprit: {fileID: 0}
-    correctOptions: f
-  - answerType: 1
-    questionType: 0
-    questionData:
-      questionID: 
-      question: fire
-      questionAudioURL: 
-      questionAudioClip: {fileID: 0}
-      questionSprit: {fileID: 21300000, guid: dd4b59f3cfed7fc4f829c94ca9ded29e, type: 3}
-    options:
-    - optionID: 
-      option: l
-      optionAudioURL: 
-      optionAudioClip: {fileID: 0}
-      optionSprit: {fileID: 0}
-    - optionID: 
-      option: f
-      optionAudioURL: 
-      optionAudioClip: {fileID: 0}
-      optionSprit: {fileID: 0}
-    correctOptions: f
+    instruction: []
+    instructionAudioURL: []
+    instructionAudioClip: []
+  datas: []
   userData:
     userName: 
     userStandard: 

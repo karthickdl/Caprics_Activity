@@ -29,7 +29,6 @@ namespace DLearnersApplication
     {
         public string gameID;
         public string gameName;
-        public Sprite gameIcon;
         public string pFLocation;
         public GameType gameType;
     }

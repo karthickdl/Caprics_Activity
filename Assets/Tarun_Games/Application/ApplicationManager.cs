@@ -32,7 +32,7 @@ namespace DLearnersApplication
         [SerializeField] private GameHandlerBase currentOpenGame;
         [SerializeField] private bool isOfflineTesting;
         [SerializeField] private string json;
-        [SerializeField] private string jsonUrl;
+        [SerializeField] private string jsonUrl;// need to get this from outside unity
         [SerializeField] private GameLaunchData currentGameLaunchData;
         [SerializeField] private string sceneNameToLoad;
 
@@ -53,7 +53,7 @@ namespace DLearnersApplication
             switch (currentGameLaunchData.gameType)
             {
                 case GameType.LWS:
-                    sceneNameToLoad = "";
+                    sceneNameToLoad = "LWS";
                     break;
                 case GameType.Game:
                     sceneNameToLoad = "Game";
@@ -78,7 +78,12 @@ namespace DLearnersApplication
 
 
 
-
+        private IEnumerator ext() 
+        {
+            Debug.LogError("sdabdjkasbdjksabjkdbaskjd");
+            yield return new WaitForSeconds(3f);
+            Application.Quit();
+        }
        
 
         
@@ -94,6 +99,7 @@ namespace DLearnersApplication
                 if (webRequest.result == UnityWebRequest.Result.ConnectionError ||
                     webRequest.result == UnityWebRequest.Result.ProtocolError)
                 {
+                    StartCoroutine(ext());
                     Debug.LogError("Error: " + webRequest.error);
                 }
                 else
@@ -109,6 +115,7 @@ namespace DLearnersApplication
                     Debug.Log("ID: " + currentGameLaunchData.gameID);
                     Debug.Log("Name: " + currentGameLaunchData.gameSOID);
                     Debug.Log("GameType: " + currentGameLaunchData.gameType);
+                    Debug.Log("sendingScoreURL: " + currentGameLaunchData.sendingScoreURL);
                     dataReady = true;
                 }
             }
@@ -122,6 +129,7 @@ namespace DLearnersApplication
             Debug.Log("ID: " + currentGameLaunchData.gameID);
             Debug.Log("Name: " + currentGameLaunchData.gameSOID);
             Debug.Log("GameType: " + currentGameLaunchData.gameType);
+            Debug.Log("sendingScoreURL: " + currentGameLaunchData.sendingScoreURL);
             dataReady = true;
         }
         #endregion
@@ -165,5 +173,6 @@ namespace DLearnersApplication
         public string gameID;
         public string gameSOID;
         public GameType gameType;
+        public string sendingScoreURL;
     }
 }

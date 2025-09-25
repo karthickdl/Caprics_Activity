@@ -9,155 +9,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a417730ee59af444486bbdfa1e4b115f, type: 3}
+  m_Script: {fileID: 11500000, guid: f143a1e0cd95ceb44a427008c3cd5019, type: 3}
   m_Name: ROB_Data_SO
   m_EditorClassIdentifier: 
-  isProduction: 1
-  getValueURLPRO: 1
-  sndValueURLPRO: 1
-  getValueURLTesting: 2
-  sndValueURLTesting: 2
-  uRLData:
-    getValueURL: 
-    sendValueURL: 
-  difficultyLevelType: 0
-  correctAnswerPoint: 5
-  wrongAnswerPoint: 2
-  coverPageSprit: {fileID: 21300000, guid: 6c5ca2836b1c99545b71e9a7d8eb9675, type: 3}
+  coverPageSprit: {fileID: 0}
   instructionData:
-    instruction:
-    - Choose the correct word
-    instructionAudioURL:
-    - 
-    instructionAudioClip:
-    - {fileID: 8300000, guid: 8fea1b7530f25324db32c0d5f52e229d, type: 3}
-  datas:
-  - answerType: 0
-    questionType: 1
-    questionData:
-      questionID: 
-      question: Fan
-      questionAudioURL: 
-      questionAudioClip: {fileID: 8300000, guid: a2a97c61c44e92743bf17ff49b8ff11f, type: 3}
-      questionSprit: {fileID: 21300000, guid: e4e00f639f1b1094984ca25ae0fbd8b4, type: 3}
-    options:
-    - optionID: 
-      option: Fan
-      optionAudioURL: 
-      optionAudioClip: {fileID: 8300000, guid: a2a97c61c44e92743bf17ff49b8ff11f, type: 3}
-      optionSprit: {fileID: 0}
-    - optionID: 
-      option: Pen
-      optionAudioURL: 
-      optionAudioClip: {fileID: 0}
-      optionSprit: {fileID: 0}
-    - optionID: 
-      option: Phone
-      optionAudioURL: 
-      optionAudioClip: {fileID: 0}
-      optionSprit: {fileID: 0}
-    correctOptions: Fan
-  - answerType: 0
-    questionType: 1
-    questionData:
-      questionID: 
-      question: Van
-      questionAudioURL: 
-      questionAudioClip: {fileID: 8300000, guid: e05e0059d8ab3de4ab197addb1a1ccc3, type: 3}
-      questionSprit: {fileID: 21300000, guid: 1bcdc081381342448ba941a56a3cb609, type: 3}
-    options:
-    - optionID: 
-      option: Van
-      optionAudioURL: 
-      optionAudioClip: {fileID: 8300000, guid: e05e0059d8ab3de4ab197addb1a1ccc3, type: 3}
-      optionSprit: {fileID: 0}
-    - optionID: 
-      option: Pot
-      optionAudioURL: 
-      optionAudioClip: {fileID: 0}
-      optionSprit: {fileID: 0}
-    - optionID: 
-      option: Log
-      optionAudioURL: 
-      optionAudioClip: {fileID: 0}
-      optionSprit: {fileID: 0}
-    correctOptions: Van
-  - answerType: 0
-    questionType: 1
-    questionData:
-      questionID: 
-      question: Park
-      questionAudioURL: 
-      questionAudioClip: {fileID: 8300000, guid: d13e67dd195d4f14eab7d88e0465a5ac, type: 3}
-      questionSprit: {fileID: 21300000, guid: 361b841940e01574eb24a69a2e82f2cf, type: 3}
-    options:
-    - optionID: 
-      option: Ink
-      optionAudioURL: 
-      optionAudioClip: {fileID: 0}
-      optionSprit: {fileID: 0}
-    - optionID: 
-      option: Park
-      optionAudioURL: 
-      optionAudioClip: {fileID: 8300000, guid: d13e67dd195d4f14eab7d88e0465a5ac, type: 3}
-      optionSprit: {fileID: 0}
-    - optionID: 
-      option: Cycle
-      optionAudioURL: 
-      optionAudioClip: {fileID: 0}
-      optionSprit: {fileID: 0}
-    correctOptions: Park
-  - answerType: 0
-    questionType: 1
-    questionData:
-      questionID: 
-      question: Flag
-      questionAudioURL: 
-      questionAudioClip: {fileID: 8300000, guid: 15c9fc7f4e9f1314ba96a7e934b7bb3e, type: 3}
-      questionSprit: {fileID: 21300000, guid: 94627c2d703d1b34c88e55ee197e29b0, type: 3}
-    options:
-    - optionID: 
-      option: Flag
-      optionAudioURL: 
-      optionAudioClip: {fileID: 8300000, guid: 15c9fc7f4e9f1314ba96a7e934b7bb3e, type: 3}
-      optionSprit: {fileID: 0}
-    - optionID: 
-      option: Submarine
-      optionAudioURL: 
-      optionAudioClip: {fileID: 0}
-      optionSprit: {fileID: 0}
-    - optionID: 
-      option: Tractor
-      optionAudioURL: 
-      optionAudioClip: {fileID: 0}
-      optionSprit: {fileID: 0}
-    correctOptions: Flag
-  - answerType: 0
-    questionType: 1
-    questionData:
-      questionID: 
-      question: parrot
-      questionAudioURL: 
-      questionAudioClip: {fileID: 8300000, guid: d2d16d787dd6b104697943ab547bad06, type: 3}
-      questionSprit: {fileID: 21300000, guid: 13917402dc465e74898d39e3798b7149, type: 3}
-    options:
-    - optionID: 
-      option: House
-      optionAudioURL: 
-      optionAudioClip: {fileID: 0}
-      optionSprit: {fileID: 0}
-    - optionID: 
-      option: Rat
-      optionAudioURL: 
-      optionAudioClip: {fileID: 0}
-      optionSprit: {fileID: 0}
-    - optionID: 
-      option: parrot
-      optionAudioURL: 
-      optionAudioClip: {fileID: 8300000, guid: d2d16d787dd6b104697943ab547bad06, type: 3}
-      optionSprit: {fileID: 0}
-    correctOptions: parrot
+    instruction: []
+    instructionAudioURL: []
+    instructionAudioClip: []
+  datas: []
   userData:
     userName: 
     userStandard: 
     lessonName: 
+  difficultyLevelType: 0
+  correctAnswerPoint: 0
+  wrongAnswerPoint: 0

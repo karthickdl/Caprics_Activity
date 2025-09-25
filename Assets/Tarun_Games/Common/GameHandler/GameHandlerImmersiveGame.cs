@@ -42,7 +42,7 @@ namespace DLearners
 
 
 
-            DownloadManager.Instance.SetURLData(dataSO.GetURLData());
+            //DownloadManager.Instance.SetURLData(dataSO.GetURLData());
             HUDManager.Instance.SetHUDOnOff(false);
             if (!isFastingTesting)
             {
