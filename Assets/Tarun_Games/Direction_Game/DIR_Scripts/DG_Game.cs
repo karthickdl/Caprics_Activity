@@ -16,24 +16,8 @@ public class DG_Game : GameManagerBase
     public GameObject G_Question;
     public GameObject[] G_Options;
     public GameObject[] G_Option_Text;
-    public TextMeshProUGUI TEXM_Question;
-    public TextMeshProUGUI TEXM_instruction;
     public TextMeshProUGUI TEXM_instruction2;
     GameObject G_Answer;
-
-
-
-
-    [Header("Audios")]
-    public AudioSource AS_Correct;
-    public AudioSource AS_Wrong;
-    public AudioSource AS_Clicking;
-    public AudioSource AS_Wrong3;
-
-    [Header("AUDIO ASSIGN")]
-    public AudioClip[] ACA__questionClips;
-    public AudioClip[] ACA_optionClips;
-    public AudioClip[] ACA_instructionClips;
 
     #region Unity
     protected override void Awake()
@@ -155,6 +139,7 @@ public class DG_Game : GameManagerBase
     /// </summary>
     public override void CheckAnswer()
     {
+        base.CheckAnswer();
         if (STR_currentSelectedAnswer == STR_currentQuestionAnswer)
         {
             G_Selected.transform.GetChild(0).GetComponent<Image>().color = Color.green;
@@ -164,7 +149,6 @@ public class DG_Game : GameManagerBase
         }
         else
         {
-            AS_Wrong.Play();
             Invoke(nameof(WrongAnswerSequence), 3f);
             G_Penguin.GetComponent<Animator>().SetBool("Bool", false);
 
@@ -182,7 +166,7 @@ public class DG_Game : GameManagerBase
         isInputUnLocked = false;
         I_Collect_count++;
         HUDManager.Instance.UpdateScoreText(true);
-        AS_Correct.Play();
+        DLearnersAudioManager.Instance.PlayCommonSound("Com_Correct");
 
         THI_TrackGameData("1");
 
@@ -277,9 +261,7 @@ public class DG_Game : GameManagerBase
 
     public void BUT_OptionClicking(int I_Penguin)
     {
-        // B_CanJump
-        AS_Clicking.Play();
-        Debug.Log("Clicking");
+        DLearnersAudioManager.Instance.PlayCommonSound("Com_Clicking");
 
          if (isInputUnLocked)
          {
@@ -342,32 +324,6 @@ public class DG_Game : GameManagerBase
         G_Question.transform.GetChild(1).GetComponent<AudioSource>().Play();
         isInputUnLocked = true;
     }
-    void THI_assignAudioClips()
-    {
-        /*if (ACA_instructionClips.Length > 0)
-        {
-            TEXM_instruction.text = TEXM_instruction2.text = STR_instruction;
-            TEXM_instruction.gameObject.AddComponent<AudioSource>();
-            TEXM_instruction.gameObject.GetComponent<AudioSource>().playOnAwake = false;
-            TEXM_instruction.gameObject.GetComponent<AudioSource>().clip = ACA_instructionClips[0];
-            TEXM_instruction.gameObject.AddComponent<Button>();
-            TEXM_instruction.gameObject.GetComponent<Button>().onClick.AddListener(THI_playAudio);
-
-            TEXM_instruction2.gameObject.AddComponent<AudioSource>();
-            TEXM_instruction2.gameObject.GetComponent<AudioSource>().playOnAwake = false;
-            TEXM_instruction2.gameObject.GetComponent<AudioSource>().clip = ACA_instructionClips[0];
-            TEXM_instruction2.gameObject.AddComponent<Button>();
-            TEXM_instruction2.gameObject.GetComponent<Button>().onClick.AddListener(THI_playAudio);
-        }*/
-        Debug.Log("Instruction audio set");
-            //remove later
-
-    }
-    void THI_playAudio()
-    {
-        EventSystem.current.currentSelectedGameObject.GetComponent<AudioSource>().Play();
-      //  Debug.Log("player clicked. so playing audio");
-    }
     
     public void THI_TrackGameData(string analysis)
     {
@@ -406,10 +362,4 @@ public class DG_Game : GameManagerBase
             Debug.Log("Sending data to DB success : " + www.downloadHandler.text);
         }
     }
-    public void BUT_playAgain()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
-
-
 }

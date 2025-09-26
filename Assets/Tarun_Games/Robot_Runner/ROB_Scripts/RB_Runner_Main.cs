@@ -1,7 +1,6 @@
 using DG.Tweening;
 using DLearners;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -162,25 +161,24 @@ public class RB_Runner_Main : GameManagerBase
         G_currentquestion.transform.SetParent(G_QuestionSpawn.transform, false);
 
 
-
-        //STRA_AnsList = null;
-        //STR_currentQuestionID = STRL_questionID[I_currentQuestionCount];
-        //int currentquesCount = I_currentQuestionCount + 1;
         questionText.SetText(currentInstructionData.instruction[0]);
 
         HUDManager.Instance.UpdateQuestionCountText(currentQuestionID);//Tarun
 
-        G_Question.transform.GetChild(0).transform.GetChild(0).GetComponent<Image>().sprite = currentData.questionData.questionSprit;
-        G_Question.transform.GetChild(0).transform.GetChild(0).GetComponent<Image>().preserveAspect = true;
-        G_Question.transform.GetChild(0).transform.GetChild(0).GetComponent<AudioSource>().clip = currentData.questionData.questionAudioClip;
+        Transform tempTransform = G_Question.transform.GetChild(0).transform.GetChild(0);
+        tempTransform.GetComponent<Image>().sprite = currentData.questionData.questionSprit;
+        tempTransform.GetComponent<Image>().preserveAspect = true;
+        tempTransform.GetComponent<AudioSource>().clip = currentData.questionData.questionAudioClip;
 
 
-        for (int i = 0; i < G_Options.transform.childCount; i++)
+        int cashLoop = G_Options.transform.childCount;
+        for (int i = 0; i < cashLoop; i++)
         {
+            Transform tempTransform2 = G_Options.transform.GetChild(i).transform.GetChild(0);
             G_Options.transform.GetChild(i).name = currentData.options[i].option;
-            G_Options.transform.GetChild(i).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = currentData.options[i].option;
-            G_Options.transform.GetChild(i).transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.white;
-            G_Options.transform.GetChild(i).transform.GetChild(0).GetComponent<AudioSource>().clip = currentData.options[i].optionAudioClip;
+            tempTransform2.GetComponent<TextMeshProUGUI>().text = currentData.options[i].option;
+            tempTransform2.GetComponent<TextMeshProUGUI>().color = Color.white;
+            tempTransform2.GetComponent<AudioSource>().clip = currentData.options[i].optionAudioClip;
         }
 
         currentWrongAnsCount = 0;

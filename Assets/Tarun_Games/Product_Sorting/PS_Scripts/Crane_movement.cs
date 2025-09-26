@@ -128,9 +128,13 @@ public class Crane_movement : MonoBehaviour
     void Offlerp3()
     {
         Debug.Log("Before =" + this.gameObject.transform.GetChild(1).transform.position.y);
-        this.gameObject.transform.GetChild(1).transform.position = new Vector3(this.gameObject.transform.GetChild(1).transform.position.x, this.gameObject.transform.GetChild(1).transform.position.y + 1f, this.gameObject.transform.GetChild(1).transform.position.z);
-        this.gameObject.transform.GetChild(0).transform.position = new Vector3(this.gameObject.transform.GetChild(0).transform.position.x, this.gameObject.transform.GetChild(0).transform.position.y + 1f, this.gameObject.transform.GetChild(0).transform.position.z);
-        Debug.Log("After =" + this.gameObject.transform.GetChild(1).transform.position.y);
+
+        Transform tempTransform = gameObject.transform.GetChild(1).transform;
+        Transform tempTransform2 = gameObject.transform.GetChild(0).transform;
+
+        tempTransform.position = new Vector3(tempTransform.position.x, tempTransform.position.y + 1f, tempTransform.position.z);
+        tempTransform2.position = new Vector3(tempTransform2.position.x, tempTransform2.position.y + 1f, tempTransform2.position.z);
+        Debug.Log("After =" + tempTransform2.position.y);
 
         FixedJoystick.gameObject.SetActive(true);
         SetDropButtonOnOff(true);

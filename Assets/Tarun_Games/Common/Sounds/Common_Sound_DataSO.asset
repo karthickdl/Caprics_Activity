@@ -25,3 +25,7 @@ MonoBehaviour:
     audioClip: {fileID: 8300000, guid: a53cac36f9d8bfb48b0e724d5f4d2a9f, type: 3}
     mixerType: 2
     volumeLevel: 0.5
+  - name: Com_Clicking
+    audioClip: {fileID: 8300000, guid: 4afeb6f0c7dcfc143861d47c2c4b1764, type: 3}
+    mixerType: 2
+    volumeLevel: 0.5

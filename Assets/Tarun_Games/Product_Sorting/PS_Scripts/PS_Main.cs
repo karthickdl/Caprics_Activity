@@ -68,12 +68,6 @@ public class PS_Main : GameManagerBase
     public List<string> STRL_passageDetail;
 
 
-    [Header("AUDIO ASSIGN")]
-    public AudioClip[] ACA__questionClips;
-    public AudioClip[] ACA_optionClips;
-    public AudioClip[] ACA_instructionClips;
-
-
     #region Unity
     protected override void Awake()
     {
@@ -220,30 +214,29 @@ public class PS_Main : GameManagerBase
             G_Question.transform.SetParent(G_Clonehere.transform, false);
             G_Question.transform.position = G_Clonehere.transform.position;
 
-            G_Question.transform.GetChild(1).transform.GetChild(0).transform.GetChild(0).GetComponent<Image>().sprite = currentData.questionData.questionSprit;
-            G_Question.transform.GetChild(1).transform.GetChild(0).transform.GetChild(0).GetComponent<Image>().preserveAspect = true;
-            G_Question.transform.GetChild(1).transform.GetChild(0).transform.GetChild(0).GetComponent<AudioSource>().clip = currentData.questionData.questionAudioClip;
+            Transform tempTransform2 = G_Question.transform.GetChild(1).transform.GetChild(0).transform.GetChild(0);
+
+
+            tempTransform2.GetComponent<Image>().sprite = currentData.questionData.questionSprit;
+            tempTransform2.GetComponent<Image>().preserveAspect = true;
+            tempTransform2.GetComponent<AudioSource>().clip = currentData.questionData.questionAudioClip;
 
             // I_Dummmy = I_Counter + IL_numbers[3];
 
-            for (int i = 0; i < G_Options.transform.childCount; i++)
+            int cashLoop = G_Options.transform.childCount;
+            for (int i = 0; i < cashLoop; i++)
             {
                 G_Options.transform.GetChild(i).name = currentData.options[i].option;
 
-                
-                G_Options.transform.GetChild(i).transform.GetChild(0).transform.GetChild(0).name = currentData.options[i].option;
-                G_Options.transform.GetChild(i).transform.GetChild(0).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = currentData.options[i].option;
-                G_Options.transform.GetChild(i).transform.GetChild(0).transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.black;
-                G_Options.transform.GetChild(i).transform.GetChild(0).transform.GetChild(0).GetComponent<AudioSource>().clip = currentData.options[i].optionAudioClip;
+                Transform tempTransform = G_Options.transform.GetChild(i).transform.GetChild(0).transform;
+                tempTransform.name = currentData.options[i].option;
+                tempTransform.GetComponent<TextMeshProUGUI>().text = currentData.options[i].option;
+                tempTransform.GetComponent<TextMeshProUGUI>().color = Color.black;
+                tempTransform.GetComponent<AudioSource>().clip = currentData.options[i].optionAudioClip;
                 G_Options.transform.GetChild(i).gameObject.SetActive(true);
             }
 
-
-
             //  I_Counter = I_Counter + IL_numbers[3];
-
-
-
             THI_ShowQuestion();
         }
         else
@@ -270,7 +263,7 @@ public class PS_Main : GameManagerBase
         // I_Collect_count++;
         I_Points += I_correctPoints;
         TEX_points.text = I_Points.ToString();
-        THI_pointFxOn(true);
+        HUDManager.Instance.UpdateScoreText(true);
 
         // Release bird animation
         THI_TrackGameData("1");
@@ -336,156 +329,8 @@ public class PS_Main : GameManagerBase
     }
 
 
-    public void THI_CoinCollected()
-    {
-        AS_collecting.Play();
-        TM_pointFx.text = "+ 2 points";
-
-        I_Points += 2;
-
-        TEX_points.text = I_Points.ToString();
-
-        Invoke("THI_pointFxOff", 1f);
-    }
-
-    public void THI_pointFxOn(bool plus)
-    {
-        if (plus)
-        {
-            if (I_correctPoints != 1)
-            {
-                TM_pointFx.text = "+" + I_correctPoints + " points";
-            }
-            else
-            {
-                TM_pointFx.text = "+" + I_correctPoints + " point";
-            }
-        }
-        else
-        {
-            if (I_Points > 0)
-            {
-                if (I_wrongPoints != 0)
-                {
-                    if (I_wrongPoints != 1)
-                    {
-                        TM_pointFx.text = "-" + I_wrongPoints + " points";
-                    }
-                    else
-                    {
-                        TM_pointFx.text = "-" + I_wrongPoints + " point";
-                    }
-                }
-            }
-        }
-        Invoke("THI_pointFxOff", 1f);
-    }
-    public void THI_pointFxOff()
-    {
-        TM_pointFx.text = "";
-    }
-    
-
-    public IEnumerator EN_getValues()
-    {
-
-            for (int i = 0; i < GA_Options.Length; i++)
-            {
-                GA_Options[i].SetActive(false);
-                GA_OptionsBG[i].SetActive(false);
-            }
-            if (STRL_options.Count == 2)
-            {
-                G_Options = GA_Options[0];
-                G_OptionsBG = GA_OptionsBG[0];
-                //  Debug.Log(G_Options.name);
-            }
-            if (STRL_options.Count == 3)
-            {
-                G_Options = GA_Options[1];
-                G_OptionsBG = GA_OptionsBG[1];
-                //  Debug.Log(G_Options.name);
-            }
-
-            G_Options.SetActive(true);
-            G_OptionsBG.SetActive(true);
-
-            StartCoroutine(EN_getAudioClips());
-        yield return null;
-    }
 
    
-    public IEnumerator EN_getAudioClips()
-    {
-        ACA__questionClips = new AudioClip[STRL_quesitonAudios.Count];
-        ACA_optionClips = new AudioClip[STRL_optionAudios.Count];
-        ACA_instructionClips = new AudioClip[STRL_instructionAudio.Count];
-
-        for (int i = 0; i < STRL_quesitonAudios.Count; i++)
-        {
-            UnityWebRequest www1 = UnityWebRequestMultimedia.GetAudioClip(STRL_quesitonAudios[i], AudioType.MPEG);
-            yield return www1.SendWebRequest();
-            if (www1.result == UnityWebRequest.Result.ConnectionError || www1.isHttpError || www1.isNetworkError)
-            {
-                Debug.Log(www1.error);
-            }
-            else
-            {
-                ACA__questionClips[i] = DownloadHandlerAudioClip.GetContent(www1);
-            }
-        }
-
-        for (int i = 0; i < STRL_optionAudios.Count; i++)
-        {
-            UnityWebRequest www2 = UnityWebRequestMultimedia.GetAudioClip(STRL_optionAudios[i], AudioType.MPEG);
-            yield return www2.SendWebRequest();
-            if (www2.result == UnityWebRequest.Result.ConnectionError || www2.isHttpError || www2.isNetworkError)
-            {
-                Debug.Log(www2.error);
-            }
-            else
-            {
-                ACA_optionClips[i] = DownloadHandlerAudioClip.GetContent(www2);
-            }
-        }
-
-
-        for (int i = 0; i < STRL_instructionAudio.Count; i++)
-        {
-            UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip(STRL_instructionAudio[i], AudioType.MPEG);
-            yield return www.SendWebRequest();
-            if (www.result == UnityWebRequest.Result.ConnectionError || www.isHttpError || www.isNetworkError)
-            {
-                Debug.Log(www.error);
-            }
-            else
-            {
-
-                ACA_instructionClips[i] = DownloadHandlerAudioClip.GetContent(www);
-                Debug.Log("audio clips fetched instruction");
-
-            }
-        }
-        THI_assignAudioClips();
-    }
-
-    void THI_assignAudioClips()
-    {
-        if (ACA_instructionClips.Length > 0)
-        {
-            TEXM_instruction.text = STR_instruction;
-            TEXM_instruction.gameObject.AddComponent<AudioSource>();
-            TEXM_instruction.gameObject.GetComponent<AudioSource>().playOnAwake = false;
-            TEXM_instruction.gameObject.GetComponent<AudioSource>().clip = ACA_instructionClips[0];
-            TEXM_instruction.gameObject.AddComponent<Button>();
-            TEXM_instruction.gameObject.GetComponent<Button>().onClick.AddListener(THI_playAudio);
-
-
-        }
-
-        // DemoOver();//remove later
-        // THI_Transition();
-    }
     void THI_playAudio()
     {
         EventSystem.current.currentSelectedGameObject.GetComponent<AudioSource>().Play();
@@ -515,7 +360,6 @@ public class PS_Main : GameManagerBase
             G_Options = GA_Options[3];
         }
         G_Options.SetActive(true);
-        StartCoroutine(EN_getAudioClips());
 
         // THI_createOptions();
 

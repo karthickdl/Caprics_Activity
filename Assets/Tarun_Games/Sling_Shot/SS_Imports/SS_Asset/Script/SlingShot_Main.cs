@@ -172,12 +172,14 @@ public class SlingShot_Main : GameManagerBase
 
         G_Question.transform.GetChild(0).transform.GetChild(1).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = currentData.questionData.question;
 
-        for (int i = 0; i < G_Options.transform.childCount; i++)
+        int cashLoop = G_Options.transform.childCount;
+        for (int i = 0; i < cashLoop; i++)
         {
+            Transform tempTransform = G_Options.transform.GetChild(i).transform.GetChild(0);
             G_Options.transform.GetChild(i).name = currentData.options[i].option;
-            G_Options.transform.GetChild(i).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = currentData.options[i].option;
-            G_Options.transform.GetChild(i).transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.white;
-            G_Options.transform.GetChild(i).transform.GetChild(0).GetComponent<AudioSource>().clip = currentData.options[i].optionAudioClip;
+            tempTransform.GetComponent<TextMeshProUGUI>().text = currentData.options[i].option;
+            tempTransform.GetComponent<TextMeshProUGUI>().color = Color.white;
+            tempTransform.GetComponent<AudioSource>().clip = currentData.options[i].optionAudioClip;
             G_Options.transform.GetChild(i).GetComponent<Rigidbody2D>().gravityScale = 0f;
             G_Options.transform.GetChild(i).transform.position = V3_OptPos[i];
         }
@@ -205,7 +207,7 @@ public class SlingShot_Main : GameManagerBase
     }
     IEnumerator Highlight()
     {
-        
+
         for (int i = 0; i < G_Options.transform.childCount; i++)
         {
             if (G_Options.transform.GetChild(i).name == STR_currentQuestionAnswer)
@@ -215,17 +217,17 @@ public class SlingShot_Main : GameManagerBase
             }
         }
 
+        Image tempIMG = G_Options.transform.GetChild(I_Dummy).GetComponent<Image>();
+        WaitForSeconds tempTime = new WaitForSeconds(0.5f);
+        tempIMG.color = Color.green;
+        yield return tempTime;
+        tempIMG.color = Color.white;
+        yield return tempTime;
+        tempIMG.color = Color.green;
+        yield return tempTime;
+        tempIMG.color = Color.white;
+        yield return tempTime;
 
-        G_Options.transform.GetChild(I_Dummy).GetComponent<Image>().color = Color.green;
-         yield return new WaitForSeconds(0.5f);
-            G_Options.transform.GetChild(I_Dummy).GetComponent<Image>().color = Color.white;
-            yield return new WaitForSeconds(0.5f);
-        G_Options.transform.GetChild(I_Dummy).GetComponent<Image>().color = Color.green;
-        yield return new WaitForSeconds(0.5f);
-        G_Options.transform.GetChild(I_Dummy).GetComponent<Image>().color = Color.white;
-        yield return new WaitForSeconds(0.5f);
-
-        
     }
 
     public override void WrongAnswerSequence()
