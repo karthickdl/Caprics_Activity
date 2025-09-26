@@ -28,9 +28,9 @@ namespace DLearners
         //#if UNITYEDITOR
         private void Start()
         {
+            InitGameHandlerImmersiveGame(dataSO);
            if (isTesting)
             {
-                ///InitGameHandlerImmersiveGame();      
             }
        }
         //#endif

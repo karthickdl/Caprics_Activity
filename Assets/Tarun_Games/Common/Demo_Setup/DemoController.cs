@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -39,8 +40,15 @@ namespace DLearners
             {
                 animationClipTime = _demoControllerDataSO.clip.length;
             }
-
-            PlaySequence(demoControllInfos[id]);
+            if(demoControllInfos.Length>0)
+            {
+                PlaySequence(demoControllInfos[id]);
+            }
+            else
+            {
+                Invoke(nameof(OnSkipButton), animationClipTime);
+            }
+            
         }
 
         private float cashWaitTime;

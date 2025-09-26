@@ -128,7 +128,7 @@ public class SlingShot_Main : GameManagerBase
             }
             else
             {
-                THI_WrongEffect();
+                WrongAnswerSequence();
             }
         }
     }
@@ -228,9 +228,9 @@ public class SlingShot_Main : GameManagerBase
         
     }
 
-    public override void THI_WrongEffect()
+    public override void WrongAnswerSequence()
     {
-        base.THI_WrongEffect();
+        base.WrongAnswerSequence();
         DLearnersAudioManager.Instance.PlayCommonSound("Com_Wrong");
 
         THI_TrackGameData("0");

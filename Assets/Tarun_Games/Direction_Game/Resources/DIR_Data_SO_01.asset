@@ -10,144 +10,44 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f143a1e0cd95ceb44a427008c3cd5019, type: 3}
-  m_Name: ROB_Data_SO_01
+  m_Name: DIR_Data_SO_01
   m_EditorClassIdentifier: 
   difficultyLevelType: 0
   correctAnswerPoint: 5
   wrongAnswerPoint: 2
-  coverPageSprit: {fileID: 21300000, guid: 6c5ca2836b1c99545b71e9a7d8eb9675, type: 3}
+  coverPageSprit: {fileID: 21300000, guid: 75c2d581e573db24daf087c88167e137, type: 3}
   instructionData:
     instruction:
     - Choose the correct word
     instructionAudioURL: []
     instructionAudioClip:
-    - {fileID: 8300000, guid: 8fea1b7530f25324db32c0d5f52e229d, type: 3}
+    - {fileID: 8300000, guid: 01b57a65fdc525f4b915b3d7281a0c52, type: 3}
   datas:
   - answerType: 0
-    questionType: 1
+    questionType: 2
     questionData:
       questionID: 
-      question: fan
+      question: 
       questionAudioURL: 
-      questionAudioClip: {fileID: 8300000, guid: a2a97c61c44e92743bf17ff49b8ff11f, type: 3}
-      questionSprit: {fileID: 21300000, guid: e4e00f639f1b1094984ca25ae0fbd8b4, type: 3}
+      questionAudioClip: {fileID: 8300000, guid: 911903b3d31ce67448847fbb924f299b, type: 3}
+      questionSprit: {fileID: 0}
     options:
     - optionID: 
-      option: pen
+      option: e
       optionAudioURL: 
       optionAudioClip: {fileID: 0}
       optionSprit: {fileID: 0}
     - optionID: 
-      option: phone
+      option: other sound
       optionAudioURL: 
       optionAudioClip: {fileID: 0}
       optionSprit: {fileID: 0}
     - optionID: 
-      option: fan
+      option: m
       optionAudioURL: 
       optionAudioClip: {fileID: 0}
       optionSprit: {fileID: 0}
-    correctOptions: fan
-  - answerType: 0
-    questionType: 1
-    questionData:
-      questionID: 
-      question: van
-      questionAudioURL: 
-      questionAudioClip: {fileID: 8300000, guid: e05e0059d8ab3de4ab197addb1a1ccc3, type: 3}
-      questionSprit: {fileID: 21300000, guid: 1bcdc081381342448ba941a56a3cb609, type: 3}
-    options:
-    - optionID: 
-      option: van
-      optionAudioURL: 
-      optionAudioClip: {fileID: 0}
-      optionSprit: {fileID: 0}
-    - optionID: 
-      option: pot
-      optionAudioURL: 
-      optionAudioClip: {fileID: 0}
-      optionSprit: {fileID: 0}
-    - optionID: 
-      option: log
-      optionAudioURL: 
-      optionAudioClip: {fileID: 0}
-      optionSprit: {fileID: 0}
-    correctOptions: van
-  - answerType: 0
-    questionType: 1
-    questionData:
-      questionID: 
-      question: park
-      questionAudioURL: 
-      questionAudioClip: {fileID: 8300000, guid: d13e67dd195d4f14eab7d88e0465a5ac, type: 3}
-      questionSprit: {fileID: 21300000, guid: 361b841940e01574eb24a69a2e82f2cf, type: 3}
-    options:
-    - optionID: 
-      option: ink
-      optionAudioURL: 
-      optionAudioClip: {fileID: 0}
-      optionSprit: {fileID: 0}
-    - optionID: 
-      option: park
-      optionAudioURL: 
-      optionAudioClip: {fileID: 0}
-      optionSprit: {fileID: 0}
-    - optionID: 
-      option: cycle
-      optionAudioURL: 
-      optionAudioClip: {fileID: 0}
-      optionSprit: {fileID: 0}
-    correctOptions: park
-  - answerType: 0
-    questionType: 1
-    questionData:
-      questionID: 
-      question: flag
-      questionAudioURL: 
-      questionAudioClip: {fileID: 8300000, guid: 15c9fc7f4e9f1314ba96a7e934b7bb3e, type: 3}
-      questionSprit: {fileID: 21300000, guid: 94627c2d703d1b34c88e55ee197e29b0, type: 3}
-    options:
-    - optionID: 
-      option: flag
-      optionAudioURL: 
-      optionAudioClip: {fileID: 0}
-      optionSprit: {fileID: 0}
-    - optionID: 
-      option: submarine
-      optionAudioURL: 
-      optionAudioClip: {fileID: 0}
-      optionSprit: {fileID: 0}
-    - optionID: 
-      option: tractor
-      optionAudioURL: 
-      optionAudioClip: {fileID: 0}
-      optionSprit: {fileID: 0}
-    correctOptions: flag
-  - answerType: 0
-    questionType: 1
-    questionData:
-      questionID: 
-      question: parrot
-      questionAudioURL: 
-      questionAudioClip: {fileID: 8300000, guid: d2d16d787dd6b104697943ab547bad06, type: 3}
-      questionSprit: {fileID: 21300000, guid: 13917402dc465e74898d39e3798b7149, type: 3}
-    options:
-    - optionID: 
-      option: house
-      optionAudioURL: 
-      optionAudioClip: {fileID: 0}
-      optionSprit: {fileID: 0}
-    - optionID: 
-      option: rat
-      optionAudioURL: 
-      optionAudioClip: {fileID: 0}
-      optionSprit: {fileID: 0}
-    - optionID: 
-      option: parrot
-      optionAudioURL: 
-      optionAudioClip: {fileID: 0}
-      optionSprit: {fileID: 0}
-    correctOptions: parrot
+    correctOptions: m
   userData:
     userName: 
     userStandard: 

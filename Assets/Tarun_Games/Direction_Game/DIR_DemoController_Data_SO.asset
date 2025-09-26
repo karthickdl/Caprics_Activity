@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91e3a3d125234e64780bda66ea1399be, type: 3}
+  m_Name: DIR_DemoController_Data_SO
+  m_EditorClassIdentifier: 
+  demoController_N: {fileID: 5512389637732994299, guid: 6be9ba84c4a4ee34ba90017204898615, type: 3}
+  bgSprite: {fileID: 21300000, guid: 2a3767df1cdf1ba49a58bd54f78f6a4d, type: 3}
+  demoControllInfos: []
+  clip: {fileID: 7400000, guid: 8b2268e280f96d64d915e03a9ec49476, type: 2}

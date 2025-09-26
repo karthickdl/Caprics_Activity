@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -60,6 +61,9 @@ namespace DLearners
             STR_currentQuestionAnswer = currentData.correctOptions;
         }
 
+        
+
+
         /// <summary>
         /// For Checking the answer if it is right or wrong.
         /// </summary>
@@ -69,6 +73,21 @@ namespace DLearners
         public virtual void CheckAnswer(Transform transform)
         {
         }
+
+        /// <summary>
+        /// On correct answer sequence
+        /// </summary>
+        public virtual void CorrectAnswerSequence()
+        {
+        }
+        /// <summary>
+        /// On Wrong answer sequence
+        /// </summary>
+        public virtual void WrongAnswerSequence()
+        {
+        }
+
+        
         public string GetCurrentQuestionAnswer()
         {
             return STR_currentQuestionAnswer;
@@ -79,14 +98,9 @@ namespace DLearners
 
         }
 
-        public virtual void THI_WrongEffect()
-        {
-        }
+        
 
-        public virtual void THI_Correct()
-        {
-
-        }
+       
 
         public virtual void SetGameOBJOnOff(bool isOn)
         {
@@ -103,7 +117,9 @@ namespace DLearners
             GameHandlerImmersiveGame.Instance.I_TotalPoints = GameHandlerImmersiveGame.Instance.dataSO.GetCorrectAnswerPoint();
             VaultPopUpsManager.Instance.ShowPopup(NormalPopUpTypes.LevelCompletePOPUP,null);
         }
+        [Header("GAME DATA")]
+        public List<string> STRL_gameData;
+        public string STR_Data;
 
-        
     }
 }

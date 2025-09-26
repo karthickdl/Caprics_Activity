@@ -33,3 +33,9 @@ MonoBehaviour:
     gameType: 1
     dataSOLocations:
     - PS_Data_SO_01
+  - gameID: 3
+    gameName: Direction_Game
+    pFLocation: Direction Game
+    gameType: 1
+    dataSOLocations:
+    - DIR_Data_SO_01

@@ -67,9 +67,6 @@ public class PS_Main : GameManagerBase
     public List<string> STRL_Cover_Image_link;
     public List<string> STRL_passageDetail;
 
-    [Header("GAME DATA")]
-    public List<string> STRL_gameData;
-    public string STR_Data;
 
     [Header("AUDIO ASSIGN")]
     public AudioClip[] ACA__questionClips;
@@ -163,7 +160,7 @@ public class PS_Main : GameManagerBase
             if (STR_currentSelectedAnswer == STR_currentQuestionAnswer)
             {
                 G_Selected.transform.GetChild(0).GetComponent<AudioSource>().Play();
-                THI_Correct();
+                CorrectAnswerSequence();
 
                 for (int i = 0; i < G_Options.transform.childCount; i++)
                 {
@@ -171,7 +168,7 @@ public class PS_Main : GameManagerBase
                 }
                 G_Selected.SetActive(true);
             }
-            else { THI_WrongEffect(); }
+            else { WrongAnswerSequence(); }
         }
 
     }
@@ -266,9 +263,9 @@ public class PS_Main : GameManagerBase
     }
 
 
-    public override void THI_Correct()
+    public override void CorrectAnswerSequence()
     {
-        base.THI_Correct();
+        base.CorrectAnswerSequence();
         AS_crtans.Play();
         // I_Collect_count++;
         I_Points += I_correctPoints;
@@ -298,9 +295,9 @@ public class PS_Main : GameManagerBase
 
      }*/
 
-    public override void THI_WrongEffect()
+    public override void WrongAnswerSequence()
     {
-        base.THI_WrongEffect();
+        base.WrongAnswerSequence();
         DLearnersAudioManager.Instance.PlayCommonSound("Com_Wrong");
 
         THI_TrackGameData("0");

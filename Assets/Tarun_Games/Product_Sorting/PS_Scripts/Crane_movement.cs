@@ -147,19 +147,19 @@ public class Crane_movement : MonoBehaviour
     {
         if (qBOX.STR_Selected == "")
         {
-            PS_Main.Instance.THI_WrongEffect();
+            PS_Main.Instance.WrongAnswerSequence();
             THIDropDown();
         }
         else
         {
             if (qBOX.STR_Selected == PS_Main.Instance.GetCurrentQuestionAnswer())
             {
-                PS_Main.Instance.THI_Correct();
+                PS_Main.Instance.CorrectAnswerSequence();
                 THIDropDown();
             }
             else
             {
-                PS_Main.Instance.THI_WrongEffect();
+                PS_Main.Instance.WrongAnswerSequence();
                 THIDropDown();
             }
         }

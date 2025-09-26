@@ -22,9 +22,6 @@ public class RB_Runner_Main : GameManagerBase
     public GameObject[] GA_Options;
     GameObject G_Highlight;
 
-    [Header("GAME DATA")]
-    public List<string> STRL_gameData;
-    public string STR_Data;
 
 
     [SerializeField] private Sprite[] SPRA_ArrowsWebGL;
@@ -56,10 +53,9 @@ public class RB_Runner_Main : GameManagerBase
         base.InitGame();
         
 
-        currentQuestionID =0;
-        
+        currentQuestionID =0;        
 
-        Next();
+        NextStep();
         #region----------Platform Checking to set sprites for controls in Demo
 
         /*if (MainController.instance.WEB)
@@ -94,30 +90,11 @@ public class RB_Runner_Main : GameManagerBase
         base.GetSetCurrentLevelData();
 
         SetUpOptionsPanel();
-        // questionIMG.sprite = TarunTesting.Instance.dataSO.GetQuestionSprit(0);
     }
 
     /// <summary>
-    /// Showing transition and moving to next question, or checking for level complete 
+    /// Seting up Number of options for the game 
     /// </summary>
-    private void Next()
-    {
-        VaultPopUpsManager.Instance.ShowTransition(TransitionType.Fade);
-        if (currentQuestionID < GameHandlerImmersiveGame.Instance.dataSO.datas.Count)
-        {
-            GetSetCurrentLevelData();
-            G_Question.SetActive(false);
-            THI_NewQuestion();
-        }
-        else
-        {
-            OnLevelCompleted();
-        }
-    }
-
-
-
-
     private void SetUpOptionsPanel()
     {
         int cacheLoop = GA_Options.Length;
@@ -149,50 +126,30 @@ public class RB_Runner_Main : GameManagerBase
         {
             G_Options.transform.GetChild(i).GetChild(0).GetComponent<Button>().onClick.AddListener(() => { CheckAnswer(); });
         }
-
     }
 
     /// <summary>
-    /// For Checking the answer if it is right or wrong. ()
+    /// Showing transition and moving to next question, or checking for level complete 
     /// </summary>
-    public override void CheckAnswer()
+    private void NextStep()
     {
-        base.CheckAnswer();
-
-        if (isInputUnLocked)
+        VaultPopUpsManager.Instance.ShowTransition(TransitionType.Fade);
+        if (currentQuestionID < GameHandlerImmersiveGame.Instance.dataSO.datas.Count)
         {
-            GameObject G_Selected = EventSystem.current.currentSelectedGameObject;
-            STR_currentSelectedAnswer = EventSystem.current.currentSelectedGameObject.GetComponent<TextMeshProUGUI>().text;
-
-            if (STR_currentSelectedAnswer == STR_currentQuestionAnswer)
-            {
-                G_Selected.GetComponent<AudioSource>().Play();
-                THI_Correct();
-            }
-            else
-            {
-                THI_WrongEffect();
-            }
+            GetSetCurrentLevelData();
+            G_Question.SetActive(false);
+            ShowCurrentQuestion();
+        }
+        else
+        {
+            OnLevelCompleted();
         }
     }
 
-    
-
-    public override void UpdateQuestion()
-    {
-        currentQuestionID++;
-        isInputUnLocked = true;
-        G_Question.SetActive(true);//
-
-        AudioClip audioClipLent = currentInstructionData.instructionAudioClip[0];//Hardcode
-        DLearnersAudioManager.Instance.PlaySound3(audioClipLent);
-        DOVirtual.DelayedCall(audioClipLent.length,() =>
-        {
-            DLearnersAudioManager.Instance.PlaySound3(currentData.questionData.questionAudioClip);
-        });
-    }
-
-    public void THI_NewQuestion()
+    /// <summary>
+    /// adding data for the Question And setting up Level Question
+    /// </summary>
+    private void ShowCurrentQuestion()
     {
         G_Robot.SetActive(true);
         Robotmovement.Instance.RobotInIt();
@@ -229,42 +186,53 @@ public class RB_Runner_Main : GameManagerBase
         currentWrongAnsCount = 0;
     }
 
-    public override void OnLevelCompleted()
+
+    /// <summary>
+    /// For Checking the answer if it is right or wrong. ()
+    /// </summary>
+    public override void CheckAnswer()
     {
-        base.OnLevelCompleted();
-        StartCoroutine(IN_sendDataToDB());
+        base.CheckAnswer();
+
+        if (isInputUnLocked)
+        {
+            GameObject G_Selected = EventSystem.current.currentSelectedGameObject;
+            STR_currentSelectedAnswer = EventSystem.current.currentSelectedGameObject.GetComponent<TextMeshProUGUI>().text;
+
+            if (STR_currentSelectedAnswer == STR_currentQuestionAnswer)
+            {
+                G_Selected.GetComponent<AudioSource>().Play();
+                CorrectAnswerSequence();
+            }
+            else
+            {
+                WrongAnswerSequence();
+            }
+        }
     }
 
-    public override void THI_Correct()
+    /// <summary>
+    /// On correct answer sequence
+    /// </summary>
+    public override void CorrectAnswerSequence()
     {
-        base.THI_Correct();
+        base.CorrectAnswerSequence();
         isInputUnLocked = false;
 
         DLearnersAudioManager.Instance.PlayCommonSound("Com_Correct");
         I_Collect_count++;
         HUDManager.Instance.UpdateScoreText(true);
 
-        // Release bird animation
         THI_TrackGameData("1");
-        Invoke(nameof(Next), 3f);
-
+        Invoke(nameof(NextStep), 3f);
     }
 
-    IEnumerator Highlight()
+    /// <summary>
+    /// On Wrong answer sequence
+    /// </summary>
+    public override void WrongAnswerSequence()
     {
-        for (int i = 0; i < 5; i++)
-        {
-            G_Highlight.GetComponent<TextMeshProUGUI>().color = Color.green;
-            yield return new WaitForSeconds(0.5f);
-            G_Highlight.GetComponent<TextMeshProUGUI>().color = Color.white;
-            yield return new WaitForSeconds(0.5f);
-        }
-        G_Highlight.GetComponent<TextMeshProUGUI>().color = Color.green;
-    }
-
-    public override void THI_WrongEffect()
-    {
-        base.THI_WrongEffect();
+        base.WrongAnswerSequence();
         DLearnersAudioManager.Instance.PlayCommonSound("Com_Wrong");
 
         THI_TrackGameData("0");
@@ -283,7 +251,7 @@ public class RB_Runner_Main : GameManagerBase
                         G_Options.transform.GetChild(i).transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.green;
                     }
                 }
-                Invoke(nameof(Next), 5f);
+                Invoke(nameof(NextStep), 5f);
             }
             else if (currentDifficultyLevelType == DifficultyLevelType.Medium)
             {
@@ -304,12 +272,50 @@ public class RB_Runner_Main : GameManagerBase
             if (currentDifficultyLevelType == DifficultyLevelType.Hard)
             {
                 isInputUnLocked = false;
-                Invoke(nameof(Next), 2f);
+                Invoke(nameof(NextStep), 2f);
             }
         }
 
         HUDManager.Instance.UpdateScoreText(false);
     }
+
+    public override void UpdateQuestion()
+    {
+        currentQuestionID++;
+        isInputUnLocked = true;
+        G_Question.SetActive(true);//
+
+        AudioClip audioClipLent = currentInstructionData.instructionAudioClip[0];//Hardcode
+        DLearnersAudioManager.Instance.PlaySound3(audioClipLent);
+        DOVirtual.DelayedCall(audioClipLent.length,() =>
+        {
+            DLearnersAudioManager.Instance.PlaySound3(currentData.questionData.questionAudioClip);
+        });
+    }
+
+   
+
+    public override void OnLevelCompleted()
+    {
+        base.OnLevelCompleted();
+        StartCoroutine(IN_sendDataToDB());
+    }
+
+    
+
+    IEnumerator Highlight()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            G_Highlight.GetComponent<TextMeshProUGUI>().color = Color.green;
+            yield return new WaitForSeconds(0.5f);
+            G_Highlight.GetComponent<TextMeshProUGUI>().color = Color.white;
+            yield return new WaitForSeconds(0.5f);
+        }
+        G_Highlight.GetComponent<TextMeshProUGUI>().color = Color.green;
+    }
+
+    
 
    
 
