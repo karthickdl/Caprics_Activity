@@ -32,6 +32,7 @@ namespace DLearners
             totalQuestionsCount = _dataSO.datas.Count;
             UpdateQuestionCountText(0);
             InitInstruction(_dataSO.instructionData);
+            InitQ(_dataSO.datas[currentQuestionsID].questionData);
             instructionButton.onClick.AddListener(() => { OnOpenInstructionPanel(); });
             InitPauseMenu();
         }
@@ -244,5 +245,26 @@ Application.ExternalEval("closeApplication()");
 #endif
         }
         #endregion
+
+        [SerializeField] private Button qSoundButton;
+        private AudioClip qaudioClip;
+        public void InitQ(QuestionData questionData)
+        {
+            if(true)
+            {
+                qSoundButton.gameObject.SetActive(false);
+                return;
+            }
+            else
+            {
+                qSoundButton.gameObject.SetActive(true);
+                qaudioClip = questionData.questionAudioClip;
+                qSoundButton.onClick.AddListener(() =>
+                {
+                    DLearnersAudioManager.Instance.PlaySound3(qaudioClip);
+                });
+            }            
+        }
     }
+
 }
