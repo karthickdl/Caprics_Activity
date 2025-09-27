@@ -30,17 +30,17 @@ MonoBehaviour:
       question: fire
       questionAudioURL: 
       questionAudioClip: {fileID: 0}
-      questionSprit: {fileID: 0}
+      questionSprit: {fileID: 21300000, guid: 8ab26b6ba0039a24fae81ab697c2c65b, type: 3}
     options:
     - optionID: 
       option: l
       optionAudioURL: 
-      optionAudioClip: {fileID: 0}
+      optionAudioClip: {fileID: 8300000, guid: 9a1aec2e1f0af8446b7036a74064fb7c, type: 3}
       optionSprit: {fileID: 0}
     - optionID: 
       option: f
       optionAudioURL: 
-      optionAudioClip: {fileID: 0}
+      optionAudioClip: {fileID: 8300000, guid: f2d9721ecfe944d48be47c20c62a4f0a, type: 3}
       optionSprit: {fileID: 0}
     correctOptions: f
   - answerType: 0
@@ -50,7 +50,7 @@ MonoBehaviour:
       question: lotus
       questionAudioURL: 
       questionAudioClip: {fileID: 0}
-      questionSprit: {fileID: 0}
+      questionSprit: {fileID: 21300000, guid: 6aae88863c094da4491e547d112896f2, type: 3}
     options:
     - optionID: 
       option: l
@@ -70,7 +70,7 @@ MonoBehaviour:
       question: fish
       questionAudioURL: 
       questionAudioClip: {fileID: 0}
-      questionSprit: {fileID: 0}
+      questionSprit: {fileID: 21300000, guid: 55c3b283e2d0525428959836904c347b, type: 3}
     options:
     - optionID: 
       option: l
@@ -90,7 +90,7 @@ MonoBehaviour:
       question: flower
       questionAudioURL: 
       questionAudioClip: {fileID: 0}
-      questionSprit: {fileID: 0}
+      questionSprit: {fileID: 21300000, guid: 86db5ca6901fa064fb97815150634b84, type: 3}
     options:
     - optionID: 
       option: l
@@ -110,7 +110,7 @@ MonoBehaviour:
       question: lion
       questionAudioURL: 
       questionAudioClip: {fileID: 0}
-      questionSprit: {fileID: 0}
+      questionSprit: {fileID: 21300000, guid: dfc839cfcd39a4d4897c702d9c6e8b1b, type: 3}
     options:
     - optionID: 
       option: l
@@ -130,7 +130,7 @@ MonoBehaviour:
       question: leaf
       questionAudioURL: 
       questionAudioClip: {fileID: 0}
-      questionSprit: {fileID: 0}
+      questionSprit: {fileID: 21300000, guid: 0d0a6018af5584d448bbde652e2861b8, type: 3}
     options:
     - optionID: 
       option: l
@@ -150,7 +150,7 @@ MonoBehaviour:
       question: foot
       questionAudioURL: 
       questionAudioClip: {fileID: 0}
-      questionSprit: {fileID: 0}
+      questionSprit: {fileID: 21300000, guid: 3971e5e75beb44242b2b5e8883438702, type: 3}
     options:
     - optionID: 
       option: l
@@ -170,7 +170,7 @@ MonoBehaviour:
       question: lamp
       questionAudioURL: 
       questionAudioClip: {fileID: 0}
-      questionSprit: {fileID: 0}
+      questionSprit: {fileID: 21300000, guid: 921d573959b01e640bc4a4fda8ab9595, type: 3}
     options:
     - optionID: 
       option: l
@@ -190,7 +190,7 @@ MonoBehaviour:
       question: ladder
       questionAudioURL: 
       questionAudioClip: {fileID: 0}
-      questionSprit: {fileID: 0}
+      questionSprit: {fileID: 21300000, guid: a46fb1d4d88947d418d2ee9d2d35e0e9, type: 3}
     options:
     - optionID: 
       option: l
@@ -210,7 +210,7 @@ MonoBehaviour:
       question: frog
       questionAudioURL: 
       questionAudioClip: {fileID: 0}
-      questionSprit: {fileID: 0}
+      questionSprit: {fileID: 21300000, guid: 705a90c4ecf57f3469967a5e9c446127, type: 3}
     options:
     - optionID: 
       option: l

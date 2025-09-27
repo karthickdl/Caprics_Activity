@@ -10,12 +10,6 @@ using UnityEngine.SceneManagement;
 
 public class PS_Main : GameManagerBase
 {
-    [Header("Screens and UI elements")]
-    public TextMeshProUGUI TEXM_instruction;
-    public Text TEX_points;
-    public Text TEX_questionCount;
-    public TextMeshProUGUI TM_pointFx;
-
     [Header("Objects")]
     public GameObject G_Question;
     public GameObject G_Options;
@@ -26,47 +20,7 @@ public class PS_Main : GameManagerBase
     GameObject G_Highlight;
     public GameObject G_QuestionPrefab;
     public GameObject G_Clonehere;
-
-   
-
-    [Header("Values")]
-    public int I_Points;
-    public int I_wrongAnsCount;
-    public int I_Counter, I_Dummmy;
-    // public int I_Collect_count;
-
-
-    [Header("URL")]
-    public string URL;
-    public string SendValueURL;
-
-    [Header("Audios")]
-    public AudioSource AS_collecting;
-    public AudioSource AS_oops;
-    public AudioSource AS_crtans;
-
-    [Header("DB")]
-    public List<string> STRL_difficulty;
-    public string STR_difficulty;
-    public int I_correctPoints;
-    public int I_wrongPoints;
-    public List<string> STRL_instruction;
-    public string STR_instruction;
-    public string STR_video_link;
-    public List<string> STRL_options;
-    public List<string> STRL_answers;
-    public List<string> STRL_quesitonAudios;
-    public List<string> STRL_optionAudios;
-    public List<string> STRL_instructionAudio;
-    public List<string> STRL_questionID;
-    public string STR_customizationKey;
-    //Dummy values only for helicopter game
-    public List<string> STRL_BG_img_link;
-    public List<string> STRL_avatar_Color;
-    public List<string> STRL_Panel_Img_link;
-    public List<string> STRL_Cover_Image_link;
-    public List<string> STRL_passageDetail;
-
+       
 
     #region Unity
     protected override void Awake()
@@ -75,17 +29,14 @@ public class PS_Main : GameManagerBase
     }
     #endregion
 
-
     /// <summary>
     /// This will Trigger from tap to play screen.
     /// </summary>
     public override void OnPlayButton()
     {
         base.OnPlayButton();
-        THI_Transition();
+        NextStep();
     }
-
-
 
     /// <summary>
     /// We are initialising the game after all the tutorial thing is completed. 
@@ -94,10 +45,7 @@ public class PS_Main : GameManagerBase
     {
         base.InitGame();
 
-        Invoke("THI_gameData", 1f);
-
-        I_Dummmy = 0;
-        I_Counter = 0;
+        currentQuestionID = 0;
        // THI_getPreviewData();
 
         #region----------Platform Checking to set sprites for controls in Demo
@@ -133,8 +81,61 @@ public class PS_Main : GameManagerBase
     {
         base.GetSetCurrentLevelData();
 
-        THI_getPreviewData();
+        SetUpOptionsPanel();
         // questionIMG.sprite = TarunTesting.Instance.dataSO.GetQuestionSprit(0);
+    }
+
+    /// <summary>
+    /// Seting up Number of options for the game 
+    /// </summary>
+    private void SetUpOptionsPanel()
+    {
+
+        for (int i = 0; i < GA_Options.Length; i++)
+        {
+            GA_Options[i].SetActive(false);
+        }
+        if (currentOptionCount == 2)
+        {
+            G_Options = GA_Options[0];
+        }
+        if (currentOptionCount == 3)
+        {
+            G_Options = GA_Options[1];
+        }
+        if (currentOptionCount == 4)
+        {
+            G_Options = GA_Options[2];
+        }
+        if (currentOptionCount == 5)
+        {
+            G_Options = GA_Options[3];
+        }
+        G_Options.SetActive(true);
+
+        // THI_createOptions();
+
+
+    }
+
+    /// <summary>
+    /// Showing transition and moving to next question, or checking for level complete 
+    /// </summary>
+    private void NextStep()
+    {
+        GetSetCurrentLevelData();
+        // this.GetComponent<N_SwipeControls>().enabled = true;
+        VaultPopUpsManager.Instance.ShowTransition(TransitionType.Fade);
+
+        if (currentQuestionID < GameHandlerImmersiveGame.Instance.dataSO.datas.Count)
+        {
+            THI_NewQuestion();
+            currentQuestionID++;
+        }
+        else
+        {
+            OnLevelCompleted();
+        }
     }
 
 
@@ -167,13 +168,7 @@ public class PS_Main : GameManagerBase
 
     }
 
-    void THI_Transition()
-    {
-        GetSetCurrentLevelData();
-        // this.GetComponent<N_SwipeControls>().enabled = true;
-        VaultPopUpsManager.Instance.ShowTransition(TransitionType.Fade);
-        THI_NewQuestion();
-    }
+    
 
     public void THI_ShowQuestion()
     {
@@ -188,9 +183,7 @@ public class PS_Main : GameManagerBase
 
     public void THI_NewQuestion()
     {
-        currentQuestionID++;
-        I_wrongAnsCount = 0;
-        Invoke(nameof(THI_NextQuestion), 2f);
+        Invoke(nameof(THI_NextQuestion),0f);
     }
 
     public void THI_NextQuestion()
@@ -228,7 +221,7 @@ public class PS_Main : GameManagerBase
             {
                 G_Options.transform.GetChild(i).name = currentData.options[i].option;
 
-                Transform tempTransform = G_Options.transform.GetChild(i).transform.GetChild(0).transform;
+                Transform tempTransform = G_Options.transform.GetChild(i).transform.GetChild(0).GetChild(0).transform;
                 tempTransform.name = currentData.options[i].option;
                 tempTransform.GetComponent<TextMeshProUGUI>().text = currentData.options[i].option;
                 tempTransform.GetComponent<TextMeshProUGUI>().color = Color.black;
@@ -241,17 +234,16 @@ public class PS_Main : GameManagerBase
         }
         else
         {
-            THI_Levelcompleted();
+            OnLevelCompleted();
             // Invoke(nameof(THI_Levelcompleted), 3f);
         }
     }
 
 
 
-    void THI_Levelcompleted()
+    public override void OnLevelCompleted()
     {
-        DLearners.GameHandlerImmersiveGame.Instance.I_TotalPoints = I_Points;
-        VaultPopUpsManager.Instance.ShowPopup(NormalPopUpTypes.LevelCompletePOPUP);
+        base.OnLevelCompleted();
         StartCoroutine(IN_sendDataToDB());
     }
 
@@ -259,10 +251,8 @@ public class PS_Main : GameManagerBase
     public override void CorrectAnswerSequence()
     {
         base.CorrectAnswerSequence();
-        AS_crtans.Play();
+        DLearnersAudioManager.Instance.PlayCommonSound("Com_Correct");
         // I_Collect_count++;
-        I_Points += I_correctPoints;
-        TEX_points.text = I_Points.ToString();
         HUDManager.Instance.UpdateScoreText(true);
 
         // Release bird animation
@@ -271,7 +261,7 @@ public class PS_Main : GameManagerBase
          {
              Invoke(nameof(THI_OpenDam), 1f);
          }*/
-        Invoke(nameof(THI_NewQuestion), 3f);
+        Invoke(nameof(NextStep), 3f);
 
     }
 
@@ -301,13 +291,13 @@ public class PS_Main : GameManagerBase
             if (currentDifficultyLevelType == DifficultyLevelType.Easy)
             {
                 isInputUnLocked = false;
-                THI_Transition();   // in 2 seconds
+                NextStep();   // in 2 seconds
 
             }
             else if (currentDifficultyLevelType == DifficultyLevelType.Medium)
             {
                 isInputUnLocked = false;
-                THI_Transition();   // in 2 seconds
+                NextStep();   // in 2 seconds
             }
 
             //next question
@@ -318,10 +308,10 @@ public class PS_Main : GameManagerBase
             if (currentDifficultyLevelType == DifficultyLevelType.Hard)
             {
                 isInputUnLocked = false;
-                THI_Transition();   // in 2 seconds
+                NextStep();   // in 2 seconds
             }
 
-            AS_oops.Play();
+            DLearnersAudioManager.Instance.PlayCommonSound("Com_Wrong");
             Invoke(nameof(THI_NextQuestion), 2f);
         }
 
@@ -336,35 +326,7 @@ public class PS_Main : GameManagerBase
         EventSystem.current.currentSelectedGameObject.GetComponent<AudioSource>().Play();
         Debug.Log("player clicked. so playing audio");
     }
-    public void THI_getPreviewData()
-    {
-
-        for (int i = 0; i < GA_Options.Length; i++)
-        {
-            GA_Options[i].SetActive(false);
-        }
-        if (currentOptionCount == 2)
-        {
-            G_Options = GA_Options[0];
-        }
-        if (currentOptionCount == 3)
-        {
-            G_Options = GA_Options[1];
-        }
-        if (currentOptionCount == 4)
-        {
-            G_Options = GA_Options[2];
-        }
-        if (currentOptionCount == 5)
-        {
-            G_Options = GA_Options[3];
-        }
-        G_Options.SetActive(true);
-
-        // THI_createOptions();
-
-        
-    }
+    
     public void THI_TrackGameData(string analysis)
     {
         DBmanager TrainSortingDB = new DBmanager();
@@ -388,7 +350,7 @@ public class PS_Main : GameManagerBase
         Debug.Log("game_id  : " + DLearners.GameHandlerImmersiveGame.Instance.STR_GameID);
         Debug.Log("game_details: " + "[" + STR_Data + "]");
 
-        UnityWebRequest www = UnityWebRequest.Post(SendValueURL, form);
+        UnityWebRequest www = UnityWebRequest.Post(DownloadManager.Instance.sendValueURL, form);
         yield return www.SendWebRequest();
         if (www.isHttpError || www.isNetworkError)
         {

@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class ansslice : MonoBehaviour
+public class Ansslice : MonoBehaviour
 {
     public GameObject G_slice;
     GameObject slice;
@@ -24,9 +22,9 @@ public class ansslice : MonoBehaviour
         // Debug.Log("collide");
         if (collision.name == "Blade")
         {
-            FruitNinja_Main.Instance.STR_currentSelectedAnswer = this.transform.GetChild(0).gameObject.GetComponent<Text>().text;
+            //FruitNinja_Main.Instance.STR_currentSelectedAnswer = this.transform.GetChild(0).gameObject.GetComponent<Text>().text;Tariun
             //  Main_fruitslice.OBJ_main_Fruitslice.IncreaseScore();
-            FruitNinja_Main.Instance.THI_Check();
+            //FruitNinja_Main.Instance.THI_Check();Tarun
            // AS_Cutting.Play();
             slice = Instantiate(G_slice, this.transform);
             slice.transform.position = this.transform.position;

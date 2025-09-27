@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class bomb_FN : MonoBehaviour
+public class Bomb_FN : MonoBehaviour
 {
     public GameObject G_slice;
     GameObject slice;
@@ -23,7 +21,7 @@ public class bomb_FN : MonoBehaviour
         // Debug.Log("collide");
         if (collision.name == "Blade")
         {
-            FruitNinja_Main.Instance.THI_Wrong();
+           // FruitNinja_Main.Instance.THI_Wrong();//Tarun
             Vector3 pos= this.transform.position;
             this.GetComponent<Image>().enabled = false;
             this.GetComponent<Collider2D>().enabled = false;

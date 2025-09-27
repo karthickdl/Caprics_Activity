@@ -39,24 +39,7 @@ public class SlingShot_Main : GameManagerBase
     {
         base.Awake();
     }
-    /*   private void Awake()
-       {
-
-           if (B_production)
-           {
-               URL = "https://dlearners.in/template_and_games/Game_template_api-s/game_template_2.php"; // PRODUCTION FETCH DATA
-               SendValueURL = "https://dlearners.in/template_and_games/Game_template_api-s/save_child_questions.php"; // PRODUCTION SEND DATA
-           }
-           else
-           {
-               URL = "http://20.120.84.12/Test/template_and_games/Game_template_api-s/game_template_2.php"; // UAT FETCH DATA
-               SendValueURL = "http://20.120.84.12/Test/template_and_games/Game_template_api-s/save_child_questions.php"; // UAT SEND DATA
-
-           }
-       }*/
     #endregion
-
-
 
     /// <summary>
     /// This will Trigger from tap to play screen.
@@ -76,7 +59,7 @@ public class SlingShot_Main : GameManagerBase
         currentQuestionID = 0;
 
         SetUpOptionsPanel();        
-        Next();
+        NextStep();
     }
 
     /// <summary>
@@ -91,14 +74,14 @@ public class SlingShot_Main : GameManagerBase
     /// <summary>
     /// Showing transition and moving to next question, or checking for level complete 
     /// </summary>
-    private void Next()
+    private void NextStep()
     {
         VaultPopUpsManager.Instance.ShowTransition(TransitionType.Fade);
         if (currentQuestionID < GameHandlerImmersiveGame.Instance.dataSO.datas.Count)
         {
             GetSetCurrentLevelData();
             G_Question.SetActive(false);
-            THI_NextQuestion();
+            ShowCurrentQuestion();
         }
         else
         {
@@ -161,7 +144,7 @@ public class SlingShot_Main : GameManagerBase
         G_Slingclone.transform.position = G_Sling_pos.transform.position;
     }
 
-    public void THI_NextQuestion()
+    public void ShowCurrentQuestion()
     {
 
         THI_CloneSling();
@@ -201,7 +184,7 @@ public class SlingShot_Main : GameManagerBase
 
         // Release bird animation
         THI_TrackGameData("1");
-        Invoke(nameof(Next), 3f);
+        Invoke(nameof(NextStep), 3f);
 
 
     }
@@ -244,7 +227,7 @@ public class SlingShot_Main : GameManagerBase
             if (currentDifficultyLevelType == DifficultyLevelType.Easy)
             {
                 StartCoroutine(Highlight());
-                Invoke(nameof(Next), 10f);
+                Invoke(nameof(NextStep), 10f);
 
                 //Show answer and move to next question
             }
@@ -262,7 +245,7 @@ public class SlingShot_Main : GameManagerBase
         {
             if (currentDifficultyLevelType == DifficultyLevelType.Hard)
             {
-                Invoke(nameof(Next), 2f);
+                Invoke(nameof(NextStep), 2f);
             }
                
 

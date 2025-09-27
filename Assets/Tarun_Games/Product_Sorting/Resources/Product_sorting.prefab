@@ -1686,6 +1686,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canDestroyOnLoad: 0
   mainGameOBJ: {fileID: 4601797004124553287}
+  STRL_gameData: []
+  STR_Data: 
   TEXM_instruction: {fileID: 0}
   TEX_points: {fileID: 0}
   TEX_questionCount: {fileID: 0}
@@ -1725,16 +1727,6 @@ MonoBehaviour:
   STRL_instructionAudio: []
   STRL_questionID: []
   STR_customizationKey: 
-  STRL_BG_img_link: []
-  STRL_avatar_Color: []
-  STRL_Panel_Img_link: []
-  STRL_Cover_Image_link: []
-  STRL_passageDetail: []
-  STRL_gameData: []
-  STR_Data: 
-  ACA__questionClips: []
-  ACA_optionClips: []
-  ACA_instructionClips: []
 --- !u!1 &4601797003312888116
 GameObject:
   m_ObjectHideFlags: 0
@@ -2106,10 +2098,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDestroyOnLoad: 0
-  isTesting: 1
+  isTesting: 0
   platformType: 0
   gameAudioDataSO: {fileID: 11400000, guid: d7d19a4f10671e247bf414f764187fc7, type: 2}
-  dataSO: {fileID: 0}
+  dataSO: {fileID: 11400000, guid: 5fe342130a4c97545bed3268f0a40c0a, type: 2}
   STR_IDjson: 
   STR_childID: 
   STR_GameID: 
