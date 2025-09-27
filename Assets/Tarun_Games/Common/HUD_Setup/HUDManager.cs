@@ -162,6 +162,7 @@ namespace DLearners
         [SerializeField] private Button closeButton;
         [SerializeField] private Button howToPlayButton;
         private AudioClip audioClip;
+        private AudioSource audioSource;
         public void InitInstruction(InstructionData _instructionData)
         {
             int cashLoop = _instructionData.instruction.Count;
@@ -172,7 +173,8 @@ namespace DLearners
 
                 audioPlayButton.onClick.AddListener(() =>
                 {
-                    DLearnersAudioManager.Instance.PlaySound3(audioClip);
+                    audioSource = DLearnersAudioManager.Instance.PlaySoundCashed(audioClip);
+                    audioSource.Play();
                 });
             }
             howToPlayButton.onClick.AddListener(() =>
@@ -183,6 +185,7 @@ namespace DLearners
             });
             closeButton.onClick.AddListener(() =>
             {
+                audioSource.Stop();
                 OnCloseInstructionPanel();
                 /*audioPlayButton.onClick.RemoveAllListeners();
                 closeButton.onClick.RemoveAllListeners();

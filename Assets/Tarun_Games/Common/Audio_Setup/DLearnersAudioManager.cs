@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System;
 using UnityEngine.Audio;
+using System.Collections.Generic;
 
 namespace DLearners
 {
@@ -41,7 +42,6 @@ namespace DLearners
 
         private SoundDataStruct[] fxSounds2 => GameHandlerImmersiveGame.Instance.gameAudioDataSO.fxSounds;
         private SoundDataStruct[] fxSoundsCommon => commonSoundSO.fxSounds;
-
         #region Unity Calls
         public void Initialize()
         {
@@ -86,7 +86,6 @@ namespace DLearners
             audioPlayer.transform.parent = gameObject.transform;
             SoundDataStruct soundDataStruct = Array.Find(fxSounds2, s => s.name == name);
             AudioSource audioSource = audioPlayer.AddComponent<AudioSource>();
-
             AudioMixerGroup[] group;
             switch (soundDataStruct.mixerType)
             {
@@ -112,7 +111,6 @@ namespace DLearners
             audioPlayer.transform.parent = gameObject.transform;
             SoundDataStruct soundDataStruct = Array.Find(fxSoundsCommon, s => s.name == name);
             AudioSource audioSource = audioPlayer.AddComponent<AudioSource>();
-
             AudioMixerGroup[] group;
             switch (soundDataStruct.mixerType)
             {
@@ -139,7 +137,6 @@ namespace DLearners
             audioPlayer.transform.parent = gameObject.transform;
             SoundDataStruct soundDataStruct = Array.Find(fxSounds2, s => s.name == name);
             AudioSource audioSource = audioPlayer.AddComponent<AudioSource>();
-
             AudioMixerGroup[] group;
             switch (soundDataStruct.mixerType)
             {
@@ -162,7 +159,6 @@ namespace DLearners
         {
             GameObject audioPlayer = new GameObject("PlaySoundCashed");
             AudioSource audioSource = audioPlayer.AddComponent<AudioSource>();
-
             AudioMixerGroup[] group;
             group = inGameMixer.FindMatchingGroups("Master");
             audioSource.outputAudioMixerGroup = group[0];

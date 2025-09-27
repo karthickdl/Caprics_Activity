@@ -34,8 +34,14 @@ MonoBehaviour:
     dataSOLocations:
     - PS_Data_SO_01
   - gameID: 3
-    gameName: Direction_Game
-    pFLocation: Direction Game
+    gameName: Direction Game
+    pFLocation: Direction_Game
     gameType: 1
     dataSOLocations:
     - DIR_Data_SO_01
+  - gameID: 4
+    gameName: Fruit Ninja
+    pFLocation: Fruit_ninja
+    gameType: 1
+    dataSOLocations:
+    - FRUIT_Data_SO_01

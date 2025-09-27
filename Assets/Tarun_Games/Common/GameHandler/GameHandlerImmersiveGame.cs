@@ -81,6 +81,7 @@ namespace DLearners
         public override void TriggerDemo()
         {
             base.TriggerDemo();
+            Time.timeScale = 1;
             DemoController cashDemoController = Instantiate(demoControllerPF, canv);
             cashDemoController.InitDemoController(_demoControllerDataSO);
         }

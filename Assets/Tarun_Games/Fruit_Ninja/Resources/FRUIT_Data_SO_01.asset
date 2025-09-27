@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f143a1e0cd95ceb44a427008c3cd5019, type: 3}
+  m_Name: FRUIT_Data_SO_01
+  m_EditorClassIdentifier: 
+  difficultyLevelType: 0
+  correctAnswerPoint: 5
+  wrongAnswerPoint: 2
+  coverPageSprit: {fileID: 21300000, guid: 2eec02024e3c4b543a4c87897e94f5ed, type: 3}
+  instructionData:
+    instruction:
+    - Collect images with same beginning sound
+    instructionAudioURL: []
+    instructionAudioClip:
+    - {fileID: 8300000, guid: ae84cbd23a2d94b4095465f493a3db0b, type: 3}
+  datas:
+  - answerType: 0
+    questionType: 1
+    questionData:
+      questionID: 
+      question: fire
+      questionAudioURL: 
+      questionAudioClip: {fileID: 0}
+      questionSprit: {fileID: 0}
+    options:
+    - optionID: 
+      option: l
+      optionAudioURL: 
+      optionAudioClip: {fileID: 0}
+      optionSprit: {fileID: 0}
+    - optionID: 
+      option: f
+      optionAudioURL: 
+      optionAudioClip: {fileID: 0}
+      optionSprit: {fileID: 0}
+    correctOptions: f
+  userData:
+    userName: 
+    userStandard: 
+    lessonName: 
