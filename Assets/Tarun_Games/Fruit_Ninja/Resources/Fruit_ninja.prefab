@@ -2037,22 +2037,6 @@ MonoBehaviour:
   AC_jump:
   - {fileID: 8300000, guid: 29de2f9bc82c7cb46adb4f5203dae656, type: 3}
   - {fileID: 8300000, guid: bb6a099d094ba7643a9ebc2f48612e3e, type: 3}
-  STRL_difficulty: []
-  STR_difficulty: 
-  IL_numbers: 
-  I_correctPoints: 0
-  I_wrongPoints: 0
-  STRL_instruction: []
-  STR_instruction: 
-  STR_video_link: 
-  STRL_options: []
-  STRL_questions: []
-  STRL_answers: []
-  STRL_quesitonAudios: []
-  STRL_optionAudios: []
-  STRL_instructionAudio: []
-  STRL_questionID: []
-  STR_customizationKey: 
 --- !u!1 &5613368888609091830
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,6 +1,5 @@
 using DLearners;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -58,23 +57,6 @@ public class FruitNinja_Main : GameManagerBase
     public AudioSource AS_Jumping;
     public AudioClip[] AC_jump;
 
-    [Header("DB")]
-    public List<string> STRL_difficulty;
-    public string STR_difficulty;
-    public List<int> IL_numbers;
-    public int I_correctPoints;
-    public int I_wrongPoints;
-    public List<string> STRL_instruction;
-    public string STR_instruction;
-    public string STR_video_link;
-    public List<string> STRL_options;
-    public List<string> STRL_questions;
-    public List<string> STRL_answers;
-    public List<string> STRL_quesitonAudios;
-    public List<string> STRL_optionAudios;
-    public List<string> STRL_instructionAudio;
-    public List<string> STRL_questionID;
-    public string STR_customizationKey;
 
     #region Unity
     protected override void Awake()
@@ -158,7 +140,8 @@ public class FruitNinja_Main : GameManagerBase
                 ansspwan.transform.rotation = spawnpoint.transform.rotation;
 
                 int optnum = Random.Range(I_Counter, I_Dummmy);
-                ansspwan.transform.GetChild(0).GetComponent<Text>().text = STRL_options[optnum];
+                //ansspwan.transform.GetChild(0).GetComponent<Text>().text = STRL_options[optnum];
+                ansspwan.transform.GetChild(0).GetComponent<Text>().text = currentData.options[optnum].option;
                 //ansspwan.GetComponent<AudioSource>().clip = ACA_optionClips[optnum];
 
             int index = Random.Range(0, AC_jump.Length);
@@ -217,7 +200,7 @@ public class FruitNinja_Main : GameManagerBase
 
     public void THI_NextQuestion()
     {
-        Blade_slicing.OBJ_blade_Slicing.formtrail = true;
+       /* Blade_slicing.OBJ_blade_Slicing.formtrail = true;
         if (I_currentQuestionCount < STRL_questions.Count - 1)
         {
            
@@ -256,7 +239,7 @@ public class FruitNinja_Main : GameManagerBase
             G_Blade.SetActive(false);
             OnLevelCompleted();
             // Invoke(nameof(THI_Levelcompleted), 3f);
-        }
+        }*/
     }
 
 
@@ -271,15 +254,14 @@ public class FruitNinja_Main : GameManagerBase
     public void THI_Correct()
     {
         I_Collect_count++;
-        I_Points += I_correctPoints;
         TEX_points.text = I_Points.ToString();
-        THI_pointFxOn(true);
+        HUDManager.Instance.UpdateScoreText(true);
 
-       // float F_score = (float)I_Collect_count;
-      
-       
+        // float F_score = (float)I_Collect_count;
 
-       // Debug.Log(F_calculation);
+
+
+        // Debug.Log(F_calculation);
         IMG_progress.fillAmount = (float)I_Collect_count / F_Maxslices;
 
 
@@ -304,16 +286,14 @@ public class FruitNinja_Main : GameManagerBase
 
     void THI_WrongEffect()
     {
-
-
-        if (STR_difficulty == "assistive" || STR_difficulty == "independent")
+        if (currentDifficultyLevelType == DifficultyLevelType.Easy || currentDifficultyLevelType == DifficultyLevelType.Medium)
         {
             G_Answer.SetActive(true);
             Invoke(nameof(NextStep), 5f);
 
             //Show answer and move to next question
         }
-        if (STR_difficulty == "intuitive")
+        else if (currentDifficultyLevelType == DifficultyLevelType.Hard)
         {
             I_Attempt++;
             I_wrongAnsCount = I_wrongAnsCount - 3;
@@ -355,7 +335,7 @@ public class FruitNinja_Main : GameManagerBase
         Debug.Log("Wrong ans");
       
         AS_Wrong.Play();
-        THI_pointFxOn(false);
+        HUDManager.Instance.UpdateScoreText(false);
         THI_TrackGameData("0");
         I_wrongAnsCount++;
 
@@ -367,61 +347,7 @@ public class FruitNinja_Main : GameManagerBase
             THI_WrongEffect();
             Debug.Log("Restart or use coins");
         }
-        //REDO the same question
-
-        // wrong bird animation
-        
-
-        if (I_Points > I_wrongPoints)
-        {
-            I_Points -= I_wrongPoints;
-        }
-        else
-        {
-            if (I_Points > 0)
-            {
-                I_Points = 0;
-            }
-        }
-        TEX_points.text = I_Points.ToString();
     }
-    public void THI_pointFxOn(bool plus)
-    {
-        if (plus)
-        {
-            if (I_correctPoints != 1)
-            {
-                TM_pointFx.text = "+" + I_correctPoints + " points";
-            }
-            else
-            {
-                TM_pointFx.text = "+" + I_correctPoints + " point";
-            }
-        }
-        else
-        {
-            if (I_Points > 0)
-            {
-                if (I_wrongPoints != 0)
-                {
-                    if (I_wrongPoints != 1)
-                    {
-                        TM_pointFx.text = "-" + I_wrongPoints + " points";
-                    }
-                    else
-                    {
-                        TM_pointFx.text = "-" + I_wrongPoints + " point";
-                    }
-                }
-            }
-        }
-        Invoke("THI_pointFxOff", 1f);
-    }
-    public void THI_pointFxOff()
-    {
-        TM_pointFx.text = "";
-    }
-
 
     void THI_playAudio()
     {

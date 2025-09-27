@@ -311,10 +311,9 @@ public class PS_Main : GameManagerBase
                 NextStep();   // in 2 seconds
             }
 
-            DLearnersAudioManager.Instance.PlayCommonSound("Com_Wrong");
-            Invoke(nameof(THI_NextQuestion), 2f);
+           // Invoke(nameof(THI_NextQuestion), 2f);
         }
-
+        NextStep();//tarun
         HUDManager.Instance.UpdateScoreText(false);
     }
 

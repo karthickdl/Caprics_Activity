@@ -337,7 +337,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4601797003387110261, guid: cf77a886b1e40604b86b07a889c9b368, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -496,14 +496,6 @@ PrefabInstance:
     - target: {fileID: 5613368886922452832, guid: c14223256e90c5948abd39eecb06e986, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5613368888605416335, guid: c14223256e90c5948abd39eecb06e986, type: 3}
-      propertyPath: TEX_points
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5613368888605416335, guid: c14223256e90c5948abd39eecb06e986, type: 3}
-      propertyPath: TM_pointFx
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
