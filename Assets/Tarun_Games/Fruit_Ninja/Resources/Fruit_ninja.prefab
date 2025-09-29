@@ -1992,9 +1992,6 @@ MonoBehaviour:
   mainGameOBJ: {fileID: 5613368887774470870}
   STRL_gameData: []
   STR_Data: 
-  TEX_points: {fileID: 0}
-  TEX_questionCount: {fileID: 5613368887254570140}
-  TM_pointFx: {fileID: 0}
   G_Answer: {fileID: 5613368887312829917}
   mindelay: 1.5
   maxdelay: 3
@@ -2029,8 +2026,6 @@ MonoBehaviour:
   I_Dummmy: 0
   STRA_AnsList: []
   I_Collect_count: 0
-  URL: 
-  SendValueURL: 
   AS_Correct: {fileID: 5613368887098842197}
   AS_Wrong: {fileID: 5613368887045771918}
   AS_Jumping: {fileID: 5613368888673947714}

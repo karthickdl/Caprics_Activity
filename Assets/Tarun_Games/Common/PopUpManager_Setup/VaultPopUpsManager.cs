@@ -264,7 +264,8 @@ public class VaultPopUpsManager : Singleton<VaultPopUpsManager>
     {
         if (Input.GetKeyDown(KeyCode.K))
         {
-            ShowPopup(NormalPopUpTypes.SpinWheelPOPUP);
+            //ShowPopup(NormalPopUpTypes.SpinWheelPOPUP);
+            ShowTransition(TransitionType.C_Fill);
         }
     }
 }

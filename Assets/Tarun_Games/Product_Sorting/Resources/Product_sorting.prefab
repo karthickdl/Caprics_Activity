@@ -1688,10 +1688,6 @@ MonoBehaviour:
   mainGameOBJ: {fileID: 4601797004124553287}
   STRL_gameData: []
   STR_Data: 
-  TEXM_instruction: {fileID: 0}
-  TEX_points: {fileID: 0}
-  TEX_questionCount: {fileID: 0}
-  TM_pointFx: {fileID: 0}
   G_Question: {fileID: 0}
   G_Options: {fileID: 0}
   G_OptionsBG: {fileID: 0}
@@ -1704,29 +1700,6 @@ MonoBehaviour:
   SPRA_Questions: []
   G_QuestionPrefab: {fileID: 8411729942021889535, guid: fe7ef3380c198944d9bfd84a3e0055c7, type: 3}
   G_Clonehere: {fileID: 4601797003568379020}
-  I_Points: 0
-  I_wrongAnsCount: 0
-  I_Counter: 0
-  I_Dummmy: 0
-  URL: 
-  SendValueURL: 
-  AS_collecting: {fileID: 0}
-  AS_oops: {fileID: 0}
-  AS_crtans: {fileID: 0}
-  STRL_difficulty: []
-  STR_difficulty: 
-  I_correctPoints: 0
-  I_wrongPoints: 0
-  STRL_instruction: []
-  STR_instruction: 
-  STR_video_link: 
-  STRL_options: []
-  STRL_answers: []
-  STRL_quesitonAudios: []
-  STRL_optionAudios: []
-  STRL_instructionAudio: []
-  STRL_questionID: []
-  STR_customizationKey: 
 --- !u!1 &4601797003312888116
 GameObject:
   m_ObjectHideFlags: 0
@@ -2110,7 +2083,7 @@ MonoBehaviour:
   I_TotalQuestions: 0
   mode: 
   STR_previewJsonAPI: 
-  isFastingTesting: 1
+  isFastingTesting: 0
   introControllerPF: {fileID: 772068191316740501, guid: defaafb3d176a134ba037e5ae10d2225, type: 3}
   coverPagePF: {fileID: 6884182910719537490, guid: 66870b8df786af74d86760da710df9e8, type: 3}
   demoControllerPF: {fileID: 7569966119326016201, guid: 89e7e8d58c37efd43aa17591d81a8126, type: 3}

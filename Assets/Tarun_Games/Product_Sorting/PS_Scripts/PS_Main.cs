@@ -44,8 +44,6 @@ public class PS_Main : GameManagerBase
     public override void InitGame()
     {
         base.InitGame();
-
-        currentQuestionID = 0;
        // THI_getPreviewData();
 
         #region----------Platform Checking to set sprites for controls in Demo
@@ -121,7 +119,7 @@ public class PS_Main : GameManagerBase
     /// <summary>
     /// Showing transition and moving to next question, or checking for level complete 
     /// </summary>
-    private void NextStep()
+    protected override void NextStep()
     {
         GetSetCurrentLevelData();
         // this.GetComponent<N_SwipeControls>().enabled = true;
@@ -136,6 +134,7 @@ public class PS_Main : GameManagerBase
         {
             OnLevelCompleted();
         }
+        base.NextStep();
     }
 
 

@@ -25,10 +25,6 @@ public class SlingShot_Main : GameManagerBase
     public string SendValueURL;
    
 
-    [Header("GAME DATA")]
-    public List<string> STRL_gameData;
-    public string STR_Data;
-
     [Header("AUDIO ASSIGN")]
     public AudioClip[] ACA__questionClips;
     public AudioClip[] ACA_optionClips;
@@ -56,8 +52,6 @@ public class SlingShot_Main : GameManagerBase
     {
         base.InitGame();
 
-        currentQuestionID = 0;
-
         SetUpOptionsPanel();        
         NextStep();
     }
@@ -74,7 +68,7 @@ public class SlingShot_Main : GameManagerBase
     /// <summary>
     /// Showing transition and moving to next question, or checking for level complete 
     /// </summary>
-    private void NextStep()
+    protected override void NextStep()
     {
         VaultPopUpsManager.Instance.ShowTransition(TransitionType.Fade);
         if (currentQuestionID < GameHandlerImmersiveGame.Instance.dataSO.datas.Count)
@@ -87,6 +81,7 @@ public class SlingShot_Main : GameManagerBase
         {
             OnLevelCompleted();
         }
+        base.NextStep();//Need to be called after GetSetCurrentLevelData
         currentQuestionID++;
     }
 

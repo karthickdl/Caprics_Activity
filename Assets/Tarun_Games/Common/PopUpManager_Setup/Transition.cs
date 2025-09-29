@@ -27,15 +27,21 @@ public class Transition : MonoBehaviour
                    // fadeIMG.DOFade(0, 0.5f).SetEase(Ease.Linear);
                 }).SetEase(Ease.Linear);
                 break;
+            case TransitionType.C_Fill:
+                fadeIMG.type = Image.Type.Filled;
+                fadeIMG.DOFade(1, 0);
+                fadeIMG.fillMethod = Image.FillMethod.Radial360;
+                fadeIMG.fillAmount = 0;
+                fadeIMG.DOFillAmount(1, 0.5f);
+                break;
             default:
                 break;
         }
-
-
     }
 }
 public enum TransitionType
 {
     Fade,
-    Fade2
+    Fade2,
+    C_Fill
 }

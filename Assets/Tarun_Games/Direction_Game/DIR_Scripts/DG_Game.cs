@@ -12,10 +12,8 @@ public class DG_Game : GameManagerBase
     [Header("Objects")]
     public GameObject G_Penguin;
     GameObject G_Selected;
-    public GameObject G_Question;
     public GameObject[] G_Options;
     public GameObject[] G_Option_Text;
-    public TextMeshProUGUI TEXM_instruction2;
     GameObject G_Answer;
 
     #region Unity
@@ -31,6 +29,7 @@ public class DG_Game : GameManagerBase
     public override void OnPlayButton()
     {
         base.OnPlayButton();
+        NextStep();
     }
 
     /// <summary>
@@ -39,10 +38,7 @@ public class DG_Game : GameManagerBase
     public override void InitGame()
     {
         base.InitGame();
-
-
-        currentQuestionID = 0;
-        NextStep();
+       
         #region----------Platform Checking to set sprites for controls in Demo
 
         /*if (MainController.instance.WEB)
@@ -96,19 +92,20 @@ public class DG_Game : GameManagerBase
     /// <summary>
     /// Showing transition and moving to next question, or checking for level complete 
     /// </summary>
-    private void NextStep()
+    protected override void NextStep()
     {
         VaultPopUpsManager.Instance.ShowTransition(TransitionType.Fade);
         if (currentQuestionID < GameHandlerImmersiveGame.Instance.dataSO.datas.Count)
         {
             GetSetCurrentLevelData();
-            G_Question.SetActive(false);
             ShowCurrentQuestion();
         }
         else
         {
             OnLevelCompleted();
         }
+        base.NextStep();//Need to be called after GetSetCurrentLevelData
+        currentQuestionID++;
     }
     
 
@@ -123,9 +120,10 @@ public class DG_Game : GameManagerBase
         // I_currentQuestionCount++;
         //STR_currentQuestionID = STRL_questionID[I_currentQuestionCount];
 
-        G_Question.GetComponent<AudioSource>().clip = currentData.questionData.questionAudioClip;
+        
 
-        for (int i = 0; i < G_Options.Length; i++)
+        int cashLoop = G_Options.Length;
+        for (int i = 0; i < cashLoop; i++)
         {
             G_Options[i].transform.GetChild(0).GetComponent<Image>().color = Color.white;
         }
@@ -165,6 +163,7 @@ public class DG_Game : GameManagerBase
         isInputUnLocked = false;
         I_Collect_count++;
         HUDManager.Instance.UpdateScoreText(true);
+        HUDManager.Instance.UpdateQuestionCountText(currentQuestionID);
         DLearnersAudioManager.Instance.PlayCommonSound("Com_Correct");
 
         THI_TrackGameData("1");
@@ -252,7 +251,7 @@ public class DG_Game : GameManagerBase
         tempAnimator.Play("Penguin_Intro");
         tempAnimator.SetInteger("Cond", 0);
         tempAnimator.SetBool("Bool", true);
-        G_Question.GetComponent<AudioSource>().Play();
+        DLearnersAudioManager.Instance.PlaySound3(currentData.questionData.questionAudioClip);
         isInputUnLocked = true;
     }
 
@@ -312,16 +311,6 @@ public class DG_Game : GameManagerBase
             Invoke(nameof(THI_Initial_Anim), 2f);
         }
        
-    }
-
-    
-   
-   
-    public void BUT_Speaker()
-    {
-       // Debug.Log("Playing Audio");
-        G_Question.transform.GetChild(1).GetComponent<AudioSource>().Play();
-        isInputUnLocked = true;
     }
     
     public void THI_TrackGameData(string analysis)

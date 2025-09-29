@@ -10,11 +10,6 @@ using UnityEngine.UI;
 
 public class FruitNinja_Main : GameManagerBase
 {
-
-    [Header("Screens and UI elements")]
-    public Text TEX_points;
-    public Text TEX_questionCount;
-    public TextMeshProUGUI TM_pointFx;
     public GameObject G_Answer;
     int I_Attempt;
 
@@ -47,10 +42,6 @@ public class FruitNinja_Main : GameManagerBase
     public int I_Collect_count;
 
 
-    [Header("URL")]
-    public string URL;
-    public string SendValueURL;
-
     [Header("Audios")]
     public AudioSource AS_Correct;
     public AudioSource AS_Wrong;
@@ -79,8 +70,6 @@ public class FruitNinja_Main : GameManagerBase
     public override void InitGame()
     {
         base.InitGame();
-
-        currentQuestionID = 0;
         Invoke(nameof(NextStep), 1f);
     }
     /// <summary>
@@ -102,12 +91,13 @@ public class FruitNinja_Main : GameManagerBase
     /// <summary>
     /// Showing transition and moving to next question, or checking for level complete 
     /// </summary>
-    private void NextStep()
+    protected override void NextStep()
     {
         G_Answer.SetActive(false);
         VaultPopUpsManager.Instance.ShowTransition(TransitionType.Fade);
         if (currentQuestionID < GameHandlerImmersiveGame.Instance.dataSO.datas.Count)
         {
+            GetSetCurrentLevelData();
             Invoke(nameof(THI_NextQuestion), 2f);
 
         }
@@ -115,6 +105,7 @@ public class FruitNinja_Main : GameManagerBase
         {
             OnLevelCompleted();
         }
+        base.NextStep();//Need to be called after GetSetCurrentLevelData
     }
 
 
@@ -238,7 +229,6 @@ public class FruitNinja_Main : GameManagerBase
         {
             G_Blade.SetActive(false);
             OnLevelCompleted();
-            // Invoke(nameof(THI_Levelcompleted), 3f);
         }*/
     }
 
@@ -254,7 +244,6 @@ public class FruitNinja_Main : GameManagerBase
     public void THI_Correct()
     {
         I_Collect_count++;
-        TEX_points.text = I_Points.ToString();
         HUDManager.Instance.UpdateScoreText(true);
 
         // float F_score = (float)I_Collect_count;
@@ -377,7 +366,7 @@ public class FruitNinja_Main : GameManagerBase
         Debug.Log("game_id  : " + DLearners.GameHandlerImmersiveGame.Instance.STR_GameID);
         Debug.Log("game_details: " + "[" + STR_Data + "]");
 
-        UnityWebRequest www = UnityWebRequest.Post(SendValueURL, form);
+        UnityWebRequest www = UnityWebRequest.Post(DownloadManager.Instance.sendValueURL, form);
         yield return www.SendWebRequest();
         if (www.isHttpError || www.isNetworkError)
         {

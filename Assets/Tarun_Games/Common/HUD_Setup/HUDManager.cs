@@ -32,7 +32,6 @@ namespace DLearners
             totalQuestionsCount = _dataSO.datas.Count;
             UpdateQuestionCountText(0);
             InitInstruction(_dataSO.instructionData);
-            InitQ(_dataSO.datas[currentQuestionsID].questionData);
             instructionButton.onClick.AddListener(() => { OnOpenInstructionPanel(); });
             InitPauseMenu();
         }
@@ -165,6 +164,7 @@ namespace DLearners
         private AudioSource audioSource;
         public void InitInstruction(InstructionData _instructionData)
         {
+            audioSource = null;
             int cashLoop = _instructionData.instruction.Count;
             for (int i = 0; i < cashLoop; i++)
             {
@@ -173,12 +173,17 @@ namespace DLearners
 
                 audioPlayButton.onClick.AddListener(() =>
                 {
-                    audioSource = DLearnersAudioManager.Instance.PlaySoundCashed(audioClip);
+                    if(audioSource==null)
+                    {
+                        audioSource = DLearnersAudioManager.Instance.PlaySoundCashed(audioClip);
+                    }
+                    
                     audioSource.Play();
                 });
             }
             howToPlayButton.onClick.AddListener(() =>
             {
+                audioSource.Stop();
                 SetHUDOnOff(false);
                 instructionOBJ.gameObject.SetActive(false);
                 GameHandlerImmersiveGame.Instance.TriggerDemo();
@@ -251,21 +256,21 @@ Application.ExternalEval("closeApplication()");
 
         [SerializeField] private Button qSoundButton;
         private AudioClip qaudioClip;
-        public void InitQ(QuestionData questionData)
+        public void InitQ(Data _data)
         {
-            if(true)
-            {
-                qSoundButton.gameObject.SetActive(false);
-                return;
-            }
-            else
+            if(_data.questionType == TemplateType.Audio)
             {
                 qSoundButton.gameObject.SetActive(true);
-                qaudioClip = questionData.questionAudioClip;
+                qaudioClip = _data.questionData.questionAudioClip;
+                qSoundButton.onClick.RemoveAllListeners();
                 qSoundButton.onClick.AddListener(() =>
                 {
                     DLearnersAudioManager.Instance.PlaySound3(qaudioClip);
                 });
+            }
+            else
+            {
+                qSoundButton.gameObject.SetActive(false);
             }            
         }
     }

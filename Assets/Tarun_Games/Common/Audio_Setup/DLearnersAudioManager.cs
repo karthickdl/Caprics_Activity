@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System;
 using UnityEngine.Audio;
-using System.Collections.Generic;
 
 namespace DLearners
 {

@@ -666,6 +666,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Direction_Game
       objectReference: {fileID: 0}
+    - target: {fileID: 8007762968116447659, guid: 205210470cef9a44ca2d94e529ad78da, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -841,7 +845,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5613368886922452831, guid: c14223256e90c5948abd39eecb06e986, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5613368886922452832, guid: c14223256e90c5948abd39eecb06e986, type: 3}
       propertyPath: m_LocalPosition.x
@@ -883,17 +887,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5613368888262528202, guid: c14223256e90c5948abd39eecb06e986, type: 3}
-      propertyPath: STR_previewJsonAPI
-      value: '{"q_a":[{"question_id":"2832","question":"Slice the fruits with the
-        letter d","answer":"d","question_voice":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/slice_me_upKoIT\/audio\/Slicethefruitswiththeletterd.mp3","options":[{"option":"d","option_voice":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/slice_me_upKoIT\/audio\/d.mp3","option_id":"5294"},{"option":"g","option_voice":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/slice_me_upKoIT\/audio\/g.mp3","option_id":"5295"},{"option":"d","option_voice":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/slice_me_upKoIT\/audio\/d.mp3","option_id":"5296"},{"option":"p","option_voice":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/slice_me_upKoIT\/audio\/p.mp3","option_id":"5297"},{"option":"q","option_voice":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/slice_me_upKoIT\/audio\/q.mp3","option_id":"5298"},{"option":"d","option_voice":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/slice_me_upKoIT\/audio\/d.mp3","option_id":"5299"}]},{"question_id":"2833","question":"Slice
-        the fruits with the letter r ","answer":"r","question_voice":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/slice_me_upKoIT\/audio\/Slicethefruitswiththeletterr.mp3","options":[{"option":"r","option_voice":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/slice_me_upKoIT\/audio\/r.mp3","option_id":"5300"},{"option":"m","option_voice":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/slice_me_upKoIT\/audio\/m.mp3","option_id":"5301"},{"option":"i","option_voice":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/slice_me_upKoIT\/audio\/i.mp3","option_id":"5302"},{"option":"l","option_voice":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/slice_me_upKoIT\/audio\/l.mp3","option_id":"5303"},{"option":"r","option_voice":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/slice_me_upKoIT\/audio\/r.mp3","option_id":"5304"},{"option":"r","option_voice":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/slice_me_upKoIT\/audio\/r.mp3","option_id":"5305"}]}],"correct_points":"5","wrong_points":"2","avatar_color":"","difficulty_level":"assistive","video":"","instruction":"Find
-        the given letter","instruction_audio":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/slice_me_upKoIT\/instruction_audio.mp3","bg_image":"","customization":{},"child_name":"Samiksha","child_standard":"II
-        std","lesson_name":"D,R","game_cover_img":"https:\/\/dlearners.in\/template_and_games\/Game_Generator\/generatedGame\/slice_me_upKoIT\/coverImage.png","additional_keys":[]}'
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 5613368888927122525, guid: c14223256e90c5948abd39eecb06e986, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c14223256e90c5948abd39eecb06e986, type: 3}

@@ -41,6 +41,7 @@ namespace DLearners
         /// </summary>
         public virtual void InitGame()
         {
+            currentQuestionID = 0;
         }
 
         /// <summary>
@@ -98,6 +99,10 @@ namespace DLearners
 
         }
 
+        protected virtual void NextStep()
+        {
+            HUDManager.Instance.InitQ(currentData);
+        }
         
 
        

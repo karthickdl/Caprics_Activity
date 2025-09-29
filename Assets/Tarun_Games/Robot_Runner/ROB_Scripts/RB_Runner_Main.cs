@@ -49,10 +49,7 @@ public class RB_Runner_Main : GameManagerBase
     /// </summary>
     public override void InitGame()
     {
-        base.InitGame();
-        
-
-        currentQuestionID =0;        
+        base.InitGame();      
 
         NextStep();
         #region----------Platform Checking to set sprites for controls in Demo
@@ -130,7 +127,7 @@ public class RB_Runner_Main : GameManagerBase
     /// <summary>
     /// Showing transition and moving to next question, or checking for level complete 
     /// </summary>
-    private void NextStep()
+    protected override void NextStep()
     {
         VaultPopUpsManager.Instance.ShowTransition(TransitionType.Fade);
         if (currentQuestionID < GameHandlerImmersiveGame.Instance.dataSO.datas.Count)
@@ -143,6 +140,7 @@ public class RB_Runner_Main : GameManagerBase
         {
             OnLevelCompleted();
         }
+        base.NextStep();//Need to be called after GetSetCurrentLevelData
     }
 
     /// <summary>
