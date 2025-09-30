@@ -10,7 +10,6 @@ using UnityEngine.UI;
 
 public class FruitNinja_Main : GameManagerBase
 {
-    public GameObject G_Answer;
     int I_Attempt;
 
     public float mindelay = 1.5f, maxdelay = 3f;
@@ -28,17 +27,12 @@ public class FruitNinja_Main : GameManagerBase
     public Image IMG_progress;
     public GameObject G_Blade;
 
-   // public List<string> Lstr_ans, Lstr_wrng;
-   // public List<AudioClip> AC_ans, AC_wrg;
     bool B_Correct;
 
     [Header("Values")]
-    public int I_currentQuestionCount; // question number current
-    public string STR_currentQuestionID;
     public int I_Points;
     public int I_wrongAnsCount;
     public int I_Counter, I_Dummmy;
-    public string[] STRA_AnsList;
     public int I_Collect_count;
 
 
@@ -93,30 +87,50 @@ public class FruitNinja_Main : GameManagerBase
     /// </summary>
     protected override void NextStep()
     {
-        G_Answer.SetActive(false);
         VaultPopUpsManager.Instance.ShowTransition(TransitionType.Fade);
         if (currentQuestionID < GameHandlerImmersiveGame.Instance.dataSO.datas.Count)
         {
             GetSetCurrentLevelData();
             Invoke(nameof(THI_NextQuestion), 2f);
-
+            THI_Continue();
         }
         else
         {
+            G_Blade.SetActive(false);
             OnLevelCompleted();
         }
         base.NextStep();//Need to be called after GetSetCurrentLevelData
+        currentQuestionID++;
     }
 
 
+    /// <summary>
+    /// For Checking the answer if it is right or wrong. ()
+    /// </summary>
+    public override void CheckAnswer()
+    {
+        base.CheckAnswer();
+        B_Correct = false;
+        // for (int i=0;i<STRA_AnsList.Length;i++)
+        {
+            if (STR_currentQuestionAnswer == STR_currentSelectedAnswer)
+            {
+                B_Correct = true;
+            }
+        }
 
+        if (B_Correct)
+        {
+            THI_Correct();
+            //I_Collect_count++;
+        }
+        else { THI_Wrong(); }
+    }
 
     IEnumerator Spawnans()
     {
         while (I_Collect_count < 15)
         {
-           // Lstr_ans = Lstr_wrng = null;
-           // AC_ans = AC_wrg = null;
 
             float delay = Random.Range(mindelay, maxdelay);
                 yield return new WaitForSeconds(delay);
@@ -171,9 +185,9 @@ public class FruitNinja_Main : GameManagerBase
     public void THI_Check()
     {
         B_Correct = false;
-        for (int i=0;i<STRA_AnsList.Length;i++)
+       // for (int i=0;i<STRA_AnsList.Length;i++)
         {
-            if(STRA_AnsList[i]==STR_currentSelectedAnswer)
+            if(STR_currentQuestionAnswer == STR_currentSelectedAnswer)
             {
                 B_Correct = true;
             }
@@ -187,49 +201,31 @@ public class FruitNinja_Main : GameManagerBase
         else { THI_Wrong(); }
     }
 
-   
+
 
     public void THI_NextQuestion()
     {
-       /* Blade_slicing.OBJ_blade_Slicing.formtrail = true;
-        if (I_currentQuestionCount < STRL_questions.Count - 1)
+        Blade_slicing.OBJ_blade_Slicing.formtrail = true;
+
+        if (currentQuestionID != 0)
         {
-           
-            I_currentQuestionCount++;
-            if (I_currentQuestionCount != 0)
-            {
-                I_Counter = I_Counter + IL_numbers[3];
-            }
-            I_Collect_count = 0;
-           
-            STRA_AnsList = null;
-            STR_currentQuestionID = STRL_questionID[I_currentQuestionCount];
-            int currentquesCount = I_currentQuestionCount + 1;
-            TEX_questionCount.text = currentquesCount + "/" + STRL_questions.Count;
-            STR_currentQuestionAnswer = STRL_answers[I_currentQuestionCount];
-
-            I_Dummmy = I_Counter + IL_numbers[3];
-
-            I_wrongAnsCount = 0;
-
-            STRA_AnsList = STRL_answers[I_currentQuestionCount].Split(',');
-
-            for(int i=0;i<G_wrgeffect.transform.childCount;i++)
-            {
-                G_wrgeffect.transform.GetChild(i).gameObject.SetActive(false);
-            }
-
-            G_Answer.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "The answers are : " + STRL_answers[I_currentQuestionCount];
-
-
-            IMG_progress.fillAmount = 0 / F_Maxslices;
-
+           // I_Counter = I_Counter + IL_numbers[3];tarun
         }
-        else
+        I_Collect_count = 0;
+
+        HUDManager.Instance.UpdateQuestionCountText(currentQuestionID);
+
+      //  I_Dummmy = I_Counter + IL_numbers[3];tarun
+
+        I_wrongAnsCount = 0;
+
+
+        for (int i = 0; i < G_wrgeffect.transform.childCount; i++)
         {
-            G_Blade.SetActive(false);
-            OnLevelCompleted();
-        }*/
+            G_wrgeffect.transform.GetChild(i).gameObject.SetActive(false);
+        }
+
+        IMG_progress.fillAmount = 0 / F_Maxslices;
     }
 
 
@@ -265,19 +261,10 @@ public class FruitNinja_Main : GameManagerBase
 
     }
 
-    IEnumerator Highlight()
-    {
-        for (int i = 0; i < 5; i++)
-        {
-            yield return new WaitForSeconds(1);
-        }
-    }
-
     void THI_WrongEffect()
     {
         if (currentDifficultyLevelType == DifficultyLevelType.Easy || currentDifficultyLevelType == DifficultyLevelType.Medium)
         {
-            G_Answer.SetActive(true);
             Invoke(nameof(NextStep), 5f);
 
             //Show answer and move to next question
@@ -286,7 +273,6 @@ public class FruitNinja_Main : GameManagerBase
         {
             I_Attempt++;
             I_wrongAnsCount = I_wrongAnsCount - 3;
-            G_Answer.SetActive(true);
 
             for(int i=0;i< G_wrgeffect.transform.childCount; i++)
             {
@@ -312,8 +298,6 @@ public class FruitNinja_Main : GameManagerBase
 
     void THI_Continue()
     {
-        G_Answer.SetActive(false);
-
         Blade_slicing.OBJ_blade_Slicing.formtrail = true;
         StartCoroutine(Spawnans());
         StartCoroutine(SpawnWrong());
@@ -346,7 +330,7 @@ public class FruitNinja_Main : GameManagerBase
     public void THI_TrackGameData(string analysis)
     {
         DBmanager TrainSortingDB = new DBmanager();
-        TrainSortingDB.question_id = STR_currentQuestionID;
+        TrainSortingDB.question_id = currentQuestionID.ToString();
         TrainSortingDB.answer = STR_currentSelectedAnswer;
         TrainSortingDB.analysis = analysis;
         string toJson = JsonUtility.ToJson(TrainSortingDB);
@@ -379,9 +363,5 @@ public class FruitNinja_Main : GameManagerBase
 
             Debug.Log("Sending data to DB success : " + www.downloadHandler.text);
         }
-    }
-    public void BUT_playAgain()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

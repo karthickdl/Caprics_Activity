@@ -22,9 +22,9 @@ public class Ansslice : MonoBehaviour
         // Debug.Log("collide");
         if (collision.name == "Blade")
         {
-            //FruitNinja_Main.Instance.STR_currentSelectedAnswer = this.transform.GetChild(0).gameObject.GetComponent<Text>().text;Tariun
+            //FruitNinja_Main.Instance.STR_currentSelectedAnswer = this.transform.GetChild(0).gameObject.GetComponent<Text>().text;//tarun
             //  Main_fruitslice.OBJ_main_Fruitslice.IncreaseScore();
-            //FruitNinja_Main.Instance.THI_Check();Tarun
+            FruitNinja_Main.Instance.CheckAnswer();
            // AS_Cutting.Play();
             slice = Instantiate(G_slice, this.transform);
             slice.transform.position = this.transform.position;
