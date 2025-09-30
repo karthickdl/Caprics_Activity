@@ -843,6 +843,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fruit_ninja
       objectReference: {fileID: 0}
+    - target: {fileID: 5613368886922452831, guid: c14223256e90c5948abd39eecb06e986, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5613368886922452832, guid: c14223256e90c5948abd39eecb06e986, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
