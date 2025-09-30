@@ -183,14 +183,20 @@ namespace DLearners
             }
             howToPlayButton.onClick.AddListener(() =>
             {
-                audioSource.Stop();
+                if (audioSource != null)
+                {
+                    audioSource.Stop();
+                }
                 SetHUDOnOff(false);
                 instructionOBJ.gameObject.SetActive(false);
                 GameHandlerImmersiveGame.Instance.TriggerDemo();
             });
             closeButton.onClick.AddListener(() =>
             {
-                audioSource.Stop();
+                if (audioSource != null)
+                {
+                    audioSource.Stop();
+                }
                 OnCloseInstructionPanel();
                 /*audioPlayButton.onClick.RemoveAllListeners();
                 closeButton.onClick.RemoveAllListeners();
