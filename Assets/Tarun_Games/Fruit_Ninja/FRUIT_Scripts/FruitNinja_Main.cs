@@ -1,10 +1,8 @@
 using DLearners;
 using System.Collections;
-using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Networking;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
@@ -12,13 +10,14 @@ public class FruitNinja_Main : GameManagerBase
 {
     int I_Attempt;
 
+    public Blade blade_Slicing;
+
     public float mindelay = 1.5f, maxdelay = 3f;
     public float wrgdelay = 6f;
     public GameObject[] GA_ansSpawnPoints;
     public GameObject[] GA_bombSpawnPoints;
-    GameObject ansspwan,wrgspawn;
-    public GameObject[] GA_ansprefabs;
-    public GameObject G_Bombprefabs;
+    public Fruit[] fruitsPF;
+    public Bomb G_Bombprefabs;
 
     public GameObject G_hint;
 
@@ -133,31 +132,30 @@ public class FruitNinja_Main : GameManagerBase
         {
 
             float delay = Random.Range(mindelay, maxdelay);
-                yield return new WaitForSeconds(delay);
+            yield return new WaitForSeconds(delay);
 
-                int spawnpos = Random.Range(0, GA_ansSpawnPoints.Length);
-                GameObject spawnpoint = GA_ansSpawnPoints[spawnpos];
+            int spawnpos = Random.Range(0, GA_ansSpawnPoints.Length);
+            GameObject spawnpoint = GA_ansSpawnPoints[spawnpos];
 
-                int ansindex = Random.Range(0, GA_ansprefabs.Length);
-                ansspwan = Instantiate(GA_ansprefabs[ansindex]);
-                ansspwan.transform.SetParent(spawnpoint.transform, false);
-                ansspwan.transform.position = spawnpoint.transform.position;
-                ansspwan.transform.rotation = spawnpoint.transform.rotation;
+            int ansindex = Random.Range(0, fruitsPF.Length);
+            GameObject ansspwan = Instantiate(fruitsPF[ansindex].gameObject);
+            ansspwan.transform.SetParent(spawnpoint.transform, false);
+            ansspwan.transform.position = spawnpoint.transform.position;
+            ansspwan.transform.rotation = spawnpoint.transform.rotation;
 
-                int optnum = Random.Range(I_Counter, I_Dummmy);
-                //ansspwan.transform.GetChild(0).GetComponent<Text>().text = STRL_options[optnum];
-                ansspwan.transform.GetChild(0).GetComponent<Text>().text = currentData.options[optnum].option;
-                //ansspwan.GetComponent<AudioSource>().clip = ACA_optionClips[optnum];
+            int optnum = Random.Range(I_Counter, I_Dummmy);
+
+            ansspwan.GetComponent<Fruit>().InitFruit(currentData.options[optnum].option);
 
             int index = Random.Range(0, AC_jump.Length);
             AS_Jumping.clip = AC_jump[index];
             AS_Jumping.Play();
-                Destroy(ansspwan, 5f);
-            
+            Destroy(ansspwan, 5f);
+
         }
     }
 
-    IEnumerator SpawnWrong()
+    IEnumerator SpawnBomb()
     {
         while (I_Collect_count < 15)
         {
@@ -168,8 +166,8 @@ public class FruitNinja_Main : GameManagerBase
             int spawnpos = Random.Range(0, GA_bombSpawnPoints.Length);
             GameObject spawnpoint = GA_bombSpawnPoints[spawnpos];
 
-           // int wrgindex = Random.Range(0, G_Bombprefabs.Length);
-            wrgspawn = Instantiate(G_Bombprefabs);
+            // int wrgindex = Random.Range(0, G_Bombprefabs.Length);
+            GameObject wrgspawn = Instantiate(G_Bombprefabs.gameObject);
             wrgspawn.transform.SetParent(spawnpoint.transform, false);
             wrgspawn.transform.position = spawnpoint.transform.position;
             wrgspawn.transform.rotation = spawnpoint.transform.rotation;
@@ -205,7 +203,7 @@ public class FruitNinja_Main : GameManagerBase
 
     public void THI_NextQuestion()
     {
-        Blade_slicing.OBJ_blade_Slicing.formtrail = true;
+        blade_Slicing.formtrail = true;
 
         if (currentQuestionID != 0)
         {
@@ -255,7 +253,7 @@ public class FruitNinja_Main : GameManagerBase
         if(I_Collect_count==15) //no of items to be collected
         {
             StopAllCoroutines();
-            Blade_slicing.OBJ_blade_Slicing.formtrail = false;
+            blade_Slicing.formtrail = false;
             Invoke(nameof(NextStep), 3f);
         }
 
@@ -298,9 +296,9 @@ public class FruitNinja_Main : GameManagerBase
 
     void THI_Continue()
     {
-        Blade_slicing.OBJ_blade_Slicing.formtrail = true;
+        blade_Slicing.formtrail = true;
         StartCoroutine(Spawnans());
-        StartCoroutine(SpawnWrong());
+        StartCoroutine(SpawnBomb());
     }
 
     public void THI_Wrong()

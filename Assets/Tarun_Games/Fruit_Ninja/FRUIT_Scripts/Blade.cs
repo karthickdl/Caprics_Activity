@@ -1,31 +1,29 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Blade_slicing : MonoBehaviour
+public class Blade : MonoBehaviour
 {
-    public static Blade_slicing OBJ_blade_Slicing;
     public bool iscutting = false;
-    Rigidbody2D rb;
-    public Camera cam;
-    CircleCollider2D circleCollider;
-    public float mincutvelocity = .001f;
+    [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private Camera cam;
+    [SerializeField] private CircleCollider2D circleCollider;
 
-    public GameObject G_bladetrail;
-    GameObject currenttrail;
+    [SerializeField] private float mincutvelocity = .001f;
+
+    [SerializeField] private GameObject trailPF;
+    private GameObject currenttrail;
+
+    [SerializeField] private AudioSource AS_Slicing;
+    [SerializeField] private AudioClip clip;
+
     Vector2 previouspos;
     public bool formtrail = true;
-    public AudioSource AS_Slicing;
 
-    void Start()
+    private void Start()
     {
-        OBJ_blade_Slicing = this;
-       // cam = Camera.main;
-        rb = this.GetComponent<Rigidbody2D>();
-        circleCollider = this.GetComponent<CircleCollider2D>();
-
+        AS_Slicing.clip = clip;
     }
+
     void Update()
     {
         if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
@@ -68,7 +66,7 @@ public class Blade_slicing : MonoBehaviour
         if (formtrail)
         {
             AS_Slicing.Play();
-            currenttrail = Instantiate(G_bladetrail, transform);
+            currenttrail = Instantiate(trailPF, transform);
         }
         previouspos = cam.ScreenToWorldPoint(Input.mousePosition);
 

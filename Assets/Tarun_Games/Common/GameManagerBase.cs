@@ -93,6 +93,10 @@ namespace DLearners
         {
             return STR_currentQuestionAnswer;
         }
+        public void GetCurrentSelectedAnswer(string _Ans)
+        {
+            STR_currentSelectedAnswer = _Ans;
+        }
 
         public virtual void UpdateQuestion()
         {
