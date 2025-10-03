@@ -9,13 +9,7 @@ using UnityEngine.UI;
 
 public class FiremanController : GameManagerBase
 {
-
-    public bool B_production;
-
-
     [Header("DB")]
-    public string URL;
-    public string SendValueURL;
     public List<string> STRL_difficulty;
     public string STR_difficulty;
     public int I_totalQuestionCount;
@@ -40,7 +34,6 @@ public class FiremanController : GameManagerBase
     public int I_wrongAnsCount;
     public int I_points;
     public Text TEX_points;
-    public Text TEX_questionCount;
     public string STR_currentQuestion;
     public string STR_currentCorrectAnswer;
     public string STR_clickedAnswer;
@@ -64,48 +57,24 @@ public class FiremanController : GameManagerBase
     int z;
 
 
-    [Header("Movement Logics")]
-    public bool B_moveRight;
-    public bool B_moveLeft;
-    public float F_moveSpeed;
-
-    [Header("Climbing Logics")]
-    public float F_climbSpeed;
-    public GameObject G_ladderPrefab;
-    public GameObject G_currentLadder;
-    public bool B_canClimb;
+   
 
     [Header("Extinguish")]
     public int[] IA_FireCount;
     public int I_fireCount;
     public int I_fire;
-    public bool B_floorCleared;
-    public GameObject G_currentPlatform;
-    public GameObject G_ladderButton;
-    public GameObject G_extinguishButton;
+    
+    
     public GameObject G_coinPrefab;
-    public GameObject G_extinguishFXPrefab;
-    public Transform T_extinguisherPosright;
-    public Transform T_extinguisherPosleft;
 
     [Header("Health")]
-    public float F_maxHealth;
-    public float F_currentHealth;
-    public Image IM_health;
-    public bool B_dead;
     public Vector2 SpawnPos;
 
-    [Header("Baby")]
-    public GameObject G_rope;
-    public Transform T_ropeStartPos;
-    public Transform T_ropeStopPos;
-    public bool B_ropeStart;
-    public float F_ropeLerpTimer;
+    
 
     [Header("Initialization")]
     public AnimationClip AC_introCam;
     public AnimationClip AC_controlsAnim;
-    public GameObject G_controlButtons;
     public GameObject G_dog;
     public bool B_dogRun;
     public float F_dogSpeed;
@@ -119,23 +88,13 @@ public class FiremanController : GameManagerBase
     public bool B_birdFly;
 
     [Header("Audios")]
-    public AudioSource AS_run;
     public AudioSource AS_baby;
     public AudioSource AS_siren;
     public AudioSource AS_correct;
     public AudioSource AS_wrong;
-    public AudioSource AS_heartCollect;
-    public AudioSource AS_coinCollect;
-    public AudioSource AS_extinguish;
-    public AudioSource AS_dead;
-    public AudioSource AS_ladderDeploy;
     public AudioSource AS_dogbark;
     public AudioSource AS_BGM;
 
-
-    [Header("GAME DATA")]
-    public List<string> STRL_gameData;
-    public string STR_Data;
 
     [Header("Instruction")]
     public GameObject G_instructionPage;
@@ -156,40 +115,105 @@ public class FiremanController : GameManagerBase
     public GameObject G_skip;
 
 
-    public GameObject G_demo;
-
-
+    [Header ("Cam")]
     public Camera firemancamera;
+
+    #region Unity
+    protected override void Awake()
+    {
+        base.Awake();
+    }
+    #endregion
+
+    /// <summary>
+    /// This will Trigger from tap to play screen.
+    /// </summary>
+    public override void OnPlayButton()
+    {
+        base.OnPlayButton();
+    }
+
+    /// <summary>
+    /// We are initialising the game after all the tutorial thing is completed. 
+    /// </summary>
+    public override void InitGame()
+    {
+        base.InitGame();
+
+        NextStep();
+        #region----------Platform Checking to set sprites for controls in Demo
+
+        /*if (MainController.instance.WEB)
+        {
+            // G_PlayerControls.SetActive(false);
+
+            //setting images
+            IMGA_Up[0].sprite = SPRA_ArrowsWebGL[0];
+            IMGA_Up[1].sprite = SPRA_ArrowsWebGL[0];
+            IMGA_Down[0].sprite = SPRA_ArrowsWebGL[1];
+            IMGA_Down[1].sprite = SPRA_ArrowsWebGL[1];
+        }
+        else if (MainController.instance.MOBILE)
+        {
+            // G_PlayerControls.SetActive(true);
+
+            //setting images
+            IMGA_Up[0].sprite = SPRA_ArrowsMobile[0];
+            IMGA_Up[1].sprite = SPRA_ArrowsMobile[0];
+            IMGA_Down[0].sprite = SPRA_ArrowsMobile[1];
+            IMGA_Down[1].sprite = SPRA_ArrowsMobile[1];
+        }*/
+
+        #endregion
+    }
+
+    /// <summary>
+    /// Seting up level data from SO (per level) From base class
+    /// </summary>
+    protected override void GetSetCurrentLevelData()
+    {
+        base.GetSetCurrentLevelData();
+
+        SetUpOptionsPanel();
+    }
+    /// <summary>
+    /// Seting up Number of options for the game 
+    /// </summary>
+    private void SetUpOptionsPanel()
+    {
+    }
+
+    /// <summary>
+    /// Showing transition and moving to next question, or checking for level complete 
+    /// </summary>
+    protected override void NextStep()
+    {
+        VaultPopUpsManager.Instance.ShowTransition(TransitionType.Fade);
+        if (currentQuestionID < GameHandlerImmersiveGame.Instance.dataSO.datas.Count)
+        {
+            GetSetCurrentLevelData();
+           // G_Question.SetActive(false);
+          //  ShowCurrentQuestion();
+        }
+        else
+        {
+            OnLevelCompleted();
+        }
+        base.NextStep();//Need to be called after GetSetCurrentLevelData
+    }
 
     void Start()
     {
 
-        if (B_production)
-        {
-            URL = "https://dlearners.in/template_and_games/Game_template_api-s/game_template_1.php"; // PRODUCTION FETCH DATA
-            SendValueURL = "https://dlearners.in/template_and_games/Game_template_api-s/save_child_questions.php"; // PRODUCTION SEND DATA
-
-        }
-        else
-        {
-            URL = "http://20.120.84.12/Test/template_and_games/Game_template_api-s/game_template_1.php"; // UAT FETCH DATA
-            SendValueURL = "http://20.120.84.12/Test/template_and_games/Game_template_api-s/save_child_questions.php"; // UAT SEND DATA
-        }
-
-
-
         firemancamera.GetComponent<Animator>().enabled = false;
-        G_extinguishButton.GetComponent<Button>().interactable = false;
         SpawnPos = transform.position;
         G_instructionPage.SetActive(false);
-        F_maxHealth = F_currentHealth = 100f;
         I_currentQuestionCount = -1;
         int curqcount = I_currentQuestionCount + 1;
-        TEX_questionCount.text = "" + curqcount + "/" + I_totalQuestionCount;
+        //TEX_questionCount.text = "" + curqcount + "/" + I_totalQuestionCount;tarun
         TEX_points.text = "0";
-        IM_health.fillAmount = F_currentHealth / F_maxHealth;
-        B_moveRight = B_moveLeft = B_canClimb = false;
-        G_controlButtons.SetActive(false);
+        
+        //G_controlButtons.SetActive(false);//Taru8n
         THI_addAudios();
        
         Invoke("THI_gameData", 1f);
@@ -197,108 +221,9 @@ public class FiremanController : GameManagerBase
     }
 
 
-
-    public void BUT_skipDemo()
-    {
-        G_demo.SetActive(false);
-        G_demo.SetActive(true);
-
-        Destroy(G_demo.GetComponent<Animator>());
-        G_demo.transform.Find("Dark").gameObject.SetActive(false);
-
-        G_demo.transform.GetChild(2).gameObject.SetActive(true);
-        G_demo.transform.GetChild(3).gameObject.SetActive(true);
-        G_demo.transform.GetChild(4).gameObject.SetActive(true);
-        G_demo.transform.GetChild(5).gameObject.SetActive(true);
-
-        G_demo.transform.GetChild(2).GetComponent<AudioSource>().Stop();
-        G_demo.transform.GetChild(3).GetComponent<AudioSource>().Stop();
-        G_demo.transform.GetChild(4).GetComponent<AudioSource>().Stop();
-        G_demo.transform.GetChild(5).GetComponent<AudioSource>().Stop();
-
-
-        G_demo.transform.GetChild(4).GetComponent<Button>().enabled = true;
-        G_demo.transform.GetChild(5).GetComponent<Button>().enabled = true;
-
-        EventSystem.current.currentSelectedGameObject.SetActive(false);
-
-        int curqcount = I_currentQuestionCount + 1;
-        TEX_questionCount.text = "" + curqcount + "/" + I_totalQuestionCount;
-
-        if (I_currentQuestionCount < STRL_questionsDB.Count - 1)
-        {
-            Debug.LogWarning("Assign");
-            I_fire = 0;
-            I_fireCount = IA_FireCount[I_currentQuestionCount + 1];
-        }
-    }
-
-    void Update()
-    {
-       // if (EventSystem.current.currentSelectedGameObject == MainController.instance.G_coverPageStart && !firemancamera.GetComponent<Animator>().enabled)
-        {
-            firemancamera.GetComponent<Animator>().enabled = true;
-            Invoke(nameof(THI_enableControlButtons), AC_introCam.length);
-
-        }
-
-        THI_keyboardControls();
-
-        if (B_birdFly && G_currentBird != null)
-        {
-            G_currentBird.transform.position = Vector3.MoveTowards(G_currentBird.transform.position, V_birdEnd, 0.075f);
-        }
-        if (B_dogRun && G_dog != null)
-        {
-            G_dog.transform.Translate(Vector2.left * F_dogSpeed * Time.deltaTime);
-        }
-
-        if (!B_dead && !B_ropeStart)
-        {
-            if (B_moveRight)
-            {
-
-                transform.Translate(Vector2.right * F_moveSpeed * Time.deltaTime);
-                GetComponent<Animator>().Play("firemanrun");
-                GetComponent<SpriteRenderer>().flipX = false;
-            }
-            else if (B_moveLeft)
-            {
-
-                transform.Translate(Vector2.left * F_moveSpeed * Time.deltaTime);
-                GetComponent<Animator>().Play("firemanrun");
-                GetComponent<SpriteRenderer>().flipX = true;
-            }
-            else
-            {
-
-                if (!B_canClimb && !B_dead && !B_ropeStart)
-                {
-                    GetComponent<Animator>().Play("firemanidle");
-                }
-            }
-            if (B_canClimb)
-            {
-
-                GetComponent<Rigidbody2D>().isKinematic = true;
-                transform.Translate(Vector2.up * F_climbSpeed * Time.deltaTime);
-                GetComponent<Animator>().Play("firemanclimb");
-            }
-            else
-            {
-                GetComponent<Rigidbody2D>().isKinematic = false;
-            }
-        }
-
-        if (B_ropeStart)
-        {
-            transform.position = Vector3.Lerp(transform.position, T_ropeStopPos.position, F_ropeLerpTimer);
-        }
-    }
-
     void THI_enableControlButtons()
     {
-        G_controlButtons.SetActive(true);
+        //G_controlButtons.SetActive(true);//Tarun
 
         AS_baby.Stop();
         AS_siren.Play();
@@ -307,11 +232,11 @@ public class FiremanController : GameManagerBase
 
     void THI_enableClickonButtons()
     {
-        Button[] controlbuttons = G_controlButtons.GetComponentsInChildren<Button>();
+       /* Button[] controlbuttons = G_controlButtons.GetComponentsInChildren<Button>();
         for (int i = 0; i < controlbuttons.Length; i++)
         {
             controlbuttons[i].enabled = true;
-        }
+        }*///Tarun
         B_dogRun = true;
         AS_dogbark.Play();
         Invoke(nameof(stopExtraAudios), 10f);
@@ -327,8 +252,8 @@ public class FiremanController : GameManagerBase
         G_bgm.SetActive(true);
         StartCoroutine(EN_birdfly());
         int curqcount = I_currentQuestionCount + 1;
-        TEX_questionCount.text = "" + curqcount + "/" + I_totalQuestionCount;
-
+        //TEX_questionCount.text = "" + curqcount + "/" + I_totalQuestionCount;Tarun
+        HUDManager.Instance.UpdateQuestionCountText(currentQuestionID);//Tarun
     }
 
     void stopExtraAudios()
@@ -337,28 +262,7 @@ public class FiremanController : GameManagerBase
         AS_siren.Stop();
     }
 
-    void THI_keyboardControls()
-    {
-        if (!B_dead && !B_ropeStart)
-        {
-            if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
-            {
-                B_moveRight = true;
-            }
-            if (Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.RightArrow))
-            {
-                B_moveRight = false;
-            }
-            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
-            {
-                B_moveLeft = true;
-            }
-            if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.LeftArrow))
-            {
-                B_moveLeft = false;
-            }
-        }
-    }
+   
 
     IEnumerator EN_birdfly()
     {
@@ -385,175 +289,7 @@ public class FiremanController : GameManagerBase
         V_birdEnd = new Vector2(transform.position.x + 15f, transform.position.y + randomYpos);
         G_currentBird.transform.position = V_birdStart;
         B_birdFly = true;
-    }
-
-    public void BUT_spawnLadder()
-    {
-        if (!B_dead)
-        {
-            AS_ladderDeploy.Play();
-
-            if (G_currentLadder != null)
-                Destroy(G_currentLadder);
-            G_currentLadder = Instantiate(G_ladderPrefab);
-            if (!GetComponent<SpriteRenderer>().flipX)
-                G_currentLadder.transform.position = new Vector3(transform.position.x + 1f, transform.position.y + 1.25f);
-
-            if (GetComponent<SpriteRenderer>().flipX)
-                G_currentLadder.transform.position = new Vector3(transform.position.x - 1f, transform.position.y + 1.25f);
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject == G_currentLadder) // ladder
-        {
-            B_canClimb = true;
-        }
-        if (collision.gameObject.tag == "DL_coin") // coin   
-        {
-            AS_coinCollect.Play();
-            I_points = I_points + 1;
-            TEX_points.text = I_points.ToString();
-            Destroy(collision.gameObject);
-        }
-        if (collision.gameObject.name == "Heart")
-        {
-            AS_heartCollect.Play();
-            F_currentHealth = F_maxHealth;
-            IM_health.fillAmount = F_currentHealth / F_maxHealth;
-            IM_health.color = Color.green;
-            Destroy(collision.gameObject);
-        }
-        if (collision.gameObject.name == "Baby")
-        {
-            G_rope.SetActive(true);
-            GetComponent<Animator>().Play("firemanrope");
-            transform.position = T_ropeStartPos.position;
-            B_ropeStart = true;
-            B_moveLeft = B_moveRight = false;
-            B_canClimb = false;
-            Destroy(GetComponent<Rigidbody2D>());
-            Destroy(GetComponent<BoxCollider2D>());
-            Destroy(collision.gameObject);
-            G_controlButtons.SetActive(false);
-            Invoke(nameof(OnLevelCompleted), 4f);
-        }
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject == G_currentLadder)
-        {
-            B_canClimb = false;
-        }
-        if (collision.gameObject.name == "Fire")
-        {
-            GetComponent<SpriteRenderer>().color = Color.white;
-        }
-    }
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.gameObject.name == "Fire")
-        {
-            if (F_currentHealth > 75f)
-            {
-                IM_health.color = Color.green;
-            }
-            if (F_currentHealth < 75f && F_currentHealth > 35f)
-            {
-                IM_health.color = Color.yellow;
-            }
-            if (F_currentHealth < 35f)
-            {
-                IM_health.color = Color.red;
-            }
-            if (F_currentHealth > 0)
-            {
-                F_currentHealth--;
-                IM_health.fillAmount = F_currentHealth / F_maxHealth;
-            }
-            else
-            {
-                B_dead = true;
-                AS_dead.Play();
-                GetComponent<Collider2D>().enabled = false;
-                F_currentHealth = 0;
-                IM_health.transform.parent.transform.parent.gameObject.SetActive(false);
-                GetComponent<Animator>().Play("firemandie");
-                GetComponent<SpriteRenderer>().color = Color.white;
-                Invoke("THI_respawn", 2f);
-                return;
-            }
-            GetComponent<SpriteRenderer>().color = Color.red;
-        }
-    }
-
-    void THI_respawn()
-    {
-        B_dead = false;
-        GetComponent<Collider2D>().enabled = true;
-        F_currentHealth = 100f;
-        IM_health.fillAmount = F_currentHealth / F_maxHealth;
-        IM_health.color = Color.green;
-        IM_health.transform.parent.transform.parent.gameObject.SetActive(true);
-        GetComponent<SpriteRenderer>().color = Color.white;
-        B_moveLeft = B_moveRight = false;
-        G_ladderButton.GetComponent<Button>().interactable = true;
-        transform.position = SpawnPos;
-        I_points = 0;
-        TEX_points.text = I_points.ToString();
-    }
-
-    public void BUT_extinguishFire()
-    {
-        if (!B_dead)
-        {
-            AS_extinguish.Play();
-            var extinguishSmoke = Instantiate(G_extinguishFXPrefab);
-            if (!GetComponent<SpriteRenderer>().flipX)
-            {
-                extinguishSmoke.transform.position = T_extinguisherPosright.position;
-            }
-            else
-            {
-                extinguishSmoke.transform.position = T_extinguisherPosleft.position;
-            }
-        }
-    }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.name == "fireman_platform")
-        {
-            // I_fire = 0;
-            // I_fireCount = collision.gameObject.GetComponent<fireman_platform>().I_fireCount;
-            G_currentPlatform = collision.gameObject;
-            collision.gameObject.GetComponent<fireman_platform>().enabled = true;
-          
-            B_floorCleared = collision.gameObject.GetComponent<fireman_platform>().B_platformCleared;
-            if (B_floorCleared)
-            {
-                G_ladderButton.GetComponent<Button>().interactable = true;
-               
-            }
-            else
-            {
-                G_ladderButton.GetComponent<Button>().interactable = false;
-                Invoke(nameof(INVOKEextinguish), 0.5f);
-            }
-        }
-        else if (collision.gameObject.transform.parent.name == "terrace")
-        {
-            G_extinguishButton.GetComponent<Button>().interactable = false;
-            G_ladderButton.GetComponent<Button>().interactable = false;
-        }
-    }
-
-    void INVOKEextinguish()
-    {
-        G_extinguishButton.GetComponent<Button>().interactable = true;
-        if (G_currentLadder != null)
-            Destroy(G_currentLadder);
-    }
+    }    
 
     void THI_gameData()
     {
@@ -575,7 +311,7 @@ public class FiremanController : GameManagerBase
 
        // form.AddField("game_id", MainController.instance.STR_GameID);
 
-        UnityWebRequest www = UnityWebRequest.Post(URL, form);
+        UnityWebRequest www = UnityWebRequest.Post(DownloadManager.Instance.sendValueURL, form);
         yield return www.SendWebRequest();
         if (www.isNetworkError || www.isHttpError)
         {
@@ -924,7 +660,7 @@ public class FiremanController : GameManagerBase
 
     public void THI_showQuestion()
     {
-        G_extinguishButton.GetComponent<Button>().interactable = false;
+        PlayerController.Instance.G_extinguishButton.GetComponent<Button>().interactable = false;//Tarun
         I_wrongAnsCount = 0;
         G_questionScreen.SetActive(true);
         G_ansDisplay.SetActive(false);
@@ -947,7 +683,8 @@ public class FiremanController : GameManagerBase
         {
             //game still running
             int curqcount = I_currentQuestionCount + 1;
-            TEX_questionCount.text = curqcount + "/" + I_totalQuestionCount;
+           // TEX_questionCount.text = curqcount + "/" + I_totalQuestionCount;Tarun
+            HUDManager.Instance.UpdateQuestionCountText(currentQuestionID);//Tarun
             STR_currentQuestionID = STRL_questionID[I_currentQuestionCount];
             STR_currentCorrectAnswer = STRL_answersDB[I_currentQuestionCount];
             STR_currentQuestion = STRL_questionsDB[I_currentQuestionCount];
@@ -1031,7 +768,7 @@ public class FiremanController : GameManagerBase
             I_lastOptionReqCount = I_currentOptionReqCount;
 
 
-            G_ladderButton.GetComponent<Button>().interactable = true;
+            PlayerController.Instance.G_ladderButton.GetComponent<Button>().interactable = true;//Tarun
 
         }
 
@@ -1064,7 +801,7 @@ public class FiremanController : GameManagerBase
             Debug.Log("game_id  : " + DLearners.GameHandlerImmersiveGame.Instance.STR_GameID);
             Debug.Log("game_details: " + "[" + STR_Data + "]");
 
-            UnityWebRequest www = UnityWebRequest.Post(SendValueURL, form);
+            UnityWebRequest www = UnityWebRequest.Post(DownloadManager.Instance.sendValueURL, form);
             yield return www.SendWebRequest();
             if (www.isHttpError || www.isNetworkError)
             {

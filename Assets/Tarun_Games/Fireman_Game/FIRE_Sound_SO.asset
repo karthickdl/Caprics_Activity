@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c97ef8258d4508d43a9eeb225046c6f7, type: 3}
+  m_Name: FIRE_Sound_SO
+  m_EditorClassIdentifier: 
+  fxSounds:
+  - name: Fire_Lader
+    audioClip: {fileID: 8300000, guid: 6aa28177a1ee74ef09dad656fea51b40, type: 3}
+    mixerType: 2
+    volumeLevel: 0.07
+  - name: Fire_Coin
+    audioClip: {fileID: 8300000, guid: b220d35e46d652a4687ae8f372e07d03, type: 3}
+    mixerType: 2
+    volumeLevel: 0.07
+  - name: Fire_Dead
+    audioClip: {fileID: 8300000, guid: 469d6dfa044904b218b8244185d6f74d, type: 3}
+    mixerType: 2
+    volumeLevel: 0.07
+  - name: Fire_Heast_Collect
+    audioClip: {fileID: 8300000, guid: 3ab6a1c4793f740229a1a1ca5f2da771, type: 3}
+    mixerType: 2
+    volumeLevel: 0.07
+  - name: Fire_Small_Fire_Out
+    audioClip: {fileID: 8300000, guid: 7b207eb37153f4badb10d8597a4378b7, type: 3}
+    mixerType: 2
+    volumeLevel: 0.07
