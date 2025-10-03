@@ -10,30 +10,12 @@ using UnityEngine.UI;
 public class FiremanController : GameManagerBase
 {
     [Header("DB")]
-    public List<string> STRL_difficulty;
-    public string STR_difficulty;
-    public int I_totalQuestionCount;
-    public List<int> IL_numberValues;
-    public List<string> STRL_questionsDB;
-    public List<string> STRL_questionID;
-    public List<string> STRL_optionsDB;
-    public List<string> STRL_answersDB;
-    public List<string> STRL_optionsSpriteName;
-    public List<Sprite> SPRL_optionsSprite;
-    public List<string> STRL_instruction;
-    public int I_correctPoints;
-    public int I_wrongPoints;
     int calledonce;
-    public List<string> STRL_coverImage;
-    public Image IM_coverImage;
-    public List<string> STRL_passageDetail;
 
 
     [Header("Questions")]
     public string STR_currentQuestionID;
     public int I_wrongAnsCount;
-    public int I_points;
-    public Text TEX_points;
     public string STR_currentQuestion;
     public string STR_currentCorrectAnswer;
     public string STR_clickedAnswer;
@@ -94,21 +76,6 @@ public class FiremanController : GameManagerBase
     public AudioSource AS_wrong;
     public AudioSource AS_dogbark;
     public AudioSource AS_BGM;
-
-
-    [Header("Instruction")]
-    public GameObject G_instructionPage;
-    public TextMeshProUGUI TEXM_instruction;
-
-    [Header("AUDIO DB")]
-    public List<string> STRL_questionAudios;
-    public List<string> STRL_optionsAudios;
-    public List<string> STRL_instructionAudios;
-
-    [Header("AUDIO ASSIGN")]
-    public AudioClip[] ACA__questionClips;
-    public AudioClip[] ACA_optionClips;
-    public AudioClip[] ACA_instructionClips;
 
 
     public GameObject G_bgm;
@@ -207,11 +174,9 @@ public class FiremanController : GameManagerBase
 
         firemancamera.GetComponent<Animator>().enabled = false;
         SpawnPos = transform.position;
-        G_instructionPage.SetActive(false);
         I_currentQuestionCount = -1;
         int curqcount = I_currentQuestionCount + 1;
         //TEX_questionCount.text = "" + curqcount + "/" + I_totalQuestionCount;tarun
-        TEX_points.text = "0";
         
         //G_controlButtons.SetActive(false);//Taru8n
         THI_addAudios();
@@ -242,7 +207,7 @@ public class FiremanController : GameManagerBase
         Invoke(nameof(stopExtraAudios), 10f);
         G_skip.SetActive(false);
 
-        if (I_currentQuestionCount < STRL_questionsDB.Count - 1)
+        if (currentQuestionID < GameHandlerImmersiveGame.Instance.dataSO.datas.Count)
         {
             Debug.LogWarning("Assign THI_enableClickonButtons");
             I_fire = 0;
@@ -296,71 +261,16 @@ public class FiremanController : GameManagerBase
         // THI_getPreviewData();
        // if (MainController.instance.mode == "live")
         {
-            StartCoroutine(EN_GetData()); // live game in portal
+           // StartCoroutine(EN_GetData()); // live game in portal
         }
       //  if (MainController.instance.mode == "preview")
         {
             // preview data in html game generator
 
-            THI_getPreviewData();
+           // THI_getPreviewData();
         }
     }
-    IEnumerator EN_GetData()
-    {
-        WWWForm form = new WWWForm();
-
-       // form.AddField("game_id", MainController.instance.STR_GameID);
-
-        UnityWebRequest www = UnityWebRequest.Post(DownloadManager.Instance.sendValueURL, form);
-        yield return www.SendWebRequest();
-        if (www.isNetworkError || www.isHttpError)
-        {
-            Debug.Log(www.error);
-        }
-        else
-        {
-            Debug.Log("GAME DATA: " + www.downloadHandler.text);
-            MyJSON json = new MyJSON();
-            json.Temp_type_2(www.downloadHandler.text, STRL_difficulty, IL_numberValues, STRL_questionsDB, STRL_answersDB, STRL_optionsDB, STRL_questionID, STRL_instruction, STRL_questionAudios, STRL_optionsAudios, STRL_instructionAudios, STRL_coverImage, STRL_passageDetail);
-            STR_difficulty = STRL_difficulty[0];
-            StartCoroutine(IN_downloadOptionImages());
-            STRL_optionsSpriteName = STRL_optionsDB;
-            I_totalQuestionCount = IL_numberValues[0];
-            I_correctPoints = IL_numberValues[1];
-            I_wrongPoints = IL_numberValues[2];
-            StartCoroutine(IN_downloadCoverImage());
-           // MainController.instance.I_TotalQuestions = I_totalQuestionCount;
-          //  MainController.instance.I_correctPoints = I_correctPoints;
-            StartCoroutine(EN_getAudioClips());
-            StartCoroutine(EN_getAudioClips1());
-            StartCoroutine(EN_getAudioClips2());
-        }
-    }
-    public IEnumerator IN_downloadCoverImage()
-    {
-        if (STRL_coverImage[0] != "")
-        {
-            UnityWebRequest www = UnityWebRequestTexture.GetTexture(STRL_coverImage[0]);
-
-            yield return www.SendWebRequest();
-
-
-            if (www.isNetworkError || www.isHttpError)
-            {
-                //Debug.Log(www.error);
-                Debug.Log(STRL_coverImage[0] + " => " + www.error);
-            }
-            else
-            {
-                Texture2D downloadedTexture = ((DownloadHandlerTexture)www.downloadHandler).texture;
-                List<Sprite> SPRL_coverImage = new List<Sprite>();
-                SPRL_coverImage.Add(Sprite.Create(downloadedTexture, new Rect(0.0f, 0.0f, downloadedTexture.width, downloadedTexture.height), new Vector2(0.5f, 0.5f), 100.0f));
-                IM_coverImage.sprite = SPRL_coverImage[0];
-            }
-        }
-
-    }
-    public IEnumerator EN_getAudioClips()
+   /* public IEnumerator EN_getAudioClips()
     {
         ACA__questionClips = new AudioClip[STRL_questionAudios.Count];
 
@@ -387,7 +297,6 @@ public class FiremanController : GameManagerBase
 
                   
 
-                    Debug.Log("RAK LENGTH QUESTION CLIPS : " + ACA__questionClips.Length + "/" + I_totalQuestionCount);
                 }
             }
         }
@@ -455,8 +364,7 @@ public class FiremanController : GameManagerBase
                 }
             }
         }
-        THI_assignAudioClips();
-    }
+    }*///Tarun
 
     public void THI_addAudios()
     {
@@ -473,73 +381,11 @@ public class FiremanController : GameManagerBase
         }
     }
 
-    public void THI_assignAudioClips()
-    {
-   
-        if (ACA_instructionClips.Length > 0)
-        {
-            TEXM_instruction.gameObject.AddComponent<AudioSource>();
-            TEXM_instruction.gameObject.GetComponent<AudioSource>().playOnAwake = true;
-            TEXM_instruction.gameObject.GetComponent<AudioSource>().clip = ACA_instructionClips[0];
-            TEXM_instruction.gameObject.AddComponent<Button>();
-            TEXM_instruction.gameObject.GetComponent<Button>().onClick.AddListener(THI_playAudio);
-        }
-    }
-
     void THI_playAudio()
     {
         EventSystem.current.currentSelectedGameObject.GetComponent<AudioSource>().Play();
     }
-    public void THI_getPreviewData()
-    {
-        MyJSON json = new MyJSON();
-       // json.Temp_type_2(MainController.instance.STR_previewJsonAPI, STRL_difficulty, IL_numberValues, STRL_questionsDB, STRL_answersDB, STRL_optionsDB, STRL_questionID, STRL_instruction, STRL_questionAudios, STRL_optionsAudios, STRL_instructionAudios, STRL_coverImage, STRL_passageDetail);
-        STR_difficulty = STRL_difficulty[0];
-        StartCoroutine(IN_downloadOptionImages());
-        STRL_optionsSpriteName = STRL_optionsDB;
-        I_totalQuestionCount = IL_numberValues[0];
-        I_correctPoints = IL_numberValues[1];
-        I_wrongPoints = IL_numberValues[2];
-        StartCoroutine(IN_downloadCoverImage());
-        //MainController.instance.I_TotalQuestions = I_totalQuestionCount;
-        //MainController.instance.I_correctPoints = I_correctPoints;
-        StartCoroutine(EN_getAudioClips());
-        StartCoroutine(EN_getAudioClips1());
-        StartCoroutine(EN_getAudioClips2());
-    }
 
-    public IEnumerator IN_downloadOptionImages()
-    {
-        for (int i = 0; i < STRL_optionsDB.Count; i++)
-        {
-            UnityWebRequest www = UnityWebRequestTexture.GetTexture(STRL_optionsDB[i]);
-            yield return www.SendWebRequest();
-            if (www.isNetworkError || www.isHttpError)
-            {
-                Debug.Log(STRL_optionsDB[i] +" => "+www.error); 
-            }
-            else
-            {
-                Texture2D downloadedTexture = ((DownloadHandlerTexture)www.downloadHandler).texture;
-                Sprite SPR_optionSprite = Sprite.Create(downloadedTexture, new Rect(0.0f, 0.0f, downloadedTexture.width, downloadedTexture.height), new Vector2(0.5f, 0.5f), 100.0f);
-
-                string[] Names = (STRL_optionsDB[i].Split('/'));
-                string[] Finalname = (Names[Names.Length - 1].Split('.'));
-
-
-
-                SPR_optionSprite.name = Finalname[0];
-
-                SPRL_optionsSprite.Add(SPR_optionSprite);
-
- 
-
-                Debug.Log(STRL_optionsDB[i] + " => " + downloadedTexture.name);
-
-                Debug.Log("RAK LENGTH OPTION IMAGES : " + SPRL_optionsSprite.Count + "/" + STRL_optionsDB.Count);
-            }
-        }
-    }
 
     void THI_disableAnswerDisplay()
     {
@@ -562,14 +408,12 @@ public class FiremanController : GameManagerBase
             //correct
             AS_correct.Play();
 
-            if (I_currentQuestionCount < STRL_questionsDB.Count - 1)
+            if (currentQuestionID < GameHandlerImmersiveGame.Instance.dataSO.datas.Count)
             {
                 I_fire = 0;
                 I_fireCount = IA_FireCount[I_currentQuestionCount + 1];
             }
-
-            I_points = I_points + I_correctPoints;
-            TEX_points.text = I_points.ToString();
+            HUDManager.Instance.UpdateScoreText(true);
             G_ansDisplay.SetActive(true);
             IM_answerDisplay.sprite = EventSystem.current.currentSelectedGameObject.GetComponent<Image>().sprite;
             IM_answerDisplay.preserveAspect = true;
@@ -582,57 +426,50 @@ public class FiremanController : GameManagerBase
             //wrong
             AS_wrong.Play();
             THI_TrackGameData("0");
-            if (I_points > I_wrongPoints)
-            {
-                I_points -= I_wrongPoints;
-            }
-            else
-            {
-                if (I_points > 0)
-                {
-                    I_points = 0;
-                }
-            }
-            TEX_points.text = I_points.ToString();
+            HUDManager.Instance.UpdateScoreText(false);
 
 
             I_wrongAnsCount++;
             if (I_wrongAnsCount == 3)
             {
-                if (STR_difficulty == "assistive")
+                if (currentDifficultyLevelType == DifficultyLevelType.Easy)
                 {
                     // show ans and go to next question
                     G_ansDisplay.SetActive(true);
                     for (int i = 0; i < GA_options.Length; i++)
                     {
-                        if (GA_options[i].name.Contains(STRL_answersDB[I_currentQuestionCount]))
+                        //if (GA_options[i].name.Contains(STRL_answersDB[I_currentQuestionCount]))//Tarun
+                        if (GA_options[i].name.Contains(currentData.correctOptions))
                         {
                             IM_answerDisplay.sprite = GA_options[i].GetComponent<Image>().sprite;
                         }
 
-                        TEX_annswerDisplay.text = STRL_answersDB[I_currentQuestionCount];
+                        TEX_annswerDisplay.text = currentData.correctOptions;
+                        //TEX_annswerDisplay.text = STRL_answersDB[I_currentQuestionCount];//Tarun
 
                         Invoke("disableAnswer", 2.5f);
 
                     }
-                    if (STR_difficulty == "intuitive")
+                    if (currentDifficultyLevelType == DifficultyLevelType.Medium)
                     {
                         // show ans and make the child click to go to next question
                         G_ansDisplay.SetActive(true);
                         for (int i = 0; i < GA_options.Length; i++)
                         {
-                            if (GA_options[i].name.Contains(STRL_answersDB[I_currentQuestionCount]))
+                            //if (GA_options[i].name.Contains(STRL_answersDB[I_currentQuestionCount]))//Tarun
+                            if (GA_options[i].name.Contains(currentData.correctOptions))
                             {
                                 IM_answerDisplay.sprite = GA_options[i].GetComponent<Image>().sprite;
                             }
                         }
-                        TEX_annswerDisplay.text = STRL_answersDB[I_currentQuestionCount];
+                        //TEX_annswerDisplay.text = STRL_answersDB[I_currentQuestionCount];Tarun
+                        TEX_annswerDisplay.text = currentData.correctOptions;
                         Invoke("THI_disableAnswerDisplay", 2.5f);
                     }
                 }
                 if (I_wrongAnsCount == 2)
                 {
-                    if (STR_difficulty == "independent")
+                    if (currentDifficultyLevelType == DifficultyLevelType.Hard)
                     {
                         // dont show ans and go to next question
                         disableAnswer();
@@ -679,19 +516,20 @@ public class FiremanController : GameManagerBase
             I_currentOptionReqCount += 2;
         }
 
-        if (I_currentQuestionCount < I_totalQuestionCount)
+        if (currentQuestionID < GameHandlerImmersiveGame.Instance.dataSO.datas.Count)
         {
             //game still running
             int curqcount = I_currentQuestionCount + 1;
            // TEX_questionCount.text = curqcount + "/" + I_totalQuestionCount;Tarun
             HUDManager.Instance.UpdateQuestionCountText(currentQuestionID);//Tarun
-            STR_currentQuestionID = STRL_questionID[I_currentQuestionCount];
+           /* STR_currentQuestionID = STRL_questionID[I_currentQuestionCount];
             STR_currentCorrectAnswer = STRL_answersDB[I_currentQuestionCount];
-            STR_currentQuestion = STRL_questionsDB[I_currentQuestionCount];
+            STR_currentQuestion = STRL_questionsDB[I_currentQuestionCount];*///Tarun
             TEX_currentQuestion.text = STR_currentQuestion;
             if (TEX_currentQuestion.gameObject.GetComponent<AudioSource>() != null)
             {
-                TEX_currentQuestion.gameObject.GetComponent<AudioSource>().clip = ACA__questionClips[I_currentQuestionCount];
+                // TEX_currentQuestion.gameObject.GetComponent<AudioSource>().clip = ACA__questionClips[I_currentQuestionCount];//Tarun
+                TEX_currentQuestion.gameObject.GetComponent<AudioSource>().clip = currentData.options[currentQuestionID].optionAudioClip;
                 TEX_currentQuestion.gameObject.GetComponent<AudioSource>().Play();
             }
             if (B_called)
@@ -721,7 +559,7 @@ public class FiremanController : GameManagerBase
                     I_1stSprite = i;
                 }
 
-                if (STR_1stOptionName != "" && STR_2ndOptionName != "" && STR_3rdOptionName == "")
+               /* if (STR_1stOptionName != "" && STR_2ndOptionName != "" && STR_3rdOptionName == "")
                 {
                     STR_3rdOptionName = STRL_optionsSpriteName[i];
                 }
@@ -732,20 +570,20 @@ public class FiremanController : GameManagerBase
                 if (STR_1stOptionName == "")
                 {
                     STR_1stOptionName = STRL_optionsSpriteName[i];
-                }
+                }*///Tarun
             }
 
             Debug.Log("RAK 1ST SPRITE INDEX : " + I_1stSprite);
             Debug.Log("RAK 2ND SPRITE INDEX : " + I_2ndSprite);
             Debug.Log("RAK 3RD SPRITE INDEX : " + I_3rdSprite);
 
-            Debug.Log("RAK 1ST SPRITE NAME : " + SPRL_optionsSprite[I_1stSprite].name);
-            Debug.Log("RAK 2ND SPRITE NAME : " + SPRL_optionsSprite[I_2ndSprite].name);
-            Debug.Log("RAK 3RD SPRITE NAME : " + SPRL_optionsSprite[I_3rdSprite].name);
+            Debug.Log("RAK 1ST SPRITE NAME : " + currentData.options[I_1stSprite].optionSprit.name);
+            Debug.Log("RAK 2ND SPRITE NAME : " + currentData.options[I_2ndSprite].optionSprit.name);
+            Debug.Log("RAK 3RD SPRITE NAME : " + currentData.options[I_3rdSprite].optionSprit.name);
 
-            GA_options[0].GetComponent<Image>().sprite = SPRL_optionsSprite[I_1stSprite];
-            GA_options[1].GetComponent<Image>().sprite = SPRL_optionsSprite[I_2ndSprite];
-            GA_options[2].GetComponent<Image>().sprite = SPRL_optionsSprite[I_3rdSprite];
+            GA_options[0].GetComponent<Image>().sprite = currentData.options[I_1stSprite].optionSprit;
+            GA_options[1].GetComponent<Image>().sprite = currentData.options[I_2ndSprite].optionSprit;
+            GA_options[2].GetComponent<Image>().sprite = currentData.options[I_3rdSprite].optionSprit;
 
             Debug.Log("RAK 1ST OPTION : " + GA_options[0].GetComponent<Image>().sprite.name);
             Debug.Log("RAK 2ND OPTION : " + GA_options[1].GetComponent<Image>().sprite.name);
@@ -756,9 +594,10 @@ public class FiremanController : GameManagerBase
             GA_options[2].name = STR_3rdOptionName;
 
 
-            GA_options[0].GetComponent<AudioSource>().clip = ACA_optionClips[I_1stSprite];
-            GA_options[1].GetComponent<AudioSource>().clip = ACA_optionClips[I_2ndSprite];
-            GA_options[2].GetComponent<AudioSource>().clip = ACA_optionClips[I_3rdSprite];
+           // GA_options[0].GetComponent<AudioSource>().clip = ACA_optionClips[I_1stSprite];//Tarun
+            GA_options[0].GetComponent<AudioSource>().clip = currentData.options[I_1stSprite].optionAudioClip;
+            GA_options[1].GetComponent<AudioSource>().clip = currentData.options[I_2ndSprite].optionAudioClip;
+            GA_options[2].GetComponent<AudioSource>().clip = currentData.options[I_3rdSprite].optionAudioClip;
 
             Debug.Log("RAK 1ST OPTION CLIP : " + GA_options[0].GetComponent<AudioSource>().clip.name);
             Debug.Log("RAK 2ND OPTION CLIP : " + GA_options[1].GetComponent<AudioSource>().clip.name);
