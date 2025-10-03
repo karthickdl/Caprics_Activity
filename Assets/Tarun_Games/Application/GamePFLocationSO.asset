@@ -45,3 +45,9 @@ MonoBehaviour:
     gameType: 1
     dataSOLocations:
     - FRUIT_Data_SO_01
+  - gameID: 4
+    gameName: firemangame
+    pFLocation: firemangame
+    gameType: 1
+    dataSOLocations:
+    - FRUIT_Data_SO_01

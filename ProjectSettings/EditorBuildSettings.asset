@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Build/LWS.unity
     guid: 6e622b5e84045f8489635b90eb21a864
+  - enabled: 1
+    path: Assets/Scenes/Testing_Karthick.unity
+    guid: dfadbdb71fb718b44a6be9265f1ec840
   m_configObjects: {}
