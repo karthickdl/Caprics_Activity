@@ -1,7 +1,5 @@
 ﻿using DLearners;
 using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Networking;
@@ -47,7 +45,7 @@ public class FiremanController : GameManagerBase
     public int I_fire;
     
     
-    public GameObject G_coinPrefab;
+    
 
     [Header("Health")]
     public Vector2 SpawnPos;
@@ -497,7 +495,7 @@ public class FiremanController : GameManagerBase
 
     public void THI_showQuestion()
     {
-        PlayerController.Instance.G_extinguishButton.GetComponent<Button>().interactable = false;//Tarun
+        PlayerController.Instance.extinguishButton.interactable = false;//Tarun
         I_wrongAnsCount = 0;
         G_questionScreen.SetActive(true);
         G_ansDisplay.SetActive(false);
@@ -607,7 +605,7 @@ public class FiremanController : GameManagerBase
             I_lastOptionReqCount = I_currentOptionReqCount;
 
 
-            PlayerController.Instance.G_ladderButton.GetComponent<Button>().interactable = true;//Tarun
+            PlayerController.Instance.ladderButton.interactable = true;//Tarun
 
         }
 

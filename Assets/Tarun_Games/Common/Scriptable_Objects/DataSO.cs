@@ -47,8 +47,8 @@ namespace DLearners
     [Serializable]
     public struct Data
     {
-        public TemplateType answerType;
         public TemplateType questionType;
+        public TemplateType answerType;
 
         public QuestionData questionData;
         public List<OptionData> options;

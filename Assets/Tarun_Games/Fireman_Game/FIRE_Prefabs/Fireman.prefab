@@ -780,11 +780,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e709fc0eb130d44087ae235c49c638d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  G_extinguishFXPrefab: {fileID: 0}
-  T_extinguisherPosright: {fileID: 0}
-  T_extinguisherPosleft: {fileID: 0}
-  G_ladderPrefab: {fileID: 0}
-  G_currentLadder: {fileID: 0}
+  canDestroyOnLoad: 1
+  animator: {fileID: 3083226723096123249}
+  spriteRenderer: {fileID: 3083226723096123261}
+  rigidbody2D: {fileID: 3083226723096123262}
+  coinPF: {fileID: 7573733313903206847, guid: 0e0ef74a0e77cbe4e96b8b586ccd2425, type: 3}
+  extinguishFXPF: {fileID: 4341959372319867907, guid: 947715f94a4a0f445898047f30f8f7c7, type: 3}
+  extinguisherPosRight: {fileID: 3083226721559002839}
+  extinguisherPosLeft: {fileID: 3083226721604178584}
+  ladderPF: {fileID: 4068145482017316119, guid: 42a3afe30dfe2a54d822751939eae4a8, type: 3}
   B_moveRight: 0
   B_moveLeft: 0
   moveSpeed: 5
@@ -792,13 +796,8 @@ MonoBehaviour:
   B_canClimb: 0
   F_maxHealth: 0
   F_currentHealth: 0
-  IM_health: {fileID: 0}
+  IM_health: {fileID: 3083226721756962763}
   B_dead: 0
-  G_ladderButton: {fileID: 0}
-  G_extinguishButton: {fileID: 0}
-  animator: {fileID: 3083226723096123249}
-  spriteRenderer: {fileID: 3083226723096123261}
-  rigidbody2D: {fileID: 3083226723096123262}
   G_rope: {fileID: 0}
   T_ropeStartPos: {fileID: 0}
   T_ropeStopPos: {fileID: 0}
@@ -807,3 +806,5 @@ MonoBehaviour:
   B_floorCleared: 0
   G_currentPlatform: {fileID: 0}
   G_controlButtons: {fileID: 0}
+  ladderButton: {fileID: 0}
+  extinguishButton: {fileID: 0}

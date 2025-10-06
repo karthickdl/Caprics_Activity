@@ -9,13 +9,16 @@ public class PlayerController : Singleton<PlayerController>
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Rigidbody2D rigidbody2D;
 
+    public GameObject coinPF;
 
-    public GameObject G_extinguishFXPrefab;
-    public Transform T_extinguisherPosright;
-    public Transform T_extinguisherPosleft;
+    [Header("Extinguish Logics")]
+    [SerializeField] private GameObject extinguishFXPF;
+    [SerializeField] private Transform extinguisherPosRight;
+    [SerializeField] private Transform extinguisherPosLeft;
 
-    public GameObject G_ladderPrefab;
-    public GameObject G_currentLadder;
+    [Header("ladderPF")]
+    [SerializeField] private GameObject ladderPF;
+    private GameObject currentLadder;
 
     [Header("Movement Logics")]
     public bool B_moveRight;
@@ -24,7 +27,6 @@ public class PlayerController : Singleton<PlayerController>
 
     [Header("Climbing Logics")]
     public float climbSpeed;
-
     public bool B_canClimb;
 
     [Header("Health")]
@@ -32,11 +34,6 @@ public class PlayerController : Singleton<PlayerController>
     public float F_currentHealth;
     public Image IM_health;
     public bool B_dead;
-
-    public GameObject G_ladderButton;
-    public GameObject G_extinguishButton;
-
-    
 
     [Header("Baby")]
     public GameObject G_rope;
@@ -53,8 +50,8 @@ public class PlayerController : Singleton<PlayerController>
     public GameObject G_controlButtons;
 
     [Header ("Buttons")]
-    [SerializeField] private Button ladderButton;
-    [SerializeField] private Button fireButton;
+    public Button ladderButton;
+    public Button extinguishButton;
 
     #region Unity
     private void Start()
@@ -62,7 +59,7 @@ public class PlayerController : Singleton<PlayerController>
         B_moveRight = B_moveLeft = B_canClimb = false;
         F_maxHealth = F_currentHealth = 100f;
         ladderButton.onClick.AddListener(() => { OnSpawnLadder(); });
-        fireButton.onClick.AddListener(() => { OnExtinguishFire();});
+        extinguishButton.onClick.AddListener(() => { OnExtinguishFire();});
 
         //G_extinguishButton.GetComponent<Button>().interactable = false;//Tarun
     }
@@ -160,24 +157,23 @@ public class PlayerController : Singleton<PlayerController>
             B_floorCleared = collision.gameObject.GetComponent<FiremanPlatform>().B_platformCleared;
             if (B_floorCleared)
             {
-                G_ladderButton.GetComponent<Button>().interactable = true;
-
+                ladderButton.interactable = true;
             }
             else
             {
-                G_ladderButton.GetComponent<Button>().interactable = false;
+                ladderButton.interactable = false;
                 Invoke(nameof(INVOKEextinguish), 0.5f);
             }
         }
         else if (collision.gameObject.transform.parent.name == "terrace")
         {
-            G_extinguishButton.GetComponent<Button>().interactable = false;
-            G_ladderButton.GetComponent<Button>().interactable = false;
+            extinguishButton.interactable = false;
+            ladderButton.interactable = false;
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject == G_currentLadder) // ladder
+        if (collision.gameObject == currentLadder) // ladder
         {
             B_canClimb = true;
         }
@@ -250,7 +246,7 @@ public class PlayerController : Singleton<PlayerController>
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject == G_currentLadder)
+        if (collision.gameObject == currentLadder)
         {
             B_canClimb = false;
         }
@@ -263,9 +259,9 @@ public class PlayerController : Singleton<PlayerController>
 
     void INVOKEextinguish()
     {
-        G_extinguishButton.GetComponent<Button>().interactable = true;
-        if (G_currentLadder != null)
-            Destroy(G_currentLadder);
+        extinguishButton.interactable = true;
+        if (currentLadder != null)
+            Destroy(currentLadder);
     }
     private void Respawn()
     {
@@ -277,7 +273,7 @@ public class PlayerController : Singleton<PlayerController>
         IM_health.transform.parent.transform.parent.gameObject.SetActive(true);
         GetComponent<SpriteRenderer>().color = Color.white;
         B_moveLeft = B_moveRight = false;
-        G_ladderButton.GetComponent<Button>().interactable = true;
+        ladderButton.GetComponent<Button>().interactable = true;
         //transform.position = SpawnPos;//Tarun
         HUDManager.Instance.UpdateScoreText(false);//points need to be 0
     }
@@ -289,14 +285,14 @@ public class PlayerController : Singleton<PlayerController>
         if (!B_dead)
         {
             DLearnersAudioManager.Instance.PlaySound("Fire_Small_Fire_Out");
-            var extinguishSmoke = Instantiate(G_extinguishFXPrefab);
+            var extinguishSmoke = Instantiate(extinguishFXPF);
             if (!GetComponent<SpriteRenderer>().flipX)
             {
-                extinguishSmoke.transform.position = T_extinguisherPosright.position;
+                extinguishSmoke.transform.position = extinguisherPosRight.position;
             }
             else
             {
-                extinguishSmoke.transform.position = T_extinguisherPosleft.position;
+                extinguishSmoke.transform.position = extinguisherPosLeft.position;
             }
         }
     }
@@ -306,14 +302,14 @@ public class PlayerController : Singleton<PlayerController>
         {
             DLearnersAudioManager.Instance.PlaySound("Fire_Lader");
 
-            if (G_currentLadder != null)
-                Destroy(G_currentLadder);
-            G_currentLadder = Instantiate(G_ladderPrefab);
+            if (currentLadder != null)
+                Destroy(currentLadder);
+            currentLadder = Instantiate(ladderPF);
             if (!spriteRenderer.flipX)
-                G_currentLadder.transform.position = new Vector3(transform.position.x + 1f, transform.position.y + 1.25f);
+                currentLadder.transform.position = new Vector3(transform.position.x + 1f, transform.position.y + 1.25f);
 
             if (spriteRenderer.flipX)
-                G_currentLadder.transform.position = new Vector3(transform.position.x - 1f, transform.position.y + 1.25f);
+                currentLadder.transform.position = new Vector3(transform.position.x - 1f, transform.position.y + 1.25f);
         }
     }
     #endregion

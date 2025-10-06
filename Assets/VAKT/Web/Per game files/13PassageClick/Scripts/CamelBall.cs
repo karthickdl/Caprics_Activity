@@ -99,7 +99,7 @@ public class CamelBall : MonoBehaviour
            // collision.gameObject.GetComponent<SpriteRenderer>().sprite = PassageClickManager.instance.SPR_treasureOpen;
             // Destroy(gameObject);
             //Destroy(collision.gameObject);
-            collision.gameObject.GetComponent<DLcoinLerp>().enabled = true;
+            collision.gameObject.GetComponent<CoinPF>().enabled = true;
             PassageClickManager.instance.I_TreasureChestCollected++;
             PassageClickManager.instance.THI_cloneweedandtreasure();
             if (PassageClickManager.instance.I_TreasureChestCollected>= PassageClickManager.instance.I_numberofchesttocollect)
