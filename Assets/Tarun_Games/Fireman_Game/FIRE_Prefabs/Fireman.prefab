@@ -179,7 +179,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.14317548, y: -0.95442504}
+  m_Offset: {x: -0.22730857, y: -2.1356053}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -190,7 +190,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.0343618, y: 0.90088856}
+  m_Size: {x: 1.4728936, y: 0.88744736}
   m_EdgeRadius: 0
 --- !u!1 &3083226721604178585
 GameObject:
@@ -251,8 +251,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 5.27, y: 72.1, z: -141.1827}
-  m_LocalScale: {x: 1.4118267, y: 1.4118267, z: 1.4118267}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3083226721265886047}
   m_Father: {fileID: 3083226723096123258}
@@ -613,8 +613,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.41, y: -3.197, z: 0}
-  m_LocalScale: {x: 0.7083022, y: 0.7083022, z: 0.7083022}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.52, y: 0.52, z: 0.52}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3083226721641384956}
   - {fileID: 3083226721559002839}
@@ -664,12 +664,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1609925195575983299, guid: 59355dbb90dcb4460818b932649e3009, type: 3}
+  m_Sprite: {fileID: 1642974652, guid: a303d573dbb98a94382c47504a5a9cad, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 5, y: 5}
+  m_Size: {x: 6.826667, y: 6.826667}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -707,18 +707,18 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.074786276, y: 0.13159585}
+  m_Offset: {x: -0.4057505, y: -0.10867238}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.4133334, y: 6.826667}
-    newSize: {x: 5, y: 5}
+    oldSize: {x: 6.826667, y: 6.826667}
+    newSize: {x: 6.826667, y: 6.826667}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.2721663, y: 3.1128516}
+  m_Size: {x: 2.2769246, y: 4.9913135}
   m_EdgeRadius: 0
 --- !u!50 &3083226723096123262
 Rigidbody2D:

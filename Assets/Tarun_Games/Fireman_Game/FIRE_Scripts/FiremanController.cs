@@ -1,4 +1,5 @@
-﻿using DLearners;
+﻿using DG.Tweening;
+using DLearners;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -53,19 +54,10 @@ public class FiremanController : GameManagerBase
     
 
     [Header("Initialization")]
-    public AnimationClip AC_introCam;
     public AnimationClip AC_controlsAnim;
-    public GameObject G_dog;
     public bool B_dogRun;
-    public float F_dogSpeed;
 
-    [Header("Bird")]
-    public GameObject G_bird1;
-    public GameObject G_bird2;
-    public GameObject G_currentBird;
-    public Vector2 V_birdStart;
-    public Vector2 V_birdEnd;
-    public bool B_birdFly;
+   
 
     [Header("Audios")]
     public AudioSource AS_baby;
@@ -213,7 +205,7 @@ public class FiremanController : GameManagerBase
         }
 
         G_bgm.SetActive(true);
-        StartCoroutine(EN_birdfly());
+        StartCoroutine(OnStartBirdFly());
         int curqcount = I_currentQuestionCount + 1;
         //TEX_questionCount.text = "" + curqcount + "/" + I_totalQuestionCount;Tarun
         HUDManager.Instance.UpdateQuestionCountText(currentQuestionID);//Tarun
@@ -227,32 +219,7 @@ public class FiremanController : GameManagerBase
 
    
 
-    IEnumerator EN_birdfly()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(7f);
-            THI_birdSpawn();
-        }
-    }
-
-    void THI_birdSpawn()
-    {
-        int randomBird = Random.Range(1, 3);
-        if (randomBird == 1)
-        {
-            G_currentBird = Instantiate(G_bird1);
-        }
-        if (randomBird == 2)
-        {
-            G_currentBird = Instantiate(G_bird2);
-        }
-        int randomYpos = Random.Range(-3, 4);
-        V_birdStart = new Vector2(transform.position.x - 7.5f, transform.position.y + randomYpos);
-        V_birdEnd = new Vector2(transform.position.x + 15f, transform.position.y + randomYpos);
-        G_currentBird.transform.position = V_birdStart;
-        B_birdFly = true;
-    }    
+        
 
     void THI_gameData()
     {
@@ -650,6 +617,43 @@ public class FiremanController : GameManagerBase
                 MyJSON json = new MyJSON();
                 json.THI_onGameComplete(www.downloadHandler.text);
             }
+        }
+    }
+
+
+
+
+    [Header("Bird")]
+    [SerializeField] private GameObject birdPF1;
+    [SerializeField] private GameObject birdPF2;
+    private GameObject currentBird;
+    public Vector2 V_birdEnd;
+
+
+    private IEnumerator OnStartBirdFly()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(7f);
+            THI_birdSpawn();
+        }
+    }
+
+    private void THI_birdSpawn()
+    {
+
+        int randomBird = Random.Range(1, 3);
+        int randomYpos = Random.Range(-3, 4);
+        Vector2 V_birdStart = new Vector2(transform.position.x - 7.5f, transform.position.y + randomYpos);
+        V_birdEnd = new Vector2(transform.position.x + 15f, transform.position.y + randomYpos);
+        currentBird.transform.position = V_birdStart;
+        if (randomBird == 1)
+        {
+            currentBird = Instantiate(birdPF1);
+        }
+        if (randomBird == 2)
+        {
+            currentBird = Instantiate(birdPF2);
         }
     }
 }
