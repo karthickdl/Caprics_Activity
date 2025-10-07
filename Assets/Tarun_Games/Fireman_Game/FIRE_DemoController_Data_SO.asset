@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: FIRE_DemoController_Data_SO
   m_EditorClassIdentifier: 
   demoController_N: {fileID: 6517945551617915215, guid: 84c9ce42a079acb4d947d62eb85f9296, type: 3}
-  bgSprite: {fileID: 21300000, guid: 2a3767df1cdf1ba49a58bd54f78f6a4d, type: 3}
+  bgSprite: {fileID: 0}
   demoControllInfos: []
-  clip: {fileID: 0}
+  clip: {fileID: 7400000, guid: 47f3ea0c32878467d863157b815b3f01, type: 2}

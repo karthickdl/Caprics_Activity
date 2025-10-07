@@ -88,6 +88,7 @@ public class FiremanController : GameManagerBase
     public override void OnPlayButton()
     {
         base.OnPlayButton();
+        firemancamera.GetComponent<Animator>().enabled = true;
     }
 
     /// <summary>
@@ -98,6 +99,17 @@ public class FiremanController : GameManagerBase
         base.InitGame();
 
         NextStep();
+
+       
+        SpawnPos = transform.position;
+        I_currentQuestionCount = -1;
+        int curqcount = I_currentQuestionCount + 1;
+        //TEX_questionCount.text = "" + curqcount + "/" + I_totalQuestionCount;tarun
+
+        //G_controlButtons.SetActive(false);//Taru8n
+        THI_addAudios();
+
+        Invoke("THI_gameData", 1f);
         #region----------Platform Checking to set sprites for controls in Demo
 
         /*if (MainController.instance.WEB)
@@ -158,23 +170,6 @@ public class FiremanController : GameManagerBase
         }
         base.NextStep();//Need to be called after GetSetCurrentLevelData
     }
-
-    void Start()
-    {
-
-        firemancamera.GetComponent<Animator>().enabled = false;
-        SpawnPos = transform.position;
-        I_currentQuestionCount = -1;
-        int curqcount = I_currentQuestionCount + 1;
-        //TEX_questionCount.text = "" + curqcount + "/" + I_totalQuestionCount;tarun
-        
-        //G_controlButtons.SetActive(false);//Taru8n
-        THI_addAudios();
-       
-        Invoke("THI_gameData", 1f);
-
-    }
-
 
     void THI_enableControlButtons()
     {
